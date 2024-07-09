@@ -13,8 +13,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    theme = db.Column(db.String(12))
-    language = db.Column(db.String(2))
+    theme = db.Column(db.String(12), server_default='light')
+    language = db.Column(db.String(2), server_default='en')
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
 
