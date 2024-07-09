@@ -18,7 +18,7 @@ function LoginFormModal() {
       thunkLogin({
         email,
         password,
-      })
+      }),
     );
 
     if (serverResponse) {

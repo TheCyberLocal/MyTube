@@ -28,7 +28,7 @@ function SignupFormModal() {
         email,
         username,
         password,
-      })
+      }),
     );
 
     if (serverResponse) {

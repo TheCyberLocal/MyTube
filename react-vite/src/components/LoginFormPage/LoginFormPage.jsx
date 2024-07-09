@@ -21,7 +21,7 @@ function LoginFormPage() {
       thunkLogin({
         email,
         password,
-      })
+      }),
     );
 
     if (serverResponse) {
