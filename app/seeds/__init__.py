@@ -4,6 +4,7 @@ from .tags import seed_tags, undo_tags
 from .videos import seed_videos, undo_videos
 from .notes import seed_notes, undo_notes
 from .highlights import seed_highlights, undo_highlights
+from .video_tags import seed_video_tags, undo_video_tags
 
 from app.models.db import db, environment, SCHEMA
 
@@ -25,11 +26,13 @@ def seed():
         undo_videos()
         undo_notes()
         undo_highlights()
+        undo_video_tags()
     seed_users()
     seed_tags()
     seed_videos()
     seed_notes()
     seed_highlights()
+    seed_video_tags()
 
     # Add other seed functions here
 
@@ -42,4 +45,5 @@ def undo():
     undo_videos()
     undo_notes()
     undo_highlights()
+    undo_video_tags()
     # Add other undo functions here

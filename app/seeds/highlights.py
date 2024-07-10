@@ -1,4 +1,4 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, Highlight, environment, SCHEMA
 from sqlalchemy.sql import text
 
 highlight_data = [
@@ -148,10 +148,10 @@ highlight_data = [
     }
 ]
 
-# Adds a demo user, you can add other highlights here if you want
+# Adds a demo highlight, you can add other highlights here if you want
 def seed_highlights():
-    for user in highlight_data:
-        db.session.add(User(**user))
+    for highlight in highlight_data:
+        db.session.add(Highlight(**highlight))
 
     db.session.commit()
 
