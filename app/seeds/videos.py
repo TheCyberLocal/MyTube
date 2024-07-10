@@ -5,97 +5,101 @@ from sqlalchemy.sql import text
 video_data = [
     {
         "user_id": 1,
-        "title": "Python Tutorial for Beginners",
-        "description": "A comprehensive guide to learning Python for beginners.",
-        "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-        "tags": ["Python", "Programming", "Tutorial"]
+        "title": "The Most Important Skill You Never Learned",
+        "description": "Learning how to find, and solve bugs in your code is one of the most important skills you can learn as a developer. This is because most of your time spent as a developer will be spent debugging so you need to learn to become a master debugger in order to excel at programming. In this crash course I will teach you everything you need to know to master debugging.",
+        "url": "https://youtu.be/l8pe_MSX4Lc"
     },
     {
         "user_id": 1,
-        "title": "Advanced JavaScript Techniques",
-        "description": "Exploring advanced concepts and techniques in JavaScript.",
-        "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
-        "tags": ["JavaScript", "Web Development", "Advanced"]
+        "title": "1 A.M Study Session 📚 [lofi hip hop/chill beats]",
+        "description": "One of my favorite of the lofi hip hop collection.",
+        "url": "https://youtu.be/lTRiuFIWV54"
     },
     {
-        "user_id": 2,
-        "title": "Data Science with Python",
-        "description": "Learn data science concepts and techniques using Python.",
-        "url": "https://www.youtube.com/watch?v=ua-CiDNNj30",
-        "tags": ["Data Science", "Python", "Machine Learning"]
+        "user_id": 1,
+        "title": "HTML Full Course - Build a Website Tutorial",
+        "description": "Learn the basics of HTML5 and web development in this awesome course for beginners.",
+        "url": "https://youtu.be/pQN-pnXPaVg"
     },
     {
-        "user_id": 2,
-        "title": "Introduction to Web Development",
-        "description": "Get started with web development using HTML, CSS, and JavaScript.",
-        "url": "https://www.youtube.com/watch?v=pQN-pnXPaVg",
-        "tags": ["Web Development", "HTML", "CSS", "JavaScript"]
+        "user_id": 1,
+        "title": "CSS Crash Course For Absolute Beginners",
+        "description": "Learn the basics of CSS in this complete crash course.",
+        "url": "https://youtu.be/yfoY53QXEnI"
     },
     {
-        "user_id": 3,
-        "title": "Building REST APIs with Flask",
-        "description": "Create RESTful APIs using Flask, a micro web framework in Python.",
-        "url": "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
-        "tags": ["Flask", "Python", "API"]
+        "user_id": 1,
+        "title": "JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour",
+        "description": "This is a complete JavaScript tutorial for beginners to learn JavaScript from scratch.",
+        "url": "https://youtu.be/W6NZfCO5SIk"
     },
     {
-        "user_id": 3,
-        "title": "Mastering React",
-        "description": "Become proficient in building dynamic web applications using React.",
-        "url": "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
-        "tags": ["React", "JavaScript", "Web Development"]
+        "user_id": 1,
+        "title": "Python for Beginners - Learn Python in 1 Hour",
+        "description": "Learn Python programming language in just one hour.",
+        "url": "https://youtu.be/rfscVS0vtbw"
     },
     {
-        "user_id": 4,
-        "title": "Introduction to Machine Learning",
-        "description": "Understand the basics of machine learning and its applications.",
-        "url": "https://www.youtube.com/watch?v=GwIo3gDZCVQ",
-        "tags": ["Machine Learning", "Data Science", "Python"]
+        "user_id": 1,
+        "title": "React JS Crash Course",
+        "description": "This crash course will cover all the basics of React.js, a popular JavaScript library for building user interfaces.",
+        "url": "https://youtu.be/Dorf8i6lCuk"
     },
     {
-        "user_id": 4,
-        "title": "Building Microservices with Spring Boot",
-        "description": "Learn how to create microservices using Spring Boot.",
-        "url": "https://www.youtube.com/watch?v=K54XI0sinCs",
-        "tags": ["Spring Boot", "Java", "Microservices"]
+        "user_id": 1,
+        "title": "Node.js Crash Course",
+        "description": "Learn Node.js, a powerful JavaScript runtime, in this crash course.",
+        "url": "https://youtu.be/fBNz5xF-Kx4"
     },
     {
-        "user_id": 5,
-        "title": "Understanding Kubernetes",
-        "description": "Get an in-depth understanding of Kubernetes and container orchestration.",
-        "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
-        "tags": ["Kubernetes", "DevOps", "Containers"]
+        "user_id": 1,
+        "title": "REST API Tutorial",
+        "description": "Learn how to create a REST API with Node.js and Express in this comprehensive tutorial.",
+        "url": "https://youtu.be/1zkgdLZEdwM"
     },
     {
-        "user_id": 5,
-        "title": "Deep Learning with TensorFlow",
-        "description": "Master deep learning concepts using TensorFlow.",
-        "url": "https://www.youtube.com/watch?v=tPYj3fFJGjk",
-        "tags": ["Deep Learning", "TensorFlow", "Machine Learning"]
+        "user_id": 1,
+        "title": "Learn Django - Full Tutorial for Beginners",
+        "description": "This is a complete tutorial for beginners to learn the Django web framework.",
+        "url": "https://youtu.be/F5mRW0jo-U4"
     },
-    # Add more video entries here (total 50 entries)
+    {
+        "user_id": 1,
+        "title": "Docker Tutorial for Beginners",
+        "description": "Learn Docker from scratch in this beginner-friendly tutorial.",
+        "url": "https://youtu.be/3c-iBn73dDE"
+    },
+    {
+        "user_id": 1,
+        "title": "Git and GitHub Crash Course",
+        "description": "Learn the basics of Git and GitHub in this crash course.",
+        "url": "https://youtu.be/SWYqp7iY_Tc"
+    },
+    {
+        "user_id": 1,
+        "title": "Machine Learning Tutorial Python - 7.2 Neural Networks with Keras",
+        "description": "Learn how to create neural networks using Keras in this in-depth tutorial.",
+        "url": "https://youtu.be/WFr2WgN9_xE"
+    },
+    {
+        "user_id": 1,
+        "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",
+        "description": "Learn about data structures in this comprehensive tutorial by a Google engineer.",
+        "url": "https://youtu.be/RBSGKlAvoiM"
+    },
+    {
+        "user_id": 1,
+        "title": "Algorithms and Data Structures Tutorial - Full Course for Beginners",
+        "description": "This course covers all the basic algorithms and data structures in computer science.",
+        "url": "https://youtu.be/8hly31xKli0"
+    },
 ]
+
 
 # Function to seed videos
 def seed_videos():
     for video in video_data:
-        vid = Video(
-            user_id=video["user_id"],
-            title=video["title"],
-            description=video["description"],
-            url=video["url"],
-            last_viewed=video["last_viewed"]
-        )
-        db.session.add(vid)
-        db.session.commit()
-
-        for tag_name in video["tags"]:
-            tag = Tag.query.filter_by(name=tag_name).first()
-            if not tag:
-                tag = Tag(name=tag_name)
-                db.session.add(tag)
-                db.session.commit()
-            vid.tags.append(tag)
+        db.session.add(Video(**video))
 
     db.session.commit()
 

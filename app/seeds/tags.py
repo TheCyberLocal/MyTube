@@ -1,7 +1,7 @@
 from app.models import db, Tag, environment, SCHEMA
 from sqlalchemy.sql import text
 
-CATEGORIES = [
+tag_data = [
     '3DPrinting',
     'Accessories',
     'Accounting',
@@ -440,12 +440,7 @@ CATEGORIES = [
     'Yoga',
     'YouTube',
     'Zen',
-    'Zoos'
-]
-
-
-
-STUDIES = [
+    'Zoos',
     'Acarology',
     'Actinology',
     'Aerobiology',
@@ -537,10 +532,7 @@ STUDIES = [
 
 # Adds a demo user, you can add other tags here if you want
 def seed_tags():
-    for tag in CATEGORIES:
-        db.session.add(Tag(name=tag))
-
-    for tag in STUDIES:
+    for tag in tag_data:
         db.session.add(Tag(name=tag))
 
     db.session.commit()

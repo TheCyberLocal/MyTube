@@ -12,7 +12,7 @@ class Video(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     url = db.Column(db.Text, nullable=False)
-    last_viewed = db.Column(db.DateTime)
+    last_viewed = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 

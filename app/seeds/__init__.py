@@ -1,6 +1,9 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .tags import seed_tags, undo_tags
+from .videos import seed_videos, undo_videos
+from .notes import seed_notes, undo_notes
+from .highlights import seed_highlights, undo_highlights
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,8 +22,14 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_tags()
+        undo_videos()
+        undo_notes()
+        undo_highlights()
     seed_users()
     seed_tags()
+    seed_videos()
+    seed_notes()
+    seed_highlights()
 
     # Add other seed functions here
 
@@ -30,4 +39,7 @@ def seed():
 def undo():
     undo_users()
     undo_tags()
+    undo_videos()
+    undo_notes()
+    undo_highlights()
     # Add other undo functions here
