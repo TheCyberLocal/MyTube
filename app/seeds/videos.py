@@ -1,7 +1,6 @@
 from app.models import db, Video, Tag, environment, SCHEMA
 from sqlalchemy.sql import text
 
-# List of sample video data
 video_data = [
     {
         "user_id": 1,
