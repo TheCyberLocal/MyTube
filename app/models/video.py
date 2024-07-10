@@ -8,7 +8,7 @@ class Video(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    name = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     last_viewed = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
@@ -23,7 +23,7 @@ class Video(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'name': self.name,
+            'title': self.title,
             'description': self.description,
             'tags': [tag.to_dict() for tag in self.tags],
             'last_viewed': self.last_viewed,

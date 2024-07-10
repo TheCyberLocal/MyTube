@@ -8,7 +8,7 @@ class Highlight(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     video_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('videos.id')), nullable=False)
-    name = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
@@ -20,7 +20,7 @@ class Highlight(db.Model):
         return {
             'id': self.id,
             'video_id': self.video_id,
-            'name': self.name,
+            'title': self.title,
             'start_time': self.start_time,
             'end_time': self.end_time,
             'created_at': self.created_at,
