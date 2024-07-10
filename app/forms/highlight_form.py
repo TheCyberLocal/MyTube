@@ -1,6 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms.validators import DataRequired, Length, NumberRange, StopValidation
+
+
+class OptionalIfData:
+    def __call__(self, form, field):
+        if not field.data:
+            field.errors[:] = []
+            raise StopValidation()
 
 
 class HighlightForm(FlaskForm):
@@ -8,3 +15,10 @@ class HighlightForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), Length(1, 255)])
     start_time = IntegerField('start_time', validators=[DataRequired(), NumberRange(min=0)])
     end_time = IntegerField('end_time', validators=[DataRequired(), NumberRange(min=0)])
+
+
+class UpdateHighlightForm(FlaskForm):
+    video_id = IntegerField('video_id', validators=[OptionalIfData(), NumberRange(min=1)])
+    name = StringField('name', validators=[OptionalIfData(), Length(1, 255)])
+    start_time = IntegerField('start_time', validators=[OptionalIfData(), NumberRange(min=0)])
+    end_time = IntegerField('end_time', validators=[OptionalIfData(), NumberRange(min=0)])
