@@ -10,14 +10,15 @@ class Video(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
+    url = db.Column(db.String, nullable=False)
     last_viewed = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
 
-    user = db.relationship('User', back_populates='videos')
+    user = db.relationship('User', back_populates='video')
     notes = db.relationship('Note', back_populates='video')
     highlights = db.relationship('Highlight', back_populates='video')
-    tags = db.relationship('Tag', secondary='video_tags', back_populates='videos')
+    tags = db.relationship('Tag', secondary='video_tags', back_populates='video')
 
     def to_dict(self):
         return {
@@ -25,6 +26,7 @@ class Video(db.Model):
             'user_id': self.user_id,
             'title': self.title,
             'description': self.description,
+            'url': self.url,
             'tags': [tag.to_dict() for tag in self.tags],
             'last_viewed': self.last_viewed,
             'created_at': self.created_at,

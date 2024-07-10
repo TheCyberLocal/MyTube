@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
 
+    videos = db.relationship('Video', back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password
