@@ -55,10 +55,3 @@ def sign_up():
         login_user(user)
         return jsonify(user.to_dict())
     return jsonify({'errors': form.errors}), 401
-
-@auth_routes.route('/unauthorized')
-def unauthorized():
-    """
-    Returns unauthorized JSON when Flask-Login authentication fails.
-    """
-    return jsonify({'errors': {'message': 'Unauthorized'}}), 401
