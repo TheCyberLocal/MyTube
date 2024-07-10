@@ -13,8 +13,9 @@ def login():
     if form.validate_on_submit():
         credential = form.credential.data
         user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
-        login_user(user)
-        return jsonify(user.to_dict())
+        if user and user.check_password(form.password.data):
+            login_user(user)
+            return jsonify(user.to_dict())
     return jsonify({'errors': form.errors}), 401
 
 @auth_routes.route('/logout', methods=['POST'])

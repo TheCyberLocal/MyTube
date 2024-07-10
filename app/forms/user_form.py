@@ -14,7 +14,6 @@ class OptionalIfData:
 
 
 def user_exists(form, field):
-    # Checking if user exists
     credential = field.data
     user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
     if not user:
@@ -38,7 +37,6 @@ def username_exists(form, field):
 
 
 def password_matches(form, field):
-    # Checking if password matches
     password = field.data
     credential = form.data['credential']
     user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
