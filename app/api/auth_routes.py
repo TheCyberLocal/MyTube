@@ -14,9 +14,8 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User.query.filter(or_(User.email == form.data.credential, User.username == form.data.credential)).first()
-        if user and user.check_password(form.data.password):
-            login_user(user)
-            return jsonify(user.to_dict())
+        login_user(user)
+        return jsonify(user.to_dict())
     return jsonify({'errors': form.errors}), 401
 
 
