@@ -1,5 +1,4 @@
-from .login_form import LoginForm
-from .signup_form import SignUpForm
+from .user_form import LoginForm, SignUpForm, UserUpdateForm
 from .note_form import NoteForm
 from .highlight_form import HighlightForm
 from .tag_form import TagForm
