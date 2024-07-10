@@ -226,7 +226,6 @@ CATEGORIES = [
     'Italy',
     'Judo',
     'Journalism',
-    'Judo',
     'Juggling',
     'Jumping',
     'KPop',
@@ -257,7 +256,6 @@ CATEGORIES = [
     'Maps',
     'MartialArts',
     'Marketing',
-    'MartialArts',
     'Mathematics',
     'Meditation',
     'Memoirs',
@@ -458,7 +456,6 @@ STUDIES = [
     'Apiology',
     'Arachnology',
     'Astrobiology',
-    'Astrology',
     'Audiology',
     'Autecology',
     'Bacteriology',
@@ -542,6 +539,7 @@ STUDIES = [
 def seed_tags():
     for tag in CATEGORIES:
         db.session.add(Tag(name=tag))
+
     for tag in STUDIES:
         db.session.add(Tag(name=tag))
 

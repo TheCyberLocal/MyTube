@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy.sql import func
 
 class Video(db.Model):
     __tablename__ = 'videos'
@@ -6,19 +7,19 @@ class Video(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
-    url = db.Column(db.String, nullable=False)
+    url = db.Column(db.Text, nullable=False)
     last_viewed = db.Column(db.DateTime)
-    created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now(), onupdate=db.func.now())
+    created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
+    updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
-    user = db.relationship('User', back_populates='video')
+    user = db.relationship('User', back_populates='videos')
     notes = db.relationship('Note', back_populates='video')
     highlights = db.relationship('Highlight', back_populates='video')
-    tags = db.relationship('Tag', secondary='video_tags', back_populates='video')
+    tags = db.relationship('Tag', secondary='video_tags', back_populates='videos')
 
     def to_dict(self):
         return {
