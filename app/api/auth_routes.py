@@ -13,7 +13,7 @@ def login():
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User.query.filter(or_(User.email == form.data.credential, User.username == form.data.credential)).first()
+        user = User.query.filter(or_(User.email == form.credential.data, User.username == form.credential.data)).first()
         login_user(user)
         return jsonify(user.to_dict())
     return jsonify({'errors': form.errors}), 401
@@ -31,10 +31,10 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         cleanUser = User(
-            username=form.data.username,
-            name=form.data.name,
-            email=form.data.email,
-            password=form.data.password
+            username=form.username.data,
+            name=form.name.data,
+            email=form.email.data,
+            password=form.password.data
         )
         db.session.add(cleanUser)
         db.session.commit()

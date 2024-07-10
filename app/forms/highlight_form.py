@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, Length, NumberRange, StopValidation
+from wtforms.validators import DataRequired, Length, NumberRange, StopValidation, ValidationError
 
 
 class OptionalIfData:
@@ -15,6 +15,10 @@ class HighlightForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), Length(1, 255)])
     start_time = IntegerField('start_time', validators=[DataRequired(), NumberRange(min=0)])
     end_time = IntegerField('end_time', validators=[DataRequired(), NumberRange(min=0)])
+
+    def validate_end_time(form, field):
+        if form.start_time.data > form.end_time.data:
+            raise ValidationError('End time must be after start time.')
 
 
 class UpdateHighlightForm(FlaskForm):
