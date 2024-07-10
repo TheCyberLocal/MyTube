@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError, Length, Regexp, StopValidation
+from wtforms.validators import DataRequired, Email, ValidationError, Length, Regexp, StopValidation, EqualTo
 from app.models import User
 from flask_login import current_user
 from sqlalchemy import or_
@@ -54,15 +54,16 @@ class LoginForm(FlaskForm):
 class SignUpForm(FlaskForm):
     password_regex = r"(?=^.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])"
 
-    username = StringField('username', validators=[DataRequired(), username_exists, Length(6, 20)])
-    email = StringField('email', validators=[DataRequired(), email_exists, Email()])
+    username = StringField('username', validators=[DataRequired(), Length(6, 20), username_exists])
+    email = StringField('email', validators=[DataRequired(), Email(), email_exists])
     name = StringField('name', validators=[DataRequired(), Length(3, 20)])
     password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Password must contain an uppercase letter, lowercase letter, digit and a symbol")])
+    confirm_password = StringField('password', validators=[EqualTo('password', message='Passwords must match')])
 
 
 class UserUpdateForm(FlaskForm):
-    username = StringField('username', validators=[OptionalIfData(), username_exists, Length(6, 20)])
-    email = StringField('email', validators=[OptionalIfData(), email_exists, Email()])
+    username = StringField('username', validators=[OptionalIfData(), Length(6, 20), username_exists])
+    email = StringField('email', validators=[OptionalIfData(), Email(), email_exists])
     name = StringField('name', validators=[OptionalIfData(), Length(3, 20)])
     theme = StringField('theme', validators=[OptionalIfData(), Length(3, 12)])
     language = StringField('language', validators=[OptionalIfData(), Length(2, 2)])
