@@ -8,3 +8,9 @@ class VideoTag(db.Model):
 
     video_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('videos.id')), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), primary_key=True)
+
+    def to_dict(self):
+        return {
+            'video_id': self.video_id,
+            'tag_id': self.tag_id
+        }
