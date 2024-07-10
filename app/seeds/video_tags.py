@@ -6,7 +6,98 @@ video_tag_data = [
         "video_id": 1,
         "tag_id": 1,
     },
-    ## Attach 2 or more correct tags to the correct video id's.
+    {
+        "video_id": 1,
+        "tag_id": 2,
+    },
+    {
+        "video_id": 2,
+        "tag_id": 3,
+    },
+    {
+        "video_id": 2,
+        "tag_id": 4,
+    },
+    {
+        "video_id": 3,
+        "tag_id": 5,
+    },
+    {
+        "video_id": 3,
+        "tag_id": 6,
+    },
+    {
+        "video_id": 4,
+        "tag_id": 7,
+    },
+    {
+        "video_id": 4,
+        "tag_id": 8,
+    },
+    {
+        "video_id": 5,
+        "tag_id": 9,
+    },
+    {
+        "video_id": 5,
+        "tag_id": 10,
+    },
+    {
+        "video_id": 6,
+        "tag_id": 11,
+    },
+    {
+        "video_id": 6,
+        "tag_id": 12,
+    },
+    {
+        "video_id": 7,
+        "tag_id": 13,
+    },
+    {
+        "video_id": 7,
+        "tag_id": 14,
+    },
+    {
+        "video_id": 8,
+        "tag_id": 15,
+    },
+    {
+        "video_id": 8,
+        "tag_id": 16,
+    },
+    {
+        "video_id": 9,
+        "tag_id": 17,
+    },
+    {
+        "video_id": 9,
+        "tag_id": 18,
+    },
+    {
+        "video_id": 10,
+        "tag_id": 19,
+    },
+    {
+        "video_id": 10,
+        "tag_id": 20,
+    },
+    {
+        "video_id": 11,
+        "tag_id": 21,
+    },
+    {
+        "video_id": 11,
+        "tag_id": 22,
+    },
+    {
+        "video_id": 12,
+        "tag_id": 23,
+    },
+    {
+        "video_id": 12,
+        "tag_id": 24,
+    }
 ]
 
 # Adds a demo video_tag, you can add other video_tags here if you want

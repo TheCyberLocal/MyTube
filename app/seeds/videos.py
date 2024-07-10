@@ -91,7 +91,7 @@ video_data = [
         "title": "Algorithms and Data Structures Tutorial - Full Course for Beginners",
         "description": "This course covers all the basic algorithms and data structures in computer science.",
         "url": "https://youtu.be/8hly31xKli0"
-    },
+    }
 ]
 
 
