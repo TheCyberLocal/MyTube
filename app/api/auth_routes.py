@@ -36,14 +36,14 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User(
+        cleanUser = User(
             username=form.data['username'],
             name=form.data['name'],
             email=form.data['email'],
             password=form.data['password']
         )
-        db.session.add(user)
+        db.session.add(cleanUser)
         db.session.commit()
-        login_user(user)
-        return jsonify(user.to_dict())
+        login_user(cleanUser)
+        return jsonify(cleanUser.to_dict())
     return jsonify({'errors': form.errors}), 401
