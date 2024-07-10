@@ -2,7 +2,9 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Note, Video, db
 
+
 note_routes = Blueprint('notes', __name__)
+
 
 @note_routes.route('/videos/<int:video_id>/notes')
 @login_required
@@ -19,6 +21,7 @@ def get_video_notes(video_id):
     notes = Note.query.filter_by(video_id=video_id).all()
     return jsonify([note.to_dict() for note in notes])
 
+
 @note_routes.route('/<int:id>')
 @login_required
 def get_note(id):
@@ -34,6 +37,7 @@ def get_note(id):
 
     return jsonify(note.to_dict())
 
+
 @note_routes.route('/', methods=['POST'])
 @login_required
 def create_note():
@@ -47,14 +51,15 @@ def create_note():
     if video.user_id != current_user.id:
         return jsonify({'errors': 'You do not have permission to add notes to this video.'}), 403
 
-    note = Note(
-        video_id=video.id,
+    cleanNote = Note(
+        video_id=data['video_id'],
         title=data['title'],
         description=data['description']
     )
-    db.session.add(note)
+    db.session.add(cleanNote)
     db.session.commit()
-    return jsonify(note.to_dict()), 201
+    return jsonify(cleanNote.to_dict()), 201
+
 
 @note_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
@@ -74,6 +79,7 @@ def update_note(id):
     note.description = data.get('description', note.description)
     db.session.commit()
     return jsonify(note.to_dict())
+
 
 @note_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
