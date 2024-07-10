@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, Length, NumberRange
 
 
 class NoteForm(FlaskForm):
-    video_id = IntegerField('video_id', validators=[DataRequired(), NumberRange(min=0)])
+    video_id = IntegerField('video_id', validators=[DataRequired(), NumberRange(min=1)])
     title = StringField('title', validators=[DataRequired(), Length(1, 255)])
     description = TextAreaField('description', validators=[DataRequired()])
