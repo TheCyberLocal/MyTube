@@ -19,7 +19,7 @@ def login():
             return jsonify(user.to_dict())
     return jsonify({'errors': {'credential': ['Invalid email/username or password.']}}), 401
 
-@auth_routes.route('/logout')
+@auth_routes.route('/logout', methods=['POST'])
 def logout():
     """
     Logs a user out.
