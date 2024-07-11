@@ -12,11 +12,12 @@ auth_routes = Blueprint('auth', __name__)
 def login():
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User.query.filter(or_(User.email == form.credential.data, User.username == form.credential.data)).first()
-        login_user(user)
-        return jsonify(user.to_dict())
-    return jsonify({'errors': form.errors}), 401
+    if not form.validate_on_submit():
+        return jsonify({'errors': form.errors}), 401
+
+    user = User.query.filter(or_(User.email == form.credential.data, User.username == form.credential.data)).first()
+    login_user(user)
+    return jsonify(user.to_dict())
 
 
 @auth_routes.route('/logout', methods=['POST'])
@@ -29,15 +30,16 @@ def logout():
 def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        cleanUser = User(
-            username=form.username.data,
-            name=form.name.data,
-            email=form.email.data,
-            password=form.password.data
-        )
-        db.session.add(cleanUser)
-        db.session.commit()
-        login_user(cleanUser)
-        return jsonify(cleanUser.to_dict())
-    return jsonify({'errors': form.errors}), 401
+    if not form.validate_on_submit():
+        return jsonify({'errors': form.errors}), 401
+
+    cleanUser = User(
+        username=form.username.data,
+        name=form.name.data,
+        email=form.email.data,
+        password=form.password.data
+    )
+    db.session.add(cleanUser)
+    db.session.commit()
+    login_user(cleanUser)
+    return jsonify(cleanUser.to_dict())

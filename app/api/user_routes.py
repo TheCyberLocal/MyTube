@@ -17,20 +17,21 @@ def update_user(id):
     form = UserUpdateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        if form.username.data:
-            user.username = form.username.data
-        if form.email.data:
-            user.email = form.email.data
-        if form.name.data:
-            user.name = form.name.data
-        if form.theme.data:
-            user.theme = form.theme.data
-        if form.language.data:
-            user.language = form.language.data
-        db.session.commit()
-        return jsonify(user.to_dict())
-    return jsonify({'errors': form.errors}), 400
+    if not form.validate_on_submit():
+        return jsonify({'errors': form.errors}), 400
+
+    if form.username.data:
+        user.username = form.username.data
+    if form.email.data:
+        user.email = form.email.data
+    if form.name.data:
+        user.name = form.name.data
+    if form.theme.data:
+        user.theme = form.theme.data
+    if form.language.data:
+        user.language = form.language.data
+    db.session.commit()
+    return jsonify(user.to_dict())
 
 
 @user_routes.route('/<int:id>', methods=['DELETE'])
