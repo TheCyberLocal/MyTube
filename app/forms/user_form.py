@@ -1,13 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError, Length, Regexp, EqualTo, Optional
+from sqlalchemy import or_
 from app.models import User
 from flask_login import current_user
 
 
 def user_exists(form, field):
     credential = field.data
-    user = User.query.filter(User.email == credential | User.username == credential).first()
+    user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
     if not user:
         raise ValidationError('User provided not found.')
 
@@ -31,7 +32,7 @@ def username_exists(form, field):
 def password_matches(form, field):
     password = field.data
     credential = form.credential.data
-    user = User.query.filter(User.email == credential | User.username == credential).first()
+    user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
     if not user:
         raise ValidationError('No such user exists.')
     if not user.check_password(password):

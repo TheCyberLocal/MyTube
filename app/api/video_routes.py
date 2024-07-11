@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Video, Tag, VideoTag
 from app.forms import VideoForm, UpdateVideoForm
+from sqlalchemy import or_
 
 
 video_routes = Blueprint('videos', __name__)
@@ -26,7 +27,7 @@ def get_my_videos():
 
     # Filter by search string in title or description
     if keyword_string:
-        query = query.filter(Video.title.ilike(f"%{keyword_string}%") | Video.description.ilike(f"%{keyword_string}%"))
+        query = query.filter(or_(Video.title.ilike(f"%{keyword_string}%"), Video.description.ilike(f"%{keyword_string}%")))
 
     # Order results
     if order_by == 'recently_viewed':

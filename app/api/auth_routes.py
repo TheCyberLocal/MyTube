@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models import User, db
 from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import or_
 
 
 auth_routes = Blueprint('auth', __name__)
@@ -14,7 +15,7 @@ def login():
     if not form.validate_on_submit():
         return jsonify({'errors': form.errors}), 401
 
-    user = User.query.filter(User.email == form.credential.data | User.username == form.credential.data).first()
+    user = User.query.filter(or_(User.email == form.credential.data, User.username == form.credential.data)).first()
     login_user(user)
     return jsonify(user.to_dict())
 
