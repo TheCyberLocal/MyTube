@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.highlight_routes import highlight_routes
 from .api.note_routes import note_routes
 from .api.tag_routes import tag_routes
+from .api.video_routes import video_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,6 +35,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(highlight_routes, url_prefix='/api')
 app.register_blueprint(note_routes, url_prefix='/api')
 app.register_blueprint(tag_routes, url_prefix='/api')
+app.register_blueprint(video_routes, url_prefix='/api')
 db.init_app(app)
 Migrate(app, db)
 
