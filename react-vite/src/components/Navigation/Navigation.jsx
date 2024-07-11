@@ -1,18 +1,13 @@
-import { NavLink } from "react-router-dom";
-import ProfileButton from "./ProfileButton";
+import { useSelector } from "react-redux";
 import "./Navigation.css";
 
 function Navigation() {
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+  const sessionUser = useSelector((state) => state.session.user);
 
-      <li>
-        <ProfileButton />
-      </li>
-    </ul>
+  return (
+    <div>
+      {!sessionUser && <h1>Welcome to MyTube</h1>}
+    </div>
   );
 }
 

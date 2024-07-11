@@ -1,9 +1,9 @@
-const SET_VIDEO_DETAIL = "videoDetails/setVideoDetails";
+const SET_VIDEO_DETAILS = "videoDetails/setVideoDetails";
 const SET_LOADING = "videoDetails/setLoading";
 const SET_ERROR = "videoDetails/setError";
 
 export const setVideoDetails = (detail) => ({
-  type: SET_VIDEO_DETAIL,
+  type: SET_VIDEO_DETAILS,
   payload: detail,
 });
 
@@ -17,12 +17,12 @@ export const setError = (error) => ({
   payload: error,
 });
 
-export const fetchVideoDetail = (videoId) => async (dispatch) => {
+export const fetchVideoDetails = (videoId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
     const response = await fetch(`/api/videos/${videoId}`);
     const data = await response.json();
-    dispatch(setVideoDetail(data));
+    dispatch(setVideoDetails(data));
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error.toString()));
@@ -38,9 +38,9 @@ const initialState = {
   error: null,
 };
 
-function videoDetailReducer(state = initialState, action) {
+function videoDetailsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_VIDEO_DETAIL:
+    case SET_VIDEO_DETAILS:
       return { ...state, ...action.payload };
     case SET_LOADING:
       return { ...state, isLoading: action.payload };
@@ -51,4 +51,4 @@ function videoDetailReducer(state = initialState, action) {
   }
 }
 
-export default videoDetailReducer;
+export default videoDetailsReducer;
