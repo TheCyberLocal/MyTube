@@ -12,7 +12,7 @@ video_routes = Blueprint('videos', __name__)
 @login_required
 def get_my_videos():
     # Get query parameters
-    tags = request.args.getlist('tags')
+    tags = request.args.get('tags', '').split(',')
     keyword_string = request.args.get('keyword', '')
     order_by = request.args.get('order_by', 'newest')
     page = int(request.args.get('page', 1))
@@ -22,8 +22,11 @@ def get_my_videos():
     query = Video.query.filter(Video.user_id == current_user.id)
 
     # Filter by tags
-    if tags:
-        query = query.join(VideoTag).join(Tag).filter(Tag.name.in_(tags))
+    if tags != ['']:
+        query = query.join(VideoTag).join(Tag)\
+        .filter(Tag.name.in_(tags))\
+        .group_by(Video.id)\
+        .having(db.func.count(Tag.id) == len(tags))
 
     # Filter by search string in title or description
     if keyword_string:
@@ -61,15 +64,16 @@ def create_video():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     # Extract tags from request data
-    tag_names = request.json.get('tags', [])
+    tag_names = request.args.get('tags', '').split(',')
 
     # Validate new tags
     new_tags = []
-    for tag_name in tag_names:
-        tag = Tag.query.filter_by(name=tag_name).first()
-        if not tag:
-            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
-        new_tags.append(tag)
+    if tag_names != ['']:
+        for tag_name in tag_names:
+            tag = Tag.query.filter_by(name=tag_name).first()
+            if not tag:
+                return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+            new_tags.append(tag)
 
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
@@ -107,15 +111,16 @@ def update_video(id):
         return jsonify(form.errors), 400
 
     # Extract tags from request data
-    tag_names = request.json.get('tags', [])
+    tag_names = request.args.get('tags', '').split(',')
 
     # Validate new tags
     new_tags = []
-    for tag_name in tag_names:
-        tag = Tag.query.filter_by(name=tag_name).first()
-        if not tag:
-            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
-        new_tags.append(tag)
+    if tag_names != ['']:
+        for tag_name in tag_names:
+            tag = Tag.query.filter_by(name=tag_name).first()
+            if not tag:
+                return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+            new_tags.append(tag)
 
     # Update video details
     if form.title.data:
