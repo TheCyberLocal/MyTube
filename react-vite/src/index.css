@@ -1,4 +1,21 @@
 /* TODO: Add sitewide styles */
+
+.favicon-container {
+  width: 32px; /* Set your desired container width */
+  height: 32px; /* Set your desired container height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favicon {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+}
+
 body {
-    margin: 0px;
+  margin: 0px;
 }

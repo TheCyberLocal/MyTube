@@ -14,7 +14,7 @@ def get_my_videos():
     # Get query parameters
     tags = request.args.get('tags', '').split(',')
     keyword_string = request.args.get('keyword', '')
-    order_by = request.args.get('order_by', 'newest')
+    sort_by = request.args.get('sort_by', 'newest')
     page = int(request.args.get('page', 1))
     per_page = 10
 
@@ -33,9 +33,9 @@ def get_my_videos():
         query = query.filter(or_(Video.title.ilike(f"%{keyword_string}%"), Video.description.ilike(f"%{keyword_string}%")))
 
     # Order results
-    if order_by == 'recently_viewed':
+    if sort_by == 'recently_viewed':
         query = query.order_by(Video.last_viewed_at.desc())
-    elif order_by == 'alphabetical':
+    elif sort_by == 'alphabetical':
         query = query.order_by(Video.title.asc())
     else:  # Default to 'newest'
         query = query.order_by(Video.created_at.desc())

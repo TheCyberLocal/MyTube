@@ -26,13 +26,11 @@ const initialState = {
 export const searchMyVideos = (options) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const { keyword, tags = [], orderBy = "newest", page = 1 } = options;
-    const response = await fetch(
-      `/api/my-videos?keyword=${keyword}&tags=${tags.join(
-        ","
-      )}&order_by=${orderBy}&page=${page}`
-    );
+    // const { keyword = "", tags = "", sortBy = "newest", page = 1 } = options;
+    const response = await fetch(`/api/my-videos`);
     const data = await response.json();
+    console.log('data from fetch', data);
+    console.log('created object action', setSearchResults(data))
     dispatch(setSearchResults(data));
     dispatch(setLoading(false));
   } catch (error) {
@@ -44,6 +42,8 @@ export const searchMyVideos = (options) => async (dispatch) => {
 function myVideosReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SEARCH_RESULTS:
+      console.log("payload in reducer", action.payload);
+      console.log("entire state return", { ...state, searchResults: action.payload })
       return { ...state, searchResults: action.payload };
     case SET_LOADING:
       return { ...state, isLoading: action.payload };

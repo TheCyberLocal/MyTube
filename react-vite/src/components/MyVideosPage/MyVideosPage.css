@@ -1,0 +1,36 @@
+.video-component {
+    padding: 20px;
+  }
+
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .controls label,
+  .controls input {
+    padding: 5px;
+  }
+
+  .video-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .video-item {
+    border: 1px solid #333;
+    padding: 10px;
+    width: 200px;
+  }
+
+  .video-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .video-item div {
+    margin-top: 10px;
+    text-align: center;
+  }

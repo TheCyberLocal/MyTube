@@ -8,8 +8,8 @@ function Navigation() {
 
   return (
     <div className="navigation">
-      {sessionUser && <h1>Welcome to MyTube</h1>}
-      {!sessionUser && (
+      {!sessionUser && <h1>Welcome to MyTube</h1>}
+      {sessionUser && (
         <>
           <div>
             <button onClick={() => nav("/my-videos")}>My Videos</button>

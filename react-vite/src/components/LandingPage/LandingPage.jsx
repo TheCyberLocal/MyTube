@@ -1,5 +1,5 @@
 function LandingPage() {
-  return <div>Here is the second component.</div>;
+  return <div>This will talk all about the website and have a fabulous background image.</div>;
 }
 
 export default LandingPage;
