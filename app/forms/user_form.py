@@ -1,16 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError, Length, Regexp, StopValidation, EqualTo
+from wtforms.validators import DataRequired, Email, ValidationError, Length, Regexp, EqualTo, Optional
 from app.models import User
 from flask_login import current_user
 from sqlalchemy import or_
-
-
-class OptionalIfData:
-    def __call__(self, form, field):
-        if not field.data:
-            field.errors[:] = []
-            raise StopValidation()
 
 
 def user_exists(form, field):
@@ -62,8 +55,8 @@ class SignUpForm(FlaskForm):
 
 
 class UserUpdateForm(FlaskForm):
-    username = StringField('username', validators=[OptionalIfData(), Length(6, 20), username_exists])
-    email = StringField('email', validators=[OptionalIfData(), Email(), email_exists])
-    name = StringField('name', validators=[OptionalIfData(), Length(3, 20)])
-    theme = StringField('theme', validators=[OptionalIfData(), Length(3, 12)])
-    language = StringField('language', validators=[OptionalIfData(), Length(2, 2)])
+    username = StringField('username', validators=[Optional(), Length(6, 20), username_exists])
+    email = StringField('email', validators=[Optional(), Email(), email_exists])
+    name = StringField('name', validators=[Optional(), Length(3, 20)])
+    theme = StringField('theme', validators=[Optional(), Length(3, 12)])
+    language = StringField('language', validators=[Optional(), Length(2, 2)])
