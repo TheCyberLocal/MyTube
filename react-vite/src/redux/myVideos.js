@@ -24,18 +24,19 @@ const initialState = {
 };
 
 
-export const searchVideos = (query) => async (dispatch) => {
-    dispatch(setLoading(true));
-    try {
-      const response = await fetch(`/api/videos/search?q=${query}`);
-      const data = await response.json();
-      dispatch(setSearchResults(data));
-      dispatch(setLoading(false));
-    } catch (error) {
-      dispatch(setError(error.toString()));
-      dispatch(setLoading(false));
-    }
-  };
+export const searchMyVideos = (options) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const { keyword, tags = [], orderBy = 'newest', page = 1 } = options;
+    const response = await fetch(`/api/my-videos?keyword=${keyword}&tags=${tags.join(',')}&order_by=${orderBy}&page=${page}`);
+    const data = await response.json();
+    dispatch(setSearchResults(data));
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
 
 
 function myVideosReducer(state = initialState, action) {
