@@ -14,7 +14,7 @@ def get_video_tags(video_id):
     if video.user_id != current_user.id:
         return jsonify({'errors': 'You do not have permission to view tags for this video.'}), 403
 
-    tags = db.session.query(Tag).join(VideoTag).filter(VideoTag.c.video_id == video_id).all()
+    tags = db.session.query(Tag).join(VideoTag).filter(VideoTag.video_id == video_id).all()
     return jsonify([tag.to_dict() for tag in tags]), 200
 
 
@@ -32,42 +32,42 @@ def get_tags():
     return jsonify([tag.to_dict() for tag in tags]), 200
 
 
-@tag_routes.route('/tags', methods=['POST'])
-@login_required
-def create_tag():
-    form = TagForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+# @tag_routes.route('/tags', methods=['POST'])
+# @login_required
+# def create_tag():
+#     form = TagForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if not form.validate_on_submit():
-        return jsonify(form.errors), 400
+#     if not form.validate_on_submit():
+#         return jsonify(form.errors), 400
 
-    tag = Tag(name=form.name.data)
-    db.session.add(tag)
-    db.session.commit()
-    return jsonify(tag.to_dict()), 201
-
-
-@tag_routes.route('/tags/<int:id>', methods=['PATCH'])
-@login_required
-def update_tag(id):
-    tag = Tag.query.get_or_404(id)
-    form = UpdateTagForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if not form.validate_on_submit():
-        return jsonify(form.errors), 400
-
-    if form.name.data:
-        tag.name = form.name.data
-
-    db.session.commit()
-    return jsonify(tag.to_dict()), 200
+#     tag = Tag(name=form.name.data)
+#     db.session.add(tag)
+#     db.session.commit()
+#     return jsonify(tag.to_dict()), 201
 
 
-@tag_routes.route('/tags/<int:id>', methods=['DELETE'])
-@login_required
-def delete_tag(id):
-    tag = Tag.query.get_or_404(id)
-    db.session.delete(tag)
-    db.session.commit()
-    return jsonify({"message": "Tag deleted successfully"}), 200
+# @tag_routes.route('/tags/<int:id>', methods=['PATCH'])
+# @login_required
+# def update_tag(id):
+#     tag = Tag.query.get_or_404(id)
+#     form = UpdateTagForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if not form.validate_on_submit():
+#         return jsonify(form.errors), 400
+
+#     if form.name.data:
+#         tag.name = form.name.data
+
+#     db.session.commit()
+#     return jsonify(tag.to_dict()), 200
+
+
+# @tag_routes.route('/tags/<int:id>', methods=['DELETE'])
+# @login_required
+# def delete_tag(id):
+#     tag = Tag.query.get_or_404(id)
+#     db.session.delete(tag)
+#     db.session.commit()
+#     return jsonify({"message": "Tag deleted successfully"}), 200
