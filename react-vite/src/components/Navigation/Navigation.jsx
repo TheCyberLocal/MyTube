@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./Navigation.css";
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
+  const nav = useNavigate();
 
   return (
     <div className="navigation">
@@ -10,12 +12,12 @@ function Navigation() {
       {!sessionUser && (
         <>
           <div>
-            <button>My Videos</button>
-            <button>Add Video</button>
+            <button onClick={() => nav("/my-videos")}>My Videos</button>
+            <button onClick={() => console.log("opens pop up modal to add video")}>Add Video</button>
           </div>
           <div>
-            <button>Help</button>
-            <button>Profile</button>
+            <button onClick={() => nav("/help")}>Help</button>
+            <button onClick={() => nav("/profile")}>Profile</button>
           </div>
         </>
       )}
