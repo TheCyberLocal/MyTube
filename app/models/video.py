@@ -1,5 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
+from .video_tag import VideoTag
+video_tag = VideoTag.__table__
 
 class Video(db.Model):
     __tablename__ = 'videos'
@@ -19,7 +21,7 @@ class Video(db.Model):
     user = db.relationship('User', back_populates='videos')
     notes = db.relationship('Note', back_populates='video')
     highlights = db.relationship('Highlight', back_populates='video')
-    tags = db.relationship('Tag', secondary='video_tags', back_populates='videos')
+    tags = db.relationship('Tag', secondary=video_tag, back_populates='videos')
 
     def to_dict(self):
         return {
