@@ -30,14 +30,16 @@ def create_video():
     form = VideoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    # Extract tags from request data
+    tag_names = request.json.get('tags', [])
+
     # Validate new tags
-    new_tag_names = {tag_form.name.data for tag_form in form.tags}
     new_tags = []
-    for tag_name in new_tag_names:
+    for tag_name in tag_names:
         tag = Tag.query.filter_by(name=tag_name).first()
-        new_tags.append(tag)
         if not tag:
-            return jsonify({'errors': 'Cannot submit invalid tags.'}), 400
+            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+        new_tags.append(tag)
 
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
@@ -52,10 +54,9 @@ def create_video():
     db.session.commit()
 
     # Add new tags
-    video.tags = [*new_tags]
-    for tag in video.tags:
-        vid_tag = VideoTag(tag_id=tag.id, video_id=video.id)
-        db.session.add(vid_tag)
+    for tag in new_tags:
+        video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
+        db.session.add(video_tag)
 
     db.session.commit()
 
@@ -75,23 +76,18 @@ def update_video(id):
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
 
+    # Extract tags from request data
+    tag_names = request.json.get('tags', [])
+
     # Validate new tags
-    new_tag_names = request.json.get('tags')
     new_tags = []
-    for tag_name in new_tag_names:
+    for tag_name in tag_names:
         tag = Tag.query.filter_by(name=tag_name).first()
-        new_tags.append(tag)
         if not tag:
-            return jsonify({'errors': 'Cannot submit invalid tags.'}), 400
+            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+        new_tags.append(tag)
 
-    # Remove old tags
-    old_tags = VideoTag.query.filter_by(video_id=id).first()
-    if old_tags:
-        for old_tag in old_tags:
-            db.session.delete(old_tag)
-
-        db.session.commit()
-
+    # Update video details
     if form.title.data:
         video.title = form.title.data
     if form.description.data:
@@ -99,11 +95,14 @@ def update_video(id):
     if form.url.data:
         video.url = form.url.data
 
+    # Remove old tags
+    VideoTag.query.filter_by(video_id=video.id).delete()
+    db.session.commit()
+
     # Add new tags
-    video.tags = new_tags
-    for tag in video.tags:
-        vid_tag = VideoTag(tag_id=tag.id, video_id=id)
-        db.session.add(vid_tag)
+    for tag in new_tags:
+        video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
+        db.session.add(video_tag)
 
     db.session.commit()
 
