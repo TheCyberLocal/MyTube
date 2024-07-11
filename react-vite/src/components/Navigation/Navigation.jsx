@@ -5,8 +5,20 @@ function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <div>
-      {!sessionUser && <h1>Welcome to MyTube</h1>}
+    <div className="navigation">
+      {sessionUser && <h1>Welcome to MyTube</h1>}
+      {!sessionUser && (
+        <>
+          <div>
+            <button>My Videos</button>
+            <button>Add Video</button>
+          </div>
+          <div>
+            <button>Help</button>
+            <button>Profile</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
