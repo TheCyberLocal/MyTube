@@ -7,6 +7,15 @@ from sqlalchemy import or_
 
 auth_routes = Blueprint('auth', __name__)
 
+@auth_routes.route('/')
+def authenticate():
+    """
+    Authenticates a user.
+    """
+    if current_user.is_authenticated:
+        return current_user.to_dict()
+    return {'errors': {'message': 'Unauthorized'}}, 401
+
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
@@ -43,3 +52,10 @@ def sign_up():
     db.session.commit()
     login_user(cleanUser)
     return jsonify(cleanUser.to_dict())
+
+@auth_routes.route('/unauthorized')
+def unauthorized():
+    """
+    Returns unauthorized JSON when flask-login authentication fails
+    """
+    return {'errors': {'message': 'Unauthorized'}}, 401
