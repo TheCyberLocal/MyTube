@@ -6,9 +6,13 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
+import myVideosReducer from "./myVideos";
+import videoDetailsReducer from "./videoDetails";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  myVideos: myVideosReducer,
+  videoDetails: videoDetailsReducer,
 });
 
 let enhancer;
