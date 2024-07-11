@@ -17,6 +17,18 @@ export const setError = (error) => ({
   payload: error,
 });
 
+export const fetchVideoDetail = (videoId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/videos/${videoId}`);
+    const data = await response.json();
+    dispatch(setVideoDetail(data));
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
 
 const initialState = {
   video: null,
