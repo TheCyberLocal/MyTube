@@ -66,14 +66,21 @@ def create_video():
     # Extract tags from request data
     tag_names = request.args.get('tags', '').split(',')
 
-    # Validate new tags
+    # Initialize list and don't run empty tags
     new_tags = []
     if tag_names != ['']:
+        # Validate and create tag list by names
         for tag_name in tag_names:
             tag = Tag.query.filter_by(name=tag_name).first()
             if not tag:
                 return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
             new_tags.append(tag)
+
+        # Add new tags
+        for tag in new_tags:
+            video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
+            db.session.add(video_tag)
+        db.session.commit()
 
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
@@ -85,13 +92,6 @@ def create_video():
         url=form.url.data
     )
     db.session.add(video)
-    db.session.commit()
-
-    # Add new tags
-    for tag in new_tags:
-        video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
-        db.session.add(video_tag)
-
     db.session.commit()
 
     return jsonify(video.to_dict()), 201
@@ -113,14 +113,25 @@ def update_video(id):
     # Extract tags from request data
     tag_names = request.args.get('tags', '').split(',')
 
-    # Validate new tags
+    # Initialize list and don't run empty tags
     new_tags = []
     if tag_names != ['']:
+        # Validate and create tag list by names
         for tag_name in tag_names:
             tag = Tag.query.filter_by(name=tag_name).first()
             if not tag:
                 return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
             new_tags.append(tag)
+
+        # Remove old tags
+        VideoTag.query.filter_by(video_id=video.id).delete()
+        db.session.commit()
+
+        # Add new tags
+        for tag in new_tags:
+            video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
+            db.session.add(video_tag)
+        db.session.commit()
 
     # Update video details
     if form.title.data:
@@ -129,17 +140,6 @@ def update_video(id):
         video.description = form.description.data
     if form.url.data:
         video.url = form.url.data
-
-    # Remove old tags
-    VideoTag.query.filter_by(video_id=video.id).delete()
-    db.session.commit()
-
-    # Add new tags
-    for tag in new_tags:
-        video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
-        db.session.add(video_tag)
-
-    db.session.commit()
 
     return jsonify(video.to_dict()), 200
 
