@@ -20,8 +20,6 @@ RUN pip install email_validator
 
 COPY . .
 
-RUN flask db migrate
-RUN flask db downgrade
 RUN flask db upgrade
 RUN flask seed all
 CMD gunicorn app:app
