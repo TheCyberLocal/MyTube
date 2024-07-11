@@ -22,3 +22,19 @@ const initialState = {
   isLoading: false,
   error: null,
 };
+
+
+function myVideosReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_SEARCH_RESULTS:
+      return { ...state, searchResults: action.payload };
+    case SET_LOADING:
+      return { ...state, isLoading: action.payload };
+    case SET_ERROR:
+      return { ...state, error: action.payload };
+    default:
+      return state;
+  }
+}
+
+export default myVideosReducer;
