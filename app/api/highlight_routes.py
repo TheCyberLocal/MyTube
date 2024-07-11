@@ -65,6 +65,14 @@ def update_highlight(id):
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
 
+    # Validate start is not after end
+    if form.start_time.data is None:
+        start_time = highlight.start_time
+    if form.end_time.data is None:
+        end_time = highlight.end_time
+    if start_time > end_time:
+        return jsonify({'errors': 'Start time cannot be after end time.'}), 400
+
     if form.video_id.data is not None:
         highlight.video_id = form.video_id.data
     if form.title.data:
