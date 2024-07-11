@@ -12,7 +12,7 @@ video_tag_data = [
     },
     {
         "video_id": 2,
-        "tag_id": 3,
+        "tag_id": 1,
     },
     {
         "video_id": 2,
@@ -20,7 +20,7 @@ video_tag_data = [
     },
     {
         "video_id": 3,
-        "tag_id": 5,
+        "tag_id": 2,
     },
     {
         "video_id": 3,
@@ -28,11 +28,11 @@ video_tag_data = [
     },
     {
         "video_id": 4,
-        "tag_id": 7,
+        "tag_id": 1,
     },
     {
         "video_id": 4,
-        "tag_id": 8,
+        "tag_id": 2,
     },
     {
         "video_id": 5,
