@@ -16,3 +16,27 @@ export const setError = (error) => ({
   type: SET_ERROR,
   payload: error,
 });
+
+
+const initialState = {
+  video: null,
+  notes: [],
+  highlights: [],
+  isLoading: false,
+  error: null,
+};
+
+function videoDetailReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_VIDEO_DETAIL:
+      return { ...state, ...action.payload };
+    case SET_LOADING:
+      return { ...state, isLoading: action.payload };
+    case SET_ERROR:
+      return { ...state, error: action.payload };
+    default:
+      return state;
+  }
+}
+
+export default videoDetailReducer;
