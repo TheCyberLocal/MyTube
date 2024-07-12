@@ -34,9 +34,7 @@ function MyVideosPage() {
 
   return (
     <div id="my-videos-page">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
+      {!isLoading && (
         <>
           <div id="controls">
             <label>
