@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { thunkLogout } from "../../redux/session";
 import "./Navigation.css";
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="navigation">
@@ -17,7 +20,7 @@ function Navigation() {
           </div>
           <div>
             <button onClick={() => nav("/help")}>Help</button>
-            <button onClick={() => nav("/profile")}>Profile</button>
+            <button onClick={() => dispatch(thunkLogout())}>Profile</button>
           </div>
         </>
       )}

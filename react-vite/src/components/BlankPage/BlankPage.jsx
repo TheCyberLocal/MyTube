@@ -1,7 +1,11 @@
 import "./BlankPage.css";
 
-function BlankPage() {
-  return <h1>My blank page</h1>;
+function BlankPage({ content }) {
+  return (
+    <div className="blank-page">
+      <div className="content-wrapper">{content}</div>
+    </div>
+  );
 }
 
 export default BlankPage;
