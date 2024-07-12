@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { thunkLogin } from "../../redux/session";
+import { thunkSignup } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import "./SignupForm.css";
@@ -8,8 +8,11 @@ function SignupFormPage() {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [credential, setCredential] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,9 +22,12 @@ function SignupFormPage() {
     e.preventDefault();
 
     const serverResponse = await dispatch(
-      thunkLogin({
-        credential,
+      thunkSignup({
+        username,
+        name,
+        email,
         password,
+        confirm_password: confirmPassword
       })
     );
 
@@ -32,37 +38,52 @@ function SignupFormPage() {
     }
   };
 
-  const demoLogin = () => {
-    dispatch(
-      thunkLogin({
-        credential: "Demo",
-        password: "password",
-      })
-    );
-  };
-
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
 
   return (
-    <div className="login-container">
+    <div className="signup-container">
       <h1>Sign Up</h1>
-      {errors.length > 0 &&
-        errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <input
             type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
-            placeholder=" "
+            placeholder=""
           />
-          <label className="moving-label">Email/Username</label>
+          <label className="moving-label">Username</label>
         </div>
         <div className="error-container">
-          {errors.credential && <p className="error">{errors.credential}</p>}
+          {errors.username && <p className="error">{errors.username[0]}</p>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Name</label>
+        </div>
+        <div className="error-container">
+          {errors.name && <p className="error">{errors.name[0]}</p>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Email</label>
+        </div>
+        <div className="error-container">
+          {errors.email && <p className="error">{errors.email[0]}</p>}
         </div>
         <div className="input-container">
           <input
@@ -70,7 +91,7 @@ function SignupFormPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder=" "
+            placeholder=""
           />
           <label className="moving-label">Password</label>
           <button
@@ -82,18 +103,33 @@ function SignupFormPage() {
           </button>
         </div>
         <div className="error-container">
-          {errors.password && <p className="error">{errors.password}</p>}
+          {errors.password && <p className="error">{errors.password[0]}</p>}
         </div>
-        <div className="button-container">
-          <button style={{ flex: 2 }}>Login</button>
-          <label className="button-label">or</label>
-          <button style={{ flex: 1 }} onClick={() => nav("/signup")}>
-            Sign Up
+        <div className="input-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Confirm Password</label>
+          <button
+            type="button"
+            className="show-password-btn"
+            onClick={toggleShowPassword}
+          >
+            {showPassword ? "Hide" : "Show"}
           </button>
         </div>
+        <div className="error-container">
+          {errors.confirm_password && <p className="error">{errors.confirm_password[0]}</p>}
+        </div>
         <div className="button-container">
-          <button onClick={demoLogin} className="demo-user">
-            Login as Demo User
+          <button style={{ flex: 2 }}>Sign Up</button>
+          <label className="button-label">or</label>
+          <button style={{ flex: 1 }} onClick={() => nav("/login")}>
+            Log In
           </button>
         </div>
       </form>

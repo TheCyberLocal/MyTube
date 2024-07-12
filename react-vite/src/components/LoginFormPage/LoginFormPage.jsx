@@ -48,8 +48,6 @@ function LoginFormPage() {
   return (
     <div className="login-container">
       <h1>Log In</h1>
-      {errors.length > 0 &&
-        errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>
         <div className="input-container">
           <input
@@ -57,12 +55,12 @@ function LoginFormPage() {
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
-            placeholder=" "
+            placeholder=""
           />
           <label className="moving-label">Email/Username</label>
         </div>
         <div className="error-container">
-          {errors.credential && <p className="error">{errors.credential}</p>}
+          {errors.credential && <p className="error">{errors.credential[0]}</p>}
         </div>
         <div className="input-container">
           <input
@@ -70,7 +68,7 @@ function LoginFormPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder=" "
+            placeholder=""
           />
           <label className="moving-label">Password</label>
           <button
@@ -82,10 +80,10 @@ function LoginFormPage() {
           </button>
         </div>
         <div className="error-container">
-          {errors.password && <p className="error">{errors.password}</p>}
+          {errors.password && <p className="error">{errors.password[0]}</p>}
         </div>
         <div className="button-container">
-          <button style={{ flex: 2 }}>Login</button>
+          <button style={{ flex: 2 }}>Log In</button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={() => nav("/signup")}>
             Sign Up
@@ -93,7 +91,7 @@ function LoginFormPage() {
         </div>
         <div className="button-container">
           <button onClick={demoLogin} className="demo-user">
-            Login as Demo User
+            Log in as Demo User
           </button>
         </div>
       </form>

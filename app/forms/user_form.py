@@ -10,7 +10,7 @@ def user_exists(form, field):
     credential = field.data
     user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
     if not user:
-        raise ValidationError('User provided not found.')
+        raise ValidationError('User provided not found')
 
 
 def email_exists(form, field):
@@ -18,7 +18,7 @@ def email_exists(form, field):
     if email:
         user = User.query.filter(User.email == email).first()
         if user and user.id != current_user.id:
-            raise ValidationError('Email address is already in use.')
+            raise ValidationError('Email address is already in use')
 
 
 def username_exists(form, field):
@@ -26,21 +26,19 @@ def username_exists(form, field):
     if username:
         user = User.query.filter(User.username == username).first()
         if user and user.id != current_user.id:
-            raise ValidationError('Username is already in use.')
+            raise ValidationError('Username is already in use')
 
 
 def password_matches(form, field):
     password = field.data
     credential = form.credential.data
     user = User.query.filter(or_(User.email == credential, User.username == credential)).first()
-    if not user:
-        raise ValidationError('No such user exists.')
-    if not user.check_password(password):
-        raise ValidationError('Password was incorrect.')
+    if not user or not user.check_password(password):
+        raise ValidationError('Invalid user or password')
 
 
 class LoginForm(FlaskForm):
-    credential = StringField('credential', validators=[DataRequired(), user_exists])
+    credential = StringField('credential', validators=[DataRequired()])
     password = StringField('password', validators=[DataRequired(), password_matches])
 
 
@@ -51,7 +49,7 @@ class SignUpForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email(), email_exists])
     name = StringField('name', validators=[DataRequired(), Length(3, 20)])
     password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Password must contain an uppercase letter, lowercase letter, digit and a symbol")])
-    confirm_password = StringField('password', validators=[EqualTo('password', message='Passwords must match')])
+    confirm_password = StringField('password', validators=[EqualTo('password', message='Confirm password must match')])
 
 
 class UserUpdateForm(FlaskForm):

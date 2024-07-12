@@ -5,12 +5,12 @@ from wtforms.validators import DataRequired, Length, NumberRange, ValidationErro
 
 def is_int(form, field):
     if field.data is None:
-        raise ValidationError('Data is required.')
+        raise ValidationError('Data is required')
 
     try:
         field.data = int(field.data)
     except (ValueError, TypeError):
-        raise ValidationError('Field must be an integer.')
+        raise ValidationError('Field must be an integer')
 
 
 class HighlightForm(FlaskForm):
