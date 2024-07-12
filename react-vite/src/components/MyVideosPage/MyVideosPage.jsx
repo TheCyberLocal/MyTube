@@ -30,42 +30,44 @@ function MyVideosPage() {
   }, [dispatch, sortBy, keyword, tags, page]);
 
   return (
-    <div id="my-videos-page">
-      <div id="controls">
-        <label>
-          Sort by
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="recently_viewed">Recently Viewed</option>
-            <option value="alphabetical">Alphabetical</option>
-            <option value="newest">Newest</option>
-          </select>
-        </label>
-        <label>
-          Keyword or Phrases
-          <input
-            type="text"
-            placeholder="Keyword or Phrases"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-        </label>
+    sessionUser && (
+      <div id="my-videos-page">
+        <div id="controls">
+          <label>
+            Sort by
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="recently_viewed">Recently Viewed</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="newest">Newest</option>
+            </select>
+          </label>
+          <label>
+            Keyword or Phrases
+            <input
+              type="text"
+              placeholder="Keyword or Phrases"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+          </label>
 
-        <label>
-          Tags
-          <input
-            type="text"
-            placeholder="Tags"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-        </label>
+          <label>
+            Tags
+            <input
+              type="text"
+              placeholder="Tags"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="video-results">
+          {videos.map((video) => (
+            <VideoTile video={video} />
+          ))}
+        </div>
       </div>
-      <div className="video-results">
-        {videos.map((video) => (
-          <VideoTile video={video} />
-        ))}
-      </div>
-    </div>
+    )
   );
 }
 
