@@ -26,11 +26,26 @@ const initialState = {
 export const searchMyVideos = (options) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    // const { keyword = "", tags = "", sortBy = "newest", page = 1 } = options;
-    const response = await fetch(`/api/my-videos`);
+    const { keyword, tags, sortBy, page } = options;
+    let search_url = `/api/my-videos`;
+    let search_params = [];
+    if (keyword) {
+      search_params.push(`keyword=${keyword}`);
+    }
+    if (tags) {
+      search_params.push(`tags=${tags}`);
+    }
+    if (sortBy) {
+      search_params.push(`sortBy=${sortBy}`);
+    }
+    if (page) {
+      search_params.push(`page=${page}`);
+    }
+    if (search_params.length) {
+      search_url += `?${search_params.join("&")}`;
+    }
+    const response = await fetch(search_url);
     const data = await response.json();
-    console.log('data from fetch', data);
-    console.log('created object action', setSearchResults(data))
     dispatch(setSearchResults(data));
     dispatch(setLoading(false));
   } catch (error) {
@@ -42,8 +57,6 @@ export const searchMyVideos = (options) => async (dispatch) => {
 function myVideosReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SEARCH_RESULTS:
-      console.log("payload in reducer", action.payload);
-      console.log("entire state return", { ...state, searchResults: action.payload })
       return { ...state, searchResults: action.payload };
     case SET_LOADING:
       return { ...state, isLoading: action.payload };
