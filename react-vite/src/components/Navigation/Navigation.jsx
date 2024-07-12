@@ -28,7 +28,7 @@ function Navigation() {
   };
 
   return (
-    <div className="navigation">
+    <div id="navigation">
       {!sessionLoading && (
         <>
           {sessionUser ? (

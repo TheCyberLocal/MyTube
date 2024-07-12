@@ -6,6 +6,7 @@ import MyVideosPage from "../components/MyVideosPage";
 import BlankPage from "../components/BlankPage/BlankPage";
 import Layout from "./Layout";
 import ProfilePage from "../components/ProfilePage/ProfilePage";
+import HelpPage from "../components/HelpPage";
 import { Navigate } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: "/help",
+        element: <BlankPage content={<HelpPage />} />,
       },
       {
         path: "/profile",
