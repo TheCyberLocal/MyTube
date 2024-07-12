@@ -6,6 +6,7 @@ import MyVideosPage from "../components/MyVideosPage";
 import BlankPage from "../components/BlankPage/BlankPage";
 import RedirectMe from "../components/RedirectMe/RedirectMe";
 import Layout from "./Layout";
+import ProfilePage from "../components/ProfilePage/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: "/profile",
+        element: <BlankPage content={<ProfilePage />} />,
       },
       {
         path: "/login",
