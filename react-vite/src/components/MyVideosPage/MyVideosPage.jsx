@@ -7,7 +7,7 @@ const MyVideosPage = () => {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(null);
 
   useEffect(() => {
@@ -26,9 +26,9 @@ const MyVideosPage = () => {
         <label>
           Sort by
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="newest">Newest</option>
             <option value="recently_viewed">Recently Viewed</option>
             <option value="alphabetical">Alphabetical</option>
+            <option value="newest">Newest</option>
           </select>
         </label>
         <label>
