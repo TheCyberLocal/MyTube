@@ -32,6 +32,15 @@ function LoginFormPage() {
     }
   };
 
+  const demoLogin = () => {
+    dispatch(
+      thunkLogin({
+        credential: "Demo",
+        password: "password",
+      })
+    );
+  };
+
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -50,13 +59,11 @@ function LoginFormPage() {
             required
             placeholder=" "
           />
-          <label>Email/Username</label>
+          <label className="moving-label">Email/Username</label>
         </div>
-        {errors.credential && (
-          <div className="error-container">
-            <p className="error">{errors.credential}</p>
-          </div>
-        )}
+        <div className="error-container">
+          {errors.credential && <p className="error">{errors.credential}</p>}
+        </div>
         <div className="input-container">
           <input
             type={showPassword ? "text" : "password"}
@@ -65,7 +72,7 @@ function LoginFormPage() {
             required
             placeholder=" "
           />
-          <label>Password</label>
+          <label className="moving-label">Password</label>
           <button
             type="button"
             className="show-password-btn"
@@ -74,18 +81,20 @@ function LoginFormPage() {
             {showPassword ? "Hide" : "Show"}
           </button>
         </div>
-        {errors.password && (
-          <div className="error-container">
-            <p className="error">{errors.password}</p>
-          </div>
-        )}
-        <div className="button-container">
-          <button>Login</button>
-          <label className="button-label">or</label>
-          <button>Sign Up</button>
+        <div className="error-container">
+          {errors.password && <p className="error">{errors.password}</p>}
         </div>
         <div className="button-container">
-          <button>Login as Demo User</button>
+          <button style={{ flex: 2 }}>Login</button>
+          <label className="button-label">or</label>
+          <button style={{ flex: 1 }} onClick={() => nav("/signup")}>
+            Sign Up
+          </button>
+        </div>
+        <div className="button-container">
+          <button onClick={demoLogin} className="demo-user">
+            Login as Demo User
+          </button>
         </div>
       </form>
     </div>

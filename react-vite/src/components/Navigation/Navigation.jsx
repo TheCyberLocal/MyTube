@@ -19,7 +19,7 @@ function Navigation() {
       {sessionUser && (
         <div>
           <button onClick={() => nav("/my-videos")}>My Videos</button>
-          <button onClick={() => console.log("opens add video modal")}>
+          <button onClick={() => dispatch(thunkLogout())}>
             Add Video
           </button>
         </div>

@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignupFormPage />,
+        element:  <BlankPage content={<SignupFormPage />} />,
       },
       {
         path: "/my-videos",

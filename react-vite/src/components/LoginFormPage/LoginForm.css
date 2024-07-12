@@ -8,37 +8,44 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 300px;
+  width: 80%;
+  max-width: 300px;
 }
 
 div.error-container {
+  margin-bottom: 15px;
   height: 20px;
 }
 
 p.error {
   color: red;
-  margin: 0;
   font-size: 12px;
   height: 100%;
 }
 
 .input-container {
   position: relative;
-  margin-bottom: 20px;
   width: 100%;
 }
 
 .button-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.button-label {
-    margin: 5px;
+.button-container button {
+  flex: 1;
+  margin: 0 5px;
 }
 
+input,
+button {
+  box-sizing: border-box;
+}
 
-.input-container input {
+input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -46,7 +53,11 @@ p.error {
   outline: none;
 }
 
-.input-container label {
+input::placeholder {
+  color: transparent;
+}
+
+label.moving-label {
   position: absolute;
   top: 10px;
   left: 15px;
@@ -56,25 +67,42 @@ p.error {
   transition: all 0.2s ease;
 }
 
-.input-container input:focus + label,
-.input-container input:not(:placeholder-shown) + label,
-.input-container input[value]:not([value=""]) + label {
+input:focus + label.moving-label,
+input:not(:placeholder-shown) + label.moving-label,
+input[value]:not([value=""]) + label.moving-label {
   top: -10px;
   left: 10px;
   font-size: 12px;
 }
 
-.input-container button.show-password-btn {
+button.show-password-btn {
   position: absolute;
-  top: 2px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   border: none;
   cursor: pointer;
   background: none;
   padding: 0;
 }
 
-button[type="submit"] {
+button[type="submit"],
+.button-container button {
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+}
+
+
+button[type="submit"]:hover,
+.button-container button:hover {
+  background-color: darkgrey;
+}
+
+button.demo-user {
   width: 100%;
   background-color: grey;
   display: flex;
@@ -85,4 +113,8 @@ button[type="submit"] {
   cursor: pointer;
   font-size: 16px;
   margin: 0;
+}
+
+button.demo-user:hover {
+  background-color: darkgrey;
 }
