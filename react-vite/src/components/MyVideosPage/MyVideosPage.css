@@ -1,37 +1,54 @@
-div#my-videos-page {
-    padding: 20px;
-  }
+#my-videos-page {
+  padding: 20px;
+}
 
-  #controls {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
+#controls {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
-  #controls * {
-    padding: 5px;
-  }
+#controls * {
+  padding: 5px;
+}
 
+.video-results {
+  display: grid;
+  gap: 20px;
+}
+
+/* For very small screens, default to 1 column */
+@media (max-width: 599px) {
   .video-results {
-    display: flex;
-    justify-content: left;
-    flex-wrap: wrap;
-    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
   }
+}
 
-  .video-item {
-    border: 1px solid #333;
-    padding: 10px;
-    width: 17vw;
+/* For small screens, use 2 columns */
+@media (min-width: 600px) and (max-width: 799px) {
+  .video-results {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .video-item img {
-    width: 100%;
-    height: auto;
+/* For medium screens, use 3 columns */
+@media (min-width: 800px) and (max-width: 999px) {
+  .video-results {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  .video-item div {
-    margin-top: 10px;
-    text-align: center;
+/* For larger screens, use 4 columns */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .video-results {
+    grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* For extra-large screens, use 5 columns */
+@media (min-width: 1200px) {
+  .video-results {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

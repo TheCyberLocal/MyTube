@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"
-import "./MyVideosPage.css"
+import VideoTile from "../VideoTile";
+import "./MyVideosPage.css";
 
-const MyVideosPage = () => {
+function MyVideosPage() {
   const videos = useSelector((state) => state.myVideos.searchResults);
   const dispatch = useDispatch();
-  const nav = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
   const [sortBy, setSortBy] = useState("recently_viewed");
@@ -56,22 +55,11 @@ const MyVideosPage = () => {
       </div>
       <div className="video-results">
         {videos.map((video) => (
-          <div key={video.id} className="video-item" onClick={() => nav(`/videos/${video.id}`)}>
-            <img
-              srcSet={`
-              http://img.youtube.com/vi/${video.url}/maxresdefault.jpg 1280w,
-              http://img.youtube.com/vi/${video.url}/hqdefault.jpg 960w,
-              http://img.youtube.com/vi/${video.url}/mqdefault.jpg 640w,
-              http://img.youtube.com/vi/${video.url}/default.jpg 320w
-              `}
-              alt="YouTube Video Thumbnail"
-            />
-            <div>{video.title}</div>
-          </div>
+          <VideoTile video={video} />
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default MyVideosPage;
