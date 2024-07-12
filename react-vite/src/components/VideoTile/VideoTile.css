@@ -1,18 +1,25 @@
-.video-item {
+.video-tile {
   border: 1px solid #333;
   padding: 10px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-.video-item img {
+.video-tile .image-container,
+.video-tile img {
   width: 100%;
-  height: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 1.77;
+  object-fit: cover;
 }
 
-.video-item div {
+.video-tile .title {
   margin-top: 10px;
   text-align: center;
-  flex-grow: 1;
 }

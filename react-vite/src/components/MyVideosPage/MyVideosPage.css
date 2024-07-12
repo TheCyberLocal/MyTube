@@ -5,7 +5,9 @@
 #controls {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   gap: 10px;
+  height: 80px;
   margin-bottom: 20px;
 }
 
@@ -19,35 +21,35 @@
 }
 
 /* For very small screens, default to 1 column */
-@media (max-width: 599px) {
+@media (max-width: 499px) {
   .video-results {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 /* For small screens, use 2 columns */
-@media (min-width: 600px) and (max-width: 799px) {
+@media (min-width: 500px) and (max-width: 699px) {
   .video-results {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* For medium screens, use 3 columns */
-@media (min-width: 800px) and (max-width: 999px) {
+@media (min-width: 700px) and (max-width: 999px) {
   .video-results {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* For larger screens, use 4 columns */
-@media (min-width: 1000px) and (max-width: 1199px) {
+@media (min-width: 1000px) and (max-width: 1299px) {
   .video-results {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 /* For extra-large screens, use 5 columns */
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .video-results {
     grid-template-columns: repeat(5, 1fr);
   }
