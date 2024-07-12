@@ -4,6 +4,7 @@ import SignupFormPage from "../components/SignupFormPage";
 import LandingPage from "../components/LandingPage";
 import MyVideosPage from "../components/MyVideosPage";
 import BlankPage from "../components/BlankPage/BlankPage";
+import RedirectMe from "../components/RedirectMe/RedirectMe";
 import Layout from "./Layout";
 
 export const router = createBrowserRouter([
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "*",
-        element: <h1>Page Not Found</h1>
+        element: <RedirectMe />,
       },
       {
         path: "/",
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element:  <BlankPage content={<SignupFormPage />} />,
+        element: <BlankPage content={<SignupFormPage />} />,
       },
       {
         path: "/my-videos",
