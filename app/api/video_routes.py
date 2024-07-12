@@ -8,6 +8,22 @@ from sqlalchemy import or_
 video_routes = Blueprint('videos', __name__)
 
 
+def processURL(raw_url):
+    # process url types
+    # type1 https://www.youtube.com/watch?v=jfKfPfyJRdk
+    # type2 https://youtu.be/jfKfPfyJRdk
+    format1 = raw_url.split('=')[-1]
+    # format1 with type 1: jfKfPfyJRdk
+    # format1 with type 2: https://youtu.be/jfKfPfyJRdk
+    format2 = raw_url.split('/')[-1]
+    # format2 with type 1: watch?v=jfKfPfyJRdk
+    # format2 with type 2: jfKfPfyJRdk
+    if len(format1) < len(format2):
+        return format1
+    else:
+        return format2
+
+
 @video_routes.route('/my-videos', methods=['GET'])
 @login_required
 def get_my_videos():
@@ -65,12 +81,14 @@ def create_video():
     form = VideoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # Extract tags from request data
-    tag_names = request.args.get('tags', '').split(',')
+    if not form.validate_on_submit():
+        return jsonify(form.errors), 400
 
-    # Initialize list and don't run empty tags
+    # Extract tags from request data
+    tag_names = request.json.get('tags', [])
+
     new_tags = []
-    if tag_names != ['']:
+    if len(tag_names):
         # Validate and create tag list by names
         for tag_name in tag_names:
             tag = Tag.query.filter_by(name=tag_name).first()
@@ -78,23 +96,21 @@ def create_video():
                 return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
             new_tags.append(tag)
 
+    video = Video(
+        user_id=current_user.id,
+        title=form.title.data,
+        description=form.description.data,
+        url=processURL(form.url.data)
+    )
+    db.session.add(video)
+    db.session.commit()
+
+    if len(tag_names):
         # Add new tags
         for tag in new_tags:
             video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
             db.session.add(video_tag)
         db.session.commit()
-
-    if not form.validate_on_submit():
-        return jsonify(form.errors), 400
-
-    video = Video(
-        user_id=current_user.id,
-        title=form.title.data,
-        description=form.description.data,
-        url=form.url.data
-    )
-    db.session.add(video)
-    db.session.commit()
 
     return jsonify(video.to_dict()), 201
 
@@ -113,11 +129,10 @@ def update_video(id):
         return jsonify(form.errors), 400
 
     # Extract tags from request data
-    tag_names = request.args.get('tags', '').split(',')
+    tag_names = request.json.get('tags', [])
 
-    # Initialize list and don't run empty tags
     new_tags = []
-    if tag_names != ['']:
+    if len(tag_names):
         # Validate and create tag list by names
         for tag_name in tag_names:
             tag = Tag.query.filter_by(name=tag_name).first()
@@ -125,6 +140,15 @@ def update_video(id):
                 return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
             new_tags.append(tag)
 
+    # Update video details
+    if form.title.data:
+        video.title = form.title.data
+    if form.description.data:
+        video.description = form.description.data
+    if form.url.data:
+        video.url = processURL(form.url.data)
+
+    if len(tag_names):
         # Remove old tags
         VideoTag.query.filter_by(video_id=video.id).delete()
         db.session.commit()
@@ -134,14 +158,6 @@ def update_video(id):
             video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
             db.session.add(video_tag)
         db.session.commit()
-
-    # Update video details
-    if form.title.data:
-        video.title = form.title.data
-    if form.description.data:
-        video.description = form.description.data
-    if form.url.data:
-        video.url = form.url.data
 
     return jsonify(video.to_dict()), 200
 

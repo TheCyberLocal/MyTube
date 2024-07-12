@@ -13,7 +13,7 @@ class Video(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
-    url = db.Column(db.Text, nullable=False)
+    url = db.Column(db.Text, nullable=False, unique=True)
     last_viewed = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     created_at = db.Column(db.DateTime, nullable=False, server_default=func.now())
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())

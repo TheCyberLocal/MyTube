@@ -5,7 +5,6 @@ from .tag_form import TagForm
 
 
 class VideoForm(FlaskForm):
-    user_id = IntegerField('user_id', validators=[DataRequired(), NumberRange(min=1)])
     title = StringField('title', validators=[DataRequired(), Length(max=255)])
     description = TextAreaField('description', validators=[DataRequired()])
     url = URLField('url', validators=[DataRequired(), URL()])
