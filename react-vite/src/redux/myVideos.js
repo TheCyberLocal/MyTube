@@ -1,6 +1,7 @@
 const SET_SEARCH_RESULTS = "myVideos/setSearchResults";
 const SET_LOADING = "myVideos/setLoading";
 const SET_ERROR = "myVideos/setError";
+const CLEAR_STATE = "myVideos/clearState";
 
 export const setSearchResults = (results) => ({
   type: SET_SEARCH_RESULTS,
@@ -15,6 +16,10 @@ export const setLoading = (isLoading) => ({
 export const setError = (error) => ({
   type: SET_ERROR,
   payload: error,
+});
+
+export const clearMyVideos = () => ({
+  type: CLEAR_STATE,
 });
 
 const initialState = {
@@ -62,6 +67,8 @@ function myVideosReducer(state = initialState, action) {
       return { ...state, isLoading: action.payload };
     case SET_ERROR:
       return { ...state, error: action.payload };
+    case CLEAR_STATE:
+      return { ...state, searchResults: [], isLoading: false, error: null };
     default:
       return state;
   }

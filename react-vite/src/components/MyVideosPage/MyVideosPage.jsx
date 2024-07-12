@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
+  const sessionUser = useSelector((state) => state.session.user);
   const videos = useSelector((state) => state.myVideos.searchResults);
   const dispatch = useDispatch();
+  const nav = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(null);
+
+  if (!sessionUser) {
+    nav("/login");
+  }
 
   useEffect(() => {
     // Fetch videos based on sortBy, keyword, and tags

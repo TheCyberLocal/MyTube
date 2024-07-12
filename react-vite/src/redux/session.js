@@ -1,3 +1,6 @@
+import { clearMyVideos } from "./myVideos";
+import { clearVideoDetails } from "./videoDetails";
+
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
 
@@ -59,8 +62,10 @@ export const thunkSignup = (user) => async (dispatch) => {
 };
 
 export const thunkLogout = () => async (dispatch) => {
-  await fetch("/api/auth/logout");
+  await fetch("/api/auth/logout", { method: "POST" });
   dispatch(removeUser());
+  dispatch(clearMyVideos());
+  dispatch(clearVideoDetails());
 };
 
 const initialState = { user: null };
