@@ -5,15 +5,29 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormPage() {
+  const {
+    user: sessionUser,
+    isLoading: sessionLoading,
+    error: sessionError,
+  } = useSelector((state) => state.session);
+  const {
+    searchResults: myVideos,
+    isLoading: myVideosLoading,
+    error: myVideosError,
+  } = useSelector((state) => state.myVideos);
+  const {
+    video, notes, highlights,
+    isLoading: videoDetailsLoading,
+    error: videoDetailsError,
+  } = useSelector((state) => state.videoDetails);
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (!sessionLoading && sessionUser) return <Navigate to="/my-videos" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,8 +41,6 @@ function LoginFormPage() {
 
     if (serverResponse) {
       setErrors(serverResponse.errors);
-    } else {
-      nav("/my-videos");
     }
   };
 

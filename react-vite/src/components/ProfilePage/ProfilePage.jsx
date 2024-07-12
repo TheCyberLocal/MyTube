@@ -4,14 +4,38 @@ import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
 
 function ProfilePage() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const navigate = useNavigate();
+  const {
+    user: sessionUser,
+    isLoading: sessionLoading,
+    error: sessionError,
+  } = useSelector((state) => state.session);
+  const {
+    searchResults: myVideos,
+    isLoading: myVideosLoading,
+    error: myVideosError,
+  } = useSelector((state) => state.myVideos);
+  const {
+    video,
+    notes,
+    highlights,
+    isLoading: videoDetailsLoading,
+    error: videoDetailsError,
+  } = useSelector((state) => state.videoDetails);
 
-  if (!sessionUser) {
-    navigate("/login");
-  }
+  if (!sessionLoading && !sessionUser)
+    return <Navigate to="/" replace={true} />;
 
-  return null;
+  return (
+    <div className="profile-page">
+      <h1>Profile</h1>
+      <>
+        <p>Username: {sessionUser.username}</p>
+        <p>Email: {sessionUser.email}</p>
+        <p>Theme: {sessionUser.theme}</p>
+        <p>Language: {sessionUser.language}</p>
+      </>
+    </div>
+  );
 }
 
 export default ProfilePage;

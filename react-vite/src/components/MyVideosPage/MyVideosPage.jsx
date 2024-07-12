@@ -22,6 +22,9 @@ function MyVideosPage() {
     }
   }, [sessionUser, nav]);
 
+  if (!sessionUser) return <Navigate to="/" replace={true} />;
+
+
   useEffect(() => {
     if (sessionUser) {
       dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
