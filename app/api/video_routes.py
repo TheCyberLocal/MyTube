@@ -87,14 +87,13 @@ def create_video():
     # Extract tags from request data
     tag_names = request.json.get('tags', [])
 
+    # Validate and create tag list by names
     new_tags = []
-    if len(tag_names):
-        # Validate and create tag list by names
-        for tag_name in tag_names:
-            tag = Tag.query.filter_by(name=tag_name).first()
-            if not tag:
-                return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
-            new_tags.append(tag)
+    for tag_name in tag_names:
+        tag = Tag.query.filter_by(name=tag_name).first()
+        if not tag:
+            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+        new_tags.append(tag)
 
     video = Video(
         user_id=current_user.id,
@@ -105,12 +104,11 @@ def create_video():
     db.session.add(video)
     db.session.commit()
 
-    if len(tag_names):
-        # Add new tags
-        for tag in new_tags:
-            video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
-            db.session.add(video_tag)
-        db.session.commit()
+    # Add new tags
+    for tag in new_tags:
+        video_tag = VideoTag(tag_id=tag.id, video_id=video.id)
+        db.session.add(video_tag)
+    db.session.commit()
 
     return jsonify(video.to_dict()), 201
 
@@ -129,10 +127,10 @@ def update_video(id):
         return jsonify(form.errors), 400
 
     # Extract tags from request data
-    tag_names = request.json.get('tags', [])
+    tag_names = request.json.get('tags')
 
     new_tags = []
-    if len(tag_names):
+    if tag_names is not None:
         # Validate and create tag list by names
         for tag_name in tag_names:
             tag = Tag.query.filter_by(name=tag_name).first()
@@ -148,7 +146,7 @@ def update_video(id):
     if form.url.data:
         video.url = processURL(form.url.data)
 
-    if len(tag_names):
+    if tag_names is not None:
         # Remove old tags
         VideoTag.query.filter_by(video_id=video.id).delete()
         db.session.commit()
