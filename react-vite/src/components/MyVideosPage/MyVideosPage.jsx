@@ -6,9 +6,24 @@ import VideoTile from "../VideoTile";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const videos = useSelector((state) => state.myVideos.searchResults);
-  const isLoading = useSelector((state) => state.session.isLoading);
+  const {
+    user: sessionUser,
+    isLoading: sessionLoading,
+    error: sessionError,
+  } = useSelector((state) => state.session);
+  const {
+    searchResults: myVideos,
+    isLoading: myVideosLoading,
+    error: myVideosError,
+  } = useSelector((state) => state.myVideos);
+  const {
+    video,
+    notes,
+    highlights,
+    isLoading: videoDetailsLoading,
+    error: videoDetailsError,
+  } = useSelector((state) => state.videoDetails);
+
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -16,14 +31,8 @@ function MyVideosPage() {
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(null);
 
-  useEffect(() => {
-    if (!sessionUser) {
-      nav("/login");
-    }
-  }, [sessionUser, nav]);
-
-  if (!sessionUser) return <Navigate to="/" replace={true} />;
-
+  if (!sessionLoading && !sessionUser)
+    return <Navigate to="/login" replace={true} />;
 
   useEffect(() => {
     if (sessionUser) {
@@ -31,53 +40,42 @@ function MyVideosPage() {
     }
   }, [dispatch, sessionUser, sortBy, keyword, tags, page]);
 
-  if (!sessionUser) {
-    return null; // Optionally, render a loading spinner or a message here
-  }
-
   return (
     <div id="my-videos-page">
-      {!isLoading && (
-        <>
-          <div id="controls">
-            <label>
-              Sort by
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="recently_viewed">Recently Viewed</option>
-                <option value="alphabetical">Alphabetical</option>
-                <option value="newest">Newest</option>
-              </select>
-            </label>
-            <label>
-              Keyword or Phrases
-              <input
-                type="text"
-                placeholder="Keyword or Phrases"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-              />
-            </label>
-
-            <label>
-              Tags
-              <input
-                type="text"
-                placeholder="Tags"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
-              />
-            </label>
-          </div>
-          <div className="video-results">
-            {videos?.map((video) => (
-              <VideoTile key={video.id} video={video} />
-            ))}
-          </div>
-        </>
-      )}
+      <div id="controls">
+        <label>
+          Sort by
+          <br />
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <option value="recently_viewed">Recently Viewed</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="newest">Newest</option>
+          </select>
+        </label>
+        <label>
+          Keyword or Phrases
+          <input
+            type="text"
+            placeholder="Keyword or Phrases"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </label>
+        <label>
+          Tags
+          <input
+            type="text"
+            placeholder="Tags"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className="video-results">
+        {myVideos.map((video) => (
+          <VideoTile key={video.id} video={video} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -4,9 +4,9 @@ import SignupFormPage from "../components/SignupFormPage";
 import LandingPage from "../components/LandingPage";
 import MyVideosPage from "../components/MyVideosPage";
 import BlankPage from "../components/BlankPage/BlankPage";
-import RedirectMe from "../components/RedirectMe/RedirectMe";
 import Layout from "./Layout";
 import ProfilePage from "../components/ProfilePage/ProfilePage";
+import { Navigate } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "*",
-        element: <RedirectMe />,
+        element: <Navigate to="/my-videos" replace={true} />,
       },
       {
         path: "/",

@@ -16,10 +16,13 @@ function LoginFormPage() {
     error: myVideosError,
   } = useSelector((state) => state.myVideos);
   const {
-    video, notes, highlights,
+    video,
+    notes,
+    highlights,
     isLoading: videoDetailsLoading,
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
+
   const nav = useNavigate();
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
@@ -27,7 +30,8 @@ function LoginFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (!sessionLoading && sessionUser) return <Navigate to="/my-videos" replace={true} />;
+  if (!sessionLoading && sessionUser)
+    return <Navigate to="/my-videos" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

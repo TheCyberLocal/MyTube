@@ -3,8 +3,24 @@ import { useSelector } from "react-redux";
 import "./Navigation.css";
 
 function Navigation() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const isLoading = useSelector((state) => state.session.isLoading);
+  const {
+    user: sessionUser,
+    isLoading: sessionLoading,
+    error: sessionError,
+  } = useSelector((state) => state.session);
+  const {
+    searchResults: myVideos,
+    isLoading: myVideosLoading,
+    error: myVideosError,
+  } = useSelector((state) => state.myVideos);
+  const {
+    video,
+    notes,
+    highlights,
+    isLoading: videoDetailsLoading,
+    error: videoDetailsError,
+  } = useSelector((state) => state.videoDetails);
+
   const nav = useNavigate();
 
   const handleProfileClick = () => {
@@ -13,7 +29,7 @@ function Navigation() {
 
   return (
     <div className="navigation">
-      {!isLoading && (
+      {!sessionLoading && (
         <>
           {sessionUser ? (
             <div>

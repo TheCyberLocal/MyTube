@@ -5,9 +5,26 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormPage() {
+  const {
+    user: sessionUser,
+    isLoading: sessionLoading,
+    error: sessionError,
+  } = useSelector((state) => state.session);
+  const {
+    searchResults: myVideos,
+    isLoading: myVideosLoading,
+    error: myVideosError,
+  } = useSelector((state) => state.myVideos);
+  const {
+    video,
+    notes,
+    highlights,
+    isLoading: videoDetailsLoading,
+    error: videoDetailsError,
+  } = useSelector((state) => state.videoDetails);
+
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +33,8 @@ function SignupFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (!sessionLoading && sessionUser)
+    return <Navigate to="/my-videos" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +45,7 @@ function SignupFormPage() {
         name,
         email,
         password,
-        confirm_password: confirmPassword
+        confirm_password: confirmPassword,
       })
     );
 
@@ -123,7 +141,9 @@ function SignupFormPage() {
           </button>
         </div>
         <div className="error-container">
-          {errors.confirm_password && <p className="error">{errors.confirm_password[0]}</p>}
+          {errors.confirm_password && (
+            <p className="error">{errors.confirm_password[0]}</p>
+          )}
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }}>Sign Up</button>
