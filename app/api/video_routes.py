@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Video, Tag, VideoTag
 from app.forms import VideoForm, UpdateVideoForm
+from sqlalchemy.sql import func
 from sqlalchemy import or_
 
 
@@ -30,7 +31,7 @@ def get_my_videos():
     # Get query parameters
     tags = request.args.get('tags', '').split(',')
     keyword_string = request.args.get('keyword', '')
-    sort_by = request.args.get('sortBy', 'newest')
+    sort_by = request.args.get('sortBy', 'recently_viewed')
     page = int(request.args.get('page', 1))
     per_page = 10
 
@@ -55,7 +56,7 @@ def get_my_videos():
     elif sort_by == 'alphabetical':
         print("title is here=====>", Video.title)
         query = query.order_by(Video.title.asc())
-    else:  # Default to 'newest'
+    elif sort_by == 'newest':
         query = query.order_by(Video.created_at.desc())
 
     # Paginate results
@@ -71,6 +72,10 @@ def get_video(id):
     video = Video.query.get_or_404(id)
     if video.user_id != current_user.id:
         return jsonify({'errors': 'You do not have permission to view this video.'}), 403
+
+    # Update the last_viewed property
+    video.last_viewed = func.now()
+    db.session.commit()
 
     return jsonify(video.to_dict()), 200
 

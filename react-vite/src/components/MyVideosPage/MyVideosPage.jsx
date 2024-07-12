@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import "./MyVideosPage.css"
 
 const MyVideosPage = () => {
   const videos = useSelector((state) => state.myVideos.searchResults);
   const dispatch = useDispatch();
+  const nav = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
   const [sortBy, setSortBy] = useState("recently_viewed");
@@ -21,8 +24,8 @@ const MyVideosPage = () => {
   }, [dispatch, sortBy, keyword, tags, page]);
 
   return (
-    <div className="video-component">
-      <div className="controls">
+    <div id="my-videos-page">
+      <div id="controls">
         <label>
           Sort by
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
@@ -53,8 +56,7 @@ const MyVideosPage = () => {
       </div>
       <div className="video-results">
         {videos.map((video) => (
-          <div key={video.id} className="video-item">
-            { console.log(video.url) }
+          <div key={video.id} className="video-item" onClick={() => nav(`/videos/${video.id}`)}>
             <img
               srcSet={`
               http://img.youtube.com/vi/${video.url}/maxresdefault.jpg 1280w,

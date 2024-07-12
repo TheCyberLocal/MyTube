@@ -1,20 +1,21 @@
-.video-component {
+div#my-videos-page {
     padding: 20px;
   }
 
-  .controls {
+  #controls {
     display: flex;
+    justify-content: space-around;
     gap: 10px;
     margin-bottom: 20px;
   }
 
-  .controls label,
-  .controls input {
+  #controls * {
     padding: 5px;
   }
 
   .video-results {
     display: flex;
+    justify-content: left;
     flex-wrap: wrap;
     gap: 10px;
   }
@@ -22,7 +23,7 @@
   .video-item {
     border: 1px solid #333;
     padding: 10px;
-    width: 200px;
+    width: 17vw;
   }
 
   .video-item img {
