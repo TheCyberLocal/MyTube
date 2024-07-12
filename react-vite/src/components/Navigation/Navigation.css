@@ -5,10 +5,19 @@ div.navigation {
   justify-content: space-between;
   align-items: center;
   border-bottom: black solid 2px;
+  height: 40px;
+
+  & > h1 {
+    cursor: pointer;
+  }
 
   & > div {
     display: flex;
     align-items: center;
+
+    & > * {
+      cursor: pointer;
+    }
   }
 }
 

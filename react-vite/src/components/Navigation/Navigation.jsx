@@ -9,21 +9,25 @@ function Navigation() {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
+  const handleProfileClick = () => {
+    nav(sessionUser ? "/profile" : "/login");
+  };
+
   return (
     <div className="navigation">
-      {!sessionUser && <h1>Welcome to MyTube</h1>}
+      {!sessionUser && <h1 onClick={() => nav("/")}>Welcome to MyTube</h1>}
       {sessionUser && (
-        <>
-          <div>
-            <button onClick={() => nav("/my-videos")}>My Videos</button>
-            <button onClick={() => console.log("opens pop up modal to add video")}>Add Video</button>
-          </div>
-          <div>
-            <button onClick={() => nav("/help")}>Help</button>
-            <button onClick={() => dispatch(thunkLogout())}>Profile</button>
-          </div>
-        </>
+        <div>
+          <button onClick={() => nav("/my-videos")}>My Videos</button>
+          <button onClick={() => console.log("opens add video modal")}>
+            Add Video
+          </button>
+        </div>
       )}
+      <div>
+        <button onClick={() => nav("/help")}>Help</button>
+        <button onClick={handleProfileClick}>Profile</button>
+      </div>
     </div>
   );
 }
