@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { thunkSignup } from "../../redux/session";
+import { thunkLogout, thunkSignup } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 // import "./ProfilePage.css";
@@ -91,10 +91,31 @@ function ProfilePage() {
           {errors.email && <p className="error">{errors.email[0]}</p>}
         </div>
         <div className="button-container">
-          <button style={{ flex: 2 }}>Sign Up</button>
+          <button
+            style={{ flex: 2 }}
+            onClick={() => alert("feature coming soon...")}
+          >
+            Keep Changes
+          </button>
           <label className="button-label">or</label>
-          <button style={{ flex: 1 }} onClick={() => nav("/login")}>
-            Log In
+          <button
+            style={{ flex: 1 }}
+            onClick={() => alert("feature coming soon...")}
+          >
+            Undo
+          </button>
+        </div>
+        <div className="button-container">
+          <button onClick={() => dispatch(thunkLogout())} className="demo-user">
+            Log Out
+          </button>
+        </div>
+        <div className="button-container">
+          <button onClick={() => alert("feature coming soon...")}>
+            Delete Account
+          </button>
+          <button onClick={() => alert("feature coming soon...")}>
+            Change Password
           </button>
         </div>
       </form>

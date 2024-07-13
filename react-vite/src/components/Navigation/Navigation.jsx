@@ -36,7 +36,7 @@ function Navigation() {
           {sessionUser ? (
             <div>
               <button onClick={() => nav("/my-videos")}>My Videos</button>
-              <button onClick={() => dispatch(thunkLogout())}>Add Video</button>
+              <button onClick={() => alert('add video modal here')}>Add Video</button>
             </div>
           ) : (
             <h1 onClick={() => nav("/")}>Welcome to MyTube</h1>
