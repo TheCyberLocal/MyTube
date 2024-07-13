@@ -136,4 +136,8 @@ div#main-container {
     font-size: 12px;
     background-color: red;
   }
+
+  & button.danger:hover {
+    background-color: darkred;
+  }
 }
