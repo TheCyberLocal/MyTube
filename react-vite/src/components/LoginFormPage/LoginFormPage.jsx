@@ -2,7 +2,6 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import "./LoginForm.css";
 
 function LoginFormPage() {
   const {
@@ -62,7 +61,7 @@ function LoginFormPage() {
   };
 
   return (
-    <div className="login-container">
+    <div id="main-container">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-container">

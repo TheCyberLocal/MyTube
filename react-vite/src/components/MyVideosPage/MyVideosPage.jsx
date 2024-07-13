@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import "./MyVideosPage.css";
 

@@ -1,7 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
-import "./ProfilePage.css";
+import { useState } from "react";
+import { thunkSignup } from "../../redux/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+// import "./ProfilePage.css";
 
 function ProfilePage() {
   const {
@@ -22,18 +23,81 @@ function ProfilePage() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({});
+  const [updated, setUpdated] = useState(false);
+
   if (!sessionLoading && !sessionUser)
     return <Navigate to="/" replace={true} />;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const serverResponse = await dispatch();
+    // my thunk for patch user
+
+    if (serverResponse) {
+      setErrors(serverResponse.errors);
+    } else {
+      setUpdated(true);
+    }
+  };
+
   return (
-    <div className="profile-page">
+    <div id="main-container">
       <h1>Profile</h1>
-      <>
-        <p>Username: {sessionUser.username}</p>
-        <p>Email: {sessionUser.email}</p>
-        <p>Theme: {sessionUser.theme}</p>
-        <p>Language: {sessionUser.language}</p>
-      </>
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Name</label>
+        </div>
+        <div className="error-container">
+          {errors.name && <p className="error">{errors.name[0]}</p>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Username</label>
+        </div>
+        <div className="error-container">
+          {errors.username && <p className="error">{errors.username[0]}</p>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Email</label>
+        </div>
+        <div className="error-container">
+          {errors.email && <p className="error">{errors.email[0]}</p>}
+        </div>
+        <div className="button-container">
+          <button style={{ flex: 2 }}>Sign Up</button>
+          <label className="button-label">or</label>
+          <button style={{ flex: 1 }} onClick={() => nav("/login")}>
+            Log In
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

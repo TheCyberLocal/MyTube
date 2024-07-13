@@ -2,7 +2,6 @@ import { useState } from "react";
 import { thunkSignup } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import "./SignupForm.css";
 
 function SignupFormPage() {
   const {
@@ -61,22 +60,9 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="signup-container">
+    <div id="main-container">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder=""
-          />
-          <label className="moving-label">Username</label>
-        </div>
-        <div className="error-container">
-          {errors.username && <p className="error">{errors.username[0]}</p>}
-        </div>
         <div className="input-container">
           <input
             type="text"
@@ -89,6 +75,19 @@ function SignupFormPage() {
         </div>
         <div className="error-container">
           {errors.name && <p className="error">{errors.name[0]}</p>}
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            placeholder=""
+          />
+          <label className="moving-label">Username</label>
+        </div>
+        <div className="error-container">
+          {errors.username && <p className="error">{errors.username[0]}</p>}
         </div>
         <div className="input-container">
           <input

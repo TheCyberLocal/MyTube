@@ -1,8 +1,6 @@
-import "./HelpPage.css";
-
 function HelpPage() {
   return (
-    <div id="help-page">
+    <div id="main-container">
       <p>This is everything about the website.</p>
       <p>This includes...</p>
       <ul>

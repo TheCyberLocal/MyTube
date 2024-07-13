@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navigation.css";
+import { thunkLogout } from "../../redux/session";
 
 function Navigation() {
   const {
@@ -22,6 +23,7 @@ function Navigation() {
   } = useSelector((state) => state.videoDetails);
 
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   const handleProfileClick = () => {
     nav(sessionUser ? "/profile" : "/login");
@@ -34,7 +36,7 @@ function Navigation() {
           {sessionUser ? (
             <div>
               <button onClick={() => nav("/my-videos")}>My Videos</button>
-              <button onClick={() => nav("/add-video")}>Add Video</button>
+              <button onClick={() => dispatch(thunkLogout())}>Add Video</button>
             </div>
           ) : (
             <h1 onClick={() => nav("/")}>Welcome to MyTube</h1>
