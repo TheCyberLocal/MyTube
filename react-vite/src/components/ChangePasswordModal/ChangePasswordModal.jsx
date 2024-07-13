@@ -4,7 +4,7 @@ import { useState } from "react";
 import { thunkUpdateUser } from "../../redux/session";
 import { Navigate, useNavigate } from "react-router-dom";
 
-function ConfirmChangePasswordModal() {
+function ChangePasswordModal() {
   const {
     user: sessionUser,
     isLoading: sessionLoading,
@@ -134,4 +134,4 @@ function ConfirmChangePasswordModal() {
     </div>
   );
 }
-export default ConfirmChangePasswordModal;
+export default ChangePasswordModal;

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
-import ConfirmChangePasswordModal from "../ConfirmChangePasswordModal";
+import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
   const {
@@ -151,7 +151,7 @@ function ProfilePage() {
           </button>
           <button
             className="danger"
-            onClick={() => setModalContent(<ConfirmChangePasswordModal />)}
+            onClick={() => setModalContent(<ChangePasswordModal />)}
           >
             Change Password
           </button>
