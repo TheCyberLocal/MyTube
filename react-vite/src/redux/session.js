@@ -25,117 +25,67 @@ const setError = (error) => ({
   payload: error,
 });
 
-export const thunkAuthenticate = () => async (dispatch) => {
+const processFetch = (fetchFunc) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const response = await fetch("/api/auth/");
+    const response = await fetchFunc();
+
     if (response.ok) {
       const data = await response.json();
-      if (data.errors) {
-        dispatch(setError(data.errors));
-        dispatch(setLoading(false));
-        return;
-      }
       dispatch(setUser(data));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
     } else {
-      dispatch(setError("Failed to authenticate"));
+      dispatch(setError("Something went wrong. Please try again"));
     }
   } catch (err) {
-    dispatch(setError("Failed to authenticate"));
+    dispatch(setError("Something went wrong. Please try again"));
   }
   dispatch(setLoading(false));
 };
 
-export const thunkLogin = (credentials) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const response = await fetch("/api/auth/login", {
+export const thunkAuthenticate = () =>
+  processFetch(async () => {
+    return await fetch("/api/auth/");
+  });
+
+export const thunkLogin = (credentials) =>
+  processFetch(async () => {
+    return await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     });
+  });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(setUser(data));
-    } else if (response.status < 500) {
-      const errorMessages = await response.json();
-      dispatch(setError(errorMessages));
-      dispatch(setLoading(false));
-      return errorMessages;
-    } else {
-      dispatch(setError("Something went wrong. Please try again"));
-    }
-  } catch (err) {
-    dispatch(setError("Something went wrong. Please try again"));
-  }
-  dispatch(setLoading(false));
-};
-
-export const thunkSignup = (user) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const response = await fetch("/api/auth/signup", {
+export const thunkSignup = (user) =>
+  processFetch(async () => {
+    return await fetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
+  });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(setUser(data));
-    } else if (response.status < 500) {
-      const errorMessages = await response.json();
-      dispatch(setError(errorMessages));
-      dispatch(setLoading(false));
-      return errorMessages;
-    } else {
-      dispatch(setError("Something went wrong. Please try again"));
-    }
-  } catch (err) {
-    dispatch(setError("Something went wrong. Please try again"));
-  }
-  dispatch(setLoading(false));
-};
-
-export const thunkUpdateUser = (userId, user) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const response = await fetch(`/api/users/${userId}`, {
+export const thunkUpdateUser = (userId, user) =>
+  processFetch(async () => {
+    return await fetch(`/api/users/${userId}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     });
+  });
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(setUser(data));
-    } else if (response.status < 500) {
-      const errorMessages = await response.json();
-      dispatch(setError(errorMessages));
-      dispatch(setLoading(false));
-      return errorMessages;
-    } else {
-      dispatch(setError("Something went wrong. Please try again"));
-    }
-  } catch (err) {
-    dispatch(setError("Something went wrong. Please try again"));
-  }
-  dispatch(setLoading(false));
-};
-
-export const thunkLogout = () => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
+export const thunkLogout = () =>
+  processFetch(async (dispatch) => {
     await fetch("/api/auth/logout", { method: "POST" });
     dispatch(removeUser());
     dispatch(clearMyVideos());
     dispatch(clearVideoDetails());
-  } catch (err) {
-    dispatch(setError("Failed to logout"));
-  }
-  dispatch(setLoading(false));
-};
+  });
 
 const initialState = {
   user: null,
@@ -146,7 +96,7 @@ const initialState = {
 function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { ...state, user: action.payload, error: null };
+      return { ...state, user: action.payload };
     case REMOVE_USER:
       return { ...state, user: null, error: null };
     case SET_LOADING:
