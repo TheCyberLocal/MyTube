@@ -22,6 +22,11 @@
   gap: 20px;
 }
 
+.no-video-results {
+  display: flex;
+  justify-content: center;
+}
+
 /* For very small screens, default to 1 column */
 @media (max-width: 499px) {
   .video-results {
