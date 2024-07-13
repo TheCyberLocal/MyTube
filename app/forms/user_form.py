@@ -45,7 +45,7 @@ class LoginForm(FlaskForm):
 class SignUpForm(FlaskForm):
     password_regex = r"(?=^.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])"
 
-    username = StringField('username', validators=[DataRequired(), Length(6, 20), username_exists])
+    username = StringField('username', validators=[DataRequired(), Length(4, 20), username_exists])
     email = StringField('email', validators=[DataRequired(), Email(), email_exists])
     name = StringField('name', validators=[DataRequired(), Length(3, 20)])
     password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Password must contain an uppercase letter, lowercase letter, digit and a symbol")])
@@ -53,7 +53,7 @@ class SignUpForm(FlaskForm):
 
 
 class UserUpdateForm(FlaskForm):
-    username = StringField('username', validators=[Optional(), Length(6, 20), username_exists])
+    username = StringField('username', validators=[Optional(), Length(4, 20), username_exists])
     email = StringField('email', validators=[Optional(), Email(), email_exists])
     name = StringField('name', validators=[Optional(), Length(3, 20)])
     theme = StringField('theme', validators=[Optional(), Length(3, 12)])

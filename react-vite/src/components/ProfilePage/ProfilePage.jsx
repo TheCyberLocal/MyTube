@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { thunkLogout, thunkSignup } from "../../redux/session";
+import { useEffect, useState } from "react";
+import {
+  thunkLogout,
+  thunkAuthenticate,
+  thunkUpdateUser,
+} from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-// import "./ProfilePage.css";
 
 function ProfilePage() {
   const {
@@ -23,22 +26,28 @@ function ProfilePage() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  const nav = useNavigate();
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [errors, setErrors] = useState({});
-  const [updated, setUpdated] = useState(false);
-
   if (!sessionLoading && !sessionUser)
     return <Navigate to="/" replace={true} />;
+
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const [videoCount, setVideoCount] = useState(sessionUser.videoCount);
+  const [name, setName] = useState(sessionUser.name);
+  const [username, setUsername] = useState(sessionUser.username);
+  const [email, setEmail] = useState(sessionUser.email);
+  const [errors, setErrors] = useState({});
+  const [updated, setUpdated] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const serverResponse = await dispatch();
-    // my thunk for patch user
+    const serverResponse = await dispatch(
+      thunkUpdateUser(sessionUser.id, {
+        username,
+        name,
+        email,
+      })
+    );
 
     if (serverResponse) {
       setErrors(serverResponse.errors);
@@ -47,10 +56,25 @@ function ProfilePage() {
     }
   };
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    dispatch(thunkLogout());
+    nav("/login");
+  };
+
+  const handleUndo = async (e) => {
+    e.preventDefault();
+
+    setName(sessionUser.name);
+    setUsername(sessionUser.username);
+    setEmail(sessionUser.email);
+  };
+
   return (
     <div id="main-container">
       <h1>Profile</h1>
-      <form onSubmit={handleSubmit}>
+      <h3>You have organized {videoCount} videos!</h3>
+      <form>
         <div className="input-container">
           <input
             type="text"
@@ -89,36 +113,39 @@ function ProfilePage() {
         </div>
         <div className="error-container">
           {errors.email && <p className="error">{errors.email[0]}</p>}
+          {updated && <p className="updated">Changes saved successfully</p>}
         </div>
         <div className="button-container">
-          <button
-            style={{ flex: 2 }}
-            onClick={() => alert("feature coming soon...")}
-          >
+          <button style={{ flex: 2 }} onClick={handleSubmit}>
             Keep Changes
           </button>
           <label className="button-label">or</label>
-          <button
-            style={{ flex: 1 }}
-            onClick={() => alert("feature coming soon...")}
-          >
+          <button style={{ flex: 1 }} onClick={handleUndo}>
             Undo
           </button>
         </div>
+      </form>
+      <div className="under-form">
         <div className="button-container">
-          <button onClick={() => dispatch(thunkLogout())} className="demo-user">
+          <button onClick={handleLogout} className="demo-user">
             Log Out
           </button>
         </div>
         <div className="button-container">
-          <button className="danger" onClick={() => alert("feature coming soon...")}>
+          <button
+            className="danger"
+            onClick={() => alert("feature coming soon...")}
+          >
             Delete Account
           </button>
-          <button className="danger" onClick={() => alert("feature coming soon...")}>
+          <button
+            className="danger"
+            onClick={() => alert("feature coming soon...")}
+          >
             Change Password
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

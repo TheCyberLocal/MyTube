@@ -32,6 +32,10 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    @property
+    def video_count(self):
+        return len(self.videos)
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -39,5 +43,6 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'email': self.email,
             'theme': self.theme,
-            'language': self.language
+            'language': self.language,
+            'videoCount': self.video_count
         }

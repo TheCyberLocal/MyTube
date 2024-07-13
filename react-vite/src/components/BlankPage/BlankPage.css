@@ -21,7 +21,16 @@ div#main-container {
   flex-direction: column;
   align-items: center;
 
-  & form {
+  & h1 {
+    margin: 0 0 15px 0;
+  }
+
+  & h3 {
+    margin: 0 0 15px 0;
+  }
+
+  & form,
+  & div.under-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,12 +41,19 @@ div#main-container {
   & div.error-container {
     margin-bottom: 15px;
     height: 20px;
-  }
 
-  & p.error {
-    color: red;
-    font-size: 12px;
-    height: 100%;
+    & p.error {
+      color: red;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    & p.updated {
+      color: green;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
   }
 
   & .input-container {

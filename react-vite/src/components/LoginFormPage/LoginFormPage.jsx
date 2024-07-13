@@ -104,12 +104,14 @@ function LoginFormPage() {
             Sign Up
           </button>
         </div>
+      </form>
+      <div className="under-form">
         <div className="button-container">
           <button onClick={demoLogin} className="demo-user">
             Log in as Demo User
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
