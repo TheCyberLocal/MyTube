@@ -13,10 +13,10 @@ function VideoTile({ video }) {
       <div className="image-container">
         <img
           srcSet={`
-          http://img.youtube.com/vi/${video.url}/maxresdefault.jpg 1280w,
-          http://img.youtube.com/vi/${video.url}/hqdefault.jpg 960w,
-          http://img.youtube.com/vi/${video.url}/mqdefault.jpg 640w,
-          http://img.youtube.com/vi/${video.url}/default.jpg 320w
+          https://img.youtube.com/vi/${video.url}/maxresdefault.jpg 1280w,
+          https://img.youtube.com/vi/${video.url}/hqdefault.jpg 960w,
+          https://img.youtube.com/vi/${video.url}/mqdefault.jpg 640w,
+          https://img.youtube.com/vi/${video.url}/default.jpg 320w
           `}
           alt="YouTube Video Thumbnail"
         />
