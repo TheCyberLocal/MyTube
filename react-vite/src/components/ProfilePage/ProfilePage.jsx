@@ -111,10 +111,10 @@ function ProfilePage() {
           </button>
         </div>
         <div className="button-container">
-          <button onClick={() => alert("feature coming soon...")}>
+          <button className="danger" onClick={() => alert("feature coming soon...")}>
             Delete Account
           </button>
-          <button onClick={() => alert("feature coming soon...")}>
+          <button className="danger" onClick={() => alert("feature coming soon...")}>
             Change Password
           </button>
         </div>
