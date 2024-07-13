@@ -63,7 +63,7 @@ export const thunkLogin = (credentials) =>
 
 export const thunkSignup = (user) =>
   processFetch(async () => {
-    return await fetch("/api/users", {
+    return await fetch("/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -78,6 +78,27 @@ export const thunkUpdateUser = (userId, user) =>
       body: JSON.stringify(user),
     });
   });
+
+export const thunkDeleteUser = (userId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await await fetch(`/api/users/${userId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      dispatch(removeUser());
+      dispatch(clearMyVideos());
+      dispatch(clearVideoDetails());
+      dispatch(setError(null));
+    } else {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+    }
+  } catch (err) {
+    dispatch(setError("Failed to delete account"));
+  }
+  dispatch(setLoading(false));
+};
 
 export const thunkLogout = () => async (dispatch) => {
   dispatch(setLoading(true));

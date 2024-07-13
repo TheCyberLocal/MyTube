@@ -1,14 +1,17 @@
-import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import ConfirmDeleteAccountModal from "../ConfirmDeleteAccountModal";
 import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({ type, title }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
+  const { setModalContent } = useModal();
 
   const handleDelete = () => {
-    closeModal();
-    // dispatch(deleteThunk());
+    if (type === "Account") {
+      setModalContent(<ConfirmDeleteAccountModal />);
+    }
   };
 
   return (
