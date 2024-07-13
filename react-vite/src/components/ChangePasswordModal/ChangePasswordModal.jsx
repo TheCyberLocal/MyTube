@@ -69,7 +69,7 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">Password</label>
+          <label className="moving-label">Current Password</label>
           <button
             type="button"
             className="show-password-btn"
@@ -89,7 +89,7 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">Password</label>
+          <label className="moving-label">New Password</label>
           <button
             type="button"
             className="show-password-btn"
@@ -109,7 +109,7 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">Confirm Password</label>
+          <label className="moving-label">Confirm New Password</label>
           <button
             type="button"
             className="show-password-btn"
