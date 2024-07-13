@@ -20,7 +20,7 @@ function ConfirmDeleteModal({ type, title }) {
       <h2>
         {type} - {title}
       </h2>
-      <h3>Are you sure you want to remove this?</h3>
+      <h3>Are you sure you don't want this?</h3>
       <div className="row">
         <button onClick={handleDelete} id="yes">
           Delete
