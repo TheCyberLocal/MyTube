@@ -1,5 +1,7 @@
 #my-videos-page {
   padding: 20px;
+  min-height: 85vh;
+  height: fit-content;
 }
 
 #controls {
