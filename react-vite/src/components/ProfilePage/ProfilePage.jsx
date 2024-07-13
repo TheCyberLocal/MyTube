@@ -6,6 +6,8 @@ import {
 } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useModal } from "../../context/Modal";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
 
 function ProfilePage() {
   const {
@@ -31,6 +33,7 @@ function ProfilePage() {
 
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const { setModalContent } = useModal();
   const [videoCount, setVideoCount] = useState(sessionUser.videoCount);
   const [name, setName] = useState(sessionUser.name);
   const [username, setUsername] = useState(sessionUser.username);
@@ -134,7 +137,14 @@ function ProfilePage() {
         <div className="button-container">
           <button
             className="danger"
-            onClick={() => alert("feature coming soon...")}
+            onClick={() =>
+              setModalContent(
+                <ConfirmDeleteModal
+                  type="Account"
+                  title={`${sessionUser.username}`}
+                />
+              )
+            }
           >
             Delete Account
           </button>
