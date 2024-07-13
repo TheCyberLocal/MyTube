@@ -29,10 +29,10 @@ const processFetch = (fetchFunc) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
     const response = await fetchFunc();
-
     if (response.ok) {
       const data = await response.json();
       dispatch(setUser(data));
+      dispatch(setError(null));
     } else if (response.status < 500) {
       const errorMessages = await response.json();
       dispatch(setError(errorMessages));
@@ -79,13 +79,24 @@ export const thunkUpdateUser = (userId, user) =>
     });
   });
 
-export const thunkLogout = () =>
-  processFetch(async (dispatch) => {
-    await fetch("/api/auth/logout", { method: "POST" });
-    dispatch(removeUser());
-    dispatch(clearMyVideos());
-    dispatch(clearVideoDetails());
-  });
+export const thunkLogout = () => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch("/api/auth/logout", { method: "POST" });
+    if (response.ok) {
+      dispatch(removeUser());
+      dispatch(clearMyVideos());
+      dispatch(clearVideoDetails());
+      dispatch(setError(null));
+    } else {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+    }
+  } catch (err) {
+    dispatch(setError("Failed to logout"));
+  }
+  dispatch(setLoading(false));
+};
 
 const initialState = {
   user: null,

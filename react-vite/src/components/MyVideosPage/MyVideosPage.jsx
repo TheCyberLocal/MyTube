@@ -12,7 +12,7 @@ function MyVideosPage() {
     error: sessionError,
   } = useSelector((state) => state.session);
   const {
-    searchResults: myVideos,
+    searchResults: myVideos = [],
     isLoading: myVideosLoading,
     error: myVideosError,
   } = useSelector((state) => state.myVideos);

@@ -28,9 +28,30 @@ const initialState = {
   error: null,
 };
 
-export const searchMyVideos = (options) => async (dispatch) => {
+const processFetch = (fetchFunc) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
+    const response = await fetchFunc();
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setSearchResults(data));
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
+  } catch (err) {
+    dispatch(setError("Something went wrong. Please try again"));
+  }
+  dispatch(setLoading(false));
+};
+
+export const searchMyVideos = (options) =>
+  processFetch(() => {
     const { keyword, tags, sortBy, page } = options;
     let search_url = `/api/my-videos`;
     let search_params = [];
@@ -49,15 +70,8 @@ export const searchMyVideos = (options) => async (dispatch) => {
     if (search_params.length) {
       search_url += `?${search_params.join("&")}`;
     }
-    const response = await fetch(search_url);
-    const data = await response.json();
-    dispatch(setSearchResults(data));
-    dispatch(setLoading(false));
-  } catch (error) {
-    dispatch(setError(error.toString()));
-    dispatch(setLoading(false));
-  }
-};
+    return fetch(search_url);
+  });
 
 function myVideosReducer(state = initialState, action) {
   switch (action.type) {
@@ -68,7 +82,7 @@ function myVideosReducer(state = initialState, action) {
     case SET_ERROR:
       return { ...state, error: action.payload };
     case CLEAR_STATE:
-      return { ...state, searchResults: [], isLoading: false, error: null };
+      return { ...state, searchResults: [], error: null };
     default:
       return state;
   }
