@@ -2,7 +2,6 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
-import { useNavigate } from "react-router-dom";
 import AlertPasswordChange from "../AlertPasswordChange/AlertPasswordChange";
 
 function ChangePasswordModal() {
@@ -24,8 +23,8 @@ function ChangePasswordModal() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  const nav = useNavigate();
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,7 +40,7 @@ function ChangePasswordModal() {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -134,7 +133,7 @@ function ChangePasswordModal() {
             Keep Changes
           </button>
           <label className="button-label">or</label>
-          <button style={{ flex: 1 }} onClick={() => nav("/login")}>
+          <button style={{ flex: 1 }} onClick={closeModal}>
             Undo
           </button>
         </div>
