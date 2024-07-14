@@ -8,6 +8,7 @@ import Layout from "./Layout";
 import ProfilePage from "../components/ProfilePage/ProfilePage";
 import HelpPage from "../components/HelpPage";
 import { Navigate } from "react-router-dom";
+import VideoDetailsPage from "../components/VideoDetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/my-videos",
         element: <MyVideosPage />,
+      },
+      {
+        path: "/videos/:id",
+        element: <VideoDetailsPage />,
       },
     ],
   },
