@@ -29,26 +29,24 @@ function Navigation() {
     nav(sessionUser ? "/profile" : "/login");
   };
 
+  if (sessionLoading) return null;
+
   return (
     <div id="navigation">
-      {!sessionLoading && (
-        <>
-          {sessionUser ? (
-            <div>
-              <button onClick={() => nav("/my-videos")}>My Videos</button>
-              <button onClick={() => alert("add video modal here")}>
-                Add Video
-              </button>
-            </div>
-          ) : (
-            <h1 onClick={() => nav("/")}>Welcome to MyTube</h1>
-          )}
-          <div>
-            <button onClick={() => nav("/help")}>Help</button>
-            <button onClick={handleProfileClick}>Profile</button>
-          </div>
-        </>
+      {sessionUser ? (
+        <div>
+          <button onClick={() => nav("/my-videos")}>My Videos</button>
+          <button onClick={() => alert("add video modal here")}>
+            Add Video
+          </button>
+        </div>
+      ) : (
+        <h1 onClick={() => nav("/")}>Welcome to MyTube</h1>
       )}
+      <div>
+        <button onClick={() => nav("/help")}>Help</button>
+        <button onClick={handleProfileClick}>Profile</button>
+      </div>
     </div>
   );
 }
