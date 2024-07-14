@@ -3,22 +3,22 @@ from sqlalchemy.sql import text
 
 user_data = [
     {
-        "username": "Demo",
+        "username": "Demo123",
         "name": "Danny",
         "email": "demo@aa.io",
-        "password": "password"
+        "password": "Demo123!"
     },
     {
-        "username": "marie233",
-        "name": "Marie",
-        "email": "marie@aa.io",
-        "password": "password"
+        "username": "Mary123",
+        "name": "Mary",
+        "email": "mary@aa.io",
+        "password": "Mary123!"
     },
     {
-        "username": "bobbie878",
-        "name": "Bobby",
-        "email": "bobbie@aa.io",
-        "password": "password"
+        "username": "Jane123",
+        "name": "Jane",
+        "email": "jane@aa.io",
+        "password": "Jane123!"
     }
 ]
 
