@@ -46,8 +46,8 @@ const initialState = {
 function videoDetailsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_VIDEO_DETAILS:
-      console.log(action.payload)
-      return { ...state, video: action.payload };
+      const { notes, highlights, ...video } = action.payload;
+      return { ...state, video, notes, highlights };
     case SET_LOADING:
       return { ...state, isLoading: action.payload };
     case SET_ERROR:

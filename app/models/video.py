@@ -31,6 +31,8 @@ class Video(db.Model):
             'description': self.description,
             'url': self.url,
             'tags': [tag.to_dict() for tag in self.tags],
+            'highlights': [highlight.to_dict() for highlight in self.highlights],
+            'notes': [note.to_dict() for note in self.notes],
             'last_viewed': self.last_viewed,
             'created_at': self.created_at,
             'updated_at': self.updated_at
