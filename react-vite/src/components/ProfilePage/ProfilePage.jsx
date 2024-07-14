@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  thunkLogout,
-  thunkUpdateUser,
-} from "../../redux/session";
+import { thunkLogout, thunkUpdateUser } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
@@ -28,11 +25,6 @@ function ProfilePage() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  if (sessionLoading) return null;
-
-  if (!sessionLoading && !sessionUser)
-    return <Navigate to="/" replace={true} />;
-
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { setModalContent } = useModal();
@@ -43,6 +35,11 @@ function ProfilePage() {
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
 
+  if (sessionLoading) return null;
+
+  if (!sessionLoading && !sessionUser)
+    return <Navigate to="/" replace={true} />;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,7 +48,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -144,7 +141,7 @@ function ProfilePage() {
                 <ConfirmDeleteModal
                   type="Account"
                   title={`${sessionUser.username}`}
-                />,
+                />
               )
             }
           >

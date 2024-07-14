@@ -23,8 +23,6 @@ function ChangePasswordModal() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  if (sessionLoading) return null;
-
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [oldPassword, setOldPassword] = useState("");
@@ -34,6 +32,8 @@ function ChangePasswordModal() {
   const [showPassword, setShowPassword] = useState(false);
   const [showOldPassword, setShowOldPassword] = useState(false);
   const { setModalContent } = useModal();
+
+  if (sessionLoading) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -22,9 +22,10 @@ function Navigation() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  if (sessionLoading) return null;
 
   const nav = useNavigate();
+
+  if (sessionLoading) return null;
 
   const handleProfileClick = () => {
     nav(sessionUser ? "/profile" : "/login");
