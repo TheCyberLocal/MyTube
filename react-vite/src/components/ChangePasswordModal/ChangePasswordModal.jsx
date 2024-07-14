@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
+import AlertSuccess from "../AlertSuccess/AlertSuccess";
 
 function ChangePasswordModal() {
   const {
@@ -23,7 +24,6 @@ function ChangePasswordModal() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-  const { closeModal } = useModal();
   const nav = useNavigate();
   const dispatch = useDispatch();
   const [oldPassword, setOldPassword] = useState("");
@@ -32,6 +32,7 @@ function ChangePasswordModal() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showOldPassword, setShowOldPassword] = useState(false);
+  const { setModalContent } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +47,7 @@ function ChangePasswordModal() {
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
-      closeModal();
+      setModalContent(<AlertSuccess />)
     }
   };
 

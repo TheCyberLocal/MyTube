@@ -15,7 +15,7 @@ function ConfirmDeleteModal({ type, title }) {
   };
 
   return (
-    <div id="confirm-delete-modal">
+    <div id="prompt-modal">
       <h1>Confirm Delete of</h1>
       <h2>
         {type} - {title}
