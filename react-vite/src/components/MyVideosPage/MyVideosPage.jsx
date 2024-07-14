@@ -71,15 +71,23 @@ function MyVideosPage() {
           />
         </label>
       </div>
-      {!myVideos.length && (
+      {!sessionLoading && !sessionUser.videoCount && (
+        <div className="no-video-results">
+          <h1>You have no videos. How about adding some...</h1>
+        </div>
+      )}
+      {!sessionLoading &&
+      !myVideosLoading &&
+      sessionUser.videoCount &&
+      !myVideos.length ? (
         <div className="no-video-results">
           <h1>No videos match your search...</h1>
         </div>
-      )}
+      ) : null}
       <div className="video-results">
-        {myVideos.map((video) => (
-          <VideoTile key={video.id} video={video} />
-        ))}
+        {!sessionLoading && !myVideosLoading && sessionUser.videoCount
+          ? myVideos.map((video) => <VideoTile key={video.id} video={video} />)
+          : null}
       </div>
     </div>
   );
