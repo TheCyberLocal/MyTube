@@ -27,7 +27,7 @@ function ChangePasswordModal() {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const [oldPassword, setOldPassword] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -35,10 +35,11 @@ function ChangePasswordModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const serverResponse = await dispatch(
-      thunkUpdateUser({
-        password,
+      thunkUpdatePassword({
+        password: oldPassword,
+        new_password: newPassword,
+        confirm_password: confirmPassword
       })
     );
 
@@ -79,13 +80,13 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.password && <p className="error">{errors.password[0]}</p>}
+          {errors.oldPassword && <p className="error">{errors.oldPassword}</p>}
         </div>
         <div className="input-container">
           <input
             type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
             required
             placeholder=""
           />
@@ -99,7 +100,7 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.password && <p className="error">{errors.password[0]}</p>}
+          {errors.newPassword && <p className="error">{errors.newPassword}</p>}
         </div>
         <div className="input-container">
           <input
@@ -119,12 +120,14 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.confirm_password && (
-            <p className="error">{errors.confirm_password[0]}</p>
+          {errors.confirmPassword && (
+            <p className="error">{errors.confirmPassword}</p>
           )}
         </div>
         <div className="button-container">
-          <button style={{ flex: 2 }}>Keep Changes</button>
+          <button style={{ flex: 2 }} onClick={handleSubmit}>
+            Keep Changes
+          </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={() => nav("/login")}>
             Undo
