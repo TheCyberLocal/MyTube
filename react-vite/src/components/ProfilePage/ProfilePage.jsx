@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   thunkLogout,
-  thunkAuthenticate,
   thunkUpdateUser,
 } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +27,8 @@ function ProfilePage() {
     isLoading: videoDetailsLoading,
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
+
+  if (sessionLoading) return null;
 
   if (!sessionLoading && !sessionUser)
     return <Navigate to="/" replace={true} />;

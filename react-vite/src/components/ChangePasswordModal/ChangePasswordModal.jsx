@@ -23,6 +23,8 @@ function ChangePasswordModal() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
+  if (sessionLoading) return null;
+
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [oldPassword, setOldPassword] = useState("");

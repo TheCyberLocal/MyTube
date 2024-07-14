@@ -6,11 +6,15 @@ import "./ConfirmDeleteAccountModal.css";
 import { useNavigate } from "react-router-dom";
 
 function ConfirmDeleteAccountModal() {
-  const sessionUser = useSelector((state) => state.session.user);
+  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
+    (state) => state.session
+  );
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
   const nav = useNavigate();
+
+  if (sessionLoading) return null;
 
   const handleDelete = () => {
     dispatch(thunkDeleteUser(sessionUser.id));
