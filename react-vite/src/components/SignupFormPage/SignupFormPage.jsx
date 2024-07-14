@@ -45,7 +45,7 @@ function SignupFormPage() {
         email,
         password,
         confirm_password: confirmPassword,
-      })
+      }),
     );
 
     if (serverResponse) {

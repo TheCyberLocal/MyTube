@@ -1,3 +1,3 @@
-import MyVideosPage from "./MyVideosPage"
+import MyVideosPage from "./MyVideosPage";
 
 export default MyVideosPage;

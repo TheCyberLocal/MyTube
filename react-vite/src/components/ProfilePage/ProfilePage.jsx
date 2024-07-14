@@ -50,7 +50,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      })
+      }),
     );
 
     if (serverResponse) {
@@ -143,7 +143,7 @@ function ProfilePage() {
                 <ConfirmDeleteModal
                   type="Account"
                   title={`${sessionUser.username}`}
-                />
+                />,
               )
             }
           >

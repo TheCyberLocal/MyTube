@@ -41,13 +41,13 @@ function ChangePasswordModal() {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
-      })
+      }),
     );
 
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
-      setModalContent(<AlertPasswordChange />)
+      setModalContent(<AlertPasswordChange />);
     }
   };
 
@@ -81,7 +81,9 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.old_password && <p className="error">{errors.old_password[0]}</p>}
+          {errors.old_password && (
+            <p className="error">{errors.old_password[0]}</p>
+          )}
         </div>
         <div className="input-container">
           <input
@@ -101,7 +103,9 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.new_password && <p className="error">{errors.new_password[0]}</p>}
+          {errors.new_password && (
+            <p className="error">{errors.new_password[0]}</p>
+          )}
         </div>
         <div className="input-container">
           <input

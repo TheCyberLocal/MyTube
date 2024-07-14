@@ -71,9 +71,11 @@ function MyVideosPage() {
           />
         </label>
       </div>
-      {!myVideos.length && <div className="no-video-results">
-        <h1>No videos match your search...</h1>
-      </div>}
+      {!myVideos.length && (
+        <div className="no-video-results">
+          <h1>No videos match your search...</h1>
+        </div>
+      )}
       <div className="video-results">
         {myVideos.map((video) => (
           <VideoTile key={video.id} video={video} />

@@ -52,7 +52,14 @@ function videoDetailsReducer(state = initialState, action) {
     case SET_ERROR:
       return { ...state, error: action.payload };
     case CLEAR_STATE:
-      return { ...state, video: null, notes: [], highlights: [], isLoading: false, error: null };
+      return {
+        ...state,
+        video: null,
+        notes: [],
+        highlights: [],
+        isLoading: false,
+        error: null,
+      };
     default:
       return state;
   }

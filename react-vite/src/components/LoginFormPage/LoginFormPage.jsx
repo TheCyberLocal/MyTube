@@ -39,7 +39,7 @@ function LoginFormPage() {
       thunkLogin({
         credential,
         password,
-      })
+      }),
     );
 
     if (serverResponse) {
@@ -52,7 +52,7 @@ function LoginFormPage() {
       thunkLogin({
         credential: "Demo",
         password: "password",
-      })
+      }),
     );
   };
 
