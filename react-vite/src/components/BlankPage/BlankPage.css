@@ -37,13 +37,13 @@ div#main-container {
   }
 
   & div.error-container {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     height: 20px;
 
     & p.error {
       color: red;
       font-size: 12px;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     & p.updated {

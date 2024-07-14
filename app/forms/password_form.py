@@ -6,5 +6,5 @@ class UpdatePasswordForm(FlaskForm):
     password_regex = r"(?=^.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])"
 
     old_password = StringField('old_password', validators=[DataRequired()])
-    new_password = StringField('new_password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Password must contain an uppercase letter, lowercase letter, digit and a symbol")])
+    new_password = StringField('new_password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Must contain uppercase letter, lowercase letter, digit and symbol")])
     confirm_password = StringField('confirm_password', validators=[DataRequired(), EqualTo('new_password', message='Confirm password must match')])

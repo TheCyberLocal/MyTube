@@ -79,6 +79,15 @@ export const thunkUpdateUser = (userId, user) =>
     });
   });
 
+export const thunkUpdatePassword = (userId, body) =>
+  processFetch(async () => {
+    return await fetch(`/api/users/${userId}/password`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  });
+
 export const thunkDeleteUser = (userId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {

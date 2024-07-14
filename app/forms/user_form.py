@@ -48,7 +48,7 @@ class SignUpForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), Length(4, 20), username_exists])
     email = StringField('email', validators=[DataRequired(), Email(), email_exists])
     name = StringField('name', validators=[DataRequired(), Length(3, 20)])
-    password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Password must contain an uppercase letter, lowercase letter, digit and a symbol")])
+    password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Must contain uppercase letter, lowercase letter, digit and symbol")])
     confirm_password = StringField('password', validators=[EqualTo('password', message='Confirm password must match')])
 
 

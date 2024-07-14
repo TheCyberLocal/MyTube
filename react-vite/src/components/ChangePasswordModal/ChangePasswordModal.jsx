@@ -2,7 +2,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ChangePasswordModal() {
   const {
@@ -36,8 +36,8 @@ function ChangePasswordModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const serverResponse = await dispatch(
-      thunkUpdatePassword({
-        password: oldPassword,
+      thunkUpdatePassword(sessionUser.id, {
+        old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
       })
@@ -80,7 +80,7 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.oldPassword && <p className="error">{errors.oldPassword}</p>}
+          {errors.old_password && <p className="error">{errors.old_password[0]}</p>}
         </div>
         <div className="input-container">
           <input
@@ -100,7 +100,7 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.newPassword && <p className="error">{errors.newPassword}</p>}
+          {errors.new_password && <p className="error">{errors.new_password[0]}</p>}
         </div>
         <div className="input-container">
           <input
@@ -120,8 +120,8 @@ function ChangePasswordModal() {
           </button>
         </div>
         <div className="error-container">
-          {errors.confirmPassword && (
-            <p className="error">{errors.confirmPassword}</p>
+          {errors.confirm_password && (
+            <p className="error">{errors.confirm_password[0]}</p>
           )}
         </div>
         <div className="button-container">
