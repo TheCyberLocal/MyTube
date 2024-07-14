@@ -1,7 +1,7 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { thunkUpdateUser } from "../../redux/session";
+import { thunkUpdatePassword } from "../../redux/session";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function ChangePasswordModal() {
@@ -39,7 +39,7 @@ function ChangePasswordModal() {
       thunkUpdatePassword({
         password: oldPassword,
         new_password: newPassword,
-        confirm_password: confirmPassword
+        confirm_password: confirmPassword,
       })
     );
 
