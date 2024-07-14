@@ -1,6 +1,6 @@
 import { useModal } from "../../context/Modal";
 
-function AlertSuccess() {
+function AlertPasswordChange() {
   const { closeModal } = useModal();
 
   return (
@@ -15,4 +15,4 @@ function AlertSuccess() {
   );
 }
 
-export default AlertSuccess;
+export default AlertPasswordChange;

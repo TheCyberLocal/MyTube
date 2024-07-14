@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
-import AlertSuccess from "../AlertSuccess/AlertSuccess";
+import AlertPasswordChange from "../AlertPasswordChange/AlertPasswordChange";
 
 function ChangePasswordModal() {
   const {
@@ -47,7 +47,7 @@ function ChangePasswordModal() {
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
-      setModalContent(<AlertSuccess />)
+      setModalContent(<AlertPasswordChange />)
     }
   };
 
