@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import YouTube from "react-youtube";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import "./VideoDetailsPage.css";
 
@@ -11,7 +12,7 @@ function VideoDetailsPage() {
     error: sessionError,
   } = useSelector((state) => state.session);
   const {
-    searchResults: myVideos = [],
+    searchResults: myVideos,
     isLoading: myVideosLoading,
     error: myVideosError,
   } = useSelector((state) => state.myVideos);
@@ -26,30 +27,55 @@ function VideoDetailsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const [player, setPlayer] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+
   useEffect(() => {
     dispatch(fetchVideoDetails(id));
   }, [dispatch, id]);
 
-  if (!video) return null;
+  const onPlayerReady = (event) => {
+    setPlayer(event.target);
+  };
+
+  const handleRecord = () => {
+    if (!isRecording) {
+      const currentTime = player.getCurrentTime();
+      setStartTime(currentTime);
+      console.log("Recording started at: " + currentTime);
+      setIsRecording(true);
+    } else {
+      const currentTime = player.getCurrentTime();
+      setEndTime(currentTime);
+      console.log("Recording ended at: " + currentTime);
+      console.log(
+        "Recorded duration: " + (currentTime - startTime) + " seconds"
+      );
+      setIsRecording(false);
+    }
+  };
+
+  if (videoDetailsLoading || !video) return null;
 
   return (
     <div className="video-details-page">
       <div className="left-column">
         <div className="video-container">
-          <iframe
-            width="100%"
-            height="auto"
-            src={`https://www.youtube.com/embed/${video.url}`}
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+          <YouTube videoId={video.url} onReady={onPlayerReady} />
         </div>
         <div className="video-info">
           <h2>{video.title}</h2>
           <p>{video.description}</p>
         </div>
       </div>
-      <div className="right-column"></div>
+      <div className="right-column">
+        <button onClick={handleRecord}>
+          {isRecording ? "End Recording" : "Record"}
+        </button>
+        {/* Right column content will be added in later steps */}
+      </div>
     </div>
   );
 }
