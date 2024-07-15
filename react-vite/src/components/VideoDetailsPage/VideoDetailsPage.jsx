@@ -87,6 +87,10 @@ function VideoDetailsPage() {
       <div className="right-column">
         <VideoNoteTaker />
         <VideoHighlights />
+        <div id="video-buttons">
+          <button id="video-update-button">Update video</button>
+          <button id="video-delete-button">Delete video</button>
+        </div>
       </div>
     </div>
   );
