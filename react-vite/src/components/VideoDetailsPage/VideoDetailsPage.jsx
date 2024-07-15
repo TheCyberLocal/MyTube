@@ -78,9 +78,7 @@ function VideoDetailsPage() {
   };
 
   const handleDeleteVideo = () => {
-    setModalContent(
-      <ConfirmDeleteModal type="Video" title={video.title} id={video.id} />
-    );
+    setModalContent(<ConfirmDeleteModal type="Video" element={video} />);
   };
 
   if (!video) return null;

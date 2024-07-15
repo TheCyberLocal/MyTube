@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteAccountModal from "../ConfirmDeleteAccountModal";
+import ConfirmDeleteVideoModal from "../ConfirmDeleteVideoModal";
 import { deleteNoteThunk } from "../../redux/videoDetails";
 import "./ConfirmDeleteModal.css";
-import { thunkUpdatePassword } from "../../redux/session";
 
-function ConfirmDeleteModal({ type, title, id = null }) {
+function ConfirmDeleteModal({ type, element = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
@@ -14,17 +14,25 @@ function ConfirmDeleteModal({ type, title, id = null }) {
     if (type === "Account") {
       setModalContent(<ConfirmDeleteAccountModal />);
     } else if (type === "Note") {
-      dispatch(deleteNoteThunk(id));
+      dispatch(deleteNoteThunk(element.id));
       closeModal();
     } else if (type === "Video") {
+      setModalContent(<ConfirmDeleteVideoModal element={element} />);
+    } else if (type === "Highlight") {
     }
+  };
+
+  const getName = () => {
+    if (element?.title) return element.title; // videos or notes
+    if (element?.username) return element.username; // account
+    return element.name; // highlights
   };
 
   return (
     <div id="prompt-modal">
       <h1>Confirm Delete of</h1>
       <h3>
-        {type} - {title}
+        {type} - {getName()}
       </h3>
       <h3>Are you sure you don't want this?</h3>
       <div className="row">

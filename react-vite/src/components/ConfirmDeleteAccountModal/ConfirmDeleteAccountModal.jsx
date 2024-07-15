@@ -22,7 +22,7 @@ function ConfirmDeleteAccountModal() {
 
   return (
     <div id="confirm-delete-account-modal">
-      <h1>Are you sure you want to leave?</h1>
+      <h1>Are you absolutely sure?</h1>
       <h3>Understand the following:</h3>
       <ul>
         <li>Your account ({user.email}) will be unrecoverable.</li>
