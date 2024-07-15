@@ -19,7 +19,8 @@ function VideoDetailsPage() {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [activeNote, setActiveNote] = useState(null);
-
+  const [editableNote, setEditableNote] = useState(null);
+  const [noteContent, setNoteContent] = useState("");
   const noteRefs = useRef([]);
 
   useEffect(() => {
@@ -81,6 +82,30 @@ function VideoDetailsPage() {
     }, 1000); // Adjust the total duration as needed
   };
 
+  const handleUpdateNote = (noteId) => {
+    setEditableNote(noteId);
+    const note = notes.find((note) => note.id === noteId);
+    setNoteContent(note.description);
+  };
+
+  const handleDeleteNote = (noteId) => {
+    dispatch(deleteNote(noteId));
+  };
+
+  const handleSaveNote = (noteId) => {
+    dispatch(
+      updateNote({
+        id: noteId,
+        description: noteContent,
+      })
+    );
+    setEditableNote(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditableNote(null);
+  };
+
   if (videoDetailsLoading || !video) return null;
 
   return (
@@ -94,8 +119,8 @@ function VideoDetailsPage() {
           <p>{video.description}</p>
         </div>
         <div className="notes-section">
-          {notes.length === 0 ? (
-            <h3>No notes yet... how about taking some?</h3>
+          {!notes.length ? (
+            <h2>No notes yet... how about taking some?</h2>
           ) : (
             notes.map((note, index) => (
               <div
@@ -104,21 +129,42 @@ function VideoDetailsPage() {
                 className={`note-container ${
                   activeNote === note.id ? "active" : ""
                 }`}
-                onClick={() => handleNoteClick(note.id, index)}
               >
-                <div className="note-header">
-                  <h4>{note.title}</h4>
+                <div
+                  className="note-header"
+                  onClick={() => handleNoteClick(note.id, index)}
+                >
+                  <h3>{note.title}</h3>
                   <span>{new Date(note.created_at).toLocaleDateString()}</span>
                 </div>
                 <div className="note-content">
-                  <p>{note.description}</p>
+                  {editableNote === note.id ? (
+                    <textarea
+                      value={noteContent}
+                      onChange={(e) => setNoteContent(e.target.value)}
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  ) : (
+                    <p>{note.description}</p>
+                  )}
                   <div className="note-buttons">
-                    <button onClick={() => handleUpdateNote(note.id)}>
-                      Update
-                    </button>
-                    <button onClick={() => handleDeleteNote(note.id)}>
-                      Delete
-                    </button>
+                    {editableNote === note.id ? (
+                      <>
+                        <button onClick={() => handleSaveNote(note.id)}>
+                          Save
+                        </button>
+                        <button onClick={handleCancelEdit}>Cancel</button>
+                      </>
+                    ) : (
+                      <>
+                        <button onClick={() => handleUpdateNote(note.id)}>
+                          Update
+                        </button>
+                        <button onClick={() => handleDeleteNote(note.id)}>
+                          Delete
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

@@ -27,7 +27,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 25px;
+}
+
+.video-info,
+.notes-section {
+  margin: 0px 25px;
 }
 
 .video-info h2 {
@@ -65,18 +70,24 @@
 }
 
 .note-container {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border: 1px solid #ddd;
   padding: 10px;
   cursor: pointer;
   transition: all 0.5s ease;
-  border-radius: 20px;
+  border-radius: 25px;
+  box-shadow: 1px 5px 7px 3px rgba(0, 0, 0, 0.2);
 }
 
 .note-header {
   display: flex;
   justify-content: space-between;
-  margin: 0 10px;
+  align-items: center;
+  padding: 0 10px;
+
+  & * {
+    margin: 5px 0;
+  }
 }
 
 .note-content {
