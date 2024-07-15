@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import ConfirmDeleteAccountModal from "../ConfirmDeleteAccountModal";
 import "./ConfirmDeleteModal.css";
 
-function ConfirmDeleteModal({ type, title }) {
+function ConfirmDeleteModal({ type, title, id = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
 

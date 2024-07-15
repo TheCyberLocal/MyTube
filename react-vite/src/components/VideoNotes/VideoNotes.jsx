@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNoteThunk } from "../../redux/videoDetails";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import { useModal } from "../../context/Modal";
 import "./VideoNotes.css";
 
 function VideoNotes() {
   const { notes } = useSelector((state) => state.videoDetails);
+  const { setModalContent } = useModal();
 
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
@@ -43,7 +46,8 @@ function VideoNotes() {
   };
 
   const handleDeleteNote = (noteId) => {
-    dispatch(deleteNote(noteId));
+    const note = notes.find((note) => note.id === noteId);
+    setModalContent(<ConfirmDeleteModal type="Note" title={note.title} id={noteId} />)
   };
 
   const handleSaveNote = (noteId) => {

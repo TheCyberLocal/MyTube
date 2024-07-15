@@ -3,6 +3,7 @@ const SET_LOADING = "videoDetails/setLoading";
 const SET_ERROR = "videoDetails/setError";
 const CLEAR_STATE = "videoDetails/clearState";
 const SET_NOTE = "videoDetails/setNote";
+const REMOVE_NOTE = "videoDetails/removeNote";
 
 export const setVideoDetails = (detail) => ({
   type: SET_VIDEO_DETAILS,
@@ -28,6 +29,11 @@ export const setNote = (note) => ({
   payload: note,
 });
 
+export const removeNote = (noteId) => ({
+  type: REMOVE_NOTE,
+  payload: noteId,
+});
+
 export const fetchVideoDetails = (videoId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
@@ -51,6 +57,20 @@ export const updateNoteThunk = (noteId, note) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch(setNote(data));
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
+
+export const deleteNoteThunk = (noteId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    await fetch(`/api/notes/${noteId}`, {
+      method: "DELETE",
+    });
+    dispatch(removeNote(noteId));
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error.toString()));
@@ -91,6 +111,11 @@ function videoDetailsReducer(state = initialState, action) {
       const newNotes = notes.map((note) =>
         note.id === action.payload.id ? action.payload : note
       );
+      return { ...restState, notes: newNotes };
+    }
+    case REMOVE_NOTE: {
+      const { notes, ...restState } = state;
+      const newNotes = notes.filter((note) => note.id !== action.payload);
       return { ...restState, notes: newNotes };
     }
     default:

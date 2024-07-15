@@ -120,7 +120,7 @@ function ProfilePage() {
             className="danger"
             onClick={() =>
               setModalContent(
-                <ConfirmDeleteModal type="Account" title={`${user.username}`} />
+                <ConfirmDeleteModal type="Account" title={user.username} />
               )
             }
           >

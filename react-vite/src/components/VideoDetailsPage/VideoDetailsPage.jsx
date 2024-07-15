@@ -35,12 +35,7 @@ function VideoDetailsPage() {
     }
   }, [video]);
 
-  useEffect(() => {
-    console.log("Video object:", video);
-  }, [video]);
-
   const createPlayer = () => {
-    player?.destroy();
     setPlayer(
       new window.YT.Player("player", {
         videoId: video.url,
