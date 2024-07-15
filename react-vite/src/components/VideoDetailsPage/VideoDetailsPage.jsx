@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import YouTube from "react-youtube";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import "./VideoDetailsPage.css";
 
@@ -36,26 +35,48 @@ function VideoDetailsPage() {
     dispatch(fetchVideoDetails(id));
   }, [dispatch, id]);
 
-  const onPlayerReady = (event) => {
-    setPlayer(event.target);
+  useEffect(() => {
+    if (window.YT) {
+      createPlayer();
+    } else {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        createPlayer();
+      };
+    }
+  }, [video]);
+
+  const createPlayer = () => {
+    setPlayer(
+      new window.YT.Player("player", {
+        videoId: video.url,
+        playerVars: {
+          autoplay: 0,
+        },
+      })
+    );
   };
 
   const handleRecord = () => {
     if (!isRecording) {
-      const currentTime = player.getCurrentTime();
+      const currentTime = getCurrentTime();
       setStartTime(currentTime);
-      console.log("Recording started at: " + currentTime);
+      console.log("Recording started at: " + startTime);
       setIsRecording(true);
     } else {
-      const currentTime = player.getCurrentTime();
+      const currentTime = getCurrentTime();
       setEndTime(currentTime);
-      console.log("Recording ended at: " + currentTime);
-      console.log(
-        "Recorded duration: " + (currentTime - startTime) + " seconds"
-      );
+      console.log("Recording ended at: " + endTime);
       setIsRecording(false);
     }
   };
+
+  const seekToTime = (time) => player.seekTo(time, true);
+  const getCurrentTime = () => player.getCurrentTime();
 
   if (videoDetailsLoading || !video) return null;
 
@@ -63,7 +84,7 @@ function VideoDetailsPage() {
     <div className="video-details-page">
       <div className="left-column">
         <div className="video-container">
-          <YouTube videoId={video.url} onReady={onPlayerReady} />
+          <div id="player"></div>
         </div>
         <div className="video-info">
           <h2>{video.title}</h2>
@@ -74,6 +95,13 @@ function VideoDetailsPage() {
         <button onClick={handleRecord}>
           {isRecording ? "End Recording" : "Record"}
         </button>
+        <div>
+          <input
+            type="number"
+            placeholder="Enter time in seconds"
+            onChange={(e) => seekToTime(parseInt(e.target.value))}
+          />
+        </div>
         {/* Right column content will be added in later steps */}
       </div>
     </div>
