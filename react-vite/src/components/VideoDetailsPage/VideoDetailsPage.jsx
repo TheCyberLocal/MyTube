@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import VideoNotes from "../VideoNotes";
 import VideoNoteTaker from "../VideoNoteTaker";
+import VideoHighlights from "../VideoHighlights";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -85,6 +86,7 @@ function VideoDetailsPage() {
       </div>
       <div className="right-column">
         <VideoNoteTaker />
+        <VideoHighlights />
       </div>
     </div>
   );
