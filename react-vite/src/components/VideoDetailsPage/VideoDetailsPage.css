@@ -88,6 +88,10 @@
   & * {
     margin: 5px 0;
   }
+
+  & > div {
+    width: 100%;
+  }
 }
 
 .note-content {
@@ -110,8 +114,18 @@
   animation: swing-out 0.5s forwards;
 }
 
-.note-container h4 {
-  margin: 0;
+.note-container h3 {
+  margin: 5px 0;
+}
+
+.note-container input {
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+  width: 100%;
 }
 
 .note-container span {
@@ -137,4 +151,19 @@
 
 .note-buttons button:hover {
   background-color: darkgrey;
+}
+
+.note-content textarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.note-content textarea:focus {
+  outline: none;
 }

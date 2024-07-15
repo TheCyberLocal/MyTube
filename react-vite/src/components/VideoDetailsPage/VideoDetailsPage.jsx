@@ -21,7 +21,9 @@ function VideoDetailsPage() {
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
   const [noteContent, setNoteContent] = useState("");
+  const [noteTitle, setNoteTitle] = useState("");
   const noteRefs = useRef([]);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchVideoDetails(id));
@@ -41,6 +43,13 @@ function VideoDetailsPage() {
       };
     }
   }, [video]);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [noteContent]);
 
   const createPlayer = () => {
     setPlayer(
@@ -71,6 +80,8 @@ function VideoDetailsPage() {
   const getCurrentTime = () => player.getCurrentTime();
 
   const handleNoteClick = (noteId, index) => {
+    if (editableNote) return;
+
     setActiveNote(activeNote === noteId ? null : noteId);
 
     const scrollInterval = setInterval(() => {
@@ -86,6 +97,7 @@ function VideoDetailsPage() {
     setEditableNote(noteId);
     const note = notes.find((note) => note.id === noteId);
     setNoteContent(note.description);
+    setNoteTitle(note.title);
   };
 
   const handleDeleteNote = (noteId) => {
@@ -96,6 +108,7 @@ function VideoDetailsPage() {
     dispatch(
       updateNote({
         id: noteId,
+        title: noteTitle,
         description: noteContent,
       })
     );
@@ -134,16 +147,37 @@ function VideoDetailsPage() {
                   className="note-header"
                   onClick={() => handleNoteClick(note.id, index)}
                 >
-                  <h3>{note.title}</h3>
-                  <span>{new Date(note.created_at).toLocaleDateString()}</span>
+                  {editableNote === note.id ? (
+                    <div>
+                      <h3>Title</h3>
+                      <input
+                        value={noteTitle}
+                        onChange={(e) => setNoteTitle(e.target.value)}
+                        onClick={(e) => e.stopPropagation()}
+                        spellCheck="true"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <h3>{note.title}</h3>
+                      <span>
+                        {new Date(note.updated_at).toLocaleDateString()}
+                      </span>
+                    </>
+                  )}
                 </div>
                 <div className="note-content">
                   {editableNote === note.id ? (
-                    <textarea
-                      value={noteContent}
-                      onChange={(e) => setNoteContent(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                    />
+                    <div>
+                      <h3>Description</h3>
+                      <textarea
+                        ref={textareaRef}
+                        value={noteContent}
+                        onChange={(e) => setNoteContent(e.target.value)}
+                        style={{ overflow: "hidden", resize: "none" }}
+                        spellCheck="true"
+                      />
+                    </div>
                   ) : (
                     <p>{note.description}</p>
                   )}
