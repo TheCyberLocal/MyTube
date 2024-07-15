@@ -46,6 +46,7 @@ export const updateNoteThunk = (noteId, note) => async (dispatch) => {
   try {
     const response = await fetch(`/api/notes/${noteId}`, {
       method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(note),
     });
     const data = await response.json();
@@ -87,14 +88,10 @@ function videoDetailsReducer(state = initialState, action) {
     }
     case SET_NOTE: {
       const { notes, ...restState } = state;
-      console.log("state", state);
-      console.log("video", notes);
-      console.log("notes", notes);
       const newNotes = notes.map((note) =>
         note.id === action.payload.id ? action.payload : note
       );
-      console.log({ ...restState, notes: newNotes });
-      return state;
+      return { ...restState, notes: newNotes };
     }
     default:
       return state;

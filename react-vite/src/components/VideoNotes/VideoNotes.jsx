@@ -47,11 +47,6 @@ function VideoNotes() {
   };
 
   const handleSaveNote = (noteId) => {
-    console.log("note saver==========");
-    console.log("note id", noteId);
-    console.log("noteTitle", noteTitle);
-    console.log("noteContent", noteContent);
-
     dispatch(
       updateNoteThunk(noteId, {
         title: noteTitle,
