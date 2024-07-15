@@ -4,7 +4,7 @@ import { updateNoteThunk } from "../../redux/videoDetails";
 import "./VideoNotes.css";
 
 function VideoNotes() {
-  const { notes, isLoading } = useSelector((state) => state.videoDetails);
+  const { notes } = useSelector((state) => state.videoDetails);
 
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
@@ -60,7 +60,7 @@ function VideoNotes() {
     setEditableNote(null);
   };
 
-  if (isLoading || !notes) return null;
+  if (!notes) return null;
 
   return (
     <div className="notes-section">

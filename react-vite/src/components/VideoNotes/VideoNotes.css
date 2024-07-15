@@ -40,9 +40,8 @@
 .note-container {
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  padding: 10px;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.75s ease;
   border-radius: 25px;
   box-shadow: 1px 5px 7px 3px rgba(0, 0, 0, 0.2);
 }
@@ -51,7 +50,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 15px;
 
   & * {
     margin: 5px 0;
@@ -65,8 +64,7 @@
 .note-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-  padding: 0 10px;
+  transition: max-height 0.75s ease-out, padding 0.75s ease-out;
   opacity: 0;
   transform-origin: top;
 }
@@ -75,15 +73,19 @@
   max-height: 500px; /* Adjust as necessary */
   padding: 10px;
   opacity: 1;
-  animation: swing-in 0.5s forwards;
+  animation: swing-in 0.75s forwards;
 }
 
 .note-container:not(.active) .note-content {
-  animation: swing-out 0.5s forwards;
+  animation: swing-out 0.75s forwards;
 }
 
 .note-container h3 {
   margin: 5px 0;
+}
+
+.note-container p {
+  margin: 0 5px;
 }
 
 .note-container input {

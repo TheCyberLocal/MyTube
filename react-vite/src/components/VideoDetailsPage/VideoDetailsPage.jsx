@@ -6,7 +6,7 @@ import VideoNotes from "../VideoNotes";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
-  const { video, isLoading } = useSelector((state) => state.videoDetails);
+  const { video } = useSelector((state) => state.videoDetails);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function VideoDetailsPage() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (window.YT) {
+    if (window.YT && window.YT.Player) {
       createPlayer();
     } else {
       const tag = document.createElement("script");
@@ -30,12 +30,17 @@ function VideoDetailsPage() {
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       window.onYouTubeIframeAPIReady = () => {
-        createPlayer();
+        setTimeout(createPlayer, 1000); // Adding a delay
       };
     }
   }, [video]);
 
+  useEffect(() => {
+    console.log("Video object:", video);
+  }, [video]);
+
   const createPlayer = () => {
+    player?.destroy();
     setPlayer(
       new window.YT.Player("player", {
         videoId: video.url,
@@ -63,7 +68,7 @@ function VideoDetailsPage() {
   const seekToTime = (time) => player.seekTo(time, true);
   const getCurrentTime = () => player.getCurrentTime();
 
-  if (isLoading || !video) return null;
+  if (!video) return null;
 
   return (
     <div className="video-details-page">
