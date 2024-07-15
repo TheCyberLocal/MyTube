@@ -12,6 +12,7 @@ function VideoTile({ video }) {
     >
       <div className="image-container">
         <img
+          src={`https://img.youtube.com/vi/${video.url}/hqdefault.jpg`}
           srcSet={`
           https://img.youtube.com/vi/${video.url}/maxresdefault.jpg 1280w,
           https://img.youtube.com/vi/${video.url}/hqdefault.jpg 960w,
