@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import UnderstandDeleteAccount from "../UnderstandDeleteAccount";
-import ConfirmDeleteVideoModal from "../ConfirmDeleteVideoModal";
+import UnderstandDeleteVideo from "../UnderstandDeleteVideo";
 import { deleteNoteThunk } from "../../redux/videoDetails";
 import "./ConfirmDeleteModal.css";
 
@@ -17,7 +17,7 @@ function ConfirmDeleteModal({ type, element = null }) {
       dispatch(deleteNoteThunk(element.id));
       closeModal();
     } else if (type === "Video") {
-      setModalContent(<ConfirmDeleteVideoModal element={element} />);
+      setModalContent(<UnderstandDeleteVideo element={element} />);
     } else if (type === "Highlight") {
     }
   };

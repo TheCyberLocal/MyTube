@@ -1,10 +1,10 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { thunkDeleteVideo } from "../../redux/videoDetails";
-import "./ConfirmDeleteVideoModal.css";
+import "./UnderstandDeleteVideo.css";
 import { useNavigate } from "react-router-dom";
 
-function ConfirmDeleteVideoModal({ element }) {
+function UnderstandDeleteVideo({ element }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -37,4 +37,4 @@ function ConfirmDeleteVideoModal({ element }) {
   );
 }
 
-export default ConfirmDeleteVideoModal;
+export default UnderstandDeleteVideo;

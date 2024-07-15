@@ -1,3 +1,3 @@
-import ConfirmDeleteModal from "./ConfirmDeleteVideoModal";
+import ConfirmDeleteModal from "./UnderstandDeleteVideo";
 
 export default ConfirmDeleteModal;
