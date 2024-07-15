@@ -2,10 +2,10 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteUser } from "../../redux/session";
 import AlertAccountDeletion from "../AlertAccountDeletion";
-import "./ConfirmDeleteAccountModal.css";
+import "./UnderstandDeleteAccount.css";
 import { useNavigate } from "react-router-dom";
 
-function ConfirmDeleteAccountModal() {
+function UnderstandDeleteAccount() {
   const { user, isLoading } = useSelector((state) => state.session);
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
@@ -43,4 +43,4 @@ function ConfirmDeleteAccountModal() {
   );
 }
 
-export default ConfirmDeleteAccountModal;
+export default UnderstandDeleteAccount;

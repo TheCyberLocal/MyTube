@@ -1,3 +1,3 @@
-import ConfirmDeleteAccountModal from "./ConfirmDeleteAccountModal";
+import UnderstandDeleteAccount from "./UnderstandDeleteAccount";
 
-export default ConfirmDeleteAccountModal;
+export default UnderstandDeleteAccount;
