@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
@@ -7,11 +7,10 @@ import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video } = useSelector((state) => state.videoDetails);
-
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [player, setPlayer] = useState(null);
+  const playerRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
@@ -21,7 +20,7 @@ function VideoDetailsPage() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (window.YT && window.YT.Player) {
+    if (window.YT) {
       createPlayer();
     } else {
       const tag = document.createElement("script");
@@ -30,39 +29,44 @@ function VideoDetailsPage() {
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
       window.onYouTubeIframeAPIReady = () => {
-        setTimeout(createPlayer, 1000); // Adding a delay
+        createPlayer();
       };
     }
-  }, [video]);
+  }, [video?.url]);
 
   const createPlayer = () => {
     if (!video?.url) return;
-    setPlayer(
-      new window.YT.Player("player", {
-        videoId: video.url,
-        playerVars: {
-          autoplay: 0,
-        },
-      })
-    );
+    playerRef.current = new window.YT.Player("player", {
+      videoId: video.url,
+      playerVars: {
+        autoplay: 0,
+      },
+    });
   };
 
   const handleRecord = () => {
     if (!isRecording) {
       const currentTime = getCurrentTime();
       setStartTime(currentTime);
-      console.log("Recording started at: " + startTime);
+      console.log("Recording started at: " + currentTime);
       setIsRecording(true);
     } else {
       const currentTime = getCurrentTime();
       setEndTime(currentTime);
-      console.log("Recording ended at: " + endTime);
+      console.log("Recording ended at: " + currentTime);
       setIsRecording(false);
     }
   };
 
-  const seekToTime = (time) => player.seekTo(time, true);
-  const getCurrentTime = () => player.getCurrentTime();
+  const seekToTime = (time) => {
+    if (playerRef.current) {
+      playerRef.current.seekTo(time, true);
+    }
+  };
+
+  const getCurrentTime = () => {
+    return playerRef.current ? playerRef.current.getCurrentTime() : 0;
+  };
 
   if (!video) return null;
 

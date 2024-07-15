@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
+import { clearVideoDetails } from "../../redux/videoDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
@@ -24,6 +25,10 @@ function MyVideosPage() {
   useEffect(() => {
     dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
   }, [dispatch, user, sortBy, keyword, tags, page]);
+
+  useEffect(() => {
+    dispatch(clearVideoDetails());
+  }, [dispatch]);
 
   return (
     <div id="my-videos-page">
