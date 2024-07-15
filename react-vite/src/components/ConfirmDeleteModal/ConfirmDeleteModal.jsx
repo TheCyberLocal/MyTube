@@ -1,15 +1,20 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteAccountModal from "../ConfirmDeleteAccountModal";
+import { deleteNoteThunk } from "../../redux/videoDetails";
 import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({ type, title, id = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
     if (type === "Account") {
       setModalContent(<ConfirmDeleteAccountModal />);
+    } else if (type === "Note") {
+      dispatch(deleteNoteThunk(id));
+      closeModal();
     }
   };
 

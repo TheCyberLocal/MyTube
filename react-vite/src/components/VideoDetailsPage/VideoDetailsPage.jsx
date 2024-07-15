@@ -36,6 +36,7 @@ function VideoDetailsPage() {
   }, [video]);
 
   const createPlayer = () => {
+    if (!video?.url) return;
     setPlayer(
       new window.YT.Player("player", {
         videoId: video.url,
