@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateNoteThunk } from "../../redux/videoDetails";
 import "./VideoNotes.css";
 
 function VideoNotes() {
-  const { notes } = useSelector((state) => state.videoDetails);
+  const { notes, isLoading } = useSelector((state) => state.videoDetails);
 
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
@@ -11,6 +12,7 @@ function VideoNotes() {
   const [noteTitle, setNoteTitle] = useState("");
   const noteRefs = useRef([]);
   const textareaRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -45,9 +47,13 @@ function VideoNotes() {
   };
 
   const handleSaveNote = (noteId) => {
+    console.log("note saver==========");
+    console.log("note id", noteId);
+    console.log("noteTitle", noteTitle);
+    console.log("noteContent", noteContent);
+
     dispatch(
-      updateNote({
-        id: noteId,
+      updateNoteThunk(noteId, {
         title: noteTitle,
         description: noteContent,
       })
@@ -58,6 +64,8 @@ function VideoNotes() {
   const handleCancelEdit = () => {
     setEditableNote(null);
   };
+
+  if (isLoading || !notes) return null;
 
   return (
     <div className="notes-section">

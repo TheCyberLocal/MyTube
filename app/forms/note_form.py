@@ -20,6 +20,5 @@ class NoteForm(FlaskForm):
 
 
 class UpdateNoteForm(FlaskForm):
-    video_id = IntegerField('video_id', validators=[Optional(), is_int, NumberRange(min=1)])
     title = StringField('title', validators=[Optional(), Length(1, 255)])
     description = TextAreaField('description', validators=[Optional()])

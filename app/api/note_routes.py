@@ -66,11 +66,6 @@ def update_note(id):
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
 
-    if form.video_id.data is not None:
-        new_video = Video.query.get_or_404(form.video_id.data)
-        if new_video.user_id != current_user.id:
-            return jsonify({'errors': 'You do not have permission to move notes to this video.'}), 403
-        note.video_id = form.video_id.data
     if form.title.data:
         note.title = form.title.data
     if form.description.data:
