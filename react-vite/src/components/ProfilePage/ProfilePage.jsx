@@ -7,28 +7,14 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-    error: sessionError,
-  } = useSelector((state) => state.session);
-  const {
-    searchResults: myVideos,
-    isLoading: myVideosLoading,
-    error: myVideosError,
-  } = useSelector((state) => state.myVideos);
-  const {
-    video,
-    notes,
-    highlights,
-    isLoading: videoDetailsLoading,
-    error: videoDetailsError,
-  } = useSelector((state) => state.videoDetails);
+  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
+    (state) => state.session
+  );
+  const videoCount = useState((state) => state.session.user.videoCount);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { setModalContent } = useModal();
-  const [videoCount, setVideoCount] = useState(sessionUser.videoCount);
   const [name, setName] = useState(sessionUser.name);
   const [username, setUsername] = useState(sessionUser.username);
   const [email, setEmail] = useState(sessionUser.email);
@@ -48,7 +34,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -141,7 +127,7 @@ function ProfilePage() {
                 <ConfirmDeleteModal
                   type="Account"
                   title={`${sessionUser.username}`}
-                />,
+                />
               )
             }
           >

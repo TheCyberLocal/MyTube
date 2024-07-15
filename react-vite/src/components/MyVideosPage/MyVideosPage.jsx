@@ -1,43 +1,28 @@
 import { useState, useEffect } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-    error: sessionError,
-  } = useSelector((state) => state.session);
-  const {
-    searchResults: myVideos = [],
-    isLoading: myVideosLoading,
-    error: myVideosError,
-  } = useSelector((state) => state.myVideos);
-  const {
-    video,
-    notes,
-    highlights,
-    isLoading: videoDetailsLoading,
-    error: videoDetailsError,
-  } = useSelector((state) => state.videoDetails);
+  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
+    (state) => state.session
+  );
+  const { searchResults: myVideos = [], isLoading: myVideosLoading } =
+    useSelector((state) => state.myVideos);
 
   const dispatch = useDispatch();
-  const nav = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [tags, setTags] = useState("");
   const [sortBy, setSortBy] = useState("recently_viewed");
-  const [page, setPage] = useState(null);
+  const [page, setPage] = useState(1);
 
   if (!sessionLoading && !sessionUser)
     return <Navigate to="/login" replace={true} />;
 
   useEffect(() => {
-    if (sessionUser) {
-      dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
-    }
+    dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
   }, [dispatch, sessionUser, sortBy, keyword, tags, page]);
 
   return (

@@ -5,7 +5,6 @@ import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({ type, title }) {
   const { closeModal } = useModal();
-  const dispatch = useDispatch();
   const { setModalContent } = useModal();
 
   const handleDelete = () => {

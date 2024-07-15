@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-    error: sessionError,
-  } = useSelector((state) => state.session);
-  const {
-    searchResults: myVideos,
-    isLoading: myVideosLoading,
-    error: myVideosError,
-  } = useSelector((state) => state.myVideos);
+  // const {
+  //   user: sessionUser,
+  //   isLoading: sessionLoading,
+  // } = useSelector((state) => state.session);
   const {
     video,
-    notes,
-    highlights,
+    // notes,
+    // highlights,
     isLoading: videoDetailsLoading,
-    error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
   const { id } = useParams();
@@ -48,7 +41,7 @@ function VideoDetailsPage() {
         createPlayer();
       };
     }
-  }, [video]);
+  });
 
   const createPlayer = () => {
     setPlayer(

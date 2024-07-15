@@ -8,20 +8,7 @@ function ChangePasswordModal() {
   const {
     user: sessionUser,
     isLoading: sessionLoading,
-    error: sessionError,
   } = useSelector((state) => state.session);
-  const {
-    searchResults: myVideos,
-    isLoading: myVideosLoading,
-    error: myVideosError,
-  } = useSelector((state) => state.myVideos);
-  const {
-    video,
-    notes,
-    highlights,
-    isLoading: videoDetailsLoading,
-    error: videoDetailsError,
-  } = useSelector((state) => state.videoDetails);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
