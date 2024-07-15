@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginFormPage() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-  } = useSelector((state) => state.session);
+  const { user, isLoading } = useSelector((state) => state.session);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -16,8 +13,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (!sessionLoading && sessionUser)
-    return <Navigate to="/my-videos" replace={true} />;
+  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +22,7 @@ function LoginFormPage() {
       thunkLogin({
         credential,
         password,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -39,7 +35,7 @@ function LoginFormPage() {
       thunkLogin({
         credential: "Demo",
         password: "password",
-      }),
+      })
     );
   };
 

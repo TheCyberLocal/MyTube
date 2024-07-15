@@ -6,11 +6,12 @@ import VideoTile from "../VideoTile";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
-  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
+  const { user, isLoading: sessionLoading } = useSelector(
     (state) => state.session
   );
-  const { searchResults: myVideos = [], isLoading: myVideosLoading } =
-    useSelector((state) => state.myVideos);
+  const { searchResults = [], isLoading: myVideosLoading } = useSelector(
+    (state) => state.myVideos
+  );
 
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
@@ -18,12 +19,11 @@ function MyVideosPage() {
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(1);
 
-  if (!sessionLoading && !sessionUser)
-    return <Navigate to="/login" replace={true} />;
+  if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
 
   useEffect(() => {
     dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
-  }, [dispatch, sessionUser, sortBy, keyword, tags, page]);
+  }, [dispatch, user, sortBy, keyword, tags, page]);
 
   return (
     <div id="my-videos-page">
@@ -56,22 +56,24 @@ function MyVideosPage() {
           />
         </label>
       </div>
-      {!sessionLoading && !sessionUser.videoCount && (
+      {!sessionLoading && !user.videoCount && (
         <div className="no-video-results">
           <h1>You have no videos. How about adding some...</h1>
         </div>
       )}
       {!sessionLoading &&
       !myVideosLoading &&
-      sessionUser.videoCount &&
-      !myVideos.length ? (
+      user.videoCount &&
+      !searchResults.length ? (
         <div className="no-video-results">
           <h1>No videos match your search...</h1>
         </div>
       ) : null}
       <div className="video-results">
-        {!sessionLoading && !myVideosLoading && sessionUser.videoCount
-          ? myVideos.map((video) => <VideoTile key={video.id} video={video} />)
+        {!sessionLoading && !myVideosLoading && user.videoCount
+          ? searchResults.map((video) => (
+              <VideoTile key={video.id} video={video} />
+            ))
           : null}
       </div>
     </div>

@@ -5,10 +5,7 @@ import { thunkUpdatePassword } from "../../redux/session";
 import AlertPasswordChange from "../AlertPasswordChange/AlertPasswordChange";
 
 function ChangePasswordModal() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-  } = useSelector((state) => state.session);
+  const { user, isLoading } = useSelector((state) => state.session);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -20,16 +17,16 @@ function ChangePasswordModal() {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const { setModalContent } = useModal();
 
-  if (sessionLoading) return null;
+  if (isLoading) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const serverResponse = await dispatch(
-      thunkUpdatePassword(sessionUser.id, {
+      thunkUpdatePassword(user.id, {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
-      }),
+      })
     );
 
     if (serverResponse) {

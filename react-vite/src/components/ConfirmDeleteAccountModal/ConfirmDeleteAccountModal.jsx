@@ -6,18 +6,16 @@ import "./ConfirmDeleteAccountModal.css";
 import { useNavigate } from "react-router-dom";
 
 function ConfirmDeleteAccountModal() {
-  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
-    (state) => state.session,
-  );
+  const { user, isLoading } = useSelector((state) => state.session);
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  if (sessionLoading) return null;
+  if (isLoading) return null;
 
   const handleDelete = () => {
-    dispatch(thunkDeleteUser(sessionUser.id));
+    dispatch(thunkDeleteUser(user.id));
     setModalContent(<AlertAccountDeletion />);
     nav("/");
   };
@@ -27,8 +25,8 @@ function ConfirmDeleteAccountModal() {
       <h1>Are you sure you want to leave?</h1>
       <h3>Understand the following:</h3>
       <ul>
-        <li>Your account ({sessionUser.email}) will be unrecoverable.</li>
-        <li>Your ({sessionUser.videoCount}) videos will no longer be saved.</li>
+        <li>Your account ({user.email}) will be unrecoverable.</li>
+        <li>Your ({user.videoCount}) videos will no longer be saved.</li>
         <li>Your account settings will be removed.</li>
         <li>Your personal information will be removed.</li>
       </ul>

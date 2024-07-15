@@ -1,25 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./Navigation.css";
-import { thunkLogout } from "../../redux/session";
 
 function Navigation() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-  } = useSelector((state) => state.session);
+  const { user, isLoading } = useSelector((state) => state.session);
 
   const nav = useNavigate();
 
-  if (sessionLoading) return null;
+  if (isLoading) return null;
 
   const handleProfileClick = () => {
-    nav(sessionUser ? "/profile" : "/login");
+    nav(user ? "/profile" : "/login");
   };
 
   return (
     <div id="navigation">
-      {sessionUser ? (
+      {user ? (
         <div>
           <button onClick={() => nav("/my-videos")}>My Videos</button>
           <button onClick={() => alert("add video modal here")}>

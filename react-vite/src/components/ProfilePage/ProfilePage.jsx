@@ -7,30 +7,26 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
-  const { user: sessionUser, isLoading: sessionLoading } = useSelector(
-    (state) => state.session
-  );
-  const videoCount = useState((state) => state.session.user.videoCount);
+  const { user, isLoading } = useSelector((state) => state.session);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { setModalContent } = useModal();
-  const [name, setName] = useState(sessionUser.name);
-  const [username, setUsername] = useState(sessionUser.username);
-  const [email, setEmail] = useState(sessionUser.email);
+  const [name, setName] = useState(user.name);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
 
-  if (sessionLoading) return null;
+  if (isLoading) return null;
 
-  if (!sessionLoading && !sessionUser)
-    return <Navigate to="/" replace={true} />;
+  if (!isLoading && !user) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const serverResponse = await dispatch(
-      thunkUpdateUser(sessionUser.id, {
+      thunkUpdateUser(user.id, {
         username,
         name,
         email,
@@ -53,15 +49,15 @@ function ProfilePage() {
   const handleUndo = async (e) => {
     e.preventDefault();
 
-    setName(sessionUser.name);
-    setUsername(sessionUser.username);
-    setEmail(sessionUser.email);
+    setName(user.name);
+    setUsername(user.username);
+    setEmail(user.email);
   };
 
   return (
     <div id="main-container">
       <h1>Profile</h1>
-      <h3>You have organized {videoCount} videos!</h3>
+      <h3>You have organized {user.videoCount} videos!</h3>
       <form>
         <div className="input-container">
           <input
@@ -124,10 +120,7 @@ function ProfilePage() {
             className="danger"
             onClick={() =>
               setModalContent(
-                <ConfirmDeleteModal
-                  type="Account"
-                  title={`${sessionUser.username}`}
-                />
+                <ConfirmDeleteModal type="Account" title={`${user.username}`} />
               )
             }
           >

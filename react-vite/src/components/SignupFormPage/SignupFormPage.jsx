@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function SignupFormPage() {
-  const {
-    user: sessionUser,
-    isLoading: sessionLoading,
-  } = useSelector((state) => state.session);
+  const { user, isLoading } = useSelector((state) => state.session);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -19,8 +16,7 @@ function SignupFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (!sessionLoading && sessionUser)
-    return <Navigate to="/my-videos" replace={true} />;
+  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +28,7 @@ function SignupFormPage() {
         email,
         password,
         confirm_password: confirmPassword,
-      }),
+      })
     );
 
     if (serverResponse) {
