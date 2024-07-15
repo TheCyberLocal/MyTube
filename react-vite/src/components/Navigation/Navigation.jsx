@@ -22,7 +22,6 @@ function Navigation() {
     error: videoDetailsError,
   } = useSelector((state) => state.videoDetails);
 
-
   const nav = useNavigate();
 
   if (sessionLoading) return null;

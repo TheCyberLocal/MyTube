@@ -42,7 +42,7 @@ function ChangePasswordModal() {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
-      })
+      }),
     );
 
     if (serverResponse) {
@@ -132,11 +132,11 @@ function ChangePasswordModal() {
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Keep Changes
+            Save
           </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={closeModal}>
-            Undo
+            Cancel
           </button>
         </div>
       </form>

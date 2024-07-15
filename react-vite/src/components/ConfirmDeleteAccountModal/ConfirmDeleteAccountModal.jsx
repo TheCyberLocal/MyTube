@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function ConfirmDeleteAccountModal() {
   const { user: sessionUser, isLoading: sessionLoading } = useSelector(
-    (state) => state.session
+    (state) => state.session,
   );
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
@@ -38,7 +38,7 @@ function ConfirmDeleteAccountModal() {
           Delete
         </button>
         <button onClick={closeModal} id="no">
-          Keep
+          Cancel
         </button>
       </div>
     </div>

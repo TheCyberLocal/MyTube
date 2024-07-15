@@ -57,7 +57,7 @@ function VideoDetailsPage() {
         playerVars: {
           autoplay: 0,
         },
-      })
+      }),
     );
   };
 

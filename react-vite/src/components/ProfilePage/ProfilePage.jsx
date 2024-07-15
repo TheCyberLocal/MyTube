@@ -48,7 +48,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      })
+      }),
     );
 
     if (serverResponse) {
@@ -119,7 +119,7 @@ function ProfilePage() {
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Keep Changes
+            Save Changes
           </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={handleUndo}>
@@ -141,7 +141,7 @@ function ProfilePage() {
                 <ConfirmDeleteModal
                   type="Account"
                   title={`${sessionUser.username}`}
-                />
+                />,
               )
             }
           >

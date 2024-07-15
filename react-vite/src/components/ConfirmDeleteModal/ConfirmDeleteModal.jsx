@@ -26,7 +26,7 @@ function ConfirmDeleteModal({ type, title }) {
           Delete
         </button>
         <button onClick={closeModal} id="no">
-          Keep
+          Cancel
         </button>
       </div>
     </div>
