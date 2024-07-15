@@ -2,15 +2,18 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
+import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import VideoNoteTaker from "../VideoNoteTaker";
 import VideoHighlights from "../VideoHighlights";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video } = useSelector((state) => state.videoDetails);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { setModalContent } = useModal();
 
   const playerRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -70,6 +73,16 @@ function VideoDetailsPage() {
     return playerRef.current ? playerRef.current.getCurrentTime() : 0;
   };
 
+  const handleUpdateVideo = () => {
+    return;
+  };
+
+  const handleDeleteVideo = () => {
+    setModalContent(
+      <ConfirmDeleteModal type="Video" title={video.title} id={video.id} />
+    );
+  };
+
   if (!video) return null;
 
   return (
@@ -88,8 +101,12 @@ function VideoDetailsPage() {
         <VideoNoteTaker />
         <VideoHighlights />
         <div id="video-buttons">
-          <button id="video-update-button">Update video</button>
-          <button id="video-delete-button">Delete video</button>
+          <button id="video-update-button" onClick={handleUpdateVideo}>
+            Update video
+          </button>
+          <button id="video-delete-button" onClick={handleDeleteVideo}>
+            Delete video
+          </button>
         </div>
       </div>
     </div>

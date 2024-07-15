@@ -47,7 +47,9 @@ function VideoNotes() {
 
   const handleDeleteNote = (noteId) => {
     const note = notes.find((note) => note.id === noteId);
-    setModalContent(<ConfirmDeleteModal type="Note" title={note.title} id={noteId} />)
+    setModalContent(
+      <ConfirmDeleteModal type="Note" title={note.title} id={noteId} />
+    );
   };
 
   const handleSaveNote = (noteId) => {

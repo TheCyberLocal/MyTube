@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal";
 import ConfirmDeleteAccountModal from "../ConfirmDeleteAccountModal";
 import { deleteNoteThunk } from "../../redux/videoDetails";
 import "./ConfirmDeleteModal.css";
+import { thunkUpdatePassword } from "../../redux/session";
 
 function ConfirmDeleteModal({ type, title, id = null }) {
   const { closeModal } = useModal();
@@ -15,15 +16,16 @@ function ConfirmDeleteModal({ type, title, id = null }) {
     } else if (type === "Note") {
       dispatch(deleteNoteThunk(id));
       closeModal();
+    } else if (type === "Video") {
     }
   };
 
   return (
     <div id="prompt-modal">
       <h1>Confirm Delete of</h1>
-      <h2>
+      <h3>
         {type} - {title}
-      </h2>
+      </h3>
       <h3>Are you sure you don't want this?</h3>
       <div className="row">
         <button onClick={handleDelete} id="yes">
