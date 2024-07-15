@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import VideoNotes from "../VideoNotes";
+import VideoNoteTaker from "../VideoNoteTaker";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -83,17 +84,7 @@ function VideoDetailsPage() {
         <VideoNotes />
       </div>
       <div className="right-column">
-        <button onClick={handleRecord}>
-          {isRecording ? "End Recording" : "Record"}
-        </button>
-        <div>
-          <input
-            type="number"
-            placeholder="Enter time in seconds"
-            onChange={(e) => seekToTime(parseInt(e.target.value))}
-          />
-        </div>
-        {/* Right column content will be added in later steps */}
+        <VideoNoteTaker />
       </div>
     </div>
   );
