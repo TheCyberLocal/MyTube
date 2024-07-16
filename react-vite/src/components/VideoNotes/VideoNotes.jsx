@@ -79,10 +79,16 @@ function VideoNotes() {
               activeNote === note.id ? "active" : ""
             }`}
           >
-            <div
-              className="note-header"
-              onClick={() => handleNoteClick(note.id, index)}
-            >
+            {editableNote !== note.id && (
+              <div
+                className="note-header"
+                onClick={() => handleNoteClick(note.id, index)}
+              >
+                <h3>{note.title}</h3>
+                <span>{new Date(note.updated_at).toLocaleDateString()}</span>
+              </div>
+            )}
+            <div className="note-content">
               {editableNote === note.id ? (
                 <div>
                   <h3>Title</h3>
@@ -92,17 +98,6 @@ function VideoNotes() {
                     onClick={(e) => e.stopPropagation()}
                     spellCheck="true"
                   />
-                </div>
-              ) : (
-                <>
-                  <h3>{note.title}</h3>
-                  <span>{new Date(note.updated_at).toLocaleDateString()}</span>
-                </>
-              )}
-            </div>
-            <div className="note-content">
-              {editableNote === note.id ? (
-                <div>
                   <h3>Description</h3>
                   <textarea
                     ref={textareaRef}
