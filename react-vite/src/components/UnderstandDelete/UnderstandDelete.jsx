@@ -13,7 +13,7 @@ function UnderstandDelete({ type, element }) {
     if (type === "Video") {
       dispatch(deleteVideoThunk(element.id));
       setModalContent(
-        <AlertChange message="We'll be here if you need us again." />
+        <AlertChange message="Your video has been successfully deleted." />
       );
       nav("/my-videos");
     } else if (type === "Account") {
