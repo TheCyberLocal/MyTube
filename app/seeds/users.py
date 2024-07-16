@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 user_data = [
     {
         "username": "Demo123",
-        "name": "Danny",
+        "name": "Demolition",
         "email": "demo@aa.io",
         "password": "Demo123!"
     },
