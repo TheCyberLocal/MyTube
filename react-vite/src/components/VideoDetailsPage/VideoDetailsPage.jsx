@@ -51,21 +51,18 @@ function VideoDetailsPage() {
 
   const handleRecord = () => {
     if (recording === null) {
-      setRecording(getCurrentTime());
+      setRecording(playerRef.current.getCurrentTime());
+      playerRef.current.playVideo();
     } else {
-      setModalContent(<CreateHighlight start={recording} end={getCurrentTime()} />);
+      setModalContent(
+        <CreateHighlight
+          start={recording}
+          end={playerRef.current.getCurrentTime()}
+        />
+      );
+      playerRef.current.pauseVideo();
       setRecording(null);
     }
-  };
-
-  const seekToTime = (time) => {
-    if (playerRef.current) {
-      playerRef.current.seekTo(time, true);
-    }
-  };
-
-  const getCurrentTime = () => {
-    return playerRef.current ? playerRef.current.getCurrentTime() : 0;
   };
 
   const handleUpdateVideo = () => {

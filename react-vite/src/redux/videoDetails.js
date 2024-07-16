@@ -4,9 +4,17 @@ const SET_VIDEO_DETAILS = "videoDetails/setVideoDetails";
 const SET_LOADING = "videoDetails/setLoading";
 const SET_ERROR = "videoDetails/setError";
 const CLEAR_STATE = "videoDetails/clearState";
-const SET_NOTE = "videoDetails/setNote";
+
+const CREATE_NOTE = "videoDetails/createNote";
+const UPDATE_NOTE = "videoDetails/updateNote";
 const DELETE_NOTE = "videoDetails/deleteNote";
-const SET_VIDEO = "videoDetails/setVideo";
+
+const CREATE_HIGHLIGHT = "videoDetails/createHighlight";
+const UPDATE_HIGHLIGHT = "videoDetails/updateHighlight";
+const DELETE_HIGHLIGHT = "videoDetails/deleteHighlight";
+
+const CREATE_VIDEO = "videoDetails/createVideo";
+const UPDATE_VIDEO = "videoDetails/updateVideo";
 const DELETE_VIDEO = "videoDetails/deleteVideo";
 
 export const setVideoDetails = (detail) => ({
@@ -28,14 +36,19 @@ export const clearVideoDetails = () => ({
   type: CLEAR_STATE,
 });
 
-export const setNote = (note) => ({
-  type: SET_NOTE,
+export const updateNote = (note) => ({
+  type: UPDATE_NOTE,
   payload: note,
 });
 
 export const deleteNote = (noteId) => ({
   type: DELETE_NOTE,
   payload: noteId,
+});
+
+export const createHighlight = (highlight) => ({
+  type: CREATE_HIGHLIGHT,
+  payload: highlight,
 });
 
 export const deleteVideo = (videoId) => ({
@@ -65,7 +78,7 @@ export const updateNoteThunk = (noteId, note) => async (dispatch) => {
       body: JSON.stringify(note),
     });
     const data = await response.json();
-    dispatch(setNote(data));
+    dispatch(updateNote(data));
     dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error.toString()));
@@ -101,6 +114,22 @@ export const deleteVideoThunk = (videoId) => async (dispatch) => {
   }
 };
 
+export const createHighlightThunk = (highlight) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/highlights`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(highlight),
+    });
+    const data = await response.json();
+    dispatch(createHighlight(data));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
+
 const initialState = {
   video: null,
   notes: [],
@@ -129,7 +158,7 @@ function videoDetailsReducer(state = initialState, action) {
         error: null,
       };
     }
-    case SET_NOTE: {
+    case UPDATE_NOTE: {
       const { notes, ...restState } = state;
       const newNotes = notes.map((note) =>
         note.id === action.payload.id ? action.payload : note
@@ -140,6 +169,10 @@ function videoDetailsReducer(state = initialState, action) {
       const { notes, ...restState } = state;
       const newNotes = notes.filter((note) => note.id !== action.payload);
       return { ...restState, notes: newNotes };
+    }
+    case CREATE_HIGHLIGHT: {
+      const { highlights, ...restState } = state;
+      return { ...restState, highlights: [...highlights, action.payload] };
     }
     default:
       return state;

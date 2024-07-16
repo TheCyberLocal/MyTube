@@ -1,19 +1,28 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { createHighlightThunk } from "../../redux/videoDetails";
 import "./CreateHighlight.css";
 
 function CreateHighlight({ start, end }) {
   const { closeModal } = useModal();
   const [title, setTitle] = useState("");
-  const [startTime, setStartTime] = useState(convertSecondsToHMS(start));
-  const [endTime, setEndTime] = useState(convertSecondsToHMS(end));
+  const video = useSelector((state) => state.videoDetails.video);
+  const dispatch = useDispatch();
 
-  function convertSecondsToHMS(totalSeconds) {
+  const convertHMSToSeconds = ({ hours, minutes, seconds }) => {
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+
+  const convertSecondsToHMS = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = Math.floor(totalSeconds % 60);
     return { hours, minutes, seconds };
-  }
+  };
+
+  const [startTime, setStartTime] = useState(convertSecondsToHMS(start));
+  const [endTime, setEndTime] = useState(convertSecondsToHMS(end));
 
   const handleTimeChange = (e, type, timeType) => {
     let value = parseInt(e.target.value) || 0;
@@ -85,8 +94,16 @@ function CreateHighlight({ start, end }) {
   };
 
   const handleSaveHighlight = () => {
-    // Implement the save functionality here
-    console.log("Saving highlight", { title, startTime, endTime });
+    const start_time = convertHMSToSeconds(startTime);
+    const end_time = convertHMSToSeconds(endTime);
+    dispatch(
+      createHighlightThunk({
+        video_id: video.id,
+        title,
+        start_time,
+        end_time,
+      })
+    );
     closeModal();
   };
 

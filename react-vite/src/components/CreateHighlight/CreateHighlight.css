@@ -13,20 +13,26 @@
 }
 
 input {
-    outline: none;
-    padding: 2px;
-    border: 1px solid black;
-    border-radius: 5px;
+  outline: none;
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 h1 {
+  margin: 0;
   text-align: center;
+}
+
+label {
+  font-size: 1.1rem;
 }
 
 .highlight-inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-size: 1.1rem;
 }
 
 .time-inputs {
