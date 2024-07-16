@@ -103,6 +103,14 @@
   flex: 1;
 }
 
+.note-taker-buttons button.red-button {
+  background-color: red;
+}
+
+.note-taker-buttons button.red-button:hover {
+  background-color: darkred;
+}
+
 .note-taker-buttons button:hover {
   background-color: darkgrey;
 }

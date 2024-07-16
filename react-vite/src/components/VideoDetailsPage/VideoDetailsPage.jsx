@@ -15,9 +15,7 @@ function VideoDetailsPage() {
   const dispatch = useDispatch();
 
   const playerRef = useRef(null);
-  const [isRecording, setIsRecording] = useState(false);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [recording, setRecording] = useState(null);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
 
@@ -51,16 +49,14 @@ function VideoDetailsPage() {
   };
 
   const handleRecord = () => {
-    if (!isRecording) {
+    if (recording === null) {
       const currentTime = getCurrentTime();
-      setStartTime(currentTime);
+      setRecording(currentTime);
       console.log("Recording started at: " + currentTime);
-      setIsRecording(true);
     } else {
       const currentTime = getCurrentTime();
-      setEndTime(currentTime);
       console.log("Recording ended at: " + currentTime);
-      setIsRecording(false);
+      setRecording(null);
     }
   };
 
@@ -125,8 +121,11 @@ function VideoDetailsPage() {
           <div className="note-taker-buttons">
             <button onClick={handleSaveNote}>Save</button>
             <button onClick={handleClearNote}>Clear</button>
-            <button onClick={handleRecord}>
-              {isRecording ? "End Recording" : "Record"}
+            <button
+              onClick={handleRecord}
+              className={recording === null ? "" : "red-button"}
+            >
+              {recording === null ? "Record" : "Stop"}
             </button>
           </div>
         </div>
