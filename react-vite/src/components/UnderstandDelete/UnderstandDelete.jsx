@@ -10,9 +10,19 @@ function UnderstandDelete({ type, element }) {
   const nav = useNavigate();
 
   const handleDelete = () => {
-    dispatch(deleteVideoThunk(element.id));
-    closeModal();
-    nav("/my-videos");
+    if (type === "Video") {
+      dispatch(deleteVideoThunk(element.id));
+      setModalContent(
+        <AlertChange message="We'll be here if you need us again." />
+      );
+      nav("/my-videos");
+    } else if (type === "Account") {
+      dispatch(thunkDeleteUser(user.id));
+      setModalContent(
+        <AlertChange message="We'll be here if you need us again." />
+      );
+      nav("/");
+    }
   };
 
   const getUnderstanding = () => {
@@ -22,6 +32,15 @@ function UnderstandDelete({ type, element }) {
           <li>Your video ({element.title}) will be unrecoverable.</li>
           <li>The notes of this video will be deleted.</li>
           <li>The highlights of this video will be deleted.</li>
+        </ul>
+      );
+    } else if (type === "Account") {
+      return (
+        <ul>
+          <li>Your account ({element.email}) will be unrecoverable.</li>
+          <li>Your ({element.videoCount}) videos will no longer be saved.</li>
+          <li>Your account settings will be removed.</li>
+          <li>Your personal information will be removed.</li>
         </ul>
       );
     }
