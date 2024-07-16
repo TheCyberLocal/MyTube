@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
-import VideoNoteTaker from "../VideoNoteTaker";
 import VideoHighlights from "../VideoHighlights";
 import ConfirmDelete from "../ConfirmDelete";
 import "./VideoDetailsPage.css";
@@ -96,7 +95,7 @@ function VideoDetailsPage() {
         <VideoNotes />
       </div>
       <div className="right-column">
-        <VideoNoteTaker />
+        {/* video note taker will not be separate so it can connect to the player */}
         <VideoHighlights />
         <div id="video-buttons">
           <button id="video-update-button" onClick={handleUpdateVideo}>
