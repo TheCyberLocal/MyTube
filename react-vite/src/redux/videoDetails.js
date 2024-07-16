@@ -130,13 +130,13 @@ export const updateHighlightThunk =
   (highlightId, highlight) => async (dispatch) => {
     dispatch(setLoading(true));
     try {
-      // const response = await fetch(`/api/highlights/${highlightId}`, {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(highlight),
-      // });
-      // const data = await response.json();
-      dispatch(updateHighlight(highlight));
+      const response = await fetch(`/api/highlights/${highlightId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(highlight),
+      });
+      const data = await response.json();
+      dispatch(updateHighlight(data));
     } catch (error) {
       dispatch(setError(error.toString()));
       dispatch(setLoading(false));

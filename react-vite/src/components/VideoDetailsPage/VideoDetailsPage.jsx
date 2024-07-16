@@ -5,7 +5,6 @@ import { fetchVideoDetails } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
-// import CreateHighlight from "../CreateHighlight";
 import HighlightModal from "../HighlightModal";
 import "./VideoDetailsPage.css";
 
@@ -74,7 +73,12 @@ function VideoDetailsPage() {
   };
 
   const handleUpdateHighlight = (highlightId) => {
-    return;
+    const highlightToUpdate = highlights.find(
+      (highlight) => highlight.id === highlightId
+    );
+    setModalContent(
+      <HighlightModal type="Update" highlight={highlightToUpdate} />
+    );
   };
 
   const handleDeleteHighlight = (highlight) => {
@@ -175,7 +179,7 @@ function VideoDetailsPage() {
                     <div className="highlight-title">{highlight.title}</div>
                     <div className="highlight-buttons">
                       <button
-                        onClick={() => handleUpdateHighlight(highlight)}
+                        onClick={() => handleUpdateHighlight(highlight.id)}
                         id="left-highlight-button"
                       >
                         Update

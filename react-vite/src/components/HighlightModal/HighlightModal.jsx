@@ -7,9 +7,8 @@ import {
 } from "../../redux/videoDetails";
 import "./HighlightModal.css";
 
-function HighlightModal({ start, end, id = null }) {
+function HighlightModal({ type, start, end, highlight = null }) {
   const { closeModal } = useModal();
-  const [title, setTitle] = useState("");
   const video = useSelector((state) => state.videoDetails.video);
   const dispatch = useDispatch();
 
@@ -24,8 +23,13 @@ function HighlightModal({ start, end, id = null }) {
     return { hours, minutes, seconds };
   };
 
-  const [startTime, setStartTime] = useState(convertSecondsToHMS(start));
-  const [endTime, setEndTime] = useState(convertSecondsToHMS(end));
+  const [title, setTitle] = useState(highlight?.title ?? "");
+  const [startTime, setStartTime] = useState(
+    convertSecondsToHMS(highlight?.start_time ?? start)
+  );
+  const [endTime, setEndTime] = useState(
+    convertSecondsToHMS(highlight?.end_time ?? end)
+  );
 
   const handleTimeChange = (e, type, timeType) => {
     let value = parseInt(e.target.value) || 0;
@@ -110,7 +114,7 @@ function HighlightModal({ start, end, id = null }) {
       );
     } else if (type === "Update") {
       dispatch(
-        updateHighlightThunk(id, {
+        updateHighlightThunk(highlight.id, {
           title,
           start_time,
           end_time,
@@ -122,7 +126,7 @@ function HighlightModal({ start, end, id = null }) {
 
   return (
     <div id="highlight-modal">
-      <h1>Create Highlight</h1>
+      <h1>{type} Highlight</h1>
       <div className="highlight-inputs">
         <label htmlFor="highlight-title">Title</label>
         <input
