@@ -23,9 +23,9 @@ function ConfirmDeleteModal({ type, element = null }) {
   };
 
   const getName = () => {
-    if (element?.title) return element.title; // videos or notes
-    if (element?.username) return element.username; // account
-    return element.name; // highlights
+    if (type === "Video" || type === "Note") return element.title;
+    if (type === "Account") return element.username;
+    if (type === "Highlights") return element.name;
   };
 
   return (
