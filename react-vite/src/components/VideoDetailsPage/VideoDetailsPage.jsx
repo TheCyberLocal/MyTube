@@ -10,14 +10,16 @@ import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video } = useSelector((state) => state.videoDetails);
+  const { setModalContent } = useModal();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { setModalContent } = useModal();
 
   const playerRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
+  const [noteTitle, setNoteTitle] = useState("");
+  const [noteContent, setNoteContent] = useState("");
 
   useEffect(() => {
     dispatch(fetchVideoDetails(id));
@@ -80,6 +82,18 @@ function VideoDetailsPage() {
     setModalContent(<ConfirmDelete type="Video" element={video} />);
   };
 
+  const handleSaveNote = () => {
+    // Dispatch action to save the note
+    console.log("Note saved:", noteTitle, noteContent);
+    setNoteTitle("");
+    setNoteContent("");
+  };
+
+  const handleClearNote = () => {
+    setNoteTitle("");
+    setNoteContent("");
+  };
+
   if (!video) return null;
 
   return (
@@ -95,7 +109,27 @@ function VideoDetailsPage() {
         <VideoNotes />
       </div>
       <div className="right-column">
-        {/* video note taker will not be separate so it can connect to the player */}
+        <div className="note-taker">
+          <h3>Note Taker</h3>
+          <input
+            type="text"
+            value={noteTitle}
+            onChange={(e) => setNoteTitle(e.target.value)}
+            placeholder="Title"
+          />
+          <textarea
+            value={noteContent}
+            onChange={(e) => setNoteContent(e.target.value)}
+            placeholder="Let's take a note..."
+          />
+          <div className="note-taker-buttons">
+            <button onClick={handleSaveNote}>Save</button>
+            <button onClick={handleClearNote}>Clear</button>
+            <button onClick={handleRecord}>
+              {isRecording ? "End Recording" : "Record"}
+            </button>
+          </div>
+        </div>
         <VideoHighlights />
         <div id="video-buttons">
           <button id="video-update-button" onClick={handleUpdateVideo}>
