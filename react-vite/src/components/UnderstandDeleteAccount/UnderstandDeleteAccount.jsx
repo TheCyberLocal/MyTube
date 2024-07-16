@@ -1,7 +1,7 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteUser } from "../../redux/session";
-import AlertAccountDeletion from "../AlertAccountDeletion";
+import AlertChange from "../AlertChange";
 import "./UnderstandDeleteAccount.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function UnderstandDeleteAccount() {
 
   const handleDelete = () => {
     dispatch(thunkDeleteUser(user.id));
-    setModalContent(<AlertAccountDeletion />);
+    setModalContent(<AlertChange message="We'll be here if you need us again." />);
     nav("/");
   };
 
