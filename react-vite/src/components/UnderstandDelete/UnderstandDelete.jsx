@@ -16,7 +16,7 @@ function UnderstandDelete({ element }) {
   };
 
   return (
-    <div id="confirm-delete-video-modal">
+    <div id="understand-delete">
       <h1>Are you absolutely sure?</h1>
       <h3>Understand the following:</h3>
       <ul>
