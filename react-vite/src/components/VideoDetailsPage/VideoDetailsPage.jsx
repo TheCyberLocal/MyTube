@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom";
 import { fetchVideoDetails } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
-import VideoHighlights from "../VideoHighlights";
 import ConfirmDelete from "../ConfirmDelete";
 import CreateHighlight from "../CreateHighlight";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
-  const { video } = useSelector((state) => state.videoDetails);
+  const { video, highlights } = useSelector((state) => state.videoDetails);
   const { setModalContent } = useModal();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -38,6 +37,13 @@ function VideoDetailsPage() {
       };
     }
   }, [video?.url]);
+
+  const convertSecondsToHMSString = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${hours}:${minutes}:${seconds}`;
+  };
 
   const createPlayer = () => {
     if (!video?.url) return;
@@ -124,7 +130,41 @@ function VideoDetailsPage() {
             </button>
           </div>
         </div>
-        <VideoHighlights />
+        <div className="highlights-section">
+          <h3>Highlights</h3>
+          <div className="highlight-list">
+            {highlights.length === 0 ? (
+              <p>No highlights yet...</p>
+            ) : (
+              highlights
+                .sort((a, b) => a.start_time - b.start_time)
+                .map((highlight) => (
+                  <div key={highlight.id} className="highlight-container">
+                    <div className="highlight-header">
+                      <span
+                        className="highlight-timestamp"
+                        onClick={() =>
+                          handleHighlightClick(highlight.start_time)
+                        }
+                      >
+                        {`${convertSecondsToHMSString(
+                          highlight.start_time
+                        )} - ${convertSecondsToHMSString(highlight.end_time)}`}
+                      </span>
+                      <span>
+                        {new Date(highlight.updated_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <div className="highlight-title">{highlight.title}</div>
+                    <div className="highlight-buttons">
+                      <button>Edit</button>
+                      <button>Delete</button>
+                    </div>
+                  </div>
+                ))
+            )}
+          </div>
+        </div>
         <div id="video-buttons">
           <button id="video-update-button" onClick={handleUpdateVideo}>
             Update video
