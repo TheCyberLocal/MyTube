@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createHighlightThunk } from "../../redux/videoDetails";
-import "./CreateHighlight.css";
+import {
+  createHighlightThunk,
+  updateHighlightThunk,
+} from "../../redux/videoDetails";
+import "./HighlightModal.css";
 
-function CreateHighlight({ start, end }) {
+function HighlightModal({ start, end, id = null }) {
   const { closeModal } = useModal();
   const [title, setTitle] = useState("");
   const video = useSelector((state) => state.videoDetails.video);
@@ -96,19 +99,29 @@ function CreateHighlight({ start, end }) {
   const handleSaveHighlight = () => {
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
-    dispatch(
-      createHighlightThunk({
-        video_id: video.id,
-        title,
-        start_time,
-        end_time,
-      })
-    );
+    if (type === "Create") {
+      dispatch(
+        createHighlightThunk({
+          video_id: video.id,
+          title,
+          start_time,
+          end_time,
+        })
+      );
+    } else if (type === "Update") {
+      dispatch(
+        updateHighlightThunk(id, {
+          title,
+          start_time,
+          end_time,
+        })
+      );
+    }
     closeModal();
   };
 
   return (
-    <div id="create-highlight">
+    <div id="highlight-modal">
       <h1>Create Highlight</h1>
       <div className="highlight-inputs">
         <label htmlFor="highlight-title">Title</label>
@@ -179,4 +192,4 @@ function CreateHighlight({ start, end }) {
   );
 }
 
-export default CreateHighlight;
+export default HighlightModal;

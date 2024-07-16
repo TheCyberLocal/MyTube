@@ -51,6 +51,11 @@ export const createHighlight = (highlight) => ({
   payload: highlight,
 });
 
+export const updateHighlight = (highlight) => ({
+  type: UPDATE_HIGHLIGHT,
+  payload: highlight,
+});
+
 export const deleteHighlight = (highlightId) => ({
   type: DELETE_HIGHLIGHT,
   payload: highlightId,
@@ -121,6 +126,23 @@ export const createHighlightThunk = (highlight) => async (dispatch) => {
   }
 };
 
+export const updateHighlightThunk =
+  (highlightId, highlight) => async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      // const response = await fetch(`/api/highlights/${highlightId}`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(highlight),
+      // });
+      // const data = await response.json();
+      dispatch(updateHighlight(highlight));
+    } catch (error) {
+      dispatch(setError(error.toString()));
+      dispatch(setLoading(false));
+    }
+  };
+
 export const deleteHighlightThunk = (highlightId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
@@ -183,6 +205,17 @@ function videoDetailsReducer(state = initialState, action) {
       );
       return { ...restState, notes: newNotes };
     }
+    case CREATE_HIGHLIGHT: {
+      const { highlights, ...restState } = state;
+      return { ...restState, highlights: [...highlights, action.payload] };
+    }
+    case UPDATE_HIGHLIGHT: {
+      const { highlights, ...restState } = state;
+      const newHighlights = highlights.map((highlight) =>
+        highlight.id === action.payload.id ? action.payload : highlight
+      );
+      return { ...restState, highlights: newHighlights };
+    }
     case DELETE_HIGHLIGHT: {
       const { highlights, ...restState } = state;
       const newHighlights = highlights.filter(
@@ -194,10 +227,6 @@ function videoDetailsReducer(state = initialState, action) {
       const { notes, ...restState } = state;
       const newNotes = notes.filter((note) => note.id !== action.payload);
       return { ...restState, notes: newNotes };
-    }
-    case CREATE_HIGHLIGHT: {
-      const { highlights, ...restState } = state;
-      return { ...restState, highlights: [...highlights, action.payload] };
     }
     default:
       return state;

@@ -5,7 +5,8 @@ import { fetchVideoDetails } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
-import CreateHighlight from "../CreateHighlight";
+// import CreateHighlight from "../CreateHighlight";
+import HighlightModal from "../HighlightModal";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -61,7 +62,8 @@ function VideoDetailsPage() {
       playerRef.current.playVideo();
     } else {
       setModalContent(
-        <CreateHighlight
+        <HighlightModal
+          type="Create"
           start={recording}
           end={playerRef.current.getCurrentTime()}
         />
@@ -76,11 +78,12 @@ function VideoDetailsPage() {
   };
 
   const handleDeleteHighlight = (highlight) => {
-    setModalContent(<ConfirmDelete type="Highlight" element={highlight} />)
+    setModalContent(<ConfirmDelete type="Highlight" element={highlight} />);
   };
 
   const handleUpdateVideo = () => {
     return;
+    // setModalContent<HighlightModal type="Update" />
   };
 
   const handleDeleteVideo = () => {
@@ -177,9 +180,7 @@ function VideoDetailsPage() {
                       >
                         Update
                       </button>
-                      <button
-                        onClick={() => handleDeleteHighlight(highlight)}
-                      >
+                      <button onClick={() => handleDeleteHighlight(highlight)}>
                         Delete
                       </button>
                     </div>
