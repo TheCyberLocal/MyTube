@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import UnderstandDelete from "../UnderstandDelete";
-import { deleteNoteThunk } from "../../redux/videoDetails";
+import {
+  deleteNoteThunk,
+  deleteHighlightThunk,
+} from "../../redux/videoDetails";
 import "./ConfirmDelete.css";
 
 function ConfirmDelete({ type, element = null }) {
@@ -18,13 +21,14 @@ function ConfirmDelete({ type, element = null }) {
     } else if (type === "Video") {
       setModalContent(<UnderstandDelete type="Video" element={element} />);
     } else if (type === "Highlight") {
+      dispatch(deleteHighlightThunk(element.id));
+      closeModal();
     }
   };
 
   const getName = () => {
-    if (type === "Video" || type === "Note") return element.title;
     if (type === "Account") return element.username;
-    if (type === "Highlights") return element.name;
+    return element.title;
   };
 
   return (

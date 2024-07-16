@@ -71,6 +71,14 @@ function VideoDetailsPage() {
     }
   };
 
+  const handleUpdateHighlight = (highlightId) => {
+    return;
+  };
+
+  const handleDeleteHighlight = (highlight) => {
+    setModalContent(<ConfirmDelete type="Highlight" element={highlight} />)
+  };
+
   const handleUpdateVideo = () => {
     return;
   };
@@ -163,8 +171,17 @@ function VideoDetailsPage() {
                     </div>
                     <div className="highlight-title">{highlight.title}</div>
                     <div className="highlight-buttons">
-                      <button id="left-highlight-button">Update</button>
-                      <button>Delete</button>
+                      <button
+                        onClick={() => handleUpdateHighlight(highlight)}
+                        id="left-highlight-button"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDeleteHighlight(highlight)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 ))

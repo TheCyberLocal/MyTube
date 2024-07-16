@@ -51,6 +51,11 @@ export const createHighlight = (highlight) => ({
   payload: highlight,
 });
 
+export const deleteHighlight = (highlightId) => ({
+  type: DELETE_HIGHLIGHT,
+  payload: highlightId,
+});
+
 export const deleteVideo = (videoId) => ({
   type: DELETE_VIDEO,
   payload: videoId,
@@ -100,20 +105,6 @@ export const deleteNoteThunk = (noteId) => async (dispatch) => {
   }
 };
 
-export const deleteVideoThunk = (videoId) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    await fetch(`/api/videos/${videoId}`, {
-      method: "DELETE",
-    });
-    dispatch(thunkAuthenticate());
-    dispatch(fetchVideoDetails());
-  } catch (error) {
-    dispatch(setError(error.toString()));
-    dispatch(setLoading(false));
-  }
-};
-
 export const createHighlightThunk = (highlight) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
@@ -124,6 +115,33 @@ export const createHighlightThunk = (highlight) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch(createHighlight(data));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
+
+export const deleteHighlightThunk = (highlightId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    await fetch(`/api/highlights/${highlightId}`, {
+      method: "DELETE",
+    });
+    dispatch(deleteHighlight(highlightId));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
+
+export const deleteVideoThunk = (videoId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    await fetch(`/api/videos/${videoId}`, {
+      method: "DELETE",
+    });
+    dispatch(thunkAuthenticate());
+    dispatch(fetchVideoDetails());
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
@@ -164,6 +182,13 @@ function videoDetailsReducer(state = initialState, action) {
         note.id === action.payload.id ? action.payload : note
       );
       return { ...restState, notes: newNotes };
+    }
+    case DELETE_HIGHLIGHT: {
+      const { highlights, ...restState } = state;
+      const newHighlights = highlights.filter(
+        (highlight) => highlight.id !== action.payload
+      );
+      return { ...restState, highlights: newHighlights };
     }
     case DELETE_NOTE: {
       const { notes, ...restState } = state;
