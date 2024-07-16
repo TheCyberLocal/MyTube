@@ -2,7 +2,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
-import AlertPasswordChange from "../AlertPasswordChange/AlertPasswordChange";
+import AlertChange from "../AlertChange";
 
 function ChangePasswordModal() {
   const { user, isLoading } = useSelector((state) => state.session);
@@ -32,7 +32,7 @@ function ChangePasswordModal() {
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
-      setModalContent(<AlertPasswordChange />);
+      setModalContent(<AlertChange message="Your password has been reset." />);
     }
   };
 
