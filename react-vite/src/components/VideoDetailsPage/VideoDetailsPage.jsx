@@ -147,9 +147,11 @@ function VideoDetailsPage() {
                     <div className="highlight-header">
                       <span
                         className="highlight-timestamp"
-                        onClick={() =>
-                          handleHighlightClick(highlight.start_time)
-                        }
+                        onClick={() => {
+                          playerRef.current.seekTo(highlight.start_time, true);
+                          playerRef.current.playVideo();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         {`${convertSecondsToHMSString(
                           highlight.start_time
