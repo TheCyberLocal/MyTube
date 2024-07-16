@@ -1,0 +1,77 @@
+#create-highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+#highlight-title {
+  outline: none;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+input {
+    outline: none;
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.highlight-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.time-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.time-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.time-selectors {
+  display: flex;
+  gap: 2px;
+}
+
+.time-selectors input {
+  width: 35px;
+  text-align: center;
+  outline: none;
+}
+
+.highlight-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.highlight-buttons button {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0;
+
+  flex: 1;
+}
+
+.highlight-buttons button:hover {
+  background-color: darkgrey;
+}

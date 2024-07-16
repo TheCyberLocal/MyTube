@@ -6,6 +6,7 @@ import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import VideoHighlights from "../VideoHighlights";
 import ConfirmDelete from "../ConfirmDelete";
+import CreateHighlight from "../CreateHighlight";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -50,12 +51,9 @@ function VideoDetailsPage() {
 
   const handleRecord = () => {
     if (recording === null) {
-      const currentTime = getCurrentTime();
-      setRecording(currentTime);
-      console.log("Recording started at: " + currentTime);
+      setRecording(getCurrentTime());
     } else {
-      const currentTime = getCurrentTime();
-      console.log("Recording ended at: " + currentTime);
+      setModalContent(<CreateHighlight start={recording} end={getCurrentTime()} />);
       setRecording(null);
     }
   };
