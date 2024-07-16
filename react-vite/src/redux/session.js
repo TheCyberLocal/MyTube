@@ -41,8 +41,9 @@ const processFetch = (fetchFunc) => async (dispatch) => {
     } else {
       dispatch(setError("Something went wrong. Please try again"));
     }
-  } catch (err) {
-    dispatch(setError("Something went wrong. Please try again"));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
   }
   dispatch(setLoading(false));
 };

@@ -1,8 +1,8 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-import { thunkDeleteVideo } from "../../redux/videoDetails";
-import "./UnderstandDeleteVideo.css";
+import { deleteVideoThunk } from "../../redux/videoDetails";
 import { useNavigate } from "react-router-dom";
+import "./UnderstandDeleteVideo.css";
 
 function UnderstandDeleteVideo({ element }) {
   const { closeModal } = useModal();
@@ -10,9 +10,9 @@ function UnderstandDeleteVideo({ element }) {
   const nav = useNavigate();
 
   const handleDelete = () => {
-    dispatch(thunkDeleteVideo(element.id));
-    nav("/my-videos");
+    dispatch(deleteVideoThunk(element.id));
     closeModal();
+    nav("/my-videos");
   };
 
   return (

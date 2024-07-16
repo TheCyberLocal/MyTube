@@ -1,9 +1,13 @@
+import { thunkAuthenticate } from "./session";
+
 const SET_VIDEO_DETAILS = "videoDetails/setVideoDetails";
 const SET_LOADING = "videoDetails/setLoading";
 const SET_ERROR = "videoDetails/setError";
 const CLEAR_STATE = "videoDetails/clearState";
 const SET_NOTE = "videoDetails/setNote";
-const REMOVE_NOTE = "videoDetails/removeNote";
+const DELETE_NOTE = "videoDetails/deleteNote";
+const SET_VIDEO = "videoDetails/setVideo";
+const DELETE_VIDEO = "videoDetails/deleteVideo";
 
 export const setVideoDetails = (detail) => ({
   type: SET_VIDEO_DETAILS,
@@ -29,9 +33,14 @@ export const setNote = (note) => ({
   payload: note,
 });
 
-export const removeNote = (noteId) => ({
-  type: REMOVE_NOTE,
+export const deleteNote = (noteId) => ({
+  type: DELETE_NOTE,
   payload: noteId,
+});
+
+export const deleteVideo = (videoId) => ({
+  type: DELETE_VIDEO,
+  payload: videoId,
 });
 
 export const fetchVideoDetails = (videoId) => async (dispatch) => {
@@ -70,8 +79,22 @@ export const deleteNoteThunk = (noteId) => async (dispatch) => {
     await fetch(`/api/notes/${noteId}`, {
       method: "DELETE",
     });
-    dispatch(removeNote(noteId));
+    dispatch(deleteNote(noteId));
     dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+};
+
+export const deleteVideoThunk = (videoId) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    await fetch(`/api/videos/${videoId}`, {
+      method: "DELETE",
+    });
+    dispatch(thunkAuthenticate());
+    dispatch(fetchVideoDetails());
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
@@ -113,7 +136,7 @@ function videoDetailsReducer(state = initialState, action) {
       );
       return { ...restState, notes: newNotes };
     }
-    case REMOVE_NOTE: {
+    case DELETE_NOTE: {
       const { notes, ...restState } = state;
       const newNotes = notes.filter((note) => note.id !== action.payload);
       return { ...restState, notes: newNotes };

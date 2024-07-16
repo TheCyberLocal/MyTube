@@ -18,10 +18,6 @@ function ProfilePage() {
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
 
-  if (isLoading) return null;
-
-  if (!isLoading && !user) return <Navigate to="/" replace={true} />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,6 +49,10 @@ function ProfilePage() {
     setUsername(user.username);
     setEmail(user.email);
   };
+
+  if (isLoading) return null;
+
+  if (!isLoading && !user) return <Navigate to="/" replace={true} />;
 
   return (
     <div id="main-container">
