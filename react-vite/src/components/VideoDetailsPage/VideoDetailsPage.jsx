@@ -81,9 +81,13 @@ function VideoDetailsPage() {
 
   const handleSaveNote = () => {
     // Dispatch action to save the note
-    console.log("Note saved:", noteTitle, noteContent);
-    setNoteTitle("");
-    setNoteContent("");
+    if (!noteTitle || !noteContent) {
+      alert("Notes must contain both a title and content.");
+    } else {
+      console.log("Note saved:", noteTitle, noteContent);
+      setNoteTitle("");
+      setNoteContent("");
+    }
   };
 
   const handleClearNote = () => {
@@ -157,7 +161,7 @@ function VideoDetailsPage() {
                     </div>
                     <div className="highlight-title">{highlight.title}</div>
                     <div className="highlight-buttons">
-                      <button>Edit</button>
+                      <button id="left-highlight-button">Update</button>
                       <button>Delete</button>
                     </div>
                   </div>
