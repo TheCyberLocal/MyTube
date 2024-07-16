@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import UnderstandDelete from "../UnderstandDelete";
 import { deleteNoteThunk } from "../../redux/videoDetails";
-import "./ConfirmDeleteModal.css";
+import "./ConfirmDelete.css";
 
-function ConfirmDeleteModal({ type, element = null }) {
+function ConfirmDelete({ type, element = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
@@ -46,4 +46,4 @@ function ConfirmDeleteModal({ type, element = null }) {
   );
 }
 
-export default ConfirmDeleteModal;
+export default ConfirmDelete;

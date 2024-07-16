@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateNoteThunk } from "../../redux/videoDetails";
-import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import ConfirmDelete from "../ConfirmDelete";
 import { useModal } from "../../context/Modal";
 import "./VideoNotes.css";
 
@@ -47,7 +47,7 @@ function VideoNotes() {
 
   const handleDeleteNote = (noteId) => {
     const note = notes.find((note) => note.id === noteId);
-    setModalContent(<ConfirmDeleteModal type="Note" element={note} />);
+    setModalContent(<ConfirmDelete type="Note" element={note} />);
   };
 
   const handleSaveNote = (noteId) => {

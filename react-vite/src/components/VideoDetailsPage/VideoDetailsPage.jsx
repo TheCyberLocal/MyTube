@@ -6,7 +6,7 @@ import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import VideoNoteTaker from "../VideoNoteTaker";
 import VideoHighlights from "../VideoHighlights";
-import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import ConfirmDelete from "../ConfirmDelete";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -78,7 +78,7 @@ function VideoDetailsPage() {
   };
 
   const handleDeleteVideo = () => {
-    setModalContent(<ConfirmDeleteModal type="Video" element={video} />);
+    setModalContent(<ConfirmDelete type="Video" element={video} />);
   };
 
   if (!video) return null;

@@ -3,7 +3,7 @@ import { thunkLogout, thunkUpdateUser } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
@@ -120,7 +120,7 @@ function ProfilePage() {
             className="danger"
             onClick={() =>
               setModalContent(
-                <ConfirmDeleteModal type="Account" element={user} />
+                <ConfirmDelete type="Account" element={user} />
               )
             }
           >
