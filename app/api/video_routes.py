@@ -89,7 +89,7 @@ def create_video():
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
 
-    video = Video.query.filter(Video.url == processURL(form.url.data))
+    video = Video.query.filter(Video.url == processURL(form.url.data)).first()
     if video:
         return jsonify({'url': 'You already saved this video' }), 400
 

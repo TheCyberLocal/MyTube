@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { deleteVideoThunk } from "../../redux/videoDetails";
 import { useNavigate } from "react-router-dom";
 import "./UnderstandDelete.css";
+import AlertChange from "../AlertChange";
 
 function UnderstandDelete({ type, element }) {
-  const { closeModal } = useModal();
+  const { closeModal, setModalContent } = useModal();
   const dispatch = useDispatch();
   const nav = useNavigate();
 
