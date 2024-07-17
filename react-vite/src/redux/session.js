@@ -92,7 +92,7 @@ export const thunkUpdatePassword = (userId, body) =>
 export const thunkDeleteUser = (userId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const response = await await fetch(`/api/users/${userId}`, {
+    const response = await fetch(`/api/users/${userId}`, {
       method: "DELETE",
     });
     if (response.ok) {
