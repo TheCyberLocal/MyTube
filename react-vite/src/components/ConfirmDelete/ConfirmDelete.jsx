@@ -37,7 +37,7 @@ function ConfirmDelete({ type, element = null }) {
       <h3>
         {type} - {getName()}
       </h3>
-      <h3>Are you sure you don't want this?</h3>
+      <h3>Are you sure you don&apos;t want this?</h3>
       <div className="row">
         <button onClick={handleDelete} id="yes">
           Delete

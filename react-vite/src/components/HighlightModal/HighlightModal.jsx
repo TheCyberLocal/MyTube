@@ -17,6 +17,7 @@ function HighlightModal({
   const { closeModal } = useModal();
   const video = useSelector((state) => state.videoDetails.video);
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
 
   const convertHMSToSeconds = ({ hours, minutes, seconds }) => {
     return hours * 3600 + minutes * 60 + seconds;
@@ -125,7 +126,11 @@ function HighlightModal({
         time.minutes = maxTime.minutes;
       }
       // If total time exceeds set to max
-      if (hoursExceeded) time = maxTime;
+      if (hoursExceeded) {
+        time.seconds = maxTime.seconds;
+        time.minutes = maxTime.minutes;
+        time.hours = maxTime.hours;
+      }
 
       // Only update if value is 0 or more
       if (isPositive) time.hours = value;
@@ -166,11 +171,12 @@ function HighlightModal({
     }
   };
 
-  const handleSaveHighlight = () => {
+  const handleSaveHighlight = async () => {
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
     if (type === "Create") {
-      dispatch(
+      console.log("about to dispatch");
+      const serverErrors = await dispatch(
         createHighlightThunk({
           video_id: video.id,
           title,
@@ -178,6 +184,12 @@ function HighlightModal({
           end_time,
         })
       );
+      if (serverErrors) {
+        setErrors(serverErrors);
+      } else {
+        setErrors({});
+        closeModal();
+      }
     } else if (type === "Update") {
       dispatch(
         updateHighlightThunk(highlight.id, {
@@ -186,8 +198,8 @@ function HighlightModal({
           end_time,
         })
       );
+      closeModal();
     }
-    closeModal();
   };
 
   return (
@@ -200,6 +212,7 @@ function HighlightModal({
           id="highlight-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder={errors.title ? "Title is required" : "Title"}
         />
         <div className="time-inputs">
           <div className="time-input">

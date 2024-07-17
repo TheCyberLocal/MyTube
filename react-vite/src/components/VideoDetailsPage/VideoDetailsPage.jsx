@@ -19,7 +19,7 @@ function VideoDetailsPage() {
   const [recording, setRecording] = useState(null);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
-  const [highlightErrors, setHighlightErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(fetchVideoDetails(id));
@@ -111,9 +111,9 @@ function VideoDetailsPage() {
       })
     );
     if (serverErrors) {
-      setHighlightErrors(serverErrors);
+      setErrors(serverErrors);
     } else {
-      setHighlightErrors({});
+      setErrors({});
       setNoteTitle("");
       setNoteContent("");
     }
@@ -122,6 +122,7 @@ function VideoDetailsPage() {
   const handleClearNote = () => {
     setNoteTitle("");
     setNoteContent("");
+    setErrors({});
   };
 
   const handleHighlightClick = (highlight) => {
@@ -167,13 +168,13 @@ function VideoDetailsPage() {
             type="text"
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
-            placeholder={highlightErrors.title ? "Title is required" : "Title"}
+            placeholder={errors.title ? "Title is required" : "Title"}
           />
           <textarea
             value={noteContent}
             onChange={(e) => setNoteContent(e.target.value)}
             placeholder={
-              highlightErrors.description
+              errors.description
                 ? "Content is required"
                 : "Let's take a note..."
             }

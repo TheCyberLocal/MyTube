@@ -150,12 +150,23 @@ export const createHighlightThunk = (highlight) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(highlight),
     });
-    const data = await response.json();
-    dispatch(createHighlight(data));
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(createHighlight(data));
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
   }
+  dispatch(setLoading(false));
 };
 
 export const updateHighlightThunk =
