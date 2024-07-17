@@ -70,7 +70,6 @@ function MyVideosPage() {
         <label>
           Tags
           <MultiSelect
-            id="multi-selector"
             options={options}
             value={tags}
             onChange={setTags}

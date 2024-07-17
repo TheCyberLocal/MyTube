@@ -38,7 +38,7 @@ export const searchMyVideos = (options) => async (dispatch) => {
       search_params.push(`keyword=${keyword}`);
     }
     if (tags.length) {
-      const tagString = ",".join(tags);
+      const tagString = tags.map((e) => e.value).join(",");
       search_params.push(`tags=${tagString}`);
     }
     if (sortBy) {
