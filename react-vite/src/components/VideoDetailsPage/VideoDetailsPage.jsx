@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchVideoDetails } from "../../redux/videoDetails";
+import { fetchVideoDetails, createNoteThunk } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
@@ -19,6 +19,7 @@ function VideoDetailsPage() {
   const [recording, setRecording] = useState(null);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
+  const [highlightErrors, setHighlightErrors] = useState({});
 
   useEffect(() => {
     dispatch(fetchVideoDetails(id));
@@ -100,12 +101,19 @@ function VideoDetailsPage() {
     setModalContent(<ConfirmDelete type="Video" element={video} />);
   };
 
-  const handleSaveNote = () => {
+  const handleSaveNote = async () => {
     // Dispatch action to save the note
-    if (!noteTitle || !noteContent) {
-      alert("Notes must contain both a title and content.");
+    const serverErrors = await dispatch(
+      createNoteThunk({
+        title: noteTitle,
+        description: noteContent,
+        video_id: video.id,
+      })
+    );
+    if (serverErrors) {
+      setHighlightErrors(serverErrors);
     } else {
-      console.log("Note saved:", noteTitle, noteContent);
+      setHighlightErrors({});
       setNoteTitle("");
       setNoteContent("");
     }
@@ -159,12 +167,16 @@ function VideoDetailsPage() {
             type="text"
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
-            placeholder="Title"
+            placeholder={highlightErrors.title ? "Title is required" : "Title"}
           />
           <textarea
             value={noteContent}
             onChange={(e) => setNoteContent(e.target.value)}
-            placeholder="Let's take a note..."
+            placeholder={
+              highlightErrors.description
+                ? "Content is required"
+                : "Let's take a note..."
+            }
           />
           <div className="note-taker-buttons">
             <button onClick={handleSaveNote}>Save</button>

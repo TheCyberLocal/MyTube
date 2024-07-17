@@ -36,6 +36,11 @@ export const clearVideoDetails = () => ({
   type: CLEAR_STATE,
 });
 
+export const createNote = (note) => ({
+  type: CREATE_NOTE,
+  payload: note,
+});
+
 export const updateNote = (note) => ({
   type: UPDATE_NOTE,
   payload: note,
@@ -77,6 +82,33 @@ export const fetchVideoDetails = (videoId) => async (dispatch) => {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
   }
+};
+
+export const createNoteThunk = (note) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/notes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(note),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(createNote(data));
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+  dispatch(setLoading(false));
 };
 
 export const updateNoteThunk = (noteId, note) => async (dispatch) => {
@@ -197,6 +229,10 @@ function videoDetailsReducer(state = initialState, action) {
         isLoading: false,
         error: null,
       };
+    }
+    case CREATE_NOTE: {
+      const { notes, ...restState } = state;
+      return { ...restState, notes: [...notes, action.payload] };
     }
     case UPDATE_NOTE: {
       const { notes, ...restState } = state;
