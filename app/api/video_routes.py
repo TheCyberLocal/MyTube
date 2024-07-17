@@ -29,7 +29,7 @@ def processURL(raw_url):
 @login_required
 def get_my_videos():
     # Get query parameters
-    tags = request.args.get('tags', '').split(',')
+    tagIDs = request.args.get('tags', '').split(',')
     keyword_string = request.args.get('keyword', '')
     sort_by = request.args.get('sortBy', 'recently_viewed')
     page = int(request.args.get('page', 1))
@@ -39,11 +39,11 @@ def get_my_videos():
     query = Video.query.filter(Video.user_id == current_user.id)
 
     # Filter by tags
-    if tags != ['']:
+    if tagIDs != ['']:
         query = query.join(VideoTag).join(Tag)\
-        .filter(Tag.name.in_(tags))\
+        .filter(Tag.id.in_(tagIDs))\
         .group_by(Video.id)\
-        .having(db.func.count(Tag.id) == len(tags))
+        .having(db.func.count(Tag.id) == len(tagIDs))
 
     # Filter by search string in title or description
     if keyword_string:
@@ -94,14 +94,14 @@ def create_video():
         return jsonify({'url': 'You already saved this video' }), 400
 
     # Extract tags from request data
-    tag_names = request.json.get('tags', [])
+    tagIDs = request.json.get('tags', [])
 
     # Validate and create tag list by names
     new_tags = []
-    for tag_name in tag_names:
-        tag = Tag.query.filter_by(name=tag_name).first()
+    for tagID in tagIDs:
+        tag = Tag.query.get(tagID).first()
         if not tag:
-            return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+            return jsonify({'errors': f'Invalid tag: {tagID}'}), 400
         new_tags.append(tag)
 
     video = Video(
@@ -136,15 +136,15 @@ def update_video(id):
         return jsonify(form.errors), 400
 
     # Extract tags from request data
-    tag_names = request.json.get('tags')
+    tagIDs = request.json.get('tags')
 
     new_tags = []
-    if tag_names is not None:
+    if tagIDs is not None:
         # Validate and create tag list by names
-        for tag_name in tag_names:
-            tag = Tag.query.filter_by(name=tag_name).first()
+        for tagID in tagIDs:
+            tag = Tag.query.get(tagID).first()
             if not tag:
-                return jsonify({'errors': f'Invalid tag: {tag_name}'}), 400
+                return jsonify({'errors': f'Invalid tag: {tagID}'}), 400
             new_tags.append(tag)
 
     # Update video details
@@ -156,7 +156,7 @@ def update_video(id):
         video.url = processURL(form.url.data)
     db.session.commit()
 
-    if tag_names is not None:
+    if tagIDs is not None:
         # Remove old tags
         VideoTag.query.filter_by(video_id=video.id).delete()
         db.session.commit()
