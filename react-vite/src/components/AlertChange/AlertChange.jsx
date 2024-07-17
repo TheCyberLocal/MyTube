@@ -5,7 +5,7 @@ function AlertChange({ message }) {
 
   return (
     <div id="prompt-modal">
-      <h1>You're all set!</h1>
+      <h1>You&apos;re all set!</h1>
       <h3>{message}</h3>
       <div className="row">
         <button onClick={closeModal} id="ok">
