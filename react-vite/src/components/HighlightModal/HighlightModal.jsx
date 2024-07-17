@@ -212,7 +212,7 @@ function HighlightModal({
           id="highlight-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder={errors.title ? "Title is required" : "Title"}
+          placeholder={errors.title ? "Title is required" : ""}
         />
         <div className="time-inputs">
           <div className="time-input">
