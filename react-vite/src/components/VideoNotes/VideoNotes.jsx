@@ -30,7 +30,7 @@ function VideoNotes() {
     setActiveNote(activeNote === noteId ? null : noteId);
 
     const scrollInterval = setInterval(() => {
-      noteRefs.current[index].scrollIntoView();
+      noteRefs.current[index].scrollIntoView({ behavior: "smooth" });
     }, 10); // Adjust the interval time as needed
 
     setTimeout(() => {
