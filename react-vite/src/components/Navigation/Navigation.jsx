@@ -6,18 +6,18 @@ import "./Navigation.css";
 
 function Navigation() {
   const { user, isLoading } = useSelector((state) => state.session);
-  const { setModalContent } = useModal();
   const nav = useNavigate();
-
-  if (isLoading) return null;
+  const { setModalContent } = useModal();
 
   const handleProfileClick = () => {
     nav(user ? "/profile" : "/login");
   };
 
   const handleAddVideoClick = () => {
-    setModalContent(<VideoModal type="Add" />);
+    setModalContent(<VideoModal />);
   };
+
+  if (isLoading) return null;
 
   return (
     <div id="navigation">

@@ -4,6 +4,7 @@ import { clearVideoDetails } from "../../redux/videoDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
+// import { MultiSelect } from "react-multi-select-component";
 import { setCookie, getCookie } from "../../utils";
 import "./MyVideosPage.css";
 
@@ -20,6 +21,7 @@ function MyVideosPage() {
   const [tags, setTags] = useState("");
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(1);
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     const savedSortBy = getCookie("sortBy");
@@ -41,6 +43,12 @@ function MyVideosPage() {
     setSortBy(selectedSort);
     setCookie("sortBy", selectedSort, 365);
   };
+
+  // const options = [
+  //   { label: "Grapes 🍇", value: "grapes" },
+  //   { label: "Mango 🥭", value: "mango" },
+  //   { label: "Strawberry 🍓", value: "strawberry", disabled: true },
+  // ];
 
   if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
 
@@ -73,6 +81,12 @@ function MyVideosPage() {
             value={tags}
             onChange={(e) => setTags(e.target.value)}
           />
+          {/* <MultiSelect
+            options={options}
+            value={selected}
+            onChange={setSelected}
+            labelledBy="Select"
+          /> */}
         </label>
       </div>
       {!sessionLoading && !user.videoCount && (
