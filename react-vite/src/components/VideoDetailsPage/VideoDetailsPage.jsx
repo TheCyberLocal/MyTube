@@ -15,6 +15,7 @@ function VideoDetailsPage() {
   const dispatch = useDispatch();
 
   const playerRef = useRef(null);
+  const videoTimeRef = useRef(null);
   const [recording, setRecording] = useState(null);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
@@ -110,6 +111,28 @@ function VideoDetailsPage() {
     setNoteContent("");
   };
 
+  const handleHighlightClick = (highlight) => {
+    videoTimeRef.current = highlight.start_time;
+    playerRef.current.seekTo(highlight.start_time, true);
+    playerRef.current.playVideo();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const interval = setInterval(() => {
+      const currentTime = playerRef.current.getCurrentTime();
+      const isEndOfHighlight = currentTime >= highlight.end_time;
+      const isManualChange = Math.abs(currentTime - videoTimeRef.current) > 1;
+
+      if (isEndOfHighlight) playerRef.current.pauseVideo();
+
+      if (isManualChange || isEndOfHighlight) {
+        videoTimeRef.current = null;
+        clearInterval(interval);
+      } else {
+        videoTimeRef.current = currentTime;
+      }
+    }, 500);
+  };
+
   if (!video) return null;
 
   return (
@@ -162,11 +185,7 @@ function VideoDetailsPage() {
                     <div className="highlight-header">
                       <span
                         className="highlight-timestamp"
-                        onClick={() => {
-                          playerRef.current.seekTo(highlight.start_time, true);
-                          playerRef.current.playVideo();
-                          window.scrollTo({ top: 0, behavior: "smooth" });
-                        }}
+                        onClick={() => handleHighlightClick(highlight)}
                       >
                         {`${convertSecondsToHMSString(
                           highlight.start_time
