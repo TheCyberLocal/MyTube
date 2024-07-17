@@ -4,6 +4,7 @@ import { clearVideoDetails } from "../../redux/videoDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
+import { setCookie, getCookie } from "../../utils";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
@@ -20,15 +21,28 @@ function MyVideosPage() {
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(1);
 
-  if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
+  useEffect(() => {
+    const savedSortBy = getCookie("sortBy");
+    if (savedSortBy) {
+      setSortBy(savedSortBy);
+    }
+  }, []);
+
+  useEffect(() => {
+    dispatch(clearVideoDetails());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(searchMyVideos({ keyword, tags, sortBy, page }));
   }, [dispatch, user, sortBy, keyword, tags, page]);
 
-  useEffect(() => {
-    dispatch(clearVideoDetails());
-  }, [dispatch]);
+  const handleSortChange = (e) => {
+    const selectedSort = e.target.value;
+    setSortBy(selectedSort);
+    setCookie("sortBy", selectedSort, 365);
+  };
+
+  if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
 
   return (
     <div id="my-videos-page">
@@ -36,7 +50,7 @@ function MyVideosPage() {
         <label>
           Sort by
           <br />
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <select value={sortBy} onChange={handleSortChange}>
             <option value="recently_viewed">Recently Viewed</option>
             <option value="alphabetical">Alphabetical</option>
             <option value="newest">Newest</option>
