@@ -47,7 +47,7 @@ function ChangePasswordModal() {
   return (
     <div id="main-container">
       <h1>Change Password</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="input-container">
           <input
             type={showOldPassword ? "text" : "password"}

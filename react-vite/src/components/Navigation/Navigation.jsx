@@ -16,7 +16,7 @@ function Navigation() {
   };
 
   const handleAddVideoClick = () => {
-    setModalContent(<VideoModal />);
+    setModalContent(<VideoModal type="Add" />);
   };
 
   return (

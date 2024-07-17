@@ -45,7 +45,7 @@ function SignupFormPage() {
   return (
     <div id="main-container">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="input-container">
           <input
             type="text"
@@ -128,7 +128,9 @@ function SignupFormPage() {
           )}
         </div>
         <div className="button-container">
-          <button style={{ flex: 2 }}>Sign Up</button>
+          <button style={{ flex: 2 }} onClick={handleSubmit}>
+            Sign Up
+          </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={() => nav("/login")}>
             Log In
