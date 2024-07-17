@@ -7,7 +7,13 @@ import {
 } from "../../redux/videoDetails";
 import "./HighlightModal.css";
 
-function HighlightModal({ type, start, end, highlight = null }) {
+function HighlightModal({
+  type,
+  start,
+  end,
+  highlight = null,
+  videoDuration = null,
+}) {
   const { closeModal } = useModal();
   const video = useSelector((state) => state.videoDetails.video);
   const dispatch = useDispatch();
@@ -84,7 +90,7 @@ function HighlightModal({ type, start, end, highlight = null }) {
           time.minutes === endTime.minutes &&
           time.seconds > endTime.seconds)
       ) {
-        setEndTime({ ...time });
+        setEndTime(time);
       }
     } else {
       if (
@@ -94,7 +100,7 @@ function HighlightModal({ type, start, end, highlight = null }) {
           time.minutes === startTime.minutes &&
           time.seconds < startTime.seconds)
       ) {
-        return;
+        setStartTime(time);
       }
       setEndTime(time);
     }

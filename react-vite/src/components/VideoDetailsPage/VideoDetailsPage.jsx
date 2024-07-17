@@ -66,6 +66,7 @@ function VideoDetailsPage() {
           type="Create"
           start={recording}
           end={playerRef.current.getCurrentTime()}
+          videoDuration={playerRef.current.playerInfo.duration}
         />
       );
       playerRef.current.pauseVideo();
@@ -78,7 +79,11 @@ function VideoDetailsPage() {
       (highlight) => highlight.id === highlightId
     );
     setModalContent(
-      <HighlightModal type="Update" highlight={highlightToUpdate} />
+      <HighlightModal
+        type="Update"
+        highlight={highlightToUpdate}
+        videoDuration={playerRef.current.playerInfo.duration}
+      />
     );
   };
 
