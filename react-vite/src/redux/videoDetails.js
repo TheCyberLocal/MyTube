@@ -14,8 +14,6 @@ const UPDATE_HIGHLIGHT = "videoDetails/updateHighlight";
 const DELETE_HIGHLIGHT = "videoDetails/deleteHighlight";
 
 const CREATE_VIDEO = "videoDetails/createVideo";
-const UPDATE_VIDEO = "videoDetails/updateVideo";
-const DELETE_VIDEO = "videoDetails/deleteVideo";
 
 export const setVideoDetails = (detail) => ({
   type: SET_VIDEO_DETAILS,
@@ -66,9 +64,9 @@ export const deleteHighlight = (highlightId) => ({
   payload: highlightId,
 });
 
-export const deleteVideo = (videoId) => ({
-  type: DELETE_VIDEO,
-  payload: videoId,
+export const createVideo = (video) => ({
+  type: CREATE_VIDEO,
+  payload: video,
 });
 
 export const fetchVideoDetails = (videoId) => async (dispatch) => {
@@ -199,6 +197,56 @@ export const deleteHighlightThunk = (highlightId) => async (dispatch) => {
   }
 };
 
+export const createVideoThunk = (video) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/videos`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(video),
+    });
+    if (response.ok) {
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+  dispatch(setLoading(false));
+};
+
+export const updateVideoThunk = (videoId, video) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const response = await fetch(`/api/videos/${videoId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(video),
+    });
+    if (response.ok) {
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
+  } catch (error) {
+    dispatch(setError(error.toString()));
+    dispatch(setLoading(false));
+  }
+  dispatch(setLoading(false));
+};
+
 export const deleteVideoThunk = (videoId) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
@@ -252,6 +300,11 @@ function videoDetailsReducer(state = initialState, action) {
       );
       return { ...restState, notes: newNotes };
     }
+    case DELETE_NOTE: {
+      const { notes, ...restState } = state;
+      const newNotes = notes.filter((note) => note.id !== action.payload);
+      return { ...restState, notes: newNotes };
+    }
     case CREATE_HIGHLIGHT: {
       const { highlights, ...restState } = state;
       return { ...restState, highlights: [...highlights, action.payload] };
@@ -269,11 +322,6 @@ function videoDetailsReducer(state = initialState, action) {
         (highlight) => highlight.id !== action.payload
       );
       return { ...restState, highlights: newHighlights };
-    }
-    case DELETE_NOTE: {
-      const { notes, ...restState } = state;
-      const newNotes = notes.filter((note) => note.id !== action.payload);
-      return { ...restState, notes: newNotes };
     }
     default:
       return state;

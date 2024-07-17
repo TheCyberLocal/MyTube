@@ -6,6 +6,7 @@ import { useModal } from "../../context/Modal";
 import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
 import HighlightModal from "../HighlightModal";
+import VideoModal from "../VideoModal";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
@@ -93,8 +94,7 @@ function VideoDetailsPage() {
   };
 
   const handleUpdateVideo = () => {
-    return;
-    // setModalContent<HighlightModal type="Update" />
+    setModalContent(<VideoModal type="Update" video={video} />);
   };
 
   const handleDeleteVideo = () => {

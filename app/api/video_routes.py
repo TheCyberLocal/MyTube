@@ -89,6 +89,10 @@ def create_video():
     if not form.validate_on_submit():
         return jsonify(form.errors), 400
 
+    video = Video.query.filter(Video.url == processURL(form.url.data))
+    if video:
+        return jsonify({'url': 'You already saved this video' }), 400
+
     # Extract tags from request data
     tag_names = request.json.get('tags', [])
 
@@ -150,6 +154,7 @@ def update_video(id):
         video.description = form.description.data
     if form.url.data:
         video.url = processURL(form.url.data)
+    db.session.commit()
 
     if tag_names is not None:
         # Remove old tags

@@ -1,17 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
   const nav = useNavigate();
+  const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [errors, setErrors] = useState({});
-  const [videoURL, setVideoURL] = useState("");
-  const [videoTitle, setVideoTitle] = useState("");
-  const [videoDesc, setVideoDesc] = useState("");
+  const [videoURL, setVideoURL] = useState(video?.url ?? "");
+  const [videoTitle, setVideoTitle] = useState(video?.title ?? "");
+  const [videoDesc, setVideoDesc] = useState(video?.description ?? "");
   const [videoTags, setVideoTags] = useState("");
 
   useEffect(() => {
+    if (videoURL === "") return;
+
     const urlFormat1 = videoURL.split("=").at(-1);
     const urlFormat2 = videoURL.split("/").at(-1);
     const YouTubeId =
@@ -34,21 +39,35 @@ function VideoModal({ type, video = null }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const serverResponse = await dispatch(
-      thunkSignup({
-        username,
-        name,
-        email,
-        password,
-        confirm_password: confirmPassword,
-      })
-    );
-
-    if (serverResponse) {
-      setErrors(serverResponse.errors);
-    } else {
-      nav("/my-videos");
+    if (type === "Update") {
+      const serverErrors = await dispatch(
+        updateVideoThunk(video.id, {
+          url: videoURL,
+          title: videoTitle,
+          description: videoDesc,
+        })
+      );
+      if (serverErrors) {
+        setErrors(serverErrors);
+      } else {
+        closeModal();
+        window.location.reload();
+      }
+    } else if (type === "Add") {
+      const serverErrors = await dispatch(
+        createVideoThunk({
+          url: videoURL,
+          title: videoTitle,
+          description: videoDesc,
+        })
+      );
+      console.log(serverErrors);
+      if (serverErrors) {
+        setErrors(serverErrors);
+      } else {
+        closeModal();
+        window.location.reload();
+      }
     }
   };
 
