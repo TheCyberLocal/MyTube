@@ -38,71 +38,131 @@ function HighlightModal({
   );
 
   const handleTimeChange = (e, type, timeType) => {
+    const maxTime = convertSecondsToHMS(videoDuration);
+    // Get new form value but default with zero
     let value = parseInt(e.target.value) || 0;
+    // Determine whether the start time or the end time is being updated
     const time = type === "start" ? { ...startTime } : { ...endTime };
 
+    // Process seconds change
     if (timeType === "seconds") {
+      const minutesMaxed = time.minutes === maxTime.minutes;
+      const hoursMaxed = time.hours === maxTime.hours;
+      const secondsExceeded = value > maxTime.seconds;
+
+      // Guard against exceeding video duration
+      if (secondsExceeded && minutesMaxed && hoursMaxed) return;
+
       if (value > 59) {
+        // Step up seconds
         time.seconds = 0;
         time.minutes += 1;
       } else if (value < 0) {
+        // Step down seconds
         if (time.minutes > 0) {
+          // - if minutes can step down
           time.seconds = 59;
           time.minutes -= 1;
         } else if (time.hours > 0) {
+          // - else step down seconds and minutes if hours can step down
           time.seconds = 59;
           time.minutes = 59;
           time.hours -= 1;
-        } else {
-          time.seconds = 0;
         }
       } else {
+        // Not a step, value is 0 to 59
         time.seconds = value;
       }
     }
 
+    // Process minutes change
     if (timeType === "minutes") {
+      const minutesMaxed = value === maxTime.minutes;
+      const hoursMaxed = time.hours === maxTime.hours;
+      const secondsExceeded = time.seconds > maxTime.seconds;
+      const minutesExceeded = value > maxTime.minutes;
+
+      // Guard against exceeding video duration
+      if (hoursMaxed && minutesExceeded) return;
+
+      // If minutes maxed when seconds exceed set seconds to max and
+      if (hoursMaxed && minutesMaxed && secondsExceeded) {
+        time.seconds = maxTime.seconds;
+      }
+
       if (value > 59) {
+        // Step up minutes
         time.minutes = 0;
         time.hours += 1;
       } else if (value < 0) {
+        // Step down seconds
         if (time.hours > 0) {
+          // - if hours can step down
           time.minutes = 59;
           time.hours -= 1;
-        } else {
-          time.minutes = 0;
         }
       } else {
+        // Not a step, value is 0 to 59
         time.minutes = value;
       }
     }
 
+    // Process hours change
     if (timeType === "hours") {
-      time.hours = Math.max(0, value);
+      const minutesMaxed = time.minutes === maxTime.minutes;
+      const hoursMaxed = value === maxTime.hours;
+      const secondsExceeded = time.seconds > maxTime.seconds;
+      const minutesExceeded = time.minutes > maxTime.minutes;
+      const hoursExceeded = value > maxTime.hours;
+      const isPositive = value >= 0;
+
+      // If hours maxed when seconds maxed and seconds exceeded set seconds to max
+      if (hoursMaxed && minutesMaxed && secondsExceeded)
+        time.seconds = maxTime.seconds;
+      // If hours maxed and both minutes and seconds exceeded set them to max
+      if (hoursMaxed && minutesExceeded) {
+        time.seconds = maxTime.seconds;
+        time.minutes = maxTime.minutes;
+      }
+      // If total time exceeds set to max
+      if (hoursExceeded) time = maxTime;
+
+      // Only update if value is 0 or more
+      if (isPositive) time.hours = value;
     }
 
     if (type === "start") {
+      // Set start to processed time
       setStartTime(time);
+      const startHoursAfterEnd = time.hours > endTime.hours;
+      const startHoursAtEnd = time.hours === endTime.hours;
+      const startMinutesAfterEnd = time.minutes > endTime.minutes;
+      const startMinutesAtEnd = time.minutes === endTime.minutes;
+      const startSecondsAfterEnd = time.seconds > endTime.seconds;
+      // Set end to start when start is after end
       if (
-        time.hours > endTime.hours ||
-        (time.hours === endTime.hours && time.minutes > endTime.minutes) ||
-        (time.hours === endTime.hours &&
-          time.minutes === endTime.minutes &&
-          time.seconds > endTime.seconds)
+        startHoursAfterEnd ||
+        (startHoursAtEnd && startMinutesAfterEnd) ||
+        (startHoursAtEnd && startMinutesAtEnd && startSecondsAfterEnd)
       ) {
         setEndTime(time);
       }
     } else {
+      // Set end to processed time
+      setEndTime(time);
+      const endHoursBeforeEnd = time.hours < startTime.hours;
+      const endHoursAtStart = time.hours === startTime.hours;
+      const endMinutesBeforeStart = time.minutes < startTime.minutes;
+      const endMinutesAtStart = time.minutes === startTime.minutes;
+      const endSecondsBeforeStart = time.seconds < startTime.seconds;
+      // Set start to end when end is before start
       if (
-        time.hours < startTime.hours ||
-        (time.hours === startTime.hours && time.minutes < startTime.minutes) ||
-        (time.hours === startTime.hours &&
-          time.minutes === startTime.minutes &&
-          time.seconds < startTime.seconds)
+        endHoursBeforeEnd ||
+        (endHoursAtStart && endMinutesBeforeStart) ||
+        (endHoursAtStart && endMinutesAtStart && endSecondsBeforeStart)
       ) {
         setStartTime(time);
       }
-      setEndTime(time);
     }
   };
 
