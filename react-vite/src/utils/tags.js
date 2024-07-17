@@ -5,6 +5,5 @@ export async function getTags() {
     value: e.id,
     label: e.name,
   }));
-  console.log(processedData);
   return processedData;
 }

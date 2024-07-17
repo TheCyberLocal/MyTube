@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import { MultiSelect } from "react-multi-select-component";
-// import CustomSelect from "../CustomSelect";
 import { setCookie, getCookie, getTags } from "../../utils";
 import "./MyVideosPage.css";
 
@@ -21,9 +20,8 @@ function MyVideosPage() {
   const [keyword, setKeyword] = useState("");
   const [options, setOptions] = useState({});
   const [sortBy, setSortBy] = useState("recently_viewed");
+  const [tags, setTags] = useState([]);
   const [page, setPage] = useState(1);
-  const [selected, setSelected] = useState([]);
-  const [tags, setTags] = useState("");
 
   useEffect(() => {
     const savedSortBy = getCookie("sortBy");
@@ -74,8 +72,8 @@ function MyVideosPage() {
           <MultiSelect
             id="multi-selector"
             options={options}
-            value={selected}
-            onChange={setSelected}
+            value={tags}
+            onChange={setTags}
             labelledBy="Select"
           />
         </label>
