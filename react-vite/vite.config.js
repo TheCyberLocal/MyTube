@@ -11,6 +11,9 @@ export default defineConfig((mode) => ({
       failOnError: mode === "production",
     }),
   ],
+  optimizeDeps: {
+    exclude: ['react-multi-select-component']
+  },
   server: {
     open: true,
     proxy: {

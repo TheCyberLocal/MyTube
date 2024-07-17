@@ -13,8 +13,20 @@
   margin-bottom: 20px;
 }
 
-#controls * {
-  padding: 5px;
+#controls > label {
+  width: 30vw;
+  & > input,
+  & > select {
+    width: 80%;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+  }
+  & > * {
+    margin: 5px 0;
+  }
 }
 
 .video-results {

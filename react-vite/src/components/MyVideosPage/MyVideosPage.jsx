@@ -4,8 +4,9 @@ import { clearVideoDetails } from "../../redux/videoDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
-// import { MultiSelect } from "react-multi-select-component";
-import { setCookie, getCookie } from "../../utils";
+import { MultiSelect } from "react-multi-select-component";
+// import CustomSelect from "../CustomSelect";
+import { setCookie, getCookie, getTags } from "../../utils";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
@@ -18,16 +19,16 @@ function MyVideosPage() {
 
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
-  const [tags, setTags] = useState("");
+  const [options, setOptions] = useState({});
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState([]);
+  const [tags, setTags] = useState("");
 
   useEffect(() => {
     const savedSortBy = getCookie("sortBy");
-    if (savedSortBy) {
-      setSortBy(savedSortBy);
-    }
+    if (savedSortBy) setSortBy(savedSortBy);
+    getTags().then((res) => setOptions(res));
   }, []);
 
   useEffect(() => {
@@ -43,12 +44,6 @@ function MyVideosPage() {
     setSortBy(selectedSort);
     setCookie("sortBy", selectedSort, 365);
   };
-
-  // const options = [
-  //   { label: "Grapes 🍇", value: "grapes" },
-  //   { label: "Mango 🥭", value: "mango" },
-  //   { label: "Strawberry 🍓", value: "strawberry", disabled: true },
-  // ];
 
   if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
 
@@ -66,6 +61,7 @@ function MyVideosPage() {
         </label>
         <label>
           Keyword or Phrases
+          <br />
           <input
             type="text"
             placeholder="Keyword or Phrases"
@@ -75,18 +71,13 @@ function MyVideosPage() {
         </label>
         <label>
           Tags
-          <input
-            type="text"
-            placeholder="Tags"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          {/* <MultiSelect
+          <MultiSelect
+            id="multi-selector"
             options={options}
             value={selected}
             onChange={setSelected}
             labelledBy="Select"
-          /> */}
+          />
         </label>
       </div>
       {!sessionLoading && !user.videoCount && (
