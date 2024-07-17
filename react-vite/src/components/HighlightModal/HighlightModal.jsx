@@ -125,15 +125,15 @@ function HighlightModal({
         time.seconds = maxTime.seconds;
         time.minutes = maxTime.minutes;
       }
-      // If total time exceeds set to max
       if (hoursExceeded) {
+        // If total time exceeds set to max
         time.seconds = maxTime.seconds;
         time.minutes = maxTime.minutes;
         time.hours = maxTime.hours;
+      } else {
+        // Only update if value is 0 or more
+        if (isPositive) time.hours = value;
       }
-
-      // Only update if value is 0 or more
-      if (isPositive) time.hours = value;
     }
 
     if (type === "start") {
