@@ -4,13 +4,13 @@ from sqlalchemy.sql import text
 highlight_data = [
     {
         "video_id": 1,
-        "title": "Importance of Debugging",
+        "title": "Secret to Perfect Pasta",
         "start_time": 30,
         "end_time": 60,
     },
     {
         "video_id": 1,
-        "title": "Key Debugging Tools",
+        "title": "How to choose your pasta",
         "start_time": 70,
         "end_time": 110,
     },
