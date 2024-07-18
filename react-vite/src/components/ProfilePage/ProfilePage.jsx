@@ -101,11 +101,11 @@ function ProfilePage() {
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Save Changes
+            Save
           </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={handleUndo}>
-            Undo
+            Cancel
           </button>
         </div>
       </form>
