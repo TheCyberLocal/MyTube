@@ -1,3 +1,5 @@
+import "./HelpPage.css";
+
 function HelpPage() {
   return (
     <div id="help-page">
