@@ -61,9 +61,6 @@ div#main-container {
 
   & .multi-selector {
     width: 100%;
-    & * {
-      color: black;
-    }
 
     & .dropdown-content {
       top: -100px;
@@ -96,6 +93,7 @@ div#main-container {
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
+    font-size: 1.1rem;
   }
 
   & input::placeholder {

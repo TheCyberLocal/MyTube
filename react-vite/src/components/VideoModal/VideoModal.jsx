@@ -133,6 +133,7 @@ function VideoModal({ type, video = null }) {
             onChange={setVideoTags}
             labelledBy="Select"
             hasSelectAll={false}
+            className="multi-selector"
           />
         </div>
         <div className="error-container">
