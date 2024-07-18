@@ -58,11 +58,11 @@ function MyVideosPage() {
           </select>
         </label>
         <label>
-          Keyword or Phrases
+          Keyword or Phrase
           <br />
           <input
             type="text"
-            placeholder="Keyword or Phrases"
+            placeholder="Keyword or Phrase"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
