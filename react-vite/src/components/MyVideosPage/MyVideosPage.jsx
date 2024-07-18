@@ -74,6 +74,7 @@ function MyVideosPage() {
             value={tags}
             onChange={setTags}
             labelledBy="Select"
+            hasSelectAll={false}
           />
         </label>
       </div>

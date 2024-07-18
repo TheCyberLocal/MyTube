@@ -200,21 +200,23 @@ export const deleteHighlightThunk = (highlightId) => async (dispatch) => {
 export const createVideoThunk = (video) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const response = await fetch(`/api/videos`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(video),
-    });
-    if (response.ok) {
-      dispatch(setError(null));
-    } else if (response.status < 500) {
-      const errorMessages = await response.json();
-      dispatch(setError(errorMessages));
-      dispatch(setLoading(false));
-      return errorMessages;
-    } else {
-      dispatch(setError("Something went wrong. Please try again"));
-    }
+    console.log(video);
+    // const response = await fetch(`/api/videos`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(video),
+    // });
+    // if (response.ok) {
+    //   dispatch(setError(null));
+    // } else if (response.status < 500) {
+    //   const errorMessages = await response.json();
+    //   dispatch(setError(errorMessages));
+    //   dispatch(setLoading(false));
+    //   return errorMessages;
+    // } else {
+    //   dispatch(setError("Something went wrong. Please try again"));
+    // }
+    dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
@@ -225,21 +227,23 @@ export const createVideoThunk = (video) => async (dispatch) => {
 export const updateVideoThunk = (videoId, video) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const response = await fetch(`/api/videos/${videoId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(video),
-    });
-    if (response.ok) {
-      dispatch(setError(null));
-    } else if (response.status < 500) {
-      const errorMessages = await response.json();
-      dispatch(setError(errorMessages));
-      dispatch(setLoading(false));
-      return errorMessages;
-    } else {
-      dispatch(setError("Something went wrong. Please try again"));
-    }
+    console.log(videoId, video);
+    // const response = await fetch(`/api/videos/${videoId}`, {
+    //   method: "PATCH",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(video),
+    // });
+    // if (response.ok) {
+    //   dispatch(setError(null));
+    // } else if (response.status < 500) {
+    //   const errorMessages = await response.json();
+    //   dispatch(setError(errorMessages));
+    //   dispatch(setLoading(false));
+    //   return errorMessages;
+    // } else {
+    //   dispatch(setError("Something went wrong. Please try again"));
+    // }
+    dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));

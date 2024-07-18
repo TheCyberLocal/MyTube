@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { MultiSelect } from "react-multi-select-component";
+import { getTags } from "../../utils";
 import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
@@ -12,7 +14,12 @@ function VideoModal({ type, video = null }) {
   const [videoURL, setVideoURL] = useState(video?.url ?? "");
   const [videoTitle, setVideoTitle] = useState(video?.title ?? "");
   const [videoDesc, setVideoDesc] = useState(video?.description ?? "");
-  const [videoTags, setVideoTags] = useState("");
+  const [videoTags, setVideoTags] = useState([]);
+  const [options, setOptions] = useState({});
+
+  useEffect(() => {
+    getTags().then((res) => setOptions(res));
+  }, []);
 
   useEffect(() => {
     if (videoURL === "") return;
@@ -35,7 +42,7 @@ function VideoModal({ type, video = null }) {
         setVideoTitle("");
         setErrors({ ...errors, url: "Video does not exist" });
       });
-  }, [videoURL]);
+  }, [videoURL, setErrors, setVideoTitle]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +52,7 @@ function VideoModal({ type, video = null }) {
           url: videoURL,
           title: videoTitle,
           description: videoDesc,
+          tags: videoTags.map((e) => e.value),
         })
       );
       if (serverErrors) {
@@ -59,6 +67,7 @@ function VideoModal({ type, video = null }) {
           url: videoURL,
           title: videoTitle,
           description: videoDesc,
+          tags: videoTags.map((e) => e.value),
         })
       );
       console.log(serverErrors);
@@ -66,6 +75,7 @@ function VideoModal({ type, video = null }) {
         setErrors(serverErrors);
       } else {
         closeModal();
+        nav("my-videos");
         window.location.reload();
       }
     }
@@ -115,6 +125,18 @@ function VideoModal({ type, video = null }) {
           {errors.description && (
             <p className="error">{errors.description[0]}</p>
           )}
+        </div>
+        <div className="multi-selector">
+          <MultiSelect
+            options={options}
+            value={videoTags}
+            onChange={setVideoTags}
+            labelledBy="Select"
+            hasSelectAll={false}
+          />
+        </div>
+        <div className="error-container">
+          {errors.tags && <p className="error">{errors.tags[0]}</p>}
         </div>
         <div className="button-container">
           <button onClick={handleSubmit}>Save</button>

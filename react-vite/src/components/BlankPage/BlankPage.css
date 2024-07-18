@@ -59,6 +59,20 @@ div#main-container {
     width: 100%;
   }
 
+  & .multi-selector {
+    width: 100%;
+    & * {
+      color: black;
+    }
+
+    & .dropdown-content {
+      top: -100px;
+      & span {
+        margin-right: 100%;
+      }
+    }
+  }
+
   & .button-container {
     display: flex;
     justify-content: center;
