@@ -1,128 +1,160 @@
 from app.models import db, Note, environment, SCHEMA
 from sqlalchemy.sql import text
 
+
 note_data = [
     {
         "video_id": 1,
-        "title": "Debugging Techniques",
-        "description": "Understanding the different debugging techniques such as logging, using a debugger, and code review can significantly improve your debugging skills."
+        "title": "Pasta Ingredients",
+        "description": "Understand the importance of selecting high-quality ingredients for making perfect pasta."
     },
     {
         "video_id": 1,
-        "title": "Common Debugging Tools",
-        "description": "Familiarize yourself with common debugging tools like GDB, LLDB, and browser dev tools to enhance your debugging process."
+        "title": "Cooking Time",
+        "description": "Learn how to determine the optimal cooking time for different types of pasta."
     },
     {
         "video_id": 2,
-        "title": "Effective Study Sessions",
-        "description": "Setting up a productive study environment with minimal distractions can greatly improve your learning efficiency."
+        "title": "Climate Change Basics",
+        "description": "Get to know the fundamental concepts of climate change and its causes."
     },
     {
         "video_id": 2,
-        "title": "Lo-fi Hip Hop",
-        "description": "Lo-fi hip hop music can help to create a calm and focused study atmosphere."
+        "title": "Impact on Ecosystems",
+        "description": "Learn about the effects of climate change on various ecosystems around the world."
     },
     {
         "video_id": 3,
-        "title": "HTML Basics",
-        "description": "HTML is the foundation of web development, providing the structure of a webpage."
+        "title": "History of Music",
+        "description": "Explore the origins and evolution of music from ancient times to the present."
     },
     {
         "video_id": 3,
-        "title": "Semantic HTML",
-        "description": "Using semantic HTML tags improves the accessibility and SEO of your website."
+        "title": "Influential Genres",
+        "description": "Understand the impact of different music genres on society and culture."
     },
     {
         "video_id": 4,
-        "title": "CSS Selectors",
-        "description": "Understanding CSS selectors is crucial for styling elements on your webpage."
+        "title": "Yoga Poses",
+        "description": "Learn about the basic yoga poses and how to perform them correctly."
     },
     {
         "video_id": 4,
-        "title": "Responsive Design",
-        "description": "Learn to make your website responsive to ensure it looks good on all devices."
+        "title": "Breathing Techniques",
+        "description": "Understand the importance of breathing techniques in yoga practice."
     },
     {
         "video_id": 5,
-        "title": "JavaScript Syntax",
-        "description": "Familiarize yourself with basic JavaScript syntax to start building interactive webpages."
+        "title": "Quantum Mechanics",
+        "description": "Get an introduction to the fundamental concepts of quantum mechanics."
     },
     {
         "video_id": 5,
-        "title": "DOM Manipulation",
-        "description": "Learn how to manipulate the DOM using JavaScript to create dynamic user interfaces."
+        "title": "Quantum Entanglement",
+        "description": "Learn about the phenomenon of quantum entanglement and its implications."
     },
     {
         "video_id": 6,
+        "title": "Baking Ingredients",
+        "description": "Discover the key ingredients needed for baking perfect bread."
+    },
+    {
+        "video_id": 6,
+        "title": "Kneading Techniques",
+        "description": "Learn the proper kneading techniques to develop gluten in bread dough."
+    },
+    {
+        "video_id": 7,
+        "title": "Camera Settings",
+        "description": "Understand the essential camera settings for digital photography."
+    },
+    {
+        "video_id": 7,
+        "title": "Composition Tips",
+        "description": "Learn tips for composing visually appealing photographs."
+    },
+    {
+        "video_id": 8,
+        "title": "Internet History",
+        "description": "Explore the history of the internet from its inception to the modern era."
+    },
+    {
+        "video_id": 8,
+        "title": "Internet Milestones",
+        "description": "Learn about the key milestones and technological advancements in the development of the internet."
+    },
+    {
+        "video_id": 9,
+        "title": "Digestive System Anatomy",
+        "description": "Get an overview of the anatomy of the human digestive system."
+    },
+    {
+        "video_id": 9,
+        "title": "Digestive Process",
+        "description": "Learn about the stages of the digestive process and how nutrients are absorbed."
+    },
+    {
+        "video_id": 10,
+        "title": "Basic Guitar Chords",
+        "description": "Learn the basic chords needed to start playing the guitar."
+    },
+    {
+        "video_id": 10,
+        "title": "Strumming Patterns",
+        "description": "Discover different strumming patterns to enhance your guitar playing."
+    },
+    {
+        "video_id": 11,
+        "title": "Solar System Overview",
+        "description": "Get an overview of the solar system and its main components."
+    },
+    {
+        "video_id": 11,
+        "title": "Planetary Characteristics",
+        "description": "Learn about the unique characteristics of each planet in the solar system."
+    },
+    {
+        "video_id": 12,
+        "title": "Common Spices",
+        "description": "Discover common spices used in cooking and their flavor profiles."
+    },
+    {
+        "video_id": 12,
+        "title": "Spice Blends",
+        "description": "Learn how to create your own spice blends to enhance your dishes."
+    },
+    {
+        "video_id": 13,
         "title": "Python Basics",
-        "description": "Python is a versatile language that is great for beginners and experts alike."
+        "description": "Get an introduction to the basics of programming with Python."
     },
     {
-        "video_id": 6,
-        "title": "Common Python Libraries",
-        "description": "Learn about popular Python libraries such as NumPy, Pandas, and Matplotlib."
+        "video_id": 13,
+        "title": "Writing Python Functions",
+        "description": "Learn how to write functions in Python to create reusable code."
     },
     {
-        "video_id": 7,
-        "title": "React Components",
-        "description": "Understand the concept of components in React and how to build reusable UI elements."
+        "video_id": 14,
+        "title": "Meditation Benefits",
+        "description": "Discover the mental and physical benefits of practicing meditation."
     },
     {
-        "video_id": 7,
-        "title": "State Management",
-        "description": "Learn how to manage state in React applications using hooks and context."
+        "video_id": 14,
+        "title": "Meditation Techniques",
+        "description": "Learn different meditation techniques to find the one that works best for you."
     },
     {
-        "video_id": 8,
-        "title": "Node.js Basics",
-        "description": "Node.js allows you to run JavaScript on the server-side, enabling full-stack development."
+        "video_id": 15,
+        "title": "AI Fundamentals",
+        "description": "Get an overview of the fundamental concepts of artificial intelligence."
     },
     {
-        "video_id": 8,
-        "title": "Express Framework",
-        "description": "Express is a minimal and flexible Node.js web application framework providing a robust set of features."
-    },
-    {
-        "video_id": 9,
-        "title": "RESTful APIs",
-        "description": "Learn the principles of RESTful API design and how to create RESTful endpoints with Node.js and Express."
-    },
-    {
-        "video_id": 9,
-        "title": "CRUD Operations",
-        "description": "Understand how to perform CRUD operations (Create, Read, Update, Delete) with a RESTful API."
-    },
-    {
-        "video_id": 10,
-        "title": "Django Overview",
-        "description": "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design."
-    },
-    {
-        "video_id": 10,
-        "title": "Django Models",
-        "description": "Learn how to define models in Django and interact with the database."
-    },
-    {
-        "video_id": 11,
-        "title": "Docker Basics",
-        "description": "Docker is a platform for developing, shipping, and running applications in containers."
-    },
-    {
-        "video_id": 11,
-        "title": "Docker Compose",
-        "description": "Docker Compose allows you to define and manage multi-container Docker applications."
-    },
-    {
-        "video_id": 12,
-        "title": "Git Basics",
-        "description": "Git is a distributed version control system that helps you track changes in your codebase."
-    },
-    {
-        "video_id": 12,
-        "title": "GitHub Workflow",
-        "description": "Learn the common GitHub workflow, including forking repositories, creating branches, and making pull requests."
+        "video_id": 15,
+        "title": "AI Applications",
+        "description": "Learn about the various applications of artificial intelligence in different industries."
     }
 ]
+
 
 # Adds a demo user, you can add other notes here if you want
 def seed_notes():
