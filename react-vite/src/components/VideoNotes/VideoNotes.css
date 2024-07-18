@@ -98,6 +98,7 @@
   margin: 0 5px;
   font-size: 1.1em;
   margin-bottom: 10px;
+  word-break: break-word;
 }
 
 .note-container span {
