@@ -99,7 +99,7 @@ def create_video():
     # Validate and create tag list by names
     new_tags = []
     for tagID in tagIDs:
-        tag = Tag.query.get(tagID).first()
+        tag = Tag.query.get(tagID)
         if not tag:
             return jsonify({'errors': f'Invalid tag: {tagID}'}), 400
         new_tags.append(tag)
@@ -142,7 +142,7 @@ def update_video(id):
     if tagIDs is not None:
         # Validate and create tag list by names
         for tagID in tagIDs:
-            tag = Tag.query.get(tagID).first()
+            tag = Tag.query.get(tagID)
             if not tag:
                 return jsonify({'errors': f'Invalid tag: {tagID}'}), 400
             new_tags.append(tag)

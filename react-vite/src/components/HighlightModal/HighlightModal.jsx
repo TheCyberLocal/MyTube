@@ -175,7 +175,6 @@ function HighlightModal({
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
     if (type === "Create") {
-      console.log("about to dispatch");
       const serverErrors = await dispatch(
         createHighlightThunk({
           video_id: video.id,

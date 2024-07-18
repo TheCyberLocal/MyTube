@@ -77,7 +77,6 @@ function VideoModal({ type, video = null }) {
           tags: videoTags.map((e) => e.value),
         })
       );
-      console.log(serverErrors);
       if (serverErrors) {
         setErrors(serverErrors);
       } else {
