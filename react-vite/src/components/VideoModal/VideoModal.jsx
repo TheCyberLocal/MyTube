@@ -53,7 +53,16 @@ function VideoModal({ type, video = null }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (type === "Update") {
+    setErrors({});
+    const newErrors = {};
+    if (!videoURL) newErrors.url = "This field is required";
+    if (!videoTitle) newErrors.title = "This field is required";
+    if (!videoDesc) newErrors.description = "This field is required";
+    if (!videoTags.length) newErrors.tags = "This field is required";
+
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
+    } else if (type === "Update") {
       const serverErrors = await dispatch(
         updateVideoThunk(video.id, {
           url: videoURL,
@@ -128,9 +137,7 @@ function VideoModal({ type, video = null }) {
           <label className="moving-label">Description</label>
         </div>
         <div className="error-container">
-          {errors.description && (
-            <p className="error">{errors.description[0]}</p>
-          )}
+          {errors.description && <p className="error">{errors.description}</p>}
         </div>
         <div className="multi-selector">
           <MultiSelect
@@ -139,11 +146,10 @@ function VideoModal({ type, video = null }) {
             onChange={setVideoTags}
             labelledBy="Select"
             hasSelectAll={false}
-            className="multi-selector"
           />
         </div>
         <div className="error-container">
-          {errors.tags && <p className="error">{errors.tags[0]}</p>}
+          {errors.tags && <p className="error">{errors.tags}</p>}
         </div>
         <div className="button-container">
           <button onClick={handleSubmit}>Save</button>
