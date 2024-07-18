@@ -174,7 +174,9 @@ function HighlightModal({
   const handleSaveHighlight = async () => {
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
-    if (type === "Create") {
+    if (!title) {
+      setErrors({ title: "This field is required" });
+    } else if (type === "Create") {
       const serverErrors = await dispatch(
         createHighlightThunk({
           video_id: video.id,
@@ -211,8 +213,10 @@ function HighlightModal({
           id="highlight-title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder={errors.title ? "Title is required" : ""}
         />
+        <div className="error-container">
+          {errors.title && <p className="error">{errors.title}</p>}
+        </div>
         <div className="time-inputs">
           <div className="time-input">
             <label htmlFor="start-time">Start time</label>

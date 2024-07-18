@@ -26,12 +26,24 @@ h1 {
 
 label {
   font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+& div.error-container {
+  margin-bottom: 10px;
+  height: 20px;
+
+  & p.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
 }
 
 .highlight-inputs {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   font-size: 1.1rem;
 }
 

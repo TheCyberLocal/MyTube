@@ -42,7 +42,7 @@ div#main-container {
 
     & p.error {
       color: red;
-      font-size: 12px;
+      font-size: 14px;
       margin-top: 5px;
     }
 
@@ -115,7 +115,7 @@ div#main-container {
   & input[value]:not([value=""]) + label.moving-label {
     top: -10px;
     left: 10px;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   & button.show-password-btn {
@@ -149,7 +149,7 @@ div#main-container {
   }
 
   & button.danger {
-    font-size: 12px;
+    font-size: 14px;
     background-color: red;
   }
 
