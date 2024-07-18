@@ -46,8 +46,9 @@ function MyVideosPage() {
           user.videoCount
         ) {
           setEndOfPage(true);
+        } else {
+          setAllSearchResults([...allSearchResults, ...results]);
         }
-        setAllSearchResults([...allSearchResults, ...results]);
       }
     );
   }, [dispatch, user, sortBy, keyword, tags, page]);
@@ -164,7 +165,7 @@ function MyVideosPage() {
           </div>
         )}
       </div>
-      <div ref={bottomRef}></div>
+      <div id="footer" ref={bottomRef}></div>
     </>
   );
 }
