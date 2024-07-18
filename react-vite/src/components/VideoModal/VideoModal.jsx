@@ -66,7 +66,6 @@ function VideoModal({ type, video = null }) {
       setErrors({});
       const serverErrors = await dispatch(
         updateVideoThunk(video.id, {
-          url: videoURL,
           title: videoTitle,
           description: videoDesc,
           tags: videoTags.map((e) => e.value),
@@ -102,19 +101,23 @@ function VideoModal({ type, video = null }) {
     <div id="main-container">
       <h1>{type} Video</h1>
       <form>
-        <div className="input-container">
-          <input
-            type="text"
-            value={videoURL}
-            onChange={(e) => setVideoURL(e.target.value)}
-            required
-            placeholder=""
-          />
-          <label className="moving-label">YouTube URL</label>
-        </div>
-        <div className="error-container">
-          {errors.url && <p className="error">{errors.url}</p>}
-        </div>
+        {type === "Add" ? (
+          <>
+            <div className="input-container">
+              <input
+                type="text"
+                value={videoURL}
+                onChange={(e) => setVideoURL(e.target.value)}
+                required
+                placeholder=""
+              />
+              <label className="moving-label">YouTube URL</label>
+            </div>
+            <div className="error-container">
+              {errors.url && <p className="error">{errors.url}</p>}
+            </div>
+          </>
+        ) : null}
         <div className="input-container">
           <input
             type="text"
