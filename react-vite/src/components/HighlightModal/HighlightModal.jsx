@@ -32,10 +32,10 @@ function HighlightModal({
 
   const [title, setTitle] = useState(highlight?.title ?? "");
   const [startTime, setStartTime] = useState(
-    convertSecondsToHMS(highlight?.start_time ?? start),
+    convertSecondsToHMS(highlight?.start_time ?? start)
   );
   const [endTime, setEndTime] = useState(
-    convertSecondsToHMS(highlight?.end_time ?? end),
+    convertSecondsToHMS(highlight?.end_time ?? end)
   );
 
   const handleTimeChange = (e, type, timeType) => {
@@ -83,15 +83,16 @@ function HighlightModal({
       const secondsExceeded = time.seconds > maxTime.seconds;
       const minutesExceeded = value > maxTime.minutes;
 
-      // Guard against exceeding video duration
-      if (hoursMaxed && minutesExceeded) return;
-
       // If minutes maxed when seconds exceed set seconds to max and
       if (hoursMaxed && minutesMaxed && secondsExceeded) {
         time.seconds = maxTime.seconds;
       }
 
-      if (value > 59) {
+      // Guard against exceeding video duration
+      if (hoursMaxed && minutesExceeded) {
+        time.seconds = maxTime.seconds;
+        time.minutes = maxTime.minutes;
+      } else if (value > 59) {
         // Step up minutes
         time.minutes = 0;
         time.hours += 1;
@@ -101,6 +102,9 @@ function HighlightModal({
           // - if hours can step down
           time.minutes = 59;
           time.hours -= 1;
+        } else {
+          // - if hours cannot step down set seconds to zero
+          time.seconds = 0;
         }
       } else {
         // Not a step, value is 0 to 59
@@ -115,7 +119,7 @@ function HighlightModal({
       const secondsExceeded = time.seconds > maxTime.seconds;
       const minutesExceeded = time.minutes > maxTime.minutes;
       const hoursExceeded = value > maxTime.hours;
-      const isPositive = value >= 0;
+      const hoursNegative = value < 0;
 
       // If hours maxed when seconds maxed and seconds exceeded set seconds to max
       if (hoursMaxed && minutesMaxed && secondsExceeded)
@@ -129,10 +133,12 @@ function HighlightModal({
         // If total time exceeds set to max
         time.seconds = maxTime.seconds;
         time.minutes = maxTime.minutes;
-        time.hours = maxTime.hours;
+      } else if (hoursNegative) {
+        time.seconds = 0;
+        time.minutes = 0;
       } else {
-        // Only update if value is 0 or more
-        if (isPositive) time.hours = value;
+        // If hours are not exceeded or negative
+        time.hours = value;
       }
     }
 
@@ -183,7 +189,7 @@ function HighlightModal({
           title,
           start_time,
           end_time,
-        }),
+        })
       );
       if (serverErrors) {
         setErrors(serverErrors);
@@ -197,7 +203,7 @@ function HighlightModal({
           title,
           start_time,
           end_time,
-        }),
+        })
       );
       closeModal();
     }
