@@ -1,96 +1,97 @@
-from app.models import db, Video, Tag, environment, SCHEMA
+from app.models import db, Video, environment, SCHEMA
 from sqlalchemy.sql import text
+
 
 video_data = [
     {
         "user_id": 1,
-        "title": "The Most Important Skill You Never Learned",
-        "description": "Learning how to find, and solve bugs in your code is one of the most important skills you can learn as a developer. This is because most of your time spent as a developer will be spent debugging so you need to learn to become a master debugger in order to excel at programming. In this crash course I will teach you everything you need to know to master debugging.",
-        "url": "l8pe_MSX4Lc"
+        "title": "How to Make Perfect Pasta",
+        "description": "Learn the secrets to making perfect pasta every time. From selecting the right ingredients to mastering the cooking process, this video covers everything you need to know.",
+        "url": "3AAdKl1UYZs"
     },
     {
         "user_id": 1,
-        "title": "1 A.M Study Session 📚 [lofi hip hop/chill beats]",
-        "description": "One of my favorite of the lofi hip hop collection.",
-        "url": "lTRiuFIWV54"
+        "title": "The Science of Climate Change",
+        "description": "An in-depth look at the science behind climate change, its impact on our planet, and what we can do to mitigate its effects.",
+        "url": "EBd2vf7-KGs"
     },
     {
         "user_id": 1,
-        "title": "HTML Full Course - Build a Website Tutorial",
-        "description": "Learn the basics of HTML5 and web development in this awesome course for beginners.",
-        "url": "pQN-pnXPaVg"
+        "title": "The Evolution of Music",
+        "description": "Explore the history of music from ancient times to modern-day genres. This video takes you on a journey through the evolution of musical styles and instruments.",
+        "url": "MKu0zE-pv5g"
     },
     {
         "user_id": 1,
-        "title": "CSS Crash Course For Absolute Beginners",
-        "description": "Learn the basics of CSS in this complete crash course.",
-        "url": "yfoY53QXEnI"
+        "title": "Beginner's Guide to Yoga",
+        "description": "A comprehensive guide to starting your yoga journey. Learn the basics of yoga poses, breathing techniques, and the benefits of incorporating yoga into your daily routine.",
+        "url": "v7AYKMP6rOE"
     },
     {
         "user_id": 1,
-        "title": "JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour",
-        "description": "This is a complete JavaScript tutorial for beginners to learn JavaScript from scratch.",
-        "url": "W6NZfCO5SIk"
+        "title": "Understanding Quantum Physics",
+        "description": "Dive into the fascinating world of quantum physics. This video explains the fundamental concepts of quantum mechanics and their implications for our understanding of the universe.",
+        "url": "fK9hK82r-AM"
     },
     {
         "user_id": 1,
-        "title": "Python for Beginners - Learn Python in 1 Hour",
-        "description": "Learn Python programming language in just one hour.",
+        "title": "The Art of Baking Bread",
+        "description": "Master the art of baking bread at home. This tutorial covers everything from selecting the right flour to kneading techniques and baking tips for perfect bread every time.",
+        "url": "HoYJdlVdSuM"
+    },
+    {
+        "user_id": 1,
+        "title": "Basics of Digital Photography",
+        "description": "Learn the basics of digital photography, including camera settings, composition, and editing techniques to take stunning photos.",
+        "url": "3WmALfIQ1e8"
+    },
+    {
+        "user_id": 1,
+        "title": "History of the Internet",
+        "description": "A comprehensive overview of the history of the internet, from its early beginnings to the modern digital age.",
+        "url": "pT4EbM7dCMs"
+    },
+    {
+        "user_id": 1,
+        "title": "The Human Digestive System",
+        "description": "Explore the intricate workings of the human digestive system. This video covers the anatomy, function, and importance of each part of the digestive tract.",
+        "url": "9Mgtb0LB2u0"
+    },
+    {
+        "user_id": 1,
+        "title": "Learning Guitar for Beginners",
+        "description": "A step-by-step guide for beginners to learn how to play the guitar. This video covers basic chords, strumming patterns, and tips for practicing effectively.",
+        "url": "fwkD2MegmAI"
+    },
+    {
+        "user_id": 1,
+        "title": "Exploring the Solar System",
+        "description": "Join us on a journey through the solar system. Learn about the planets, moons, and other celestial bodies that make up our cosmic neighborhood.",
+        "url": "l9_zZoC6TrQ"
+    },
+    {
+        "user_id": 1,
+        "title": "Cooking with Spices: A Beginner's Guide",
+        "description": "Unlock the secrets of cooking with spices. This video teaches you how to use different spices to enhance the flavor of your dishes.",
+        "url": "bflztiFlrWo"
+    },
+    {
+        "user_id": 1,
+        "title": "Introduction to Programming with Python",
+        "description": "Learn the basics of programming using Python. This video covers fundamental concepts like variables, loops, and functions to get you started with coding.",
         "url": "rfscVS0vtbw"
     },
     {
         "user_id": 1,
-        "title": "React JS Crash Course",
-        "description": "This crash course will cover all the basics of React.js, a popular JavaScript library for building user interfaces.",
-        "url": "Dorf8i6lCuk"
+        "title": "The Benefits of Meditation",
+        "description": "Discover the benefits of meditation and how to practice it effectively. This video provides tips and techniques for incorporating meditation into your daily routine.",
+        "url": "inpok4MKVLM"
     },
     {
         "user_id": 1,
-        "title": "Node.js Crash Course",
-        "description": "Learn Node.js, a powerful JavaScript runtime, in this crash course.",
-        "url": "fBNz5xF-Kx4"
-    },
-    {
-        "user_id": 1,
-        "title": "REST API Tutorial",
-        "description": "Learn how to create a REST API with Node.js and Express in this comprehensive tutorial.",
-        "url": "1zkgdLZEdwM"
-    },
-    {
-        "user_id": 1,
-        "title": "Learn Django - Full Tutorial for Beginners",
-        "description": "This is a complete tutorial for beginners to learn the Django web framework.",
-        "url": "F5mRW0jo-U4"
-    },
-    {
-        "user_id": 1,
-        "title": "Docker Tutorial for Beginners",
-        "description": "Learn Docker from scratch in this beginner-friendly tutorial.",
-        "url": "3c-iBn73dDE"
-    },
-    {
-        "user_id": 1,
-        "title": "Git and GitHub Crash Course",
-        "description": "Learn the basics of Git and GitHub in this crash course.",
-        "url": "SWYqp7iY_Tc"
-    },
-    {
-        "user_id": 1,
-        "title": "Machine Learning Tutorial Python - 7.2 Neural Networks with Keras",
-        "description": "Learn how to create neural networks using Keras in this in-depth tutorial.",
-        "url": "WFr2WgN9_xE"
-    },
-    {
-        "user_id": 1,
-        "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",
-        "description": "Learn about data structures in this comprehensive tutorial by a Google engineer.",
-        "url": "RBSGKlAvoiM"
-    },
-    {
-        "user_id": 1,
-        "title": "Algorithms and Data Structures Tutorial - Full Course for Beginners",
-        "description": "This course covers all the basic algorithms and data structures in computer science.",
-        "url": "8hly31xKli0"
+        "title": "Understanding Artificial Intelligence",
+        "description": "An introductory guide to artificial intelligence, its applications, and its potential impact on various industries.",
+        "url": "2ePf9rue1Ao"
     }
 ]
 
