@@ -31,7 +31,7 @@ function LoginFormPage() {
   const demoLogin = () => {
     dispatch(
       thunkLogin({
-        credential: "Demo",
+        credential: "Demo123",
         password: "Demo123!",
       })
     );
