@@ -4,6 +4,21 @@
   height: fit-content;
 }
 
+#end-of-page {
+  width: 100%;
+  text-align: center;
+  background-color: grey;
+  color: white;
+  font-size: 2rem;
+  border-radius: 25px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#end-of-page:hover {
+  background-color: darkgrey;
+}
+
 #controls {
   display: flex;
   justify-content: space-around;

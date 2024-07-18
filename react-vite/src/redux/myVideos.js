@@ -54,6 +54,7 @@ export const searchMyVideos = (options) => async (dispatch) => {
     const data = await response.json();
     dispatch(setSearchResults(data));
     dispatch(setLoading(false));
+    return data;
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
