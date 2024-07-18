@@ -37,7 +37,7 @@ function VideoModal({ type, video = null }) {
       urlFormat1.length < urlFormat2.length ? urlFormat1 : urlFormat2;
 
     fetch(
-      `https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${YouTubeId}`
+      `https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${YouTubeId}`,
     )
       .then((res) => res.json())
       .then((res) => {
@@ -60,7 +60,7 @@ function VideoModal({ type, video = null }) {
           title: videoTitle,
           description: videoDesc,
           tags: videoTags.map((e) => e.value),
-        })
+        }),
       );
       if (serverErrors) {
         setErrors(serverErrors);
@@ -75,7 +75,7 @@ function VideoModal({ type, video = null }) {
           title: videoTitle,
           description: videoDesc,
           tags: videoTags.map((e) => e.value),
-        })
+        }),
       );
       if (serverErrors) {
         setErrors(serverErrors);

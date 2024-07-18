@@ -298,7 +298,7 @@ function videoDetailsReducer(state = initialState, action) {
     case UPDATE_NOTE: {
       const { notes, ...restState } = state;
       const newNotes = notes.map((note) =>
-        note.id === action.payload.id ? action.payload : note
+        note.id === action.payload.id ? action.payload : note,
       );
       return { ...restState, notes: newNotes };
     }
@@ -314,14 +314,14 @@ function videoDetailsReducer(state = initialState, action) {
     case UPDATE_HIGHLIGHT: {
       const { highlights, ...restState } = state;
       const newHighlights = highlights.map((highlight) =>
-        highlight.id === action.payload.id ? action.payload : highlight
+        highlight.id === action.payload.id ? action.payload : highlight,
       );
       return { ...restState, highlights: newHighlights };
     }
     case DELETE_HIGHLIGHT: {
       const { highlights, ...restState } = state;
       const newHighlights = highlights.filter(
-        (highlight) => highlight.id !== action.payload
+        (highlight) => highlight.id !== action.payload,
       );
       return { ...restState, highlights: newHighlights };
     }

@@ -26,7 +26,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      })
+      }),
     );
 
     if (serverResponse) {
@@ -119,9 +119,7 @@ function ProfilePage() {
           <button
             className="danger"
             onClick={() =>
-              setModalContent(
-                <ConfirmDelete type="Account" element={user} />
-              )
+              setModalContent(<ConfirmDelete type="Account" element={user} />)
             }
           >
             Delete Account

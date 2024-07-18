@@ -64,7 +64,9 @@
 .note-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.75s ease-out, padding 0.75s ease-out;
+  transition:
+    max-height 0.75s ease-out,
+    padding 0.75s ease-out;
   opacity: 0;
   transform-origin: top;
 }

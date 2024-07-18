@@ -32,10 +32,10 @@ function HighlightModal({
 
   const [title, setTitle] = useState(highlight?.title ?? "");
   const [startTime, setStartTime] = useState(
-    convertSecondsToHMS(highlight?.start_time ?? start)
+    convertSecondsToHMS(highlight?.start_time ?? start),
   );
   const [endTime, setEndTime] = useState(
-    convertSecondsToHMS(highlight?.end_time ?? end)
+    convertSecondsToHMS(highlight?.end_time ?? end),
   );
 
   const handleTimeChange = (e, type, timeType) => {
@@ -181,7 +181,7 @@ function HighlightModal({
           title,
           start_time,
           end_time,
-        })
+        }),
       );
       if (serverErrors) {
         setErrors(serverErrors);
@@ -195,7 +195,7 @@ function HighlightModal({
           title,
           start_time,
           end_time,
-        })
+        }),
       );
       closeModal();
     }

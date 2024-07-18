@@ -12,7 +12,7 @@ export default defineConfig((mode) => ({
     }),
   ],
   optimizeDeps: {
-    exclude: ['react-multi-select-component']
+    exclude: ["react-multi-select-component"],
   },
   server: {
     open: true,

@@ -10,10 +10,10 @@ import "./MyVideosPage.css";
 
 function MyVideosPage() {
   const { user, isLoading: sessionLoading } = useSelector(
-    (state) => state.session
+    (state) => state.session,
   );
   const { searchResults = [], isLoading: myVideosLoading } = useSelector(
-    (state) => state.myVideos
+    (state) => state.myVideos,
   );
 
   const dispatch = useDispatch();
