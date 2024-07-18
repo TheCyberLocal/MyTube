@@ -232,10 +232,10 @@ function VideoDetailsPage() {
         </div>
         <div id="video-buttons">
           <button id="video-update-button" onClick={handleUpdateVideo}>
-            Update video
+            Update Video
           </button>
           <button id="video-delete-button" onClick={handleDeleteVideo}>
-            Delete video
+            Delete Video
           </button>
         </div>
       </div>
