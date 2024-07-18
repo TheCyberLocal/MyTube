@@ -16,8 +16,6 @@ function SignupFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,6 +39,10 @@ function SignupFormPage() {
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
+
+  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
+
+  if (isLoading) return null;
 
   return (
     <div id="main-container">

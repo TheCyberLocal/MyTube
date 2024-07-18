@@ -13,8 +13,6 @@ function LoginFormPage() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,7 +20,7 @@ function LoginFormPage() {
       thunkLogin({
         credential,
         password,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -35,13 +33,17 @@ function LoginFormPage() {
       thunkLogin({
         credential: "Demo",
         password: "Demo123!",
-      }),
+      })
     );
   };
 
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
+
+  if (!isLoading && user) return <Navigate to="/my-videos" replace={true} />;
+
+  if (isLoading) return null;
 
   return (
     <div id="main-container">
