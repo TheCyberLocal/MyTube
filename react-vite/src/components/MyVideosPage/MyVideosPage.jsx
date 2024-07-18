@@ -40,7 +40,7 @@ function MyVideosPage() {
     dispatch(searchMyVideos({ keyword, tags, sortBy, page })).then(
       (results) => {
         if (
-          !results.length &&
+          results.length < 10 &&
           !sessionLoading &&
           !myVideosLoading &&
           user.videoCount
@@ -53,16 +53,13 @@ function MyVideosPage() {
   }, [dispatch, user, sortBy, keyword, tags, page]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsBottomVisible(true);
-        } else {
-          setIsBottomVisible(false);
-        }
-      },
-      { threshold: 1.0 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setIsBottomVisible(true);
+      } else {
+        setIsBottomVisible(false);
+      }
+    });
 
     if (bottomRef.current) {
       observer.observe(bottomRef.current);
@@ -167,10 +164,7 @@ function MyVideosPage() {
           </div>
         )}
       </div>
-      <div
-        ref={bottomRef}
-        style={{ height: "10px", backgroundColor: "black" }}
-      ></div>
+      <div ref={bottomRef}></div>
     </>
   );
 }

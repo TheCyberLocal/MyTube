@@ -1,10 +1,11 @@
 #my-videos-page {
   padding: 20px;
-  min-height: 85vh;
+  min-height: 90vh;
   height: fit-content;
 }
 
 #end-of-page {
+  margin: auto;
   width: 100%;
   text-align: center;
   background-color: grey;
@@ -13,10 +14,17 @@
   border-radius: 25px;
   margin-top: 20px;
   cursor: pointer;
+  padding: 10px;
+  width: 50%;
 }
 
 #end-of-page:hover {
   background-color: darkgrey;
+}
+
+#footer {
+  height: 30px;
+  background-color: black;
 }
 
 #controls {
@@ -25,7 +33,7 @@
   align-items: center;
   gap: 10px;
   height: 80px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 #controls > label {
