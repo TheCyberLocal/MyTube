@@ -13,6 +13,7 @@ function VideoNotes() {
   const [editableNote, setEditableNote] = useState(null);
   const [noteContent, setNoteContent] = useState("");
   const [noteTitle, setNoteTitle] = useState("");
+  const [errors, setErrors] = useState({});
   const noteRefs = useRef([]);
   const textareaRef = useRef(null);
   const dispatch = useDispatch();
@@ -47,13 +48,21 @@ function VideoNotes() {
   };
 
   const handleSaveNote = (noteId) => {
-    dispatch(
-      updateNoteThunk(noteId, {
-        title: noteTitle,
-        description: noteContent,
-      }),
-    );
-    setEditableNote(null);
+    const newErrors = {};
+    if (!noteTitle) newErrors.title = "Title is required";
+    if (!noteContent) newErrors.description = "Content is required";
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
+    } else {
+      setErrors({});
+      dispatch(
+        updateNoteThunk(noteId, {
+          title: noteTitle,
+          description: noteContent,
+        })
+      );
+      setEditableNote(null);
+    }
   };
 
   const handleCancelEdit = () => {
@@ -91,7 +100,8 @@ function VideoNotes() {
                   <input
                     value={noteTitle}
                     onChange={(e) => setNoteTitle(e.target.value)}
-                    onClick={(e) => e.stopPropagation()}
+                    // onClick={(e) => e.stopPropagation()}
+                    placeholder={errors.title ? "Title is required" : ""}
                     spellCheck="true"
                   />
                   <h3>Description</h3>
@@ -100,6 +110,9 @@ function VideoNotes() {
                     value={noteContent}
                     onChange={(e) => setNoteContent(e.target.value)}
                     style={{ overflow: "hidden", resize: "none" }}
+                    placeholder={
+                      errors.description ? "Content is required" : ""
+                    }
                     spellCheck="true"
                   />
                 </div>

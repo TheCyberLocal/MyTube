@@ -63,6 +63,7 @@ function VideoModal({ type, video = null }) {
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
     } else if (type === "Update") {
+      setErrors({});
       const serverErrors = await dispatch(
         updateVideoThunk(video.id, {
           url: videoURL,
@@ -78,6 +79,7 @@ function VideoModal({ type, video = null }) {
         window.location.reload();
       }
     } else if (type === "Add") {
+      setErrors({});
       const serverErrors = await dispatch(
         createVideoThunk({
           url: videoURL,
