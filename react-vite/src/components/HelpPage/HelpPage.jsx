@@ -9,10 +9,10 @@ function HelpPage() {
         the site.
       </p>
 
-      <div class="segment">
+      <div className="segment">
         <h2>Users</h2>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I sign up?</h3>
           <p>
             On the right side of the navigation bar, click "Profile" to go to
@@ -22,7 +22,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I log in?</h3>
           <p>
             On the right side of the navigation bar, click "Profile" to go to
@@ -31,7 +31,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I update my account information?</h3>
           <p>
             On the right side of the navigation bar, click "Profile". Here you
@@ -41,7 +41,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I change my password?</h3>
           <p>
             On the right side of the navigation bar, click "Profile". On the
@@ -51,7 +51,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I delete my account?</h3>
           <p>
             On the right side of the navigation bar, click "Profile". On the
@@ -60,10 +60,10 @@ function HelpPage() {
         </div>
       </div>
 
-      <div class="segment">
+      <div className="segment">
         <h2>Videos</h2>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>What are videos for?</h3>
           <p>
             Videos are a place for you to assign notes and highlights. They are
@@ -72,7 +72,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I add a video?</h3>
           <p>
             On the left side of the navigation bar, click "Add Video". Fill in
@@ -81,7 +81,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I view my videos?</h3>
           <p>
             On the left side of the navigation bar, click "My Videos". This will
@@ -90,7 +90,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I filter my videos?</h3>
           <p>
             Below the navigation bar are the search filters. On the left side,
@@ -102,7 +102,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I update a video?</h3>
           <p>
             On the "My Videos" page, click on the video you want to update. On
@@ -110,7 +110,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I delete a video?</h3>
           <p>
             On the "My Videos" page, click on the video you want to delete. On
@@ -120,10 +120,10 @@ function HelpPage() {
         </div>
       </div>
 
-      <div class="segment">
+      <div className="segment">
         <h2>Notes</h2>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I view a note?</h3>
           <p>
             On the video page, notes are displayed below the video. Click on any
@@ -131,7 +131,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I add a note to a video?</h3>
           <p>
             On the video page, to the right of the video, enter your title and
@@ -140,7 +140,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I update a note?</h3>
           <p>
             On the video page, below the video, find the note you want to update
@@ -149,7 +149,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I delete a note?</h3>
           <p>
             On the video page, below the video, find the note you want to delete
@@ -159,10 +159,10 @@ function HelpPage() {
         </div>
       </div>
 
-      <div class="segment">
+      <div className="segment">
         <h2>Highlights</h2>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I add a highlight to a video?</h3>
           <p>
             On the video page, at the bottom of the Note Taker, click "Record"
@@ -174,7 +174,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I view my highlights?</h3>
           <p>
             On the video page, below the Note Taker, there is a list of the
@@ -185,7 +185,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I update a highlight?</h3>
           <p>
             On the video page, below the Note Taker, find the highlight you want
@@ -193,7 +193,7 @@ function HelpPage() {
           </p>
         </div>
 
-        <div class="question-container">
+        <div className="question-container">
           <h3>How do I delete a highlight?</h3>
           <p>
             On the video page, below the Note Taker, find the highlight you want
