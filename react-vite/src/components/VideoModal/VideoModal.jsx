@@ -15,10 +15,17 @@ function VideoModal({ type, video = null }) {
   const [videoTitle, setVideoTitle] = useState(video?.title ?? "");
   const [videoDesc, setVideoDesc] = useState(video?.description ?? "");
   const [videoTags, setVideoTags] = useState([]);
-  const [options, setOptions] = useState({});
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
     getTags().then((res) => setOptions(res));
+    if (video) {
+      const videoTagIds = video.tags.map((e) => ({
+        value: e.id,
+        label: e.name,
+      }));
+      setVideoTags(videoTagIds);
+    }
   }, []);
 
   useEffect(() => {

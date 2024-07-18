@@ -18,7 +18,7 @@ function MyVideosPage() {
 
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
-  const [options, setOptions] = useState({});
+  const [options, setOptions] = useState([]);
   const [sortBy, setSortBy] = useState("recently_viewed");
   const [tags, setTags] = useState([]);
   const [page, setPage] = useState(1);
