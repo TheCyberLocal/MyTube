@@ -7,7 +7,7 @@ function VideoTile({ video }) {
   return (
     <div
       key={video.id}
-      className="video-tile"
+      className="video-tile fade-in"
       onClick={() => nav(`/videos/${video.id}`)}
     >
       <div className="image-container">
