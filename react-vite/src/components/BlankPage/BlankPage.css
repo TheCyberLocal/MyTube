@@ -25,6 +25,7 @@ div#main-container {
   & h2,
   & h3 {
     margin: 15px 0;
+    color: black;
   }
 
   & form,
