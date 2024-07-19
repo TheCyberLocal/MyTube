@@ -1,3 +1,1 @@
-import HelpPage from "./HelpPage";
-
-export default HelpPage;
+export { default } from "./HelpPage";

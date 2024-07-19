@@ -1,3 +1,1 @@
-import VideoDetailsPage from "./VideoDetailsPage";
-
-export default VideoDetailsPage;
+export { default } from "./VideoDetailsPage";

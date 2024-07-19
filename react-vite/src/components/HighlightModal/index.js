@@ -1,3 +1,1 @@
-import HighlightModal from "./HighlightModal";
-
-export default HighlightModal;
+export { default } from "./HighlightModal";

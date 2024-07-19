@@ -1,3 +1,1 @@
-import AlertChange from "./AlertChange";
-
-export default AlertChange;
+export { default } from "./AlertChange";

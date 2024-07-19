@@ -1,3 +1,1 @@
-import UnderstandDelete from "./UnderstandDelete";
-
-export default UnderstandDelete;
+export { default } from "./UnderstandDelete";

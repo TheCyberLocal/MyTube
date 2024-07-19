@@ -1,3 +1,1 @@
-import BlankPage from "./BlankPage";
-
-export default BlankPage;
+export { default } from "./BlankPage";

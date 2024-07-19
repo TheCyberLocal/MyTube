@@ -1,3 +1,1 @@
-import ChangePasswordModal from "./ChangePasswordModal";
-
-export default ChangePasswordModal;
+export { default } from "./ChangePasswordModal";

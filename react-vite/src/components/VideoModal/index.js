@@ -1,3 +1,1 @@
-import VideoModal from "./VideoModal";
-
-export default VideoModal;
+export { default } from "./VideoModal";

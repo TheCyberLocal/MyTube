@@ -1,3 +1,1 @@
-import VideoNotes from "./VideoNotes";
-
-export default VideoNotes;
+export { default } from "./VideoNotes";
