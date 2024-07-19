@@ -14,13 +14,13 @@ function UnderstandDelete({ type, element }) {
     if (type === "Video") {
       dispatch(deleteVideoThunk(element.id));
       setModalContent(
-        <AlertChange message="Your video has been successfully deleted." />,
+        <AlertChange message="alert_video_deleted" />,
       );
       nav("/my-videos");
     } else if (type === "Account") {
       dispatch(thunkDeleteUser(user.id));
       setModalContent(
-        <AlertChange message="We'll be here if you need us again." />,
+        <AlertChange message="alert_goodbye" />,
       );
       nav("/");
     }

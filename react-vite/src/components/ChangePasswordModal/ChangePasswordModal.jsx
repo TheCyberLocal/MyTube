@@ -26,13 +26,13 @@ function ChangePasswordModal() {
         old_password: oldPassword,
         new_password: newPassword,
         confirm_password: confirmPassword,
-      }),
+      })
     );
 
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
-      setModalContent(<AlertChange message="Your password has been reset." />);
+      setModalContent(<AlertChange message="alert_password_reset" />);
     }
   };
 
