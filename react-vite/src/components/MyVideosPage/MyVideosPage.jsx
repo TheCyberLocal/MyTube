@@ -134,13 +134,13 @@ function MyVideosPage() {
             ))
           : null}
       </div>
-      {/* {!sessionLoading && !myVideosLoading && user.videoCount ? (
+      {!sessionLoading && !myVideosLoading && user.videoCount ? (
         <div id="end-of-page" onClick={handleLoadClick} ref={bottomRef}>
           {endOfPage
             ? "You've run out of videos. Let's add some more..."
             : "Load more videos..."}
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 }
