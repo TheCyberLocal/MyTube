@@ -180,8 +180,8 @@ function HighlightModal({
   const handleSaveHighlight = async () => {
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
-    if (!title) {
-      setErrors({ title: "This field is required" });
+    if (!title || title.length > 255) {
+      setErrors({ title: "Title must be 1 to 255 characters" });
     } else if (type === "Create") {
       const serverErrors = await dispatch(
         createHighlightThunk({
@@ -198,14 +198,19 @@ function HighlightModal({
         closeModal();
       }
     } else if (type === "Update") {
-      dispatch(
+      const serverErrors = await dispatch(
         updateHighlightThunk(highlight.id, {
           title,
           start_time,
           end_time,
         })
       );
-      closeModal();
+      if (serverErrors) {
+        setErrors(serverErrors);
+      } else {
+        setErrors({});
+        closeModal();
+      }
     }
   };
 

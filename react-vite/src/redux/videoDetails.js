@@ -117,9 +117,18 @@ export const updateNoteThunk = (noteId, note) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(note),
     });
-    const data = await response.json();
-    dispatch(updateNote(data));
-    dispatch(setLoading(false));
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateNote(data));
+      dispatch(setError(null));
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      dispatch(setError(errorMessages));
+      dispatch(setLoading(false));
+      return errorMessages;
+    } else {
+      dispatch(setError("Something went wrong. Please try again"));
+    }
   } catch (error) {
     dispatch(setError(error.toString()));
     dispatch(setLoading(false));
@@ -162,7 +171,6 @@ export const createHighlightThunk = (highlight) => async (dispatch) => {
     }
   } catch (error) {
     dispatch(setError(error.toString()));
-    dispatch(setLoading(false));
   }
   dispatch(setLoading(false));
 };
@@ -176,12 +184,22 @@ export const updateHighlightThunk =
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(highlight),
       });
-      const data = await response.json();
-      dispatch(updateHighlight(data));
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(updateHighlight(data));
+        dispatch(setError(null));
+      } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        dispatch(setError(errorMessages));
+        dispatch(setLoading(false));
+        return errorMessages;
+      } else {
+        dispatch(setError("Something went wrong. Please try again"));
+      }
     } catch (error) {
       dispatch(setError(error.toString()));
-      dispatch(setLoading(false));
     }
+    dispatch(setLoading(false));
   };
 
 export const deleteHighlightThunk = (highlightId) => async (dispatch) => {
