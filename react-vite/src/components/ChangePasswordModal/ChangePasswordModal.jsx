@@ -2,10 +2,12 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
+import { getTranslation } from "../../utils";
 import AlertChange from "../AlertChange";
 
 function ChangePasswordModal() {
   const { user, isLoading } = useSelector((state) => state.session);
+  const t = getTranslation(user.language);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -46,7 +48,7 @@ function ChangePasswordModal() {
 
   return (
     <div id="main-container">
-      <h1>Change Password</h1>
+      <h1>{t("change_password")}</h1>
       <form>
         <div className="input-container">
           <input
@@ -56,18 +58,18 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">Current Password</label>
+          <label className="moving-label">{t("current_password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowOldPassword}
           >
-            {showOldPassword ? "Hide" : "Show"}
+            {t(showOldPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
           {errors.old_password && (
-            <p className="error">{errors.old_password[0]}</p>
+            <p className="error">{t("invalid_current_password")}</p>
           )}
         </div>
         <div className="input-container">
@@ -78,18 +80,18 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">New Password</label>
+          <label className="moving-label">{t("new_password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {t(showPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
           {errors.new_password && (
-            <p className="error">{errors.new_password[0]}</p>
+            <p className="error">{t("invalid_new_password")}</p>
           )}
         </div>
         <div className="input-container">
@@ -100,27 +102,27 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">Confirm New Password</label>
+          <label className="moving-label">{t("confirm_password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {t(showPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
           {errors.confirm_password && (
-            <p className="error">{errors.confirm_password[0]}</p>
+            <p className="error">{t("invalid_confirm_password")}</p>
           )}
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Save
+            {t("save")}
           </button>
-          <label className="button-label">or</label>
+          <label className="button-label">{t("or")}</label>
           <button style={{ flex: 1 }} onClick={closeModal}>
-            Cancel
+            {t("cancel")}
           </button>
         </div>
       </form>

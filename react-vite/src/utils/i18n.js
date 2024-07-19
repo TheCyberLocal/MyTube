@@ -1,7 +1,20 @@
 const translations = {
   en: {
+    or: `or`,
+    save: `Save`,
+    cancel: `Cancel`,
+    hide: `Hide`,
+    show: `Show`,
     thanks: `Thanks!`,
     you_are_all_set: `You're all set!`,
+
+    new_password: `New Password`,
+    change_password: `Change Password`,
+    current_password: `Current Password`,
+    confirm_password: `Confirm New Password`,
+    invalid_current_password: `Invalid current password`,
+    invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,
+    invalid_confirm_password: `Confirm password must match`,
 
     alert_video_deleted: `Your video has been successfully deleted.`,
     alert_password_reset: `Your password has been reset.`,
@@ -60,6 +73,7 @@ const translations = {
   },
 };
 
-export function getTranslation(lang, phrase) {
-  return translations[lang || "en"][phrase];
+export function getTranslation(lang) {
+  return (phrase) =>
+    translations[lang || "en"][phrase] || `!!PROBLEM!! ${phrase}`;
 }
