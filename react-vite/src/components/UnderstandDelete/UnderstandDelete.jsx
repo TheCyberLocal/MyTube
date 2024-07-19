@@ -40,8 +40,10 @@ function UnderstandDelete({ type, element }) {
         <ul>
           <li>Your account ({element.email}) will be unrecoverable.</li>
           <li>Your ({element.videoCount}) videos will no longer be saved.</li>
-          <li>Your account settings will be removed.</li>
-          <li>Your personal information will be removed.</li>
+          <li>The notes of all videos will be deleted.</li>
+          <li>The highlights of all videos will be deleted.</li>
+          <li>Your account settings will be deleted.</li>
+          <li>Your personal information will be deleted.</li>
         </ul>
       );
     }
