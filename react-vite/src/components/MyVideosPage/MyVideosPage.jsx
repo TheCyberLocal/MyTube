@@ -30,18 +30,31 @@ function MyVideosPage() {
     getTags().then((res) => setOptions(res));
   }, []);
 
+  const fetchResults = () => {
+    dispatch(searchMyVideos({ keyword, tags, sortBy, page })).then(
+      (results) => {
+        if (results.length < 10) setEndOfPage(true);
+        setAllSearchResults((prevResults) =>
+          page === 1 ? results : [...prevResults, ...results]
+        );
+      }
+    );
+  };
+
   useEffect(() => {
     dispatch(clearVideoDetails());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(searchMyVideos({ keyword, tags, sortBy, page })).then(
-      (results) => {
-        if (results.length < 10) setEndOfPage(true);
-        setAllSearchResults([...allSearchResults, ...results]);
-      }
-    );
-  }, [dispatch, user, sortBy, keyword, tags, page]);
+    setPage(1);
+    setEndOfPage(false);
+    setAllSearchResults([]);
+    fetchResults();
+  }, [dispatch, keyword, tags, sortBy]);
+
+  useEffect(() => {
+    if (page > 1) fetchResults();
+  }, [dispatch, page]);
 
   const handleSortChange = (e) => {
     const selectedSort = e.target.value;
@@ -121,13 +134,13 @@ function MyVideosPage() {
             ))
           : null}
       </div>
-      {!sessionLoading && !myVideosLoading && user.videoCount ? (
+      {/* {!sessionLoading && !myVideosLoading && user.videoCount ? (
         <div id="end-of-page" onClick={handleLoadClick} ref={bottomRef}>
           {endOfPage
             ? "You've run out of videos. Let's add some more..."
             : "Load more videos..."}
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
