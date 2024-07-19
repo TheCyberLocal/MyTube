@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { searchMyVideos } from "../../redux/myVideos";
 import { clearVideoDetails } from "../../redux/videoDetails";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ function MyVideosPage() {
   const [page, setPage] = useState(1);
   const [allSearchResults, setAllSearchResults] = useState([]);
   const [endOfPage, setEndOfPage] = useState(false);
+  const bottomRef = useRef();
 
   useEffect(() => {
     const savedSortBy = getCookie("sortBy");
@@ -53,6 +54,10 @@ function MyVideosPage() {
       window.open("https://youtube.com");
     } else {
       setPage((prev) => prev + 1);
+      setTimeout(
+        () => bottomRef.current?.scrollIntoView({ behavior: "smooth" }),
+        1000
+      );
     }
   };
 
@@ -117,7 +122,7 @@ function MyVideosPage() {
           : null}
       </div>
       {!sessionLoading && !myVideosLoading && user.videoCount ? (
-        <div id="end-of-page" onClick={handleLoadClick}>
+        <div id="end-of-page" onClick={handleLoadClick} ref={bottomRef}>
           {endOfPage
             ? "You've run out of videos. Let's add some more..."
             : "Load more videos..."}
