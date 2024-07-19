@@ -22,6 +22,8 @@ const translations = {
     search: `Search`,
 
     keyword_or_phrase: `Keyword or Phrase`,
+    name: `Name`,
+    username: `Username`,
     title: `Title`,
     note: `Note`,
     video: `Video`,
@@ -38,6 +40,7 @@ const translations = {
     load_more_videos: `Load more videos...`,
     you_ran_out_of_videos: `You've run out of videos. Let's add some more...`,
     you_have_no_videos: `You have no videos. How about adding some...`,
+    you_have_organized_videos: `You have organized {count} videos!`,
 
     new_password: `New Password`,
     change_password: `Change Password`,
@@ -48,6 +51,7 @@ const translations = {
     invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,
     invalid_confirm_password: `Confirm password must match`,
     invalid_highlight_title: `Title must be 1 to 255 characters`,
+    invalid_name: `Name must be between 3 and 20 characters`,
 
     alert_video_deleted: `Your video has been successfully deleted.`,
     alert_password_reset: `Your password has been reset.`,
@@ -107,6 +111,7 @@ const translations = {
 };
 
 export function getTranslation(lang) {
-  return (phrase) =>
-    translations[lang || "en"][phrase] || `!!PROBLEM!! ${phrase}`;
+  return (phrase, count = "!!PROBLEM!!") =>
+    translations[lang ?? "en"][phrase]?.replace("{count}", count) ||
+    `!!PROBLEM!! ${phrase}`;
 }

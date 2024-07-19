@@ -39,16 +39,16 @@ def password_matches(form, field):
 
 class LoginForm(FlaskForm):
     credential = StringField('credential', validators=[DataRequired()])
-    password = StringField('password', validators=[DataRequired(), password_matches])
+    password = StringField('password', validators=[password_matches])
 
 
 class SignUpForm(FlaskForm):
     password_regex = r"(?=^.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])"
 
-    username = StringField('username', validators=[DataRequired(), Length(4, 20), username_exists])
-    email = StringField('email', validators=[DataRequired(), Email(), email_exists])
-    name = StringField('name', validators=[DataRequired(), Length(3, 20)])
-    password = StringField('password', validators=[DataRequired(), Length(min=8), Regexp(password_regex, message="Must contain uppercase letter, lowercase letter, digit and symbol")])
+    username = StringField('username', validators=[Length(4, 20), username_exists])
+    email = StringField('email', validators=[Email(), email_exists])
+    name = StringField('name', validators=[Length(3, 20)])
+    password = StringField('password', validators=[Length(min=8), Regexp(password_regex, message="Must contain uppercase letter, lowercase letter, digit and symbol")])
     confirm_password = StringField('password', validators=[EqualTo('password', message='Confirm password must match')])
 
 

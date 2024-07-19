@@ -14,7 +14,7 @@ function MyVideosPage() {
     (state) => state.session
   );
 
-  const t = getTranslation(user.language);
+  const t = getTranslation(user?.language);
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const [options, setOptions] = useState([]);

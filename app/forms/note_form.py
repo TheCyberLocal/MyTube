@@ -15,7 +15,7 @@ def is_int(form, field):
 
 class NoteForm(FlaskForm):
     video_id = IntegerField('video_id', validators=[DataRequired(), is_int, NumberRange(min=1)])
-    title = StringField('title', validators=[DataRequired(), Length(1, 255)])
+    title = StringField('title', validators=[Length(1, 255)])
     description = TextAreaField('description', validators=[DataRequired()])
 
 

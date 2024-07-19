@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, Optional
 
 
 class VideoForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired(), Length(max=255)])
+    title = StringField('title', validators=[Length(max=255)])
     description = TextAreaField('description', validators=[DataRequired()])
     url = URLField('url', validators=[DataRequired()])
 

@@ -15,7 +15,7 @@ def is_int(form, field):
 
 class HighlightForm(FlaskForm):
     video_id = IntegerField('video_id', validators=[DataRequired(), NumberRange(min=1)])
-    title = StringField('title', validators=[DataRequired(), Length(1, 255)])
+    title = StringField('title', validators=[Length(1, 255)])
     start_time = IntegerField('start_time', validators=[is_int, NumberRange(min=0)])
     end_time = IntegerField('end_time', validators=[is_int, NumberRange(min=0)])
 

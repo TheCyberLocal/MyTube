@@ -9,7 +9,7 @@ function Navigation() {
   const { user, isLoading } = useSelector((state) => state.session);
   const { setModalContent } = useModal();
   const nav = useNavigate();
-  const t = getTranslation(user.language);
+  const t = getTranslation(user?.language);
 
   const handleProfileClick = () => {
     nav(user ? "/profile" : "/login");

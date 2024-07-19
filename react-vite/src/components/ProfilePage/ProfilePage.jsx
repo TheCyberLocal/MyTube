@@ -3,11 +3,13 @@ import { thunkLogout, thunkUpdateUser } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { getTranslation } from "../../utils";
 import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);
+  const t = getTranslation(user.language);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -26,7 +28,7 @@ function ProfilePage() {
         username,
         name,
         email,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -56,8 +58,8 @@ function ProfilePage() {
 
   return (
     <div id="main-container">
-      <h1>Profile</h1>
-      <h3>You have organized {user.videoCount} videos!</h3>
+      <h1>{t("profile")}</h1>
+      <h3>{t("you_have_organized_videos", user.videoCount)}</h3>
       <form>
         <div className="input-container">
           <input
@@ -67,10 +69,10 @@ function ProfilePage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Name</label>
+          <label className="moving-label">{t("name")}</label>
         </div>
         <div className="error-container">
-          {errors.name && <p className="error">{errors.name[0]}</p>}
+          {errors.name && <p className="error">{t("invalid_name")}</p>}
         </div>
         <div className="input-container">
           <input
@@ -80,7 +82,7 @@ function ProfilePage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Username</label>
+          <label className="moving-label">{t("username")}</label>
         </div>
         <div className="error-container">
           {errors.username && <p className="error">{errors.username[0]}</p>}
