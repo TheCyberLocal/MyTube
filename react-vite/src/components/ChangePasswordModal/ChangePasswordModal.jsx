@@ -129,4 +129,5 @@ function ChangePasswordModal() {
     </div>
   );
 }
+
 export default ChangePasswordModal;

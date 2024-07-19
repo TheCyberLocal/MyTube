@@ -1,17 +1,28 @@
 const translations = {
   en: {
-    or: `or`,
     save: `Save`,
+    delete: `Delete`,
     cancel: `Cancel`,
+
+    or: `or`,
     hide: `Hide`,
     show: `Show`,
     thanks: `Thanks!`,
+
+    note: `Note`,
+    video: `Video`,
+    highlight: `Highlight`,
+    account: `Account`,
+
     you_are_all_set: `You're all set!`,
+    are_you_sure: `Are you sure you don't want this?`,
+    confirm_delete_of: `Confirm Delete of`,
 
     new_password: `New Password`,
     change_password: `Change Password`,
     current_password: `Current Password`,
     confirm_password: `Confirm New Password`,
+
     invalid_current_password: `Invalid current password`,
     invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,
     invalid_confirm_password: `Confirm password must match`,

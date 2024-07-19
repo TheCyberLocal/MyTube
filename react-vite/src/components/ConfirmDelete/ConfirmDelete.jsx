@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { getTranslation } from "../../utils";
+import { useSelector } from "react-redux";
 import UnderstandDelete from "../UnderstandDelete";
 import {
   deleteNoteThunk,
@@ -11,39 +13,41 @@ function ConfirmDelete({ type, element = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.session);
+  const t = getTranslation(user.language);
 
   const handleDelete = () => {
-    if (type === "Account") {
-      setModalContent(<UnderstandDelete type="Account" element={element} />);
-    } else if (type === "Note") {
+    if (type === "account") {
+      setModalContent(<UnderstandDelete type="account" element={element} />);
+    } else if (type === "note") {
       dispatch(deleteNoteThunk(element.id));
       closeModal();
-    } else if (type === "Video") {
-      setModalContent(<UnderstandDelete type="Video" element={element} />);
-    } else if (type === "Highlight") {
+    } else if (type === "video") {
+      setModalContent(<UnderstandDelete type="video" element={element} />);
+    } else if (type === "highlight") {
       dispatch(deleteHighlightThunk(element.id));
       closeModal();
     }
   };
 
   const getName = () => {
-    if (type === "Account") return element.username;
+    if (type === "account") return element.username;
     return element.title;
   };
 
   return (
     <div id="prompt-modal">
-      <h1>Confirm Delete of</h1>
+      <h1>{t("confirm_delete_of")}</h1>
       <h3>
-        {type} - {getName()}
+        {t(type)} - {getName()}
       </h3>
-      <h3>Are you sure you don&apos;t want this?</h3>
+      <h3>{t("are_you_sure")}</h3>
       <div className="row">
         <button onClick={handleDelete} id="yes">
-          Delete
+          {t("delete")}
         </button>
         <button onClick={closeModal} id="no">
-          Cancel
+          {t("cancel")}
         </button>
       </div>
     </div>
