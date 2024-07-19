@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import "./HelpPage.css";
 
 function HelpPage() {
-  const language = useSelector((state) => state.session.language);
-  const t = getTranslation(language);
+  const lang = useSelector((state) => state.session.language);
+  const t = getTranslation(lang);
 
   return (
     <div id="help-page">

@@ -3,16 +3,19 @@ const translations = {
     save: `Save`,
     delete: `Delete`,
     cancel: `Cancel`,
-
-    or: `or`,
     hide: `Hide`,
     show: `Show`,
     thanks: `Thanks!`,
+    or: `or`,
 
+    title: `Title`,
     note: `Note`,
     video: `Video`,
     highlight: `Highlight`,
     account: `Account`,
+
+    start_time: `Start time`,
+    end_time: `End time`,
 
     you_are_all_set: `You're all set!`,
     are_you_sure: `Are you sure you don't want this?`,
@@ -26,6 +29,7 @@ const translations = {
     invalid_current_password: `Invalid current password`,
     invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,
     invalid_confirm_password: `Confirm password must match`,
+    invalid_highlight_title: `Title must be 1 to 255 characters`,
 
     alert_video_deleted: `Your video has been successfully deleted.`,
     alert_password_reset: `Your password has been reset.`,

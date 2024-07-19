@@ -16,6 +16,9 @@ function HighlightModal({
 }) {
   const { closeModal } = useModal();
   const video = useSelector((state) => state.videoDetails.video);
+  const lang = useSelector((state) => state.session.language);
+  const t = getTranslation(lang);
+
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
 
@@ -181,8 +184,8 @@ function HighlightModal({
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
     if (!title || title.length > 255) {
-      setErrors({ title: "Title must be 1 to 255 characters" });
-    } else if (type === "Create") {
+      setErrors({ title: t("invalid_highlight_title") });
+    } else if (type === "create") {
       const serverErrors = await dispatch(
         createHighlightThunk({
           video_id: video.id,
@@ -197,7 +200,7 @@ function HighlightModal({
         setErrors({});
         closeModal();
       }
-    } else if (type === "Update") {
+    } else if (type === "update") {
       const serverErrors = await dispatch(
         updateHighlightThunk(highlight.id, {
           title,
@@ -216,9 +219,9 @@ function HighlightModal({
 
   return (
     <div id="highlight-modal">
-      <h1>{type} Highlight</h1>
+      <h1>{t(`${type}_highlight`)}</h1>
       <div className="highlight-inputs">
-        <label htmlFor="highlight-title">Title</label>
+        <label htmlFor="highlight-title">{t("title")}</label>
         <input
           type="text"
           id="highlight-title"
@@ -230,7 +233,7 @@ function HighlightModal({
         </div>
         <div className="time-inputs">
           <div className="time-input">
-            <label htmlFor="start-time">Start time</label>
+            <label htmlFor="start-time">{t("start_time")}</label>
             <div className="time-selectors">
               <input
                 type="number"
@@ -255,7 +258,7 @@ function HighlightModal({
             </div>
           </div>
           <div className="time-input">
-            <label htmlFor="end-time">End time</label>
+            <label htmlFor="end-time">{t("end_time")}</label>
             <div className="time-selectors">
               <input
                 type="number"
@@ -282,8 +285,8 @@ function HighlightModal({
         </div>
       </div>
       <div className="highlight-buttons">
-        <button onClick={handleSaveHighlight}>Save</button>
-        <button onClick={closeModal}>Cancel</button>
+        <button onClick={handleSaveHighlight}>{t("save")}</button>
+        <button onClick={closeModal}>{t("save")}</button>
       </div>
     </div>
   );
