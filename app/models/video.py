@@ -19,8 +19,8 @@ class Video(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
 
     user = db.relationship('User', back_populates='videos')
-    notes = db.relationship('Note', back_populates='video')
-    highlights = db.relationship('Highlight', back_populates='video')
+    notes = db.relationship('Note', back_populates='video', cascade="all, delete-orphan")
+    highlights = db.relationship('Highlight', back_populates='video', cascade="all, delete-orphan")
     tags = db.relationship('Tag', secondary=video_tag, back_populates='videos')
 
     def to_dict(self):
