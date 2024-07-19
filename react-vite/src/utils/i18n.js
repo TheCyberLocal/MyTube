@@ -8,6 +8,15 @@ const translations = {
     thanks: `Thanks!`,
     or: `or`,
 
+    sort_by: `Sort by`,
+    recently_viewed: `Recently Viewed`,
+    alphabetical: `Alphabetical`,
+    newest: `Newest`,
+    tags: `Tags`,
+    select: `Select...`,
+    search: `Search`,
+
+    keyword_or_phrase: `Keyword or Phrase`,
     title: `Title`,
     note: `Note`,
     video: `Video`,
@@ -20,6 +29,10 @@ const translations = {
     you_are_all_set: `You're all set!`,
     are_you_sure: `Are you sure you don't want this?`,
     confirm_delete_of: `Confirm Delete of`,
+    no_videos_match: `No videos match your search...`,
+    load_more_videos: `Load more videos...`,
+    you_ran_out_of_videos: `You've run out of videos. Let's add some more...`,
+    you_have_no_videos: `You have no videos. How about adding some...`,
 
     new_password: `New Password`,
     change_password: `Change Password`,

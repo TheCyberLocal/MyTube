@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import { MultiSelect } from "react-multi-select-component";
-import { setCookie, getCookie, getTags } from "../../utils";
+import { setCookie, getCookie, getTags, getTranslation } from "../../utils";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
@@ -14,6 +14,7 @@ function MyVideosPage() {
     (state) => state.session
   );
 
+  const t = getTranslation(user.language);
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const [options, setOptions] = useState([]);
@@ -80,26 +81,26 @@ function MyVideosPage() {
     <div id="my-videos-page">
       <div id="controls">
         <label>
-          Sort by
+          {t("sort_by")}
           <br />
           <select value={sortBy} onChange={handleSortChange}>
-            <option value="recently_viewed">Recently Viewed</option>
-            <option value="alphabetical">Alphabetical</option>
-            <option value="newest">Newest</option>
+            <option value="recently_viewed">{t("recently_viewed")}</option>
+            <option value="alphabetical">{t("alphabetical")}</option>
+            <option value="newest">{t("newest")}</option>
           </select>
         </label>
         <label>
-          Keyword or Phrase
+          {t("keyword_or_phrase")}
           <br />
           <input
             type="text"
-            placeholder="Keyword or Phrase"
+            placeholder={t("keyword_or_phrase")}
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
         </label>
         <label>
-          Tags
+          {t("tags")}
           <MultiSelect
             className="multi-selector"
             options={options}
@@ -108,15 +109,15 @@ function MyVideosPage() {
             labelledBy="Select"
             hasSelectAll={false}
             overrideStrings={{
-              selectSomeItems: "Select...",
-              search: "Search",
+              selectSomeItems: t("select"),
+              search: t("search"),
             }}
           />
         </label>
       </div>
       {!sessionLoading && !user.videoCount && (
         <div className="no-video-results">
-          <h1>You have no videos. How about adding some...</h1>
+          <h1>{t("you_have_no_videos")}</h1>
         </div>
       )}
       {!sessionLoading &&
@@ -124,7 +125,7 @@ function MyVideosPage() {
       user.videoCount &&
       !allSearchResults.length ? (
         <div className="no-video-results">
-          <h1>No videos match your search...</h1>
+          <h1>{t("no_videos_match")}</h1>
         </div>
       ) : null}
       <div className="video-results">
@@ -136,9 +137,7 @@ function MyVideosPage() {
       </div>
       {!sessionLoading && !myVideosLoading && user.videoCount ? (
         <div id="end-of-page" onClick={handleLoadClick} ref={bottomRef}>
-          {endOfPage
-            ? "You've run out of videos. Let's add some more..."
-            : "Load more videos..."}
+          {endOfPage ? t("you_ran_out_of_videos") : t("load_more_videos")}
         </div>
       ) : null}
     </div>
