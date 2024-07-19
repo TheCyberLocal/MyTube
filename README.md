@@ -1,131 +1,37 @@
-# Flask React Project
+# MyTube
 
-This is the starter for the Flask React project.
+## 🗺️ Project Overview
 
-## Getting started
+MyTube is your ultimate platform for organizing and learning from YouTube videos. It allows users to easily save, organize, and annotate their favorite videos, making it a powerful tool for better learning and reference. Whether you are a student, a professional, or a lifelong learner, MyTube helps you manage your video content efficiently.
 
-1. Clone this repository (only this branch).
+## 🗝️ Key Features
 
-2. Install dependencies.
+- **User Management**: Sign up, log in, update account information, and delete your account with ease.
+- **Video Library**: Add videos to your personalized library with titles, descriptions, and tags for better organization.
+- **Annotations**: Create, update, and delete notes and highlights for each video to enhance your learning experience.
+- **Search and Filter**: Use keywords, phrases, and tags to quickly find the videos you need.
+- **Profile Management**: View and edit your profile, including name, username, email, and password.
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+## 🎯 Project Mission
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment.
+The mission of MyTube is to provide a robust platform for users to effectively manage and learn from their YouTube video collections. Rather than storing notes, MyTube allows you to store videos and attach notes and timestamped highlights. By offering powerful organizational tools and the ability to annotate videos, MyTube aims to enhance the educational experience and make video content more accessible and useful for everyone.
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file.
+## 📚 More on MyTube
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable. Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+- ### 💾 [Installation and Setup](./docs/setup.md)
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+- ### 📑 [MyTube Documentation](https://github.com/TheCyberLocal/MyTube/wiki)
 
-   ```bash
-   pipenv shell
-   ```
+- ### ✨ [MyTube in action!](https://mytube-e5bw.onrender.com)
 
-   ```bash
-   flask db upgrade
-   ```
+## 🌐 Socials
 
-   ```bash
-   flask seed all
-   ```
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/tzm01)
 
-   ```bash
-   flask run
-   ```
+## 💖 Support
 
-7. The React frontend has no styling applied. Copy the **.css** files from your
-   Authenticate Me project into the corresponding locations in the
-   **react-vite** folder to give your project a unique look.
+If you find my content helpful or interesting, consider buying me a coffee. Every cup is greatly appreciated and fuels my work!
 
-8. To run the React frontend in development, `cd` into the **react-vite**
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the **dist**
-   folder whenever you change your code, keeping the production version up to
-   date.
-
-## Deployment through Render.com
-
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the **dist** folder located in
-the root of your **react-vite** folder when you push to GitHub. This **dist**
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
-
-Begin deployment by running `npm run build` in your **react-vite** folder and
-pushing any changes to GitHub.
-
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
-
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
-
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
-
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the **Dockerfile**, but you do need to fill in a few fields.
-
-Start by giving your application a name.
-
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
-
-Select "Free" as your Instance Type.
-
-### Add environment variables
-
-In the development environment, you have been securing your environment
-variables in a **.env** file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-**.env** file. As you work to further develop your project, you may need to add
-more environment variables to your local **.env** file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+[![Buy Me a Coffee](https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee)](https://buymeacoffee.com/thecyberlocal)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://www.paypal.com/paypalme/TheCyberLocal)
+[![Venmo](https://img.shields.io/badge/Venmo-008CFF?logo=venmo&logoColor=white)](https://www.venmo.com/TheCyberLocal)
