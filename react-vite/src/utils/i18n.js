@@ -1,5 +1,10 @@
 const translations = {
   en: {
+    my_videos: `My Videos`,
+    add_video: `Add Video`,
+    help: `Help`,
+    profile: `Profile`,
+
     save: `Save`,
     delete: `Delete`,
     cancel: `Cancel`,
