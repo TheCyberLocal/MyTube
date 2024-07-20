@@ -14,7 +14,12 @@ function MyVideosPage() {
     (state) => state.session
   );
 
-  const t = getTranslation(user?.language);
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
+
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   const [options, setOptions] = useState([]);
