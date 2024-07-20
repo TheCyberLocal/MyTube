@@ -55,7 +55,8 @@ const translations = {
     new_password: `New Password`,
     change_password: `Change Password`,
     current_password: `Current Password`,
-    confirm_password: `Confirm New Password`,
+    confirm_password: `Confirm Password`,
+    confirm_new_password: `Confirm New Password`,
 
     invalid_current_password: `Invalid current password`,
     invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,

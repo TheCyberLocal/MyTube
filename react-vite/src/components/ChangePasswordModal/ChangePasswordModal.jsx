@@ -102,7 +102,7 @@ function ChangePasswordModal() {
             required
             placeholder=""
           />
-          <label className="moving-label">{t("confirm_password")}</label>
+          <label className="moving-label">{t("confirm_new_password")}</label>
           <button
             type="button"
             className="show-password-btn"

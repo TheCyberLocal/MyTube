@@ -2,9 +2,11 @@ import { useState } from "react";
 import { thunkSignup } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getTranslation } from "../../utils";
 
 function SignupFormPage() {
   const { user, isLoading } = useSelector((state) => state.session);
+  const t = getTranslation(user?.language);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function SignupFormPage() {
         email,
         password,
         confirm_password: confirmPassword,
-      }),
+      })
     );
 
     if (serverResponse) {
@@ -46,7 +48,7 @@ function SignupFormPage() {
 
   return (
     <div id="main-container">
-      <h1>Sign Up</h1>
+      <h1>{t("sign_up")}</h1>
       <form>
         <div className="input-container">
           <input
@@ -56,7 +58,7 @@ function SignupFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Name</label>
+          <label className="moving-label">{t("name")}</label>
         </div>
         <div className="error-container">
           {errors.name && <p className="error">{errors.name[0]}</p>}
@@ -69,7 +71,7 @@ function SignupFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Username</label>
+          <label className="moving-label">{t("username")}</label>
         </div>
         <div className="error-container">
           {errors.username && <p className="error">{errors.username[0]}</p>}
@@ -82,7 +84,7 @@ function SignupFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Email</label>
+          <label className="moving-label">{t("email")}</label>
         </div>
         <div className="error-container">
           {errors.email && <p className="error">{errors.email[0]}</p>}
@@ -95,13 +97,13 @@ function SignupFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Password</label>
+          <label className="moving-label">{t("password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {t(showPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
@@ -115,13 +117,13 @@ function SignupFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Confirm Password</label>
+          <label className="moving-label">{t("confirm_password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {t(showPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
@@ -131,11 +133,11 @@ function SignupFormPage() {
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Sign Up
+            {t("sign_up")}
           </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={() => nav("/login")}>
-            Log In
+            {t("log_in")}
           </button>
         </div>
       </form>
