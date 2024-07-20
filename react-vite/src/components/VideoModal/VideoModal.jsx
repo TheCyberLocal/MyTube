@@ -8,7 +8,12 @@ import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
   const lang = useSelector((state) => state.session.language);
-  const t = getTranslation(lang);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(lang).then((func) => setT(() => func));
+  }, [lang]);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
