@@ -12,13 +12,13 @@ import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video, highlights } = useSelector((state) => state.videoDetails);
-  const lang = useSelector((state) => state.session.language);
+  const { user } = useSelector((state) => state.session);
 
   const [t, setT] = useState(() => () => "");
 
   useEffect(() => {
-    getTranslation(lang).then((func) => setT(() => func));
-  }, [lang]);
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const { setModalContent } = useModal();
   const { id } = useParams();

@@ -16,14 +16,14 @@ function HighlightModal({
   videoDuration = null,
 }) {
   const { closeModal } = useModal();
+  const { user } = useSelector((state) => state.session);
   const video = useSelector((state) => state.videoDetails.video);
-  const lang = useSelector((state) => state.session.language);
 
   const [t, setT] = useState(() => () => "");
 
   useEffect(() => {
-    getTranslation(lang).then((func) => setT(() => func));
-  }, [lang]);
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});

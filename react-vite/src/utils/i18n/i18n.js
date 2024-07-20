@@ -4,6 +4,7 @@ async function loadTranslation(lang) {
     return module.default;
   } catch (error) {
     const fallbackModule = await import(`./lib/en`);
+    console.error(error);
     return fallbackModule.default;
   }
 }

@@ -7,13 +7,13 @@ import { getTags, getTranslation } from "../../utils";
 import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
-  const lang = useSelector((state) => state.session.language);
+  const { user } = useSelector((state) => state.session);
 
   const [t, setT] = useState(() => () => "");
 
   useEffect(() => {
-    getTranslation(lang).then((func) => setT(() => func));
-  }, [lang]);
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const nav = useNavigate();
   const dispatch = useDispatch();

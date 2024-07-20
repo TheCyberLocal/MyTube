@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import "./HelpPage.css";
 
 function HelpPage() {
-  const lang = useSelector((state) => state.session.language);
-
+  const { user } = useSelector((state) => state.session);
   const [t, setT] = useState(() => () => "");
 
   useEffect(() => {
-    getTranslation(lang).then((func) => setT(() => func));
-  }, [lang]);
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   return (
     <div id="help-page">
