@@ -3,13 +3,19 @@ import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import VideoModal from "../VideoModal";
 import { getTranslation } from "../../utils";
+import { useEffect, useState } from "react";
 import "./Navigation.css";
 
 function Navigation() {
   const { user, isLoading } = useSelector((state) => state.session);
   const { setModalContent } = useModal();
   const nav = useNavigate();
-  const t = getTranslation(user?.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const handleProfileClick = () => {
     nav(user ? "/profile" : "/login");

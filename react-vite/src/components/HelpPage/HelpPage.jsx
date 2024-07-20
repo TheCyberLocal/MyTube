@@ -4,7 +4,12 @@ import "./HelpPage.css";
 
 function HelpPage() {
   const lang = useSelector((state) => state.session.language);
-  const t = getTranslation(lang);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(lang, "help_page").then((func) => setT(() => func));
+  }, [lang]);
 
   return (
     <div id="help-page">

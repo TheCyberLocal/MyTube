@@ -1,4 +1,4 @@
-const en = {
+export default {
   my_videos: `My Videos`,
   help: `Help`,
   profile: `Profile`,
@@ -156,5 +156,3 @@ const en = {
   help_page_highlights_q4: `How do I delete a highlight?`,
   help_page_highlights_a4: `On the video page, below the Note Taker, find the highlight you want to delete and click "Delete".`,
 };
-
-export default en;

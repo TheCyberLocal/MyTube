@@ -1,4 +1,4 @@
-const es = {
+export default {
   my_videos: `Mis Videos`,
   help: `Ayuda`,
   profile: `Perfil`,
@@ -156,5 +156,3 @@ const es = {
   help_page_highlights_q4: `¿Cómo elimino un resaltado?`,
   help_page_highlights_a4: `En la página del video, debajo del Tomador de Notas, encuentra el resaltado que quieres eliminar y haz clic en "Eliminar".`,
 };
-
-export default es;

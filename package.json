@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-multi-select-component": "^4.3.4",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "synonyms": "^1.0.1"
   }
 }

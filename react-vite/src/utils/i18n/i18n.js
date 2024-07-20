@@ -1,15 +1,18 @@
 // i18n.js
-import en from "./lib/en";
-import es from "./lib/es";
+async function loadTranslation(lang) {
+  try {
+    const module = await import(`./lib/${lang}`);
+    return module.default;
+  } catch (error) {
+    const fallbackModule = await import(`./lib/en`);
+    return fallbackModule.default;
+  }
+}
 
-const translations = {
-  en,
-  es,
-};
-
-export function getTranslation(lang) {
+export async function getTranslation(lang) {
+  const translations = await loadTranslation(lang || "en");
   return (phrase, arg) => {
-    const string = translations["es" ?? "en"][phrase];
+    const string = translations[phrase];
     if (!string) return `!!PROBLEM!! ${phrase}`;
     return string.replace("{var}", arg);
   };
