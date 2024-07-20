@@ -59,6 +59,23 @@ div#main-container {
     width: 100%;
   }
 
+  & .select-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    font-size: 1.1rem;
+    gap: 10px;
+
+    & > div {
+      flex: 1;
+      & > select {
+        width: 100%;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
   & .multi-selector {
     width: 100%;
 

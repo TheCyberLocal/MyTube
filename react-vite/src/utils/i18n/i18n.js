@@ -1,23 +1,3 @@
-// English en
-// Spanish es
-// Portuguese pt
-// French fr
-// German de
-// Italian it
-// Japanese ja
-// Korean ko
-// Mandarin zh
-// Russian ru
-// Arabic ar
-// Hindi hi
-// Bengali bn
-// Indonesian id
-// Malay ms
-// Thai th
-// Vietnamese vi
-// Turkish tr
-// Polish pl
-
 async function loadTranslation(lang) {
   try {
     const module = await import(`./lib/${lang}`);
@@ -36,3 +16,24 @@ export async function getTranslation(lang) {
     return string.replace("{var}", arg);
   };
 }
+
+// Arabic ar
+// Bengali bn
+// English en
+// French fr
+// German de
+// Hindi hi
+// Indonesian id
+// Italian it
+// Japanese ja
+// Korean ko
+// Malay ms
+// Mandarin zh
+// Polish pl
+// Portuguese pt
+// Russian ru
+// Spanish es
+// Thai th
+// Turkish tr
+// Urdu ur
+// Vietnamese vi

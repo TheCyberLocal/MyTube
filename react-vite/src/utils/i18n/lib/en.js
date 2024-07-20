@@ -29,6 +29,8 @@ export default {
   tags: `Tags`,
   select: `Select...`,
   search: `Search`,
+  language: `Language`,
+  theme: `Theme`,
 
   keyword_or_phrase: `Keyword or Phrase`,
   name: `Name`,

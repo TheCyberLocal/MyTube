@@ -7,26 +7,50 @@ import { getTranslation } from "../../utils";
 import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
+const languageOptions = [
+  { value: "ar", label: "العربية" },
+  { value: "bn", label: "বাংলা" },
+  { value: "en", label: "English" },
+  { value: "fr", label: "Français" },
+  { value: "de", label: "Deutsch" },
+  { value: "hi", label: "हिन्दी" },
+  { value: "id", label: "Bahasa Indonesia" },
+  { value: "it", label: "Italiano" },
+  { value: "ja", label: "日本語" },
+  { value: "ko", label: "한국어" },
+  { value: "ms", label: "Bahasa Melayu" },
+  { value: "zh", label: "中文" },
+  { value: "pl", label: "Polski" },
+  { value: "pt", label: "Português" },
+  { value: "ru", label: "Русский" },
+  { value: "es", label: "Español" },
+  { value: "th", label: "ไทย" },
+  { value: "tr", label: "Türkçe" },
+  { value: "ur", label: "اردو" },
+  { value: "vi", label: "Tiếng Việt" },
+];
+
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);
 
   const [t, setT] = useState(() => () => "");
 
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
-
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { setModalContent } = useModal();
-  const [name, setName] = useState(user.name);
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user?.name);
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState(user?.email);
+  const [language, setLanguage] = useState(user?.language);
+  const [theme, setTheme] = useState(user?.theme);
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
+  const [options, setOptions] = useState(languageOptions || []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(language, theme);
+    return;
 
     const serverResponse = await dispatch(
       thunkUpdateUser(user.id, {
@@ -41,6 +65,10 @@ function ProfilePage() {
       setUpdated(true);
     }
   };
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -65,6 +93,28 @@ function ProfilePage() {
       <h1>{t("profile")}</h1>
       <h3>{t("you_have_organized_videos", user.videoCount)}</h3>
       <form>
+        <div className="select-container">
+          <div>
+            <label>{t("language")}</label>
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              {languageOptions.map((e) => (
+                <option value={e.value}>{e.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>{t("theme")}</label>
+            <select>
+              <option value="light">Light</option>
+            </select>
+          </div>
+        </div>
+        <div className="error-container">
+          {errors.name && <p className="error">{t("invalid_name")}</p>}
+        </div>
         <div className="input-container">
           <input
             type="text"

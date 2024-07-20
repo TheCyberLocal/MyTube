@@ -29,6 +29,8 @@ export default {
   tags: `الوسوم`,
   select: `اختر...`,
   search: `بحث`,
+  language: `لغة`,
+  theme: `موضوع`,
 
   keyword_or_phrase: `كلمة مفتاحية أو عبارة`,
   name: `الاسم`,

@@ -29,6 +29,8 @@ export default {
   tags: `태그`,
   select: `선택...`,
   search: `검색`,
+  language: `언어`,
+  theme: `테마`,
 
   keyword_or_phrase: `키워드 또는 문구`,
   name: `이름`,

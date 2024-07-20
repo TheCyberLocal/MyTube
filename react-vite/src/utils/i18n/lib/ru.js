@@ -29,6 +29,8 @@ export default {
   tags: `Теги`,
   select: `Выбрать...`,
   search: `Поиск`,
+  language: `Язык`,
+  theme: `Тема`,
 
   keyword_or_phrase: `Ключевое слово или фраза`,
   name: `Имя`,

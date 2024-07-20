@@ -29,6 +29,8 @@ export default {
   tags: `标签`,
   select: `选择...`,
   search: `搜索`,
+  language: `语言`,
+  theme: `主题`,
 
   keyword_or_phrase: `关键词或短语`,
   name: `姓名`,

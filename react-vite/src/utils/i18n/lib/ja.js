@@ -29,6 +29,8 @@ export default {
   tags: `タグ`,
   select: `選択...`,
   search: `検索`,
+  language: `言語`,
+  theme: `テーマ`,
 
   keyword_or_phrase: `キーワードまたはフレーズ`,
   name: `名前`,
