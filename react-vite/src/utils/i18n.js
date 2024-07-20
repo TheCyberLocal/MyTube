@@ -7,16 +7,22 @@ const translations = {
 
     save: `Save`,
     delete: `Delete`,
+    update: `Update`,
     cancel: `Cancel`,
+    clear: `Clear`,
     log_out: `Log Out`,
     log_in: `Log In`,
     sign_up: `Sign Up`,
     hide: `Hide`,
     show: `Show`,
     thanks: `Thanks!`,
+    record: `Record`,
+    stop: `stop`,
     or: `or`,
     credential: `Email/Username`,
     log_in_as_demo: `Log in as Demo User`,
+    update_video: `Update Video`,
+    delete_video: `Delete Video`,
 
     sort_by: `Sort by`,
     recently_viewed: `Recently Viewed`,
@@ -35,7 +41,15 @@ const translations = {
     note: `Note`,
     video: `Video`,
     highlight: `Highlight`,
+    highlights: `Highlights`,
     account: `Account`,
+    note_taker: `Note Taker`,
+
+    no_highlights: `No highlights yet...`,
+
+    title_required: `Title is required`,
+    content_required: `Content is required`,
+    take_a_note: `Let's take a note...`,
 
     start_time: `Start time`,
     end_time: `End time`,

@@ -7,10 +7,13 @@ import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
 import HighlightModal from "../HighlightModal";
 import VideoModal from "../VideoModal";
+import { getTranslation } from "../../utils";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video, highlights } = useSelector((state) => state.videoDetails);
+  const lang = useSelector((state) => state.session.language);
+  const t = getTranslation(lang);
   const { setModalContent } = useModal();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -65,11 +68,11 @@ function VideoDetailsPage() {
     } else {
       setModalContent(
         <HighlightModal
-          type="Create"
+          type="create"
           start={recording}
           end={playerRef.current.getCurrentTime()}
           videoDuration={playerRef.current.playerInfo.duration}
-        />,
+        />
       );
       playerRef.current.pauseVideo();
       setRecording(null);
@@ -78,27 +81,27 @@ function VideoDetailsPage() {
 
   const handleUpdateHighlight = (highlightId) => {
     const highlightToUpdate = highlights.find(
-      (highlight) => highlight.id === highlightId,
+      (highlight) => highlight.id === highlightId
     );
     setModalContent(
       <HighlightModal
-        type="Update"
+        type="update"
         highlight={highlightToUpdate}
         videoDuration={playerRef.current.playerInfo.duration}
-      />,
+      />
     );
   };
 
   const handleDeleteHighlight = (highlight) => {
-    setModalContent(<ConfirmDelete type="Highlight" element={highlight} />);
+    setModalContent(<ConfirmDelete type="highlight" element={highlight} />);
   };
 
   const handleUpdateVideo = () => {
-    setModalContent(<VideoModal type="Update" video={video} />);
+    setModalContent(<VideoModal type="update" video={video} />);
   };
 
   const handleDeleteVideo = () => {
-    setModalContent(<ConfirmDelete type="Video" element={video} />);
+    setModalContent(<ConfirmDelete type="video" element={video} />);
   };
 
   const handleSaveNote = async () => {
@@ -108,7 +111,7 @@ function VideoDetailsPage() {
         title: noteTitle,
         description: noteContent,
         video_id: video.id,
-      }),
+      })
     );
     if (serverErrors) {
       setErrors(serverErrors);
@@ -163,38 +166,36 @@ function VideoDetailsPage() {
       </div>
       <div className="right-column">
         <div className="note-taker">
-          <h3>Note Taker</h3>
+          <h3>{t("note_taker")}</h3>
           <input
             type="text"
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
-            placeholder={errors.title ? "Title is required" : "Title"}
+            placeholder={t(errors.title ? "title_required" : "title")}
           />
           <textarea
             value={noteContent}
             onChange={(e) => setNoteContent(e.target.value)}
-            placeholder={
-              errors.description
-                ? "Content is required"
-                : "Let's take a note..."
-            }
+            placeholder={t(
+              errors.description ? "content_required" : "take_a_note"
+            )}
           />
           <div className="note-taker-buttons">
-            <button onClick={handleSaveNote}>Save</button>
-            <button onClick={handleClearNote}>Clear</button>
+            <button onClick={handleSaveNote}>{t("save")}</button>
+            <button onClick={handleClearNote}>{t("clear")}</button>
             <button
               onClick={handleRecord}
               className={recording === null ? "" : "red-button"}
             >
-              {recording === null ? "Record" : "Stop"}
+              {t(recording === null ? "record" : "stop")}
             </button>
           </div>
         </div>
         <div className="highlights-section">
-          <h3>Highlights</h3>
+          <h3>{t("highlights")}</h3>
           <div className="highlight-list">
             {highlights.length === 0 ? (
-              <p>No highlights yet...</p>
+              <p>{t("no_highlights")}</p>
             ) : (
               highlights
                 .sort((a, b) => a.start_time - b.start_time)
@@ -206,7 +207,7 @@ function VideoDetailsPage() {
                         onClick={() => handleHighlightClick(highlight)}
                       >
                         {`${convertSecondsToHMSString(
-                          highlight.start_time,
+                          highlight.start_time
                         )} - ${convertSecondsToHMSString(highlight.end_time)}`}
                       </span>
                       <span>
@@ -219,10 +220,10 @@ function VideoDetailsPage() {
                         onClick={() => handleUpdateHighlight(highlight.id)}
                         id="left-highlight-button"
                       >
-                        Update
+                        {t("update")}
                       </button>
                       <button onClick={() => handleDeleteHighlight(highlight)}>
-                        Delete
+                        {t("delete")}
                       </button>
                     </div>
                   </div>
@@ -232,10 +233,10 @@ function VideoDetailsPage() {
         </div>
         <div id="video-buttons">
           <button id="video-update-button" onClick={handleUpdateVideo}>
-            Update Video
+            {t("update_video")}
           </button>
           <button id="video-delete-button" onClick={handleDeleteVideo}>
-            Delete Video
+            {t("delete_video")}
           </button>
         </div>
       </div>
