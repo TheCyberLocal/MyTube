@@ -1,4 +1,4 @@
-// import syn from "synonyms";
+import syn from "synonyms";
 
 export async function getTags() {
   const response = await fetch(`/api/tags`);
@@ -6,7 +6,7 @@ export async function getTags() {
   const processedData = data.map((e) => ({
     value: e.id,
     label: e.name,
-    // tags: e.name.toLowerCase(), // syn(e.name.toLowerCase(), "v"),
+    tags: e.name.toLowerCase(), // syn(e.name.toLowerCase(), "v"),
   }));
   return processedData;
 }

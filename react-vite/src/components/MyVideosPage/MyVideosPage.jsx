@@ -80,8 +80,6 @@ function MyVideosPage() {
     }
   };
 
-  return null;
-
   if (!sessionLoading && !user) return <Navigate to="/login" replace={true} />;
 
   return (
