@@ -55,6 +55,8 @@ function ProfilePage() {
         username,
         name,
         email,
+        language,
+        theme,
       })
     );
     if (serverResponse) {
