@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { thunkLogout, thunkUpdateUser } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -9,7 +9,12 @@ import ChangePasswordModal from "../ChangePasswordModal";
 
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);
-  const t = getTranslation(user.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
