@@ -5,7 +5,12 @@ import { useSelector } from "react-redux";
 function AlertChange({ message }) {
   const { closeModal } = useModal();
   const { user } = useSelector((state) => state.session);
-  const t = getTranslation(user.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   return (
     <div id="prompt-modal">
