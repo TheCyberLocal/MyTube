@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -6,7 +6,12 @@ import { getTranslation } from "../../utils";
 
 function LoginFormPage() {
   const { user, isLoading } = useSelector((state) => state.session);
-  const t = getTranslation(user?.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
