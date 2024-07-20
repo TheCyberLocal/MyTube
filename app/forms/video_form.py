@@ -4,12 +4,12 @@ from wtforms.validators import DataRequired, Length, Optional
 
 
 class VideoForm(FlaskForm):
-    title = StringField('title', validators=[Length(max=255)])
+    title = StringField('title', validators=[Length(1, 255)])
     description = TextAreaField('description', validators=[DataRequired()])
     url = URLField('url', validators=[DataRequired()])
 
 
 class UpdateVideoForm(FlaskForm):
-    title = StringField('title', validators=[Optional(), Length(max=255)])
+    title = StringField('title', validators=[Optional(), Length(1, 255)])
     description = TextAreaField('description')
     url = URLField('url')

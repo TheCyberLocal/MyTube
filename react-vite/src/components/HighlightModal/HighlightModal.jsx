@@ -5,6 +5,7 @@ import {
   createHighlightThunk,
   updateHighlightThunk,
 } from "../../redux/videoDetails";
+import { getTranslation } from "../../utils";
 import "./HighlightModal.css";
 
 function HighlightModal({
@@ -184,7 +185,7 @@ function HighlightModal({
     const start_time = convertHMSToSeconds(startTime);
     const end_time = convertHMSToSeconds(endTime);
     if (!title || title.length > 255) {
-      setErrors({ title: t("invalid_highlight_title") });
+      setErrors({ title: t("invalid_title") });
     } else if (type === "create") {
       const serverErrors = await dispatch(
         createHighlightThunk({

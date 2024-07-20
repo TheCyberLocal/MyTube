@@ -214,7 +214,7 @@ function VideoDetailsPage() {
                         {new Date(highlight.updated_at).toLocaleDateString()}
                       </span>
                     </div>
-                    <div className="highlight-title">{highlight.title}</div>
+                    <p className="highlight-title">{highlight.title}</p>
                     <div className="highlight-buttons">
                       <button
                         onClick={() => handleUpdateHighlight(highlight.id)}

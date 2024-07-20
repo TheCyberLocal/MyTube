@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MultiSelect } from "react-multi-select-component";
-import { getTags } from "../../utils";
+import { getTags, getTranslation } from "../../utils";
 import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
+  const lang = useSelector((state) => state.session.language);
+  const t = getTranslation(lang);
+
   const nav = useNavigate();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -55,14 +58,15 @@ function VideoModal({ type, video = null }) {
     e.preventDefault();
     setErrors({});
     const newErrors = {};
-    if (!videoURL) newErrors.url = "This field is required";
-    if (!videoTitle) newErrors.title = "This field is required";
-    if (!videoDesc) newErrors.description = "This field is required";
-    if (!videoTags.length) newErrors.tags = "This field is required";
+    if (!videoURL) newErrors.url = t("url_required");
+    if (!videoTitle || videoTitle.length > 255)
+      newErrors.title = t("invalid_title");
+    if (!videoDesc) newErrors.description = t("description_required");
+    if (!videoTags.length) newErrors.tags = t("tags_required");
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
-    } else if (type === "Update") {
+    } else if (type === "update") {
       setErrors({});
       const serverErrors = await dispatch(
         updateVideoThunk(video.id, {
@@ -71,13 +75,15 @@ function VideoModal({ type, video = null }) {
           tags: videoTags.map((e) => e.value),
         })
       );
-      if (serverErrors) {
-        setErrors(serverErrors);
-      } else {
-        closeModal();
-        window.location.reload();
-      }
-    } else if (type === "Add") {
+      closeModal();
+      window.location.reload();
+      // if (serverErrors) {
+      //   setErrors(serverErrors);
+      // } else {
+      //   closeModal();
+      //   window.location.reload();
+      // }
+    } else if (type === "add") {
       setErrors({});
       const serverErrors = await dispatch(
         createVideoThunk({
@@ -87,21 +93,24 @@ function VideoModal({ type, video = null }) {
           tags: videoTags.map((e) => e.value),
         })
       );
-      if (serverErrors) {
-        setErrors(serverErrors);
-      } else {
-        closeModal();
-        nav("my-videos");
-        window.location.reload();
-      }
+      closeModal();
+      nav("my-videos");
+      window.location.reload();
+      // if (serverErrors) {
+      //   setErrors(serverErrors);
+      // } else {
+      //   closeModal();
+      //   nav("my-videos");
+      //   window.location.reload();
+      // }
     }
   };
 
   return (
     <div id="main-container">
-      <h1>{type} Video</h1>
+      <h1>{t(`${type}_video`)}</h1>
       <form>
-        {type === "Add" ? (
+        {type === "add" ? (
           <>
             <div className="input-container">
               <input
@@ -111,7 +120,7 @@ function VideoModal({ type, video = null }) {
                 required
                 placeholder=""
               />
-              <label className="moving-label">YouTube URL</label>
+              <label className="moving-label">{t("youtube_url")}</label>
             </div>
             <div className="error-container">
               {errors.url && <p className="error">{errors.url}</p>}
@@ -126,7 +135,7 @@ function VideoModal({ type, video = null }) {
             required
             placeholder=""
           />
-          <label className="moving-label">Title</label>
+          <label className="moving-label">{t("title")}</label>
         </div>
         <div className="error-container">
           {errors.title && <p className="error">{errors.title}</p>}
@@ -139,7 +148,7 @@ function VideoModal({ type, video = null }) {
             required
             placeholder=""
           />
-          <label className="moving-label">Description</label>
+          <label className="moving-label">{t("description")}</label>
         </div>
         <div className="error-container">
           {errors.description && <p className="error">{errors.description}</p>}
@@ -152,8 +161,8 @@ function VideoModal({ type, video = null }) {
             labelledBy="Select"
             hasSelectAll={false}
             overrideStrings={{
-              selectSomeItems: "Select...",
-              search: "Search",
+              selectSomeItems: t("select"),
+              search: t("search"),
             }}
           />
         </div>
@@ -161,8 +170,8 @@ function VideoModal({ type, video = null }) {
           {errors.tags && <p className="error">{errors.tags}</p>}
         </div>
         <div className="button-container">
-          <button onClick={handleSubmit}>Save</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={handleSubmit}>{t("save")}</button>
+          <button onClick={closeModal}>{t("cancel")}</button>
         </div>
       </form>
     </div>

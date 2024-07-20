@@ -18,9 +18,11 @@ const translations = {
     thanks: `Thanks!`,
     record: `Record`,
     stop: `stop`,
+    description: `Description`,
     or: `or`,
     credential: `Email/Username`,
     log_in_as_demo: `Log in as Demo User`,
+    add_video: `Add Video`,
     update_video: `Update Video`,
     delete_video: `Delete Video`,
 
@@ -44,10 +46,14 @@ const translations = {
     highlights: `Highlights`,
     account: `Account`,
     note_taker: `Note Taker`,
+    youtube_url: `YouTube URL`,
 
     no_highlights: `No highlights yet...`,
 
     title_required: `Title is required`,
+    url_required: `URL is required`,
+    description_required: `Description is required`,
+    tags_required: `One or more tags required`,
     content_required: `Content is required`,
     take_a_note: `Let's take a note...`,
 
@@ -76,7 +82,7 @@ const translations = {
     invalid_current_password: `Invalid current password`,
     invalid_new_password: `Must contain uppercase letter, lowercase letter, digit and symbol`,
     invalid_confirm_password: `Confirm password must match`,
-    invalid_highlight_title: `Title must be 1 to 255 characters`,
+    invalid_title: `Title must be 1 to 255 characters`,
     invalid_name: `Name must be 3 to 20 characters`,
     invalid_username: `Username must be 4 to 20 characters`,
     invalid_email: `Invalid email address`,
