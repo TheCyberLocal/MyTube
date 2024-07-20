@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import {
@@ -18,7 +18,12 @@ function HighlightModal({
   const { closeModal } = useModal();
   const video = useSelector((state) => state.videoDetails.video);
   const lang = useSelector((state) => state.session.language);
-  const t = getTranslation(lang);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(lang).then((func) => setT(() => func));
+  }, [lang]);
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
