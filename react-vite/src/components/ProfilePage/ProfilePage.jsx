@@ -30,7 +30,6 @@ function ProfilePage() {
         email,
       })
     );
-
     if (serverResponse) {
       setErrors(serverResponse.errors);
     } else {
@@ -85,7 +84,15 @@ function ProfilePage() {
           <label className="moving-label">{t("username")}</label>
         </div>
         <div className="error-container">
-          {errors.username && <p className="error">{errors.username[0]}</p>}
+          {errors.username && (
+            <p className="error">
+              {t(
+                username.length <= 20 && username.length >= 4
+                  ? "username_exists"
+                  : "invalid_username"
+              )}
+            </p>
+          )}
         </div>
         <div className="input-container">
           <input
@@ -95,42 +102,50 @@ function ProfilePage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Email</label>
+          <label className="moving-label">{t("email")}</label>
         </div>
         <div className="error-container">
-          {errors.email && <p className="error">{errors.email[0]}</p>}
-          {updated && <p className="updated">Changes saved successfully</p>}
+          {errors.email && (
+            <p className="error">
+              {t(
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+                  ? "email_exists"
+                  : "invalid_email"
+              )}
+            </p>
+          )}
+          {updated && <p className="updated">{t("changes_saved")}</p>}
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Save
+            {t("save")}
           </button>
           <label className="button-label">or</label>
           <button style={{ flex: 1 }} onClick={handleUndo}>
-            Cancel
+            {t("cancel")}
           </button>
         </div>
       </form>
       <div className="under-form">
         <div className="button-container">
           <button onClick={handleLogout} className="demo-user">
-            Log Out
+            {t("log_out")}
           </button>
         </div>
         <div className="button-container">
           <button
             className="danger"
             onClick={() =>
-              setModalContent(<ConfirmDelete type="Account" element={user} />)
+              setModalContent(<ConfirmDelete type="account" element={user} />)
             }
           >
-            Delete Account
+            {t("delete_account")}
           </button>
           <button
             className="danger"
             onClick={() => setModalContent(<ChangePasswordModal />)}
           >
-            Change Password
+            {t("change_password")}
           </button>
         </div>
       </div>
