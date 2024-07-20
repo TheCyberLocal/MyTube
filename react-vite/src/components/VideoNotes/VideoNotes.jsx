@@ -8,9 +8,14 @@ import "./VideoNotes.css";
 
 function VideoNotes() {
   const { notes } = useSelector((state) => state.videoDetails);
-  const lang = useSelector((state) => state.session.language);
-  const t = getTranslation(lang);
   const { setModalContent } = useModal();
+  const lang = useSelector((state) => state.session.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(lang).then((func) => setT(() => func));
+  }, [lang]);
 
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
