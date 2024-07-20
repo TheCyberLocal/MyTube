@@ -33,7 +33,7 @@ export async function getTranslation(lang) {
 // Portuguese pt
 // Russian ru
 // Spanish es
-// ! Thai th
+// Thai th
 // ! Turkish tr
 // ! Urdu ur
 // ! Vietnamese vi

@@ -49,8 +49,6 @@ function ProfilePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(language, theme);
-    return;
 
     const serverResponse = await dispatch(
       thunkUpdateUser(user.id, {
