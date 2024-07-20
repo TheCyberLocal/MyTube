@@ -45,12 +45,13 @@ const translations = {
     you_are_all_set: `You're all set!`,
     changes_saved: `Changes saved successfully`,
     are_you_sure: `Are you sure you don't want this?`,
+    are_you_absolutely_sure: `Are you absolutely sure?`,
     confirm_delete_of: `Confirm Delete of`,
     no_videos_match: `No videos match your search...`,
     load_more_videos: `Load more videos...`,
     you_ran_out_of_videos: `You've run out of videos. Let's add some more...`,
     you_have_no_videos: `You have no videos. How about adding some...`,
-    you_have_organized_videos: `You have organized {count} videos!`,
+    you_have_organized_videos: `You have organized {var} videos!`,
 
     new_password: `New Password`,
     change_password: `Change Password`,
@@ -71,6 +72,19 @@ const translations = {
     alert_video_deleted: `Your video has been successfully deleted.`,
     alert_password_reset: `Your password has been reset.`,
     alert_goodbye: `We'll be here if you need us again.`,
+
+    understand_the_following: `Understand the following:`,
+    last_chance: `This is your last chance to keep your {var}.`,
+    understand_delete_video_1: `Your video ({var}) will be unrecoverable.`,
+    understand_delete_video_2: `The notes of this video will be deleted.`,
+    understand_delete_video_3: `The highlights of this video will be deleted.`,
+
+    understand_delete_account_1: `Your account ({var}) will be unrecoverable.`,
+    understand_delete_account_2: `Your ({var}) videos will no longer be saved.`,
+    understand_delete_account_3: `The notes of all videos will be deleted.`,
+    understand_delete_account_4: `The highlights of all videos will be deleted.`,
+    understand_delete_account_5: `Your account settings will be deleted.`,
+    understand_delete_account_6: `Your personal information will be deleted.`,
 
     help_page_title: `Help Page`,
     help_page_welcome: `Welcome to MyTube! This page answers common questions about how to use the site.`,
@@ -126,7 +140,9 @@ const translations = {
 };
 
 export function getTranslation(lang) {
-  return (phrase, count = "!!PROBLEM!!") =>
-    translations[lang ?? "en"][phrase]?.replace("{count}", count) ||
-    `!!PROBLEM!! ${phrase}`;
+  return (phrase, arg) => {
+    const string = translations[lang ?? "en"][phrase];
+    if (!string) return `!!PROBLEM!! ${phrase}`;
+    return string.replace("{var}", arg);
+  };
 }
