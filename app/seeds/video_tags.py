@@ -4,123 +4,127 @@ from sqlalchemy.sql import text
 video_tag_data = [
     {
         "video_id": 1,
-        "tag_id": 293,
-    },
-    {
-        "video_id": 1,
-        "tag_id": 104,
+        "tag_id": 14,
     },
     {
         "video_id": 2,
-        "tag_id": 348,
+        "tag_id": 4,
     },
     {
         "video_id": 2,
-        "tag_id": 456,
+        "tag_id": 7,
     },
     {
         "video_id": 3,
-        "tag_id": 277,
+        "tag_id": 4,
     },
     {
         "video_id": 3,
-        "tag_id": 199,
+        "tag_id": 9,
     },
     {
         "video_id": 4,
-        "tag_id": 436,
+        "tag_id": 5,
     },
     {
         "video_id": 4,
-        "tag_id": 256,
+        "tag_id": 17,
     },
     {
         "video_id": 5,
-        "tag_id": 348,
+        "tag_id": 6,
     },
     {
         "video_id": 5,
-        "tag_id": 304,
+        "tag_id": 7,
     },
     {
         "video_id": 6,
-        "tag_id": 30,
+        "tag_id": 14,
     },
     {
         "video_id": 6,
-        "tag_id": 201,
+        "tag_id": 1,
     },
     {
         "video_id": 7,
-        "tag_id": 124,
+        "tag_id": 4,
     },
     {
         "video_id": 7,
-        "tag_id": 303,
+        "tag_id": 2,
     },
     {
         "video_id": 8,
-        "tag_id": 139,
-    },
-    {
-        "video_id": 8,
-        "tag_id": 280,
+        "tag_id": 4,
     },
     {
         "video_id": 9,
-        "tag_id": 50,
+        "tag_id": 4,
     },
     {
         "video_id": 9,
-        "tag_id": 469,
+        "tag_id": 7,
+    },
+    {
+        "video_id": 9,
+        "tag_id": 17,
     },
     {
         "video_id": 10,
-        "tag_id": 238,
+        "tag_id": 1,
     },
     {
         "video_id": 10,
-        "tag_id": 277,
+        "tag_id": 9,
     },
     {
         "video_id": 11,
-        "tag_id": 366,
+        "tag_id": 3,
     },
     {
         "video_id": 11,
-        "tag_id": 33,
+        "tag_id": 4,
+    },
+    {
+        "video_id": 11,
+        "tag_id": 7,
     },
     {
         "video_id": 12,
-        "tag_id": 104,
+        "tag_id": 1,
     },
     {
         "video_id": 12,
-        "tag_id": 204,
+        "tag_id": 14,
     },
     {
         "video_id": 13,
-        "tag_id": 315,
+        "tag_id": 1,
     },
     {
         "video_id": 13,
-        "tag_id": 362,
+        "tag_id": 6,
     },
     {
         "video_id": 14,
-        "tag_id": 256,
+        "tag_id": 5,
     },
     {
         "video_id": 14,
-        "tag_id": 297,
+        "tag_id": 17,
+    },
+    {
+        "video_id": 14,
+        "tag_id": 18,
     },
     {
         "video_id": 15,
-        "tag_id": 10,
+        "tag_id": 4,
     },
     {
         "video_id": 15,
-        "tag_id": 11,
+        "tag_id": 6,
     }
 ]
 
