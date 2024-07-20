@@ -13,7 +13,13 @@ import "./VideoDetailsPage.css";
 function VideoDetailsPage() {
   const { video, highlights } = useSelector((state) => state.videoDetails);
   const lang = useSelector((state) => state.session.language);
-  const t = getTranslation(lang);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(lang).then((func) => setT(() => func));
+  }, [lang]);
+
   const { setModalContent } = useModal();
   const { id } = useParams();
   const dispatch = useDispatch();
