@@ -1,13 +1,18 @@
 import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { thunkUpdatePassword } from "../../redux/session";
 import { getTranslation } from "../../utils";
 import AlertChange from "../AlertChange";
 
 function ChangePasswordModal() {
   const { user, isLoading } = useSelector((state) => state.session);
-  const t = getTranslation(user.language);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
