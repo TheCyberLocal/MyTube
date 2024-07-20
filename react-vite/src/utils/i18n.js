@@ -69,6 +69,7 @@ const translations = {
     confirm_delete_of: `Confirm Delete of`,
     no_videos_match: `No videos match your search...`,
     load_more_videos: `Load more videos...`,
+    no_notes_yet: `No notes yet... how about taking some?`,
     you_ran_out_of_videos: `You've run out of videos. Let's add some more...`,
     you_have_no_videos: `You have no videos. How about adding some...`,
     you_have_organized_videos: `You have organized {var} videos!`,

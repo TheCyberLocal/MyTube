@@ -3,10 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateNoteThunk } from "../../redux/videoDetails";
 import ConfirmDelete from "../ConfirmDelete";
 import { useModal } from "../../context/Modal";
+import { getTranslation } from "../../utils";
 import "./VideoNotes.css";
 
 function VideoNotes() {
   const { notes } = useSelector((state) => state.videoDetails);
+  const lang = useSelector((state) => state.session.language);
+  const t = getTranslation(lang);
   const { setModalContent } = useModal();
 
   const [activeNote, setActiveNote] = useState(null);
@@ -44,13 +47,13 @@ function VideoNotes() {
 
   const handleDeleteNote = (noteId) => {
     const note = notes.find((note) => note.id === noteId);
-    setModalContent(<ConfirmDelete type="Note" element={note} />);
+    setModalContent(<ConfirmDelete type="note" element={note} />);
   };
 
   const handleSaveNote = (noteId) => {
     const newErrors = {};
-    if (!noteTitle) newErrors.title = "Title is required";
-    if (!noteContent) newErrors.description = "Content is required";
+    if (!noteTitle) newErrors.title = t("title_required");
+    if (!noteContent) newErrors.description = t("content_required");
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
     } else {
@@ -74,7 +77,7 @@ function VideoNotes() {
   return (
     <div className="notes-section">
       {!notes.length ? (
-        <h2>No notes yet... how about taking some?</h2>
+        <h2>{t("no_notes_yet")}</h2>
       ) : (
         notes.map((note, index) => (
           <div
@@ -96,22 +99,21 @@ function VideoNotes() {
             <div className="note-content">
               {editableNote === note.id ? (
                 <div>
-                  <h3>Title</h3>
+                  <h3>{t("title")}</h3>
                   <input
                     value={noteTitle}
                     onChange={(e) => setNoteTitle(e.target.value)}
-                    // onClick={(e) => e.stopPropagation()}
-                    placeholder={errors.title ? "Title is required" : ""}
+                    placeholder={errors.title ? t("title_required") : ""}
                     spellCheck="true"
                   />
-                  <h3>Description</h3>
+                  <h3>{t("description")}</h3>
                   <textarea
                     ref={textareaRef}
                     value={noteContent}
                     onChange={(e) => setNoteContent(e.target.value)}
                     style={{ overflow: "hidden", resize: "none" }}
                     placeholder={
-                      errors.description ? "Content is required" : ""
+                      errors.description ? t("content_required") : ""
                     }
                     spellCheck="true"
                   />
@@ -123,17 +125,17 @@ function VideoNotes() {
                 {editableNote === note.id ? (
                   <>
                     <button onClick={() => handleSaveNote(note.id)}>
-                      Save
+                      {t("save")}
                     </button>
-                    <button onClick={handleCancelEdit}>Cancel</button>
+                    <button onClick={handleCancelEdit}>{t("cancel")}</button>
                   </>
                 ) : (
                   <>
                     <button onClick={() => handleUpdateNote(note.id)}>
-                      Update
+                      {t("update")}
                     </button>
                     <button onClick={() => handleDeleteNote(note.id)}>
-                      Delete
+                      {t("delete")}
                     </button>
                   </>
                 )}
