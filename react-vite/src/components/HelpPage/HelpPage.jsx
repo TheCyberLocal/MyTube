@@ -1,5 +1,6 @@
 import { getTranslation } from "../../utils";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import "./HelpPage.css";
 
 function HelpPage() {
@@ -8,7 +9,7 @@ function HelpPage() {
   const [t, setT] = useState(() => () => "");
 
   useEffect(() => {
-    getTranslation(lang, "help_page").then((func) => setT(() => func));
+    getTranslation(lang).then((func) => setT(() => func));
   }, [lang]);
 
   return (
