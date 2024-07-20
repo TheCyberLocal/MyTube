@@ -120,7 +120,7 @@ function ProfilePage() {
           <button style={{ flex: 2 }} onClick={handleSubmit}>
             {t("save")}
           </button>
-          <label className="button-label">or</label>
+          <label className="button-label">{t("or")}</label>
           <button style={{ flex: 1 }} onClick={handleUndo}>
             {t("cancel")}
           </button>
