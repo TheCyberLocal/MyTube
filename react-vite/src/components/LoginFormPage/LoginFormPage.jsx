@@ -2,9 +2,11 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getTranslation } from "../../utils";
 
 function LoginFormPage() {
   const { user, isLoading } = useSelector((state) => state.session);
+  const t = getTranslation(user?.language);
 
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ function LoginFormPage() {
 
   return (
     <div id="main-container">
-      <h1>Log In</h1>
+      <h1>{t("log_in")}</h1>
       <form>
         <div className="input-container">
           <input
@@ -57,7 +59,7 @@ function LoginFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Email/Username</label>
+          <label className="moving-label">{t("credential")}</label>
         </div>
         <div className="error-container">
           {errors.credential && <p className="error">{errors.credential[0]}</p>}
@@ -70,13 +72,13 @@ function LoginFormPage() {
             required
             placeholder=""
           />
-          <label className="moving-label">Password</label>
+          <label className="moving-label">{t("password")}</label>
           <button
             type="button"
             className="show-password-btn"
             onClick={toggleShowPassword}
           >
-            {showPassword ? "Hide" : "Show"}
+            {t(showPassword ? "hide" : "show")}
           </button>
         </div>
         <div className="error-container">
@@ -84,18 +86,18 @@ function LoginFormPage() {
         </div>
         <div className="button-container">
           <button style={{ flex: 2 }} onClick={handleSubmit}>
-            Log In
+            {t("log_in")}
           </button>
-          <label className="button-label">or</label>
+          <label className="button-label">{t("or")}</label>
           <button style={{ flex: 1 }} onClick={() => nav("/signup")}>
-            Sign Up
+            {t("sign_up")}
           </button>
         </div>
       </form>
       <div className="under-form">
         <div className="button-container">
           <button onClick={demoLogin} className="demo-user">
-            Log in as Demo User
+            {t("log_in_as_demo")}
           </button>
         </div>
       </div>
