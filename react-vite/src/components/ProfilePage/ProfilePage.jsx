@@ -8,26 +8,26 @@ import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 const languageOptions = [
-  { value: "ar", label: "العربية" },
-  { value: "bn", label: "বাংলা" },
-  { value: "en", label: "English" },
-  { value: "fr", label: "Français" },
-  { value: "de", label: "Deutsch" },
-  { value: "hi", label: "हिन्दी" },
-  { value: "id", label: "Bahasa Indonesia" },
-  { value: "it", label: "Italiano" },
-  { value: "ja", label: "日本語" },
-  { value: "ko", label: "한국어" },
-  { value: "ms", label: "Bahasa Melayu" },
-  { value: "zh", label: "中文" },
-  { value: "pl", label: "Polski" },
-  { value: "pt", label: "Português" },
-  { value: "ru", label: "Русский" },
-  { value: "es", label: "Español" },
-  { value: "th", label: "ไทย" },
-  { value: "tr", label: "Türkçe" },
-  { value: "ur", label: "اردو" },
-  { value: "vi", label: "Tiếng Việt" },
+  { value: "en", label: "English" }, // 1.132 billion speakers
+  { value: "zh", label: "中文" }, // 1.117 billion speakers
+  { value: "hi", label: "हिन्दी" }, // 615 million speakers
+  { value: "es", label: "Español" }, // 534 million speakers
+  { value: "fr", label: "Français" }, // 280 million speakers
+  { value: "ar", label: "العربية" }, // 274 million speakers
+  { value: "bn", label: "বাংলা" }, // 265 million speakers
+  { value: "ru", label: "Русский" }, // 258 million speakers
+  { value: "pt", label: "Português" }, // 234 million speakers
+  { value: "id", label: "Bahasa Indonesia" }, // 199 million speakers
+  { value: "ur", label: "اردو" }, // 232 million speakers
+  { value: "de", label: "Deutsch" }, // 132 million speakers
+  { value: "ja", label: "日本語" }, // 125 million speakers
+  { value: "ms", label: "Bahasa Melayu" }, // 77 million speakers
+  { value: "vi", label: "Tiếng Việt" }, // 76 million speakers
+  { value: "ko", label: "한국어" }, // 77 million speakers
+  { value: "it", label: "Italiano" }, // 67 million speakers
+  { value: "pl", label: "Polski" }, // 50 million speakers
+  { value: "tr", label: "Türkçe" }, // 75 million speakers
+  { value: "th", label: "ไทย" }, // 60 million speakers
 ];
 
 function ProfilePage() {
