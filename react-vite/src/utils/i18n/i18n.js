@@ -2,9 +2,8 @@ async function loadTranslation(lang) {
   try {
     const module = await import(`./lib/${lang}`);
     return module.default;
-  } catch (error) {
+  } catch {
     const fallbackModule = await import(`./lib/en`);
-    console.error(error);
     return fallbackModule.default;
   }
 }
@@ -12,9 +11,7 @@ async function loadTranslation(lang) {
 export async function getTranslation(lang) {
   const translations = await loadTranslation(lang || "en");
   return (phrase, arg) => {
-    const string = translations[phrase];
-    if (!string) return `!!PROBLEM!! ${phrase}`;
-    return string.replace("{var}", arg);
+    return translations[phrase].replace("{var}", arg);
   };
 }
 
@@ -36,5 +33,5 @@ export async function getTranslation(lang) {
 // Spanish es
 // Thai th
 // Turkish tr
-// ! Urdu ur
-// ! Vietnamese vi
+// Urdu ur
+// Vietnamese vi
