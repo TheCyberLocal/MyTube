@@ -33,7 +33,7 @@ function MyVideosPage() {
   useEffect(() => {
     const savedSortBy = getCookie("sortBy");
     if (savedSortBy) setSortBy(savedSortBy);
-    getTags().then((res) => setOptions(res));
+    getTags(user?.language).then((res) => setOptions(res));
   }, []);
 
   const fetchResults = () => {

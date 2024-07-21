@@ -159,6 +159,7 @@ function VideoModal({ type, video = null }) {
           {errors.description && <p className="error">{errors.description}</p>}
         </div>
         <div className="multi-selector">
+          <label className="static-label">{t("tags")}</label>
           <MultiSelect
             options={options}
             value={videoTags}

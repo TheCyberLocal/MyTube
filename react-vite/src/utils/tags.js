@@ -1,9 +1,13 @@
-export async function getTags() {
+import { getTranslation } from "./i18n";
+
+export async function getTags(lang) {
   const response = await fetch(`/api/tags`);
   const data = await response.json();
-  const processedData = data.map((e) => ({
+
+  const translate = await getTranslation(lang);
+
+  return data.map((e) => ({
     value: e.id,
-    label: e.name,
+    label: translate(e.name),
   }));
-  return processedData;
 }
