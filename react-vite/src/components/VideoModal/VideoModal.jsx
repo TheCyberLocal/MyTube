@@ -26,15 +26,19 @@ function VideoModal({ type, video = null }) {
   }, [user?.language]);
 
   useEffect(() => {
-    getTags().then((res) => setOptions(res));
-    if (video) {
-      const videoTagIds = video.tags.map((e) => ({
-        value: e.id,
-        label: e.name,
-      }));
-      setVideoTags(videoTagIds);
-    }
-  }, []);
+    const fetchAndTranslateTags = async () => {
+      const translatedTags = await getTags(user?.language);
+      setOptions(translatedTags);
+
+      if (video) {
+        const existingTags = video.tags.map((tag) =>
+          translatedTags.find((t) => t.value === tag.id)
+        );
+        setVideoTags(existingTags);
+      }
+    };
+    fetchAndTranslateTags();
+  }, [user?.language, video]);
 
   useEffect(() => {
     if (videoURL === "" || videoTitle != "") return;
@@ -168,7 +172,6 @@ function VideoModal({ type, video = null }) {
             hasSelectAll={false}
             overrideStrings={{
               selectSomeItems: t("select"),
-              search: t("search"),
             }}
           />
         </div>
