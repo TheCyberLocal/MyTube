@@ -9,12 +9,6 @@ import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 function VideoModal({ type, video = null }) {
   const { user } = useSelector((state) => state.session);
 
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
-
   const nav = useNavigate();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -24,6 +18,12 @@ function VideoModal({ type, video = null }) {
   const [videoDesc, setVideoDesc] = useState(video?.description ?? "");
   const [videoTags, setVideoTags] = useState([]);
   const [options, setOptions] = useState([]);
+
+  const [t, setT] = useState(() => () => "");
+
+  useEffect(() => {
+    getTranslation(user?.language).then((func) => setT(() => func));
+  }, [user?.language]);
 
   useEffect(() => {
     getTags().then((res) => setOptions(res));
