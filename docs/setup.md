@@ -7,7 +7,7 @@
 1. **Clone this repository (only this branch):**
 
    ```bash
-   git clone -b your-branch-name https://github.com/TheCyberLocal/MyTube.git
+   git clone -b main https://github.com/TheCyberLocal/MyTube.git
    ```
 
 2. **Install dependencies:**
