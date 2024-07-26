@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { thunkLogout, thunkUpdateUser } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { getTranslation } from "../../utils";
+import { useTranslation } from "../../context/Lang";
 import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
@@ -33,11 +33,10 @@ const languageOptions = [
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);
 
-  const [t, setT] = useState(() => () => "");
-
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { setModalContent } = useModal();
+  const { t } = useTranslation();
   const [name, setName] = useState(user?.name);
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState(user?.email);
@@ -45,7 +44,6 @@ function ProfilePage() {
   const [theme, setTheme] = useState(user?.theme);
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
-  const [options, setOptions] = useState(languageOptions || []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,10 +63,6 @@ function ProfilePage() {
       setUpdated(true);
     }
   };
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -101,7 +95,9 @@ function ProfilePage() {
               onChange={(e) => setLanguage(e.target.value)}
             >
               {languageOptions.map((e) => (
-                <option value={e.value}>{e.label}</option>
+                <option key={e.value} value={e.value}>
+                  {e.label}
+                </option>
               ))}
             </select>
           </div>
