@@ -1,8 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { getTranslation } from "../../utils";
-import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useTranslation } from "../../context/Lang";
 import UnderstandDelete from "../UnderstandDelete";
 import {
   deleteNoteThunk,
@@ -14,13 +12,7 @@ function ConfirmDelete({ type, element = null }) {
   const { closeModal } = useModal();
   const { setModalContent } = useModal();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.session);
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
+  const { t } = useTranslation();
 
   const handleDelete = () => {
     if (type === "account") {
