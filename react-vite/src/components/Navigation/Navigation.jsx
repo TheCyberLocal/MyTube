@@ -1,21 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useTranslation } from "../../context/Lang";
 import VideoModal from "../VideoModal";
-import { getTranslation } from "../../utils";
-import { useEffect, useState } from "react";
 import "./Navigation.css";
 
 function Navigation() {
   const { user, isLoading } = useSelector((state) => state.session);
   const { setModalContent } = useModal();
+  const { t } = useTranslation();
   const nav = useNavigate();
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
 
   const handleProfileClick = () => {
     nav(user ? "/profile" : "/login");
