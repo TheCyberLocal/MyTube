@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useTranslation } from "../../context/Lang";
 import {
   createHighlightThunk,
   updateHighlightThunk,
 } from "../../redux/videoDetails";
-import { getTranslation } from "../../utils";
 import "./HighlightModal.css";
 
 function HighlightModal({
@@ -16,14 +16,8 @@ function HighlightModal({
   videoDuration = null,
 }) {
   const { closeModal } = useModal();
-  const { user } = useSelector((state) => state.session);
+  const { t } = useTranslation();
   const video = useSelector((state) => state.videoDetails.video);
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
