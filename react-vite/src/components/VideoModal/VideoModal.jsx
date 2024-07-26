@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { useTranslation } from "../../context/Lang";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MultiSelect } from "react-multi-select-component";
-import { getTags, getTranslation } from "../../utils";
+import { getTags } from "../../utils";
 import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
 
 function VideoModal({ type, video = null }) {
@@ -12,18 +13,13 @@ function VideoModal({ type, video = null }) {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const { t } = useTranslation();
   const [errors, setErrors] = useState({});
   const [videoURL, setVideoURL] = useState(video?.url ?? "");
   const [videoTitle, setVideoTitle] = useState(video?.title ?? "");
   const [videoDesc, setVideoDesc] = useState(video?.description ?? "");
   const [videoTags, setVideoTags] = useState([]);
   const [options, setOptions] = useState([]);
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
 
   useEffect(() => {
     const fetchAndTranslateTags = async () => {
