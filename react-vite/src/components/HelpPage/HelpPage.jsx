@@ -1,15 +1,8 @@
-import { getTranslation } from "../../utils";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useTranslation } from "../../context/Lang";
 import "./HelpPage.css";
 
 function HelpPage() {
-  const { user } = useSelector((state) => state.session);
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
+  const { t } = useTranslation();
 
   return (
     <div id="help-page">
