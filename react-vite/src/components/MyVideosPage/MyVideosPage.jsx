@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import VideoTile from "../VideoTile";
 import { MultiSelect } from "react-multi-select-component";
-import { setCookie, getCookie, getTags, getTranslation } from "../../utils";
+import { setCookie, getCookie, getTags } from "../../utils";
+import { useTranslation } from "../../context/Lang";
 import "./MyVideosPage.css";
 
 function MyVideosPage() {
@@ -13,12 +14,7 @@ function MyVideosPage() {
   const { user, isLoading: sessionLoading } = useSelector(
     (state) => state.session
   );
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
