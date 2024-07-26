@@ -1,22 +1,16 @@
 import { useModal } from "../../context/Modal";
-import { useState, useEffect } from "react";
+import { useTranslation } from "../../context/Lang";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteVideoThunk } from "../../redux/videoDetails";
 import { thunkDeleteUser } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
 import AlertChange from "../AlertChange";
-import { getTranslation } from "../../utils";
 import "./UnderstandDelete.css";
 
 function UnderstandDelete({ type, element }) {
   const { closeModal, setModalContent } = useModal();
+  const { t } = useTranslation();
   const { user } = useSelector((state) => state.session);
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
