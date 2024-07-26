@@ -3,23 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchVideoDetails, createNoteThunk } from "../../redux/videoDetails";
 import { useModal } from "../../context/Modal";
+import { useTranslation } from "../../context/Lang";
 import VideoNotes from "../VideoNotes";
 import ConfirmDelete from "../ConfirmDelete";
 import HighlightModal from "../HighlightModal";
 import VideoModal from "../VideoModal";
-import { getTranslation } from "../../utils";
 import "./VideoDetailsPage.css";
 
 function VideoDetailsPage() {
   const { video, highlights } = useSelector((state) => state.videoDetails);
-  const { user } = useSelector((state) => state.session);
 
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
-
+  const { t } = useTranslation();
   const { setModalContent } = useModal();
   const { id } = useParams();
   const dispatch = useDispatch();
