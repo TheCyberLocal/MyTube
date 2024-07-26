@@ -1,0 +1,41 @@
+#author-page {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#author-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#author-page p {
+  margin-left: 15px;
+}
+
+.segment {
+  background-color: #e0e0e0;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.segment h2 {
+  margin-bottom: 15px;
+}
+
+.question-container {
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.question-container h3 {
+  margin: 0 0 10px 0;
+}
+
+.question-container p {
+  margin: 0;
+  padding-left: 15px;
+}
