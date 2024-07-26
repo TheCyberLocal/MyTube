@@ -3,19 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateNoteThunk } from "../../redux/videoDetails";
 import ConfirmDelete from "../ConfirmDelete";
 import { useModal } from "../../context/Modal";
-import { getTranslation } from "../../utils";
+import { useTranslation } from "../../context/Lang";
 import "./VideoNotes.css";
 
 function VideoNotes() {
   const { notes } = useSelector((state) => state.videoDetails);
   const { setModalContent } = useModal();
-  const { user } = useSelector((state) => state.session);
-
-  const [t, setT] = useState(() => () => "");
-
-  useEffect(() => {
-    getTranslation(user?.language).then((func) => setT(() => func));
-  }, [user?.language]);
+  const { t } = useTranslation();
 
   const [activeNote, setActiveNote] = useState(null);
   const [editableNote, setEditableNote] = useState(null);
