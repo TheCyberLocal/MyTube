@@ -60,7 +60,6 @@ export default {
   end_time: `结束时间`,
 
   delete_account: `删除账户`,
-  change_password: `更改密码`,
   you_are_all_set: `你已准备好！`,
   changes_saved: `更改已成功保存`,
   are_you_sure: `你确定不需要这个吗？`,

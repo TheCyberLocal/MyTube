@@ -60,7 +60,6 @@ export default {
   end_time: `Heure de Fin`,
 
   delete_account: `Supprimer Compte`,
-  change_password: `Changer Mot de Passe`,
   you_are_all_set: `Tout est prêt !`,
   changes_saved: `Modifications enregistrées avec succès`,
   are_you_sure: `Êtes-vous sûr de ne pas vouloir ceci ?`,

@@ -60,7 +60,6 @@ export default {
   end_time: `Bitiş zamanı`,
 
   delete_account: `Hesabı Sil`,
-  change_password: `Şifreyi Değiştir`,
   you_are_all_set: `Her şey tamam!`,
   changes_saved: `Değişiklikler başarıyla kaydedildi`,
   are_you_sure: `Bunu istemediğinizden emin misiniz?`,

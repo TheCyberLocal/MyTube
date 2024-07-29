@@ -60,7 +60,6 @@ export default {
   end_time: `Thời gian kết thúc`,
 
   delete_account: `Xóa tài khoản`,
-  change_password: `Đổi mật khẩu`,
   you_are_all_set: `Bạn đã sẵn sàng!`,
   changes_saved: `Lưu thay đổi thành công`,
   are_you_sure: `Bạn có chắc là không muốn điều này?`,

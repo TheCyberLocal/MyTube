@@ -73,7 +73,7 @@ function VideoModal({ type, video = null }) {
       setErrors(newErrors);
     } else if (type === "update") {
       setErrors({});
-      const serverErrors = await dispatch(
+      await dispatch(
         updateVideoThunk(video.id, {
           title: videoTitle,
           description: videoDesc,
@@ -82,15 +82,9 @@ function VideoModal({ type, video = null }) {
       );
       closeModal();
       window.location.reload();
-      // if (serverErrors) {
-      //   setErrors(serverErrors);
-      // } else {
-      //   closeModal();
-      //   window.location.reload();
-      // }
     } else if (type === "add") {
       setErrors({});
-      const serverErrors = await dispatch(
+      await dispatch(
         createVideoThunk({
           url: videoURL,
           title: videoTitle,
@@ -101,13 +95,6 @@ function VideoModal({ type, video = null }) {
       closeModal();
       nav("my-videos");
       window.location.reload();
-      // if (serverErrors) {
-      //   setErrors(serverErrors);
-      // } else {
-      //   closeModal();
-      //   nav("my-videos");
-      //   window.location.reload();
-      // }
     }
   };
 

@@ -60,7 +60,6 @@ export default {
   end_time: `Waktu Selesai`,
 
   delete_account: `Hapus Akun`,
-  change_password: `Ubah Kata Sandi`,
   you_are_all_set: `Semua sudah siap!`,
   changes_saved: `Perubahan berhasil disimpan`,
   are_you_sure: `Apakah Anda yakin tidak ingin ini?`,

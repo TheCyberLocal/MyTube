@@ -60,7 +60,6 @@ export default {
   end_time: `เวลาสิ้นสุด`,
 
   delete_account: `ลบบัญชี`,
-  change_password: `เปลี่ยนรหัสผ่าน`,
   you_are_all_set: `ทุกอย่างพร้อมแล้ว!`,
   changes_saved: `บันทึกการเปลี่ยนแปลงเรียบร้อยแล้ว`,
   are_you_sure: `คุณแน่ใจหรือว่าคุณไม่ต้องการสิ่งนี้?`,

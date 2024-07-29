@@ -60,7 +60,6 @@ export default {
   end_time: `समाप्ति का समय`,
 
   delete_account: `खाता हटाएं`,
-  change_password: `पासवर्ड बदलें`,
   you_are_all_set: `आप सभी सेट हैं!`,
   changes_saved: `परिवर्तन सफलतापूर्वक सहेजे गए`,
   are_you_sure: `क्या आप सुनिश्चित नहीं हैं कि आप इसे चाहते हैं?`,

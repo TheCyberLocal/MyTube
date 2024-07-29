@@ -60,7 +60,6 @@ export default {
   end_time: `اختتام کا وقت`,
 
   delete_account: `اکاؤنٹ حذف کریں`,
-  change_password: `پاس ورڈ تبدیل کریں`,
   you_are_all_set: `آپ تیار ہیں!`,
   changes_saved: `تبدیلیاں کامیابی کے ساتھ محفوظ ہو گئیں`,
   are_you_sure: `کیا آپ کو یقین ہے کہ آپ یہ نہیں چاہتے؟`,

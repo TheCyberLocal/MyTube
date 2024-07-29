@@ -60,7 +60,6 @@ export default {
   end_time: `종료 시간`,
 
   delete_account: `계정 삭제`,
-  change_password: `비밀번호 변경`,
   you_are_all_set: `모든 준비가 완료되었습니다!`,
   changes_saved: `변경 사항이 성공적으로 저장되었습니다`,
   are_you_sure: `정말 원하지 않으십니까?`,
