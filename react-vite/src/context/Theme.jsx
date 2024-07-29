@@ -10,7 +10,9 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const userTheme = user?.theme || "light";
     setTheme(userTheme);
-  }, [user, setTheme]);
+
+    document.body.className = `${userTheme}-theme`;
+  }, [user, theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

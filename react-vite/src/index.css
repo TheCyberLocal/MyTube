@@ -1,20 +1,7 @@
 /* TODO: Add sitewide styles */
 
+/* Static Colors */
 body {
-  margin: 0px;
-  padding-bottom: 50px;
-  padding-top: 40px;
-}
-
-* p {
-  word-break: break-word;
-}
-
-/* Default color variables */
-:root {
-  --page-color: #fff;
-  --background-color: #ccc;
-  --text-color: #000000;
   --error-color: red;
   --updated-color: green;
   --button-background: #007bff;
@@ -23,8 +10,31 @@ body {
   --danger-hover-background: darkred;
 }
 
+/* Default to light color variables */
+body {
+  --page-color: #fff;
+  --background-color: #ccc;
+  --text-color: #000;
+}
+
+.dark-theme {
+  --page-color: #000;
+  --background-color: #333;
+  --text-color: #fff;
+}
+
 /* Apply default theme */
 body {
   background-color: var(--page-color);
   color: var(--text-color);
+}
+
+body {
+  margin: 0px;
+  padding-bottom: 50px;
+  padding-top: 40px;
+}
+
+* p {
+  word-break: break-word;
 }
