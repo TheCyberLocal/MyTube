@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getTranslation } from "../utils";
 import { useSelector } from "react-redux";
 
@@ -25,10 +19,7 @@ export const TranslationProvider = ({ children }) => {
     getTranslation(lang).then((func) => setGetTranslationFunc(() => func));
   }, [lang]);
 
-  const t = useCallback(
-    (phrase, arg) => getTranslationFunc(phrase, arg),
-    [getTranslationFunc]
-  );
+  const t = (phrase, arg) => getTranslationFunc(phrase, arg);
 
   return (
     <TranslationContext.Provider value={{ t, setLang }}>
