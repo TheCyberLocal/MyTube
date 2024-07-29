@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { getTranslation } from "../utils";
 import { useSelector } from "react-redux";
 
-// Context and provider setup
 const TranslationContext = createContext();
 
 export const TranslationProvider = ({ children }) => {

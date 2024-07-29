@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
 import { TranslationProvider } from "../context/Lang";
+import { ThemeProvider } from "../context/Theme";
 import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -16,12 +17,14 @@ export default function Layout() {
 
   return (
     <TranslationProvider>
-      <ModalProvider>
-        <Navigation />
-        {isLoaded && <Outlet />}
-        <Footer />
-        <Modal />
-      </ModalProvider>
+      <ThemeProvider>
+        <ModalProvider>
+          <Navigation />
+          {isLoaded && <Outlet />}
+          <Footer />
+          <Modal />
+        </ModalProvider>
+      </ThemeProvider>
     </TranslationProvider>
   );
 }
