@@ -9,3 +9,22 @@ body {
 * p {
   word-break: break-word;
 }
+
+/* Default color variables */
+:root {
+  --page-color: #fff;
+  --background-color: #ccc;
+  --text-color: #000000;
+  --error-color: red;
+  --updated-color: green;
+  --button-background: #007bff;
+  --button-hover-background: #0056b3;
+  --danger-background: red;
+  --danger-hover-background: darkred;
+}
+
+/* Apply default theme */
+body {
+  background-color: var(--page-color);
+  color: var(--text-color);
+}

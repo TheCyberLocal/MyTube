@@ -5,179 +5,177 @@
 }
 
 .content-wrapper {
-  background: white;
   padding: 20px;
   margin: 25px 0;
   height: fit-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   width: 80%;
   min-height: 70vh;
   max-width: 600px;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 div#main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
-  & h1,
-  & h2,
-  & h3 {
-    margin: 15px 0;
-  }
+div#main-container h1,
+div#main-container h2,
+div#main-container h3 {
+  margin: 15px 0;
+}
 
-  & form,
-  & div.under-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-width: 300px;
-  }
+div#main-container form,
+div#main-container div.under-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 300px;
+}
 
-  & div.error-container {
-    margin-bottom: 20px;
-    height: 20px;
+div#main-container div.error-container {
+  margin-bottom: 20px;
+  height: 20px;
+}
 
-    & p.error {
-      color: red;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+div#main-container div.error-container p.error {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-top: 5px;
+}
 
-    & p.updated {
-      color: green;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  }
+div#main-container div.error-container p.updated {
+  color: var(--updated-color);
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
 
-  & .input-container {
-    position: relative;
-    width: 100%;
-  }
+div#main-container .input-container {
+  position: relative;
+  width: 100%;
+}
 
-  & .select-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    font-size: 1.1rem;
-    gap: 10px;
+div#main-container .select-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 1.1rem;
+  gap: 10px;
+}
 
-    & > div {
-      flex: 1;
-      & > select {
-        width: 100%;
-        margin-top: 5px;
-        font-size: 1.1rem;
-        padding: 5px;
-        border-radius: 4px;
-      }
-    }
-  }
+div#main-container .select-container > div {
+  flex: 1;
+}
 
-  & .multi-selector {
-    width: 100%;
+div#main-container .select-container > div > select {
+  width: 100%;
+  margin-top: 5px;
+  font-size: 1.1rem;
+  padding: 5px;
+  border-radius: 4px;
+}
 
-    & .dropdown-content {
-      top: -100px;
-      & span {
-        margin-right: 100%;
-      }
-    }
-  }
+div#main-container .multi-selector {
+  width: 100%;
+}
 
-  & .button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
-  }
+div#main-container .multi-selector .dropdown-content {
+  top: -100px;
+}
 
-  & .button-container button {
-    flex: 1;
-    margin: 0 5px;
-  }
+div#main-container .multi-selector .dropdown-content span {
+  margin-right: 100%;
+}
 
-  & input,
-  & button {
-    box-sizing: border-box;
-  }
+div#main-container .button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
 
-  & input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    font-size: 1.1rem;
-  }
+div#main-container .button-container button {
+  flex: 1;
+  margin: 0 5px;
+}
 
-  & input::placeholder {
-    color: transparent;
-  }
+div#main-container input,
+div#main-container button {
+  box-sizing: border-box;
+}
 
-  & label.static-label {
-    margin-left: 20px;
-  }
+div#main-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1.1rem;
+}
 
-  & label.moving-label {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    background-color: white;
-    padding: 0 5px;
-    pointer-events: none;
-    transition: all 0.2s ease;
-  }
+div#main-container input::placeholder {
+  color: transparent;
+}
 
-  & input:focus + label.moving-label,
-  & input:not(:placeholder-shown) + label.moving-label,
-  & input[value]:not([value=""]) + label.moving-label {
-    top: -10px;
-    left: 10px;
-    font-size: 14px;
-  }
+div#main-container label.static-label {
+  margin-left: 20px;
+}
 
-  & button.show-password-btn {
-    position: absolute;
-    top: 2px;
-    right: 5px;
-    border: none;
-    cursor: pointer;
-    color: black;
-    font-size: 14px;
-    background: none;
-    padding: 0;
-  }
+div#main-container label.moving-label {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
 
-  & button[type="submit"],
-  & .button-container button {
-    background-color: grey;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-  }
+div#main-container input:focus + label.moving-label,
+div#main-container input:not(:placeholder-shown) + label.moving-label,
+div#main-container input[value]:not([value=""]) + label.moving-label {
+  top: -10px;
+  left: 10px;
+  font-size: 14px;
+}
 
-  & button[type="submit"]:hover,
-  & .button-container button:hover {
-    background-color: darkgrey;
-  }
+div#main-container button.show-password-btn {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: none;
+  padding: 0;
+}
 
-  & button.danger {
-    font-size: 14px;
-    background-color: red;
-  }
+div#main-container button[type="submit"],
+div#main-container .button-container button {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--button-background);
+}
 
-  & button.danger:hover {
-    background-color: darkred;
-  }
+div#main-container button.danger {
+  font-size: 14px;
+  background-color: var(--danger-background);
+}
+
+div#main-container button.danger:hover {
+  background-color: var(--danger-hover-background);
+}
+
+div#main-container button[type="submit"]:hover,
+div#main-container .button-container button:hover {
+  background-color: var(--button-hover-background);
 }
