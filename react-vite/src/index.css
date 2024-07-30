@@ -4,10 +4,13 @@
 body {
   --error-color: red;
   --updated-color: green;
-  --button-background: #007bff;
-  --button-hover-background: #0056b3;
-  --danger-background: red;
-  --danger-hover-background: darkred;
+  --safe-button: #007bff;
+  --safe-button-hover: #0056b3;
+  --danger-button: red;
+  --danger-button-hover: darkred;
+  --container-shadow: rgba(255, 255, 255, 0.1);
+  --question-background: #f9f9f9;
+  --segment-background: #e0e0e0;
 }
 
 /* Default to light color variables */

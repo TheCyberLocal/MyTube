@@ -163,19 +163,19 @@ div#main-container .button-container button {
   padding: 10px;
   display: flex;
   justify-content: center;
-  background-color: var(--button-background);
+  background-color: var(--safe-button);
 }
 
 div#main-container button.danger {
   font-size: 14px;
-  background-color: var(--danger-background);
+  background-color: var(--danger-button);
 }
 
 div#main-container button.danger:hover {
-  background-color: var(--danger-hover-background);
+  background-color: var(--danger-button-hover);
 }
 
 div#main-container button[type="submit"]:hover,
 div#main-container .button-container button:hover {
-  background-color: var(--button-hover-background);
+  background-color: var(--safe-button-hover);
 }
