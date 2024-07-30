@@ -42,6 +42,7 @@ const themeOptions = [
   "rose",
   "clover",
   "wintergreen",
+  "crimson",
   "neon-lime",
   "cyberpunk",
 ];

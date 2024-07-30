@@ -206,6 +206,23 @@ body.rose-theme {
   --danger-button-hover: #d32f2f;
 }
 
+body.crimson-theme {
+  --background-color: #2b0000;
+  --foreground-color: #8b0000;
+  --text-color: #ffffff;
+  --footer-text: #ffb6c1;
+  --footer-background: #4b0000;
+  --container-shadow: #8b000030;
+
+  --button-text: #ffffff;
+  --safe-button: #b22222;
+  --safe-button-hover: #a52a2a;
+  --update-button: #dc143c;
+  --update-button-hover: #b22222;
+  --danger-button: #ff0000;
+  --danger-button-hover: #cc0000;
+}
+
 body.neon-lime-theme {
   --background-color: #1a1a1a;
   --foreground-color: #333333;
