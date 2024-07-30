@@ -171,7 +171,7 @@ div#main-container button.danger {
   background-color: var(--danger-button);
 }
 
-div#main-container button.danger:hover {
+div#main-container .button-container button.danger:hover {
   background-color: var(--danger-button-hover);
 }
 

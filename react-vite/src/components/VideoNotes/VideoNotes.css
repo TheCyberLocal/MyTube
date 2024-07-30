@@ -39,7 +39,7 @@
 
 .note-container {
   margin-bottom: 15px;
-  border: 1px solid var(--container-border);
+  border: 2px solid var(--contrast-color);
   transition: all 0.75s ease;
   border-radius: 25px;
   box-shadow: 0px 8px 10px 0px var(--container-shadow);

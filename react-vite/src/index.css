@@ -2,21 +2,22 @@
 
 /* Default to light color variables */
 body {
-  --background-color: #fefefe;
-  --foreground-color: lightgrey;
-  --contrast-color: grey;
-  --border-color: black;
-  --primary-text-color: black;
-  --primary-text-background: white;
-  --secondary-text-color: white;
-  --secondary-text-background: #333;
-  --container-shadow: rgba(25, 25, 25, 0.3);
-  --update-button: green;
-  --update-button-hover: darkgreen;
-  --safe-button: blue;
-  --safe-button-hover: darkblue;
-  --danger-button: red;
-  --danger-button-hover: darkred;
+  --background-color: #f8f9fa;
+  --foreground-color: #e9ecef;
+  --contrast-color: #ced4da;
+  --border-color: #adb5bd;
+  --primary-text-color: #343a40;
+  --primary-text-background: #fff;
+  --secondary-text-color: #fff;
+  --secondary-text-background: #495057;
+  --container-shadow: rgba(0, 0, 0, 0.1);
+
+  --update-button: #4caf50;
+  --update-button-hover: #388e3c;
+  --safe-button: #2196f3;
+  --safe-button-hover: #1976d2;
+  --danger-button: #ff5722;
+  --danger-button-hover: #e64a19;
 }
 
 /* body.dark-theme {
