@@ -20,18 +20,17 @@ body {
   --container-background: #e0e0e0;
   --header-background: #ccc;
   --header-border: #000;
-  --header-text: #fff;
   --footer-background: #333;
   --footer-text: #fff;
   --input-border: black;
   --input-color: #fff;
 }
 
-.dark-theme {
+/* .dark-theme {
   --page-color: #000;
   --background-color: #333;
   --text-color: #fff;
-}
+} */
 
 /* Apply default theme */
 body {
