@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { MultiSelect } from "react-multi-select-component";
 import { getTags } from "../../utils";
 import { updateVideoThunk, createVideoThunk } from "../../redux/videoDetails";
-import "./VideoModal.css";
 
 function VideoModal({ type, video = null }) {
   const { user } = useSelector((state) => state.session);

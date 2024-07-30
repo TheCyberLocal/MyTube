@@ -57,7 +57,7 @@
   }
 }
 
-.multi-selector div {
+.multi-selector * {
   background-color: var(--foreground-color) !important;
   border-radius: 5px;
 }

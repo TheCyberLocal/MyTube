@@ -25,3 +25,7 @@
   min-width: 350px;
   border-radius: 15px;
 }
+
+#modal-content *:not(button) {
+  color: var(--text-color);
+}

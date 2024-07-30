@@ -85,6 +85,19 @@ div#main-container .select-container > div > select {
   color: var(--text-color);
 }
 
+div#main-container .multi-selector * {
+  background-color: var(--foreground-color) !important;
+  border-radius: 5px;
+}
+
+div#main-container .multi-selector input[type="text"] {
+  background-color: var(--contrast-color) !important;
+}
+
+div#main-container .multi-selector > div {
+  border: 2px solid var(--border-color) !important;
+}
+
 div#main-container .multi-selector {
   width: 100%;
 }
@@ -97,23 +110,8 @@ div#main-container .multi-selector .dropdown-content span {
   margin-right: 100%;
 }
 
-div#main-container .multi-selector div {
-  background-color: var(--foreground-color) !important;
-}
-
-div#main-container .multi-selector input[type="text"] {
-  background-color: var(--contrast-color) !important;
-}
-
 div#main-container .multi-selector > div {
-  border: 2px solid var(--border-color) !important;
   border-radius: 6px;
-}
-
-div#main-container .multi-selector *,
-div#main-container .multi-selector input::placeholder {
-  box-shadow: none !important;
-  color: var(--text-color) !important;
 }
 
 div#main-container .button-container {
