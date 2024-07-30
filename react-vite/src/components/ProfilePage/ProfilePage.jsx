@@ -33,11 +33,16 @@ const languageOptions = [
 const themeOptions = [
   "light",
   "dark",
-  "wintergreen",
-  "deep-sea",
-  "lavender",
-  "honey-bee",
+  "space",
   "abyss",
+  "deep-sea",
+  "autumn",
+  "honey-bee",
+  "lavender",
+  "rose",
+  "wintergreen",
+  "cyberpunk",
+  "neon-lime",
 ];
 
 function ProfilePage() {

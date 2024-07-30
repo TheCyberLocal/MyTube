@@ -138,7 +138,7 @@ body.lavender-theme {
   --danger-button-hover: #d32f2f;
 }
 
-body.honey-bee-theme {
+body.autumn-theme {
   --background-color: #fff8e1;
   --foreground-color: #ffecb3;
   --text-color: #bf360c;
@@ -153,4 +153,89 @@ body.honey-bee-theme {
   --update-button-hover: #ef6c00;
   --danger-button: #d32f2f;
   --danger-button-hover: #c62828;
+}
+
+body.space-theme {
+  --background-color: #0b0d17;
+  --foreground-color: #1b1f38;
+  --text-color: #ffffff;
+  --footer-text: #8285a9;
+  --footer-background: #1e213a;
+  --container-shadow: #00000050;
+
+  --button-text: #ffffff;
+  --safe-button: #4a4e69;
+  --safe-button-hover: #6a6f9e;
+  --update-button: #9f7aea;
+  --update-button-hover: #805ad5;
+  --danger-button: #e53e3e;
+  --danger-button-hover: #c53030;
+}
+
+body.honey-bee-theme {
+  --background-color: #fff9c4;
+  --foreground-color: #ffeb3b;
+  --text-color: #f57f17;
+  --footer-text: #fbc02d;
+  --footer-background: #f57f17;
+  --container-shadow: #f57f1730;
+
+  --button-text: #ffffff;
+  --safe-button: #ffeb3b;
+  --safe-button-hover: #fbc02d;
+  --update-button: #f57f17;
+  --update-button-hover: #ef6c00;
+  --danger-button: #e53935;
+  --danger-button-hover: #d32f2f;
+}
+
+body.rose-theme {
+  --background-color: #fce4ec;
+  --foreground-color: #f8bbd0;
+  --text-color: #ad1457;
+  --footer-text: #c2185b;
+  --footer-background: #880e4f;
+  --container-shadow: #880e4f30;
+
+  --button-text: #ffffff;
+  --safe-button: #f48fb1;
+  --safe-button-hover: #f06292;
+  --update-button: #c2185b;
+  --update-button-hover: #ad1457;
+  --danger-button: #e57373;
+  --danger-button-hover: #d32f2f;
+}
+
+body.neon-lime-theme {
+  --background-color: #1a1a1a;
+  --foreground-color: #333333;
+  --text-color: #ffffff;
+  --footer-text: #b2b2b2;
+  --footer-background: #1e1e1e;
+  --container-shadow: #ffffff1a;
+
+  --button-text: #ffffff;
+  --safe-button: #00ff00;
+  --safe-button-hover: #00cc00;
+  --update-button: #00ffff;
+  --update-button-hover: #00cccc;
+  --danger-button: #ff0066;
+  --danger-button-hover: #cc0052;
+}
+
+body.cyberpunk-theme {
+  --background-color: #2c2c2c;
+  --foreground-color: #1a1a1a;
+  --text-color: #ffffff;
+  --footer-text: #cccccc;
+  --footer-background: #121212;
+  --container-shadow: #ffffff1a;
+
+  --button-text: #ffffff;
+  --safe-button: #ff00ff;
+  --safe-button-hover: #cc00cc;
+  --update-button: #00ffcc;
+  --update-button-hover: #00cc99;
+  --danger-button: #ff0033;
+  --danger-button-hover: #cc0026;
 }
