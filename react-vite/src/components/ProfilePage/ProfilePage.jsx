@@ -30,7 +30,14 @@ const languageOptions = [
   { value: "th", label: "ไทย" }, // Thai - 60 million speakers
 ];
 
-const themeOptions = ["light", "dark"];
+const themeOptions = [
+  "light",
+  "dark",
+  "ocean",
+  "night-sky",
+  "lavender",
+  "autumn",
+];
 
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);

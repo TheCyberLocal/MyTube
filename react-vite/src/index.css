@@ -2,6 +2,7 @@
 
 body {
   background-color: var(--background-color);
+  --border-color: var(--safe-button);
   margin: 0px;
   padding-bottom: 50px;
   padding-top: 40px;
@@ -26,7 +27,6 @@ body {
   --update-button-hover: darkgreen;
   --danger-button: #d52a2a;
   --danger-button-hover: darkred;
-  --border-color: var(--safe-button);
 
   --background-color: #ffffff;
   --foreground-color: #f2f2f2;
@@ -38,13 +38,21 @@ body {
 }
 
 body.dark-theme {
-  --background-color: #181818;
-  --foreground-color: #282828;
-  --contrast-color: #383838;
+  --background-color: #121212;
+  --foreground-color: #181818;
+  --contrast-color: #282828;
   --text-color: #ffffff;
-  --secondary-text-color: #cccccc;
-  --secondary-text-background: #383838;
-  --container-shadow: #ffffff30;
+  --secondary-text-color: #b2b2b2;
+  --secondary-text-background: #282828;
+  --container-shadow: #ffffff1a;
+
+  --button-text: #ffffff;
+  --safe-button: #383838;
+  --safe-button-hover: #484848;
+  --update-button: #4caf50;
+  --update-button-hover: #388e3c;
+  --danger-button: #f44336;
+  --danger-button-hover: #d32f2f;
 }
 
 body.ocean-theme {
@@ -55,6 +63,14 @@ body.ocean-theme {
   --secondary-text-color: #ffffff;
   --secondary-text-background: #004d40;
   --container-shadow: #004d4030;
+
+  --button-text: #ffffff;
+  --safe-button: #81d4fa;
+  --safe-button-hover: #4fc3f7;
+  --update-button: #00acc1;
+  --update-button-hover: #00838f;
+  --danger-button: #f44336;
+  --danger-button-hover: #d32f2f;
 }
 
 body.forest-theme {
@@ -65,16 +81,14 @@ body.forest-theme {
   --secondary-text-color: #ffffff;
   --secondary-text-background: #2e7d32;
   --container-shadow: #2e7d3230;
-}
 
-body.sunset-theme {
-  --background-color: #fff3e0;
-  --foreground-color: #ffe0b2;
-  --contrast-color: #ffcc80;
-  --text-color: #e65100;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #bf360c;
-  --container-shadow: #bf360c30;
+  --button-text: #ffffff;
+  --safe-button: #66bb6a;
+  --safe-button-hover: #4caf50;
+  --update-button: #2e7d32;
+  --update-button-hover: #1b5e20;
+  --danger-button: #e57373;
+  --danger-button-hover: #d32f2f;
 }
 
 body.night-sky-theme {
@@ -85,6 +99,14 @@ body.night-sky-theme {
   --secondary-text-color: #bbdefb;
   --secondary-text-background: #1e88e5;
   --container-shadow: #1e88e530;
+
+  --button-text: #ffffff;
+  --safe-button: #64b5f6;
+  --safe-button-hover: #42a5f5;
+  --update-button: #1e88e5;
+  --update-button-hover: #1565c0;
+  --danger-button: #e57373;
+  --danger-button-hover: #d32f2f;
 }
 
 body.lavender-theme {
@@ -95,6 +117,14 @@ body.lavender-theme {
   --secondary-text-color: #ffffff;
   --secondary-text-background: #6a1b9a;
   --container-shadow: #6a1b9a30;
+
+  --button-text: #ffffff;
+  --safe-button: #ba68c8;
+  --safe-button-hover: #ab47bc;
+  --update-button: #8e24aa;
+  --update-button-hover: #6a1b9a;
+  --danger-button: #e57373;
+  --danger-button-hover: #d32f2f;
 }
 
 body.autumn-theme {
@@ -105,14 +135,12 @@ body.autumn-theme {
   --secondary-text-color: #ffffff;
   --secondary-text-background: #d84315;
   --container-shadow: #d8431530;
-}
 
-body.mint-theme {
-  --background-color: #e0f2f1;
-  --foreground-color: #b2dfdb;
-  --contrast-color: #80cbc4;
-  --text-color: #004d40;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #00796b;
-  --container-shadow: #00796b30;
+  --button-text: #ffffff;
+  --safe-button: #ffb74d;
+  --safe-button-hover: #ffa726;
+  --update-button: #f57c00;
+  --update-button-hover: #ef6c00;
+  --danger-button: #d32f2f;
+  --danger-button-hover: #c62828;
 }
