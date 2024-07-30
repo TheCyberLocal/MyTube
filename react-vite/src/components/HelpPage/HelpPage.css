@@ -13,11 +13,11 @@
 }
 
 .segment {
-  background-color: var(--segment-background);
+  background-color: var(--container-background);
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px var(--container-shadow);
+  box-shadow: var(--container-shadow);
 }
 
 .segment h2 {
@@ -25,7 +25,7 @@
 }
 
 .question-container {
-  background-color: var(----container-color);
+  background-color: var(--container-color);
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
