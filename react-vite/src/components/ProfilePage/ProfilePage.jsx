@@ -30,6 +30,8 @@ const languageOptions = [
   { value: "th", label: "ไทย" }, // Thai - 60 million speakers
 ];
 
+const themeOptions = ["light", "dark"];
+
 function ProfilePage() {
   const { user, isLoading } = useSelector((state) => state.session);
 
@@ -103,8 +105,12 @@ function ProfilePage() {
           </div>
           <div>
             <label>{t("theme")}</label>
-            <select>
-              <option value="light">Light</option>
+            <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+              {themeOptions.map((e) => (
+                <option key={e} value={e}>
+                  {t("theme")}
+                </option>
+              ))}
             </select>
           </div>
         </div>
