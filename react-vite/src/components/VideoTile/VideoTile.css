@@ -22,6 +22,7 @@
 .video-tile .title {
   margin-top: 10px;
   text-align: center;
+  color: var(--text-color);
 }
 
 .fade-in {
