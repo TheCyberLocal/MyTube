@@ -8,26 +8,26 @@ import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
 
 const languageOptions = [
-  { value: "en", label: "English" }, // 1.132 billion speakers
-  { value: "zh", label: "中文" }, // 1.117 billion speakers
-  { value: "hi", label: "हिन्दी" }, // 615 million speakers
-  { value: "es", label: "Español" }, // 534 million speakers
-  { value: "fr", label: "Français" }, // 280 million speakers
-  { value: "ar", label: "العربية" }, // 274 million speakers
-  { value: "bn", label: "বাংলা" }, // 265 million speakers
-  { value: "ru", label: "Русский" }, // 258 million speakers
-  { value: "pt", label: "Português" }, // 234 million speakers
-  { value: "id", label: "Bahasa Indonesia" }, // 199 million speakers
-  { value: "ur", label: "اردو" }, // 232 million speakers
-  { value: "de", label: "Deutsch" }, // 132 million speakers
-  { value: "ja", label: "日本語" }, // 125 million speakers
-  { value: "ms", label: "Bahasa Melayu" }, // 77 million speakers
-  { value: "vi", label: "Tiếng Việt" }, // 76 million speakers
-  { value: "ko", label: "한국어" }, // 77 million speakers
-  { value: "it", label: "Italiano" }, // 67 million speakers
-  { value: "pl", label: "Polski" }, // 50 million speakers
-  { value: "tr", label: "Türkçe" }, // 75 million speakers
-  { value: "th", label: "ไทย" }, // 60 million speakers
+  { value: "en", label: "English" }, // English - 1.132 billion speakers
+  { value: "zh", label: "中文" }, // Chinese - 1.117 billion speakers
+  { value: "hi", label: "हिन्दी" }, // Hindi - 615 million speakers
+  { value: "es", label: "Español" }, // Spanish - 534 million speakers
+  { value: "fr", label: "Français" }, // French - 280 million speakers
+  { value: "ar", label: "العربية" }, // Arabic - 274 million speakers
+  { value: "bn", label: "বাংলা" }, // Bengali - 265 million speakers
+  { value: "ru", label: "Русский" }, // Russian - 258 million speakers
+  { value: "pt", label: "Português" }, // Portuguese - 234 million speakers
+  { value: "id", label: "Bahasa Indonesia" }, // Indonesian - 199 million speakers
+  { value: "ur", label: "اردو" }, // Urdu - 232 million speakers
+  { value: "de", label: "Deutsch" }, // German - 132 million speakers
+  { value: "ja", label: "日本語" }, // Japanese - 125 million speakers
+  { value: "ms", label: "Bahasa Melayu" }, // Malay - 77 million speakers
+  { value: "vi", label: "Tiếng Việt" }, // Vietnamese - 76 million speakers
+  { value: "ko", label: "한국어" }, // Korean - 77 million speakers
+  { value: "it", label: "Italiano" }, // Italian - 67 million speakers
+  { value: "pl", label: "Polski" }, // Polish - 50 million speakers
+  { value: "tr", label: "Türkçe" }, // Turkish - 75 million speakers
+  { value: "th", label: "ไทย" }, // Thai - 60 million speakers
 ];
 
 function ProfilePage() {
