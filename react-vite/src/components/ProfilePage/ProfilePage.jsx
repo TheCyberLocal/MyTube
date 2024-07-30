@@ -37,7 +37,6 @@ const themeOptions = [
   "abyss",
   "deep-sea",
   "autumn",
-  "honey-bee",
   "lavender",
   "rose",
   "clover",

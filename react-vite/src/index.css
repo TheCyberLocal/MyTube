@@ -172,23 +172,6 @@ body.space-theme {
   --danger-button-hover: #c53030;
 }
 
-body.honey-bee-theme {
-  --background-color: #fff9c4;
-  --foreground-color: #ffeb3b;
-  --text-color: #f57f17;
-  --footer-text: #fbc02d;
-  --footer-background: #f57f17;
-  --container-shadow: #f57f1730;
-
-  --button-text: #ffffff;
-  --safe-button: #ffeb3b;
-  --safe-button-hover: #fbc02d;
-  --update-button: #f57f17;
-  --update-button-hover: #ef6c00;
-  --danger-button: #e53935;
-  --danger-button-hover: #d32f2f;
-}
-
 body.rose-theme {
   --background-color: #fce4ec;
   --foreground-color: #f8bbd0;
