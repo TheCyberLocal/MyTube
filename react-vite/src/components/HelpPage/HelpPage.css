@@ -25,7 +25,7 @@
 }
 
 .question-container {
-  background-color: var(--question-background);
+  background-color: var(----container-color);
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;

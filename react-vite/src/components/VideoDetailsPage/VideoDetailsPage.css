@@ -39,7 +39,7 @@
     overflow: hidden;
 
     .note-taker {
-      background: #f4f4f4;
+      background: var(--background-color);
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 25px;
@@ -59,7 +59,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--input-color);
         box-sizing: border-box;
         font-size: 1rem;
         outline: none;
@@ -87,8 +87,8 @@
         button {
           display: flex;
           justify-content: center;
-          background-color: grey;
-          color: white;
+          background-color: var(--safe-button);
+          color: var(--text-color);
           border: none;
           padding: 15px;
           margin: 0;
@@ -97,14 +97,14 @@
           flex: 1;
 
           &:hover {
-            background-color: darkgrey;
+            background-color: var(--safe-button-hover);
           }
 
           &.red-button {
-            background-color: red;
+            background-color: var(--danger-button);
 
             &:hover {
-              background-color: darkred;
+              background-color: var(--danger-button-hover);
             }
           }
         }
@@ -115,7 +115,7 @@
       height: calc(0.375 * (100vw - 70px) - 45px);
       border-radius: 25px;
       padding: 20px;
-      background: #f9f9f9;
+      background: var(--background-color);
       margin-bottom: 20px;
 
       h3 {
@@ -131,7 +131,7 @@
         overflow-y: auto;
 
         .highlight-container {
-          background: #e4e4e4;
+          background: var(--input-color);
           padding: 10px;
           margin-bottom: 10px;
           border-radius: 5px;
@@ -163,8 +163,8 @@
             gap: 10px;
 
             button {
-              background-color: grey;
-              color: white;
+              background-color: var(--safe-button);
+              color: var(--text-color);
               border: none;
               padding: 5px;
               cursor: pointer;
@@ -175,7 +175,7 @@
               line-height: 30px;
 
               &:hover {
-                background-color: darkgrey;
+                background-color: var(--safe-button-hover);
               }
             }
 
@@ -200,18 +200,18 @@
         height: fit-content;
 
         &:first-child {
-          background-color: grey;
+          background-color: var(--safe-button);
 
           &:hover {
-            background-color: darkgrey;
+            background-color: var(--safe-button-hover);
           }
         }
 
         &:last-child {
-          background-color: red;
+          background-color: var(--danger-button);
 
           &:hover {
-            background-color: darkred;
+            background-color: var(--danger-button-hover);
           }
         }
       }
