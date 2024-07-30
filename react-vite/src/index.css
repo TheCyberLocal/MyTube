@@ -1,44 +1,35 @@
 /* TODO: Add sitewide styles */
 
-/* Static Colors */
+/* Default to light color variables */
 body {
-  --error-color: red;
-  --updated-color: green;
-  --safe-button: #007bff;
-  --safe-button-hover: #0056b3;
+  --background-color: #fefefe;
+  --foreground-color: lightgrey;
+  --contrast-color: grey;
+  --border-color: black;
+  --text-primary-color: black;
+  --text-primary-background: white;
+  --text-secondary-color: white;
+  --text-secondary-background: #333;
+  --container-shadow: rgba(25, 25, 25, 0.3);
+  --update-button: green;
+  --update-button-hover: darkgreen;
+  --safe-button: blue;
+  --safe-button-hover: darkblue;
   --danger-button: red;
   --danger-button-hover: darkred;
 }
 
-/* Default to light color variables */
-body {
-  --page-color: #fff;
-  --background-color: #ccc;
-  --text-color: #000;
-  --container-shadow: rgba(25, 25, 25, 0.3);
-  --container-color: #f9f9f9;
-  --container-background: #e0e0e0;
-  --header-background: #ccc;
-  --header-border: #000;
-  --footer-background: #333;
-  --footer-text: #fff;
-  --input-border: black;
-  --input-color: #fff;
-}
-
-/* .dark-theme {
-  --page-color: #000;
-  --background-color: #333;
-  --text-color: #fff;
+/* body.dark-theme {
+  --background-color: black;
+  --text-primary-color: #fff;
 } */
 
-/* Apply default theme */
 body {
-  background-color: var(--page-color);
-  color: var(--text-color);
-}
+  --error-color: red;
 
-body {
+  background-color: var(--background-color);
+  color: var(--text-primary-color);
+
   margin: 0px;
   padding-bottom: 50px;
   padding-top: 40px;

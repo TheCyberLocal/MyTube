@@ -39,7 +39,7 @@
     overflow: hidden;
 
     .note-taker {
-      background: var(--background-color);
+      background: var(--foreground-color);
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 25px;
@@ -59,7 +59,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        border: 1px solid var(--input-color);
+        border: 1px solid var(--border-color);
         box-sizing: border-box;
         font-size: 1rem;
         outline: none;
@@ -88,7 +88,7 @@
           display: flex;
           justify-content: center;
           background-color: var(--safe-button);
-          color: var(--text-color);
+          color: var(--text-primary-color);
           border: none;
           padding: 15px;
           margin: 0;
@@ -115,7 +115,7 @@
       height: calc(0.375 * (100vw - 70px) - 45px);
       border-radius: 25px;
       padding: 20px;
-      background: var(--background-color);
+      background: var(--foreground-color);
       margin-bottom: 20px;
 
       h3 {
@@ -131,7 +131,7 @@
         overflow-y: auto;
 
         .highlight-container {
-          background: var(--input-color);
+          background: var(--contrast-color);
           padding: 10px;
           margin-bottom: 10px;
           border-radius: 5px;
@@ -164,7 +164,7 @@
 
             button {
               background-color: var(--safe-button);
-              color: var(--text-color);
+              color: var(--text-primary-color);
               border: none;
               padding: 5px;
               cursor: pointer;

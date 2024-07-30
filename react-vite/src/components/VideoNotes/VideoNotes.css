@@ -111,7 +111,7 @@
 
 .note-buttons button {
   background-color: var(--safe-button);
-  color: var(--text-color);
+  color: var(--text-primary-color);
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -127,7 +127,7 @@
   overflow: hidden;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid var(--background-color);
+  border: 1px solid var(--border-color);
   font-size: 1.1em;
   width: 100%;
   margin-bottom: 10px;

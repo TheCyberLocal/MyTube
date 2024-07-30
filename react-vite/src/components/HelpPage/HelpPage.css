@@ -13,7 +13,7 @@
 }
 
 .segment {
-  background-color: var(--container-background);
+  background-color: var(--contrast-color);
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px;
@@ -25,7 +25,8 @@
 }
 
 .question-container {
-  background-color: var(--container-color);
+  border: 1px solid var(--border-color);
+  background-color: var(--text-primary-background);
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
