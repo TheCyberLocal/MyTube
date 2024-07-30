@@ -82,6 +82,7 @@ div#main-container .select-container > div > select {
   outline: none;
   cursor: pointer;
   border: 2px solid var(--border-color);
+  color: var(--text-color);
 }
 
 div#main-container .multi-selector {
@@ -138,6 +139,7 @@ div#main-container input {
   border-radius: 4px;
   outline: none;
   font-size: 1.1rem;
+  color: var(--text-color);
 }
 
 div#main-container input::placeholder {
