@@ -21,7 +21,7 @@
         border-radius: 25px;
         background-color: var(--foreground-color);
         padding: 18px;
-        border: 2px solid var(--contrast-color);
+        border: 2px solid var(--border-color);
         box-sizing: border-box;
       }
     }
@@ -43,9 +43,9 @@
     overflow: hidden;
 
     .note-taker {
-      background: var(--foreground-color);
+      background-color: var(--foreground-color);
       padding: 18px;
-      border: 2px solid var(--contrast-color);
+      border: 2px solid var(--border-color);
       margin-bottom: 20px;
       border-radius: 25px;
       height: calc(0.375 * (100vw - 70px) - 45px);
@@ -65,6 +65,7 @@
         padding: 10px;
         border-radius: 5px;
         border: 2px solid var(--border-color);
+        background-color: var(--background-color);
         box-sizing: border-box;
         font-size: 1rem;
         outline: none;
@@ -120,8 +121,8 @@
       height: calc(0.375 * (100vw - 70px) - 45px);
       border-radius: 25px;
       padding: 18px;
-      border: 2px solid var(--contrast-color);
-      background: var(--foreground-color);
+      border: 2px solid var(--border-color);
+      background-color: var(--foreground-color);
       margin-bottom: 20px;
 
       h3 {
@@ -137,7 +138,8 @@
         overflow-y: auto;
 
         .highlight-container {
-          background: var(--contrast-color);
+          background-color: var(--background-color);
+          border: 2px solid var(--border-color);
           padding: 10px;
           margin-bottom: 10px;
           border-radius: 5px;
@@ -154,7 +156,7 @@
             }
 
             .highlight-timestamp:hover {
-              font-weight: bold;
+              text-decoration: underline;
             }
           }
 

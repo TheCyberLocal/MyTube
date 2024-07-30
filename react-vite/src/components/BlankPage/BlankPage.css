@@ -91,7 +91,7 @@ div#main-container .multi-selector * {
 }
 
 div#main-container .multi-selector input[type="text"] {
-  background-color: var(--contrast-color) !important;
+  background-color: var(--background-color) !important;
 }
 
 div#main-container .multi-selector > div {

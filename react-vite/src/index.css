@@ -30,20 +30,18 @@ body {
 
   --background-color: #ffffff;
   --foreground-color: #f2f2f2;
-  --contrast-color: #e5e5e5;
   --text-color: #030303;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #383838;
+  --footer-text: #ffffff;
+  --footer-background: #383838;
   --container-shadow: #00000030;
 }
 
 body.dark-theme {
   --background-color: #313338;
   --foreground-color: #2b2d31;
-  --contrast-color: #1e1f22;
   --text-color: #ffffff;
-  --secondary-text-color: #b2b2b2;
-  --secondary-text-background: #1e1f22;
+  --footer-text: #b2b2b2;
+  --footer-background: #1e1f22;
   --container-shadow: #ffffff1a;
 
   --button-text: #ffffff;
@@ -58,10 +56,9 @@ body.dark-theme {
 body.abyss-theme {
   --background-color: #000000;
   --foreground-color: #121212;
-  --contrast-color: #181818;
   --text-color: #ffffff;
-  --secondary-text-color: #b2b2b2;
-  --secondary-text-background: #181818;
+  --footer-text: #b2b2b2;
+  --footer-background: #181818;
   --container-shadow: #ffffff1a;
 
   --button-text: #ffffff;
@@ -76,10 +73,9 @@ body.abyss-theme {
 body.wintergreen-theme {
   --background-color: #e0f7fa;
   --foreground-color: #b2ebf2;
-  --contrast-color: #4dd0e1;
   --text-color: #00796b;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #004d40;
+  --footer-text: #ffffff;
+  --footer-background: #004d40;
   --container-shadow: #004d4030;
 
   --button-text: #004d40;
@@ -94,10 +90,9 @@ body.wintergreen-theme {
 body.forest-theme {
   --background-color: #e8f5e9;
   --foreground-color: #c8e6c9;
-  --contrast-color: #81c784;
   --text-color: #1b5e20;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #2e7d32;
+  --footer-text: #ffffff;
+  --footer-background: #2e7d32;
   --container-shadow: #2e7d3230;
 
   --button-text: #ffffff;
@@ -110,30 +105,28 @@ body.forest-theme {
 }
 
 body.deep-sea-theme {
-  --background-color: #07294d; /* Deeper blue */
-  --foreground-color: #12426e; /* Slightly lighter for contrast */
-  --contrast-color: #286596; /* More defined contrast */
-  --text-color: #ffffff; /* Keep white for maximum contrast */
-  --secondary-text-color: #c2dfff; /* Lighter blue for secondary text */
-  --secondary-text-background: #1a5280; /* Darker blue for secondary text background */
-  --container-shadow: #1a528030; /* Subtle shadow */
+  --background-color: #07294d;
+  --foreground-color: #12426e;
+  --text-color: #ffffff;
+  --footer-text: #c2dfff;
+  --footer-background: #1a5280;
+  --container-shadow: #279abd41;
 
-  --button-text: #ffffff; /* Keep white button text */
-  --safe-button: #42a5f5; /* Lighter blue button */
-  --safe-button-hover: #286596; /* Darker blue hover */
-  --update-button: #1e88e5; /* Keep existing update button color */
-  --update-button-hover: #1565c0; /* Keep existing update button hover */
-  --danger-button: #e57373; /* Keep red for danger */
-  --danger-button-hover: #d32f2f; /* Keep red for danger hover */
+  --button-text: #ffffff;
+  --safe-button: #42a5f5;
+  --safe-button-hover: #286596;
+  --update-button: #1e88e5;
+  --update-button-hover: #1565c0;
+  --danger-button: #e57373;
+  --danger-button-hover: #d32f2f;
 }
 
 body.lavender-theme {
   --background-color: #f3e5f5;
   --foreground-color: #e1bee7;
-  --contrast-color: #ce93d8;
   --text-color: #4a148c;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #6a1b9a;
+  --footer-text: #ffffff;
+  --footer-background: #6a1b9a;
   --container-shadow: #6a1b9a30;
 
   --button-text: #ffffff;
@@ -148,10 +141,9 @@ body.lavender-theme {
 body.autumn-theme {
   --background-color: #fff8e1;
   --foreground-color: #ffecb3;
-  --contrast-color: #ffe082;
   --text-color: #bf360c;
-  --secondary-text-color: #ffffff;
-  --secondary-text-background: #d84315;
+  --footer-text: #ffffff;
+  --footer-background: #d84315;
   --container-shadow: #d8431530;
 
   --button-text: #ffffff;

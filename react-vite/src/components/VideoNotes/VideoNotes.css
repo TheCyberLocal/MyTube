@@ -39,7 +39,7 @@
 
 .note-container {
   margin-bottom: 15px;
-  border: 2px solid var(--contrast-color);
+  border: 2px solid var(--border-color);
   background-color: var(--foreground-color);
   transition: all 0.75s ease;
   box-sizing: border-box;
@@ -66,9 +66,7 @@
 .note-content {
   max-height: 0;
   overflow: hidden;
-  transition:
-    max-height 0.75s ease-out,
-    padding 0.75s ease-out;
+  transition: max-height 0.75s ease-out, padding 0.75s ease-out;
   opacity: 0;
   transform-origin: top;
 }
@@ -130,6 +128,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 2px solid var(--border-color);
+  background-color: var(--background-color);
   font-size: 1.1em;
   width: 100%;
   margin-bottom: 10px;
