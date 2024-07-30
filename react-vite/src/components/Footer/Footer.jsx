@@ -10,6 +10,18 @@ import "./Footer.css";
 function Footer() {
   const currentYear = new Date().getFullYear();
 
+  function copyEmailToClipboard() {
+    const email = "timdiscovers@gmail.com";
+    navigator.clipboard
+      .writeText(email)
+      .then(() => {
+        alert("Email copied to clipboard!");
+      })
+      .catch(() => {
+        alert("Copy failed, please try again.");
+      });
+  }
+
   return (
     <footer>
       <div id="footer-copyright">
@@ -44,7 +56,7 @@ function Footer() {
         >
           <FaGithub size={24} />
         </a>
-        <a href="mailto:timdiscovers@gmail.com">
+        <a href="#" onClick={() => copyEmailToClipboard()}>
           <FaEnvelope size={24} />
         </a>
       </div>
