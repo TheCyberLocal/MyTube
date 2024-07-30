@@ -18,7 +18,7 @@ div#understand-delete {
 
   & button {
     background-color: var(--safe-button);
-    color: var(--primary-text-color);
+    color: var(--button-text);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -29,11 +29,15 @@ div#understand-delete {
     margin-top: 10px;
   }
 
-  & button#no {
-    background-color: var(--safe-button);
+  & button:hover {
+    background-color: var(--safe-button-hover);
   }
 
   & button#yes {
-    background-color: var(--error-color);
+    background-color: var(--danger-button);
+  }
+
+  & button#yes:hover {
+    background-color: var(--danger-button-hover);
   }
 }

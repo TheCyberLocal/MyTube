@@ -7,7 +7,7 @@
   margin: auto;
   text-align: center;
   background-color: var(--safe-button);
-  color: var(--primary-text-color);
+  color: var(--button-text);
   font-size: 2rem;
   border-radius: 25px;
   margin-top: 10px;
@@ -43,7 +43,8 @@
     padding: 10px;
     border-radius: 5px;
     outline: none;
-    border: 1px solid var(--border-color);
+    color: var(--primary-text-color);
+    border: 2px solid var(--border-color);
   }
   & > * {
     margin: 5px 0;

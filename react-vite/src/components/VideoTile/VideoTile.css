@@ -1,5 +1,6 @@
 .video-tile {
-  border: 1px solid var(--secondary-text-background);
+  border: 2px solid var(--primary-text-background);
+  background-color: var(--foreground-color);
   padding: 10px;
   display: flex;
   flex-direction: column;

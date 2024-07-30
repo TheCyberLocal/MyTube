@@ -2,22 +2,22 @@
 
 /* Default to light color variables */
 body {
-  --background-color: #f8f9fa;
-  --foreground-color: #e9ecef;
-  --contrast-color: #ced4da;
-  --border-color: #adb5bd;
-  --primary-text-color: #343a40;
-  --primary-text-background: #fff;
+  --error-color: red;
+  --background-color: #ddd;
+  --foreground-color: #fff;
+  --contrast-color: #eee;
+  --primary-text-color: #333;
+  --primary-text-background: #cecece;
   --secondary-text-color: #fff;
-  --secondary-text-background: #495057;
-  --container-shadow: rgba(0, 0, 0, 0.1);
-
-  --update-button: #4caf50;
-  --update-button-hover: #388e3c;
-  --safe-button: #2196f3;
-  --safe-button-hover: #1976d2;
-  --danger-button: #ff5722;
-  --danger-button-hover: #e64a19;
+  --secondary-text-background: #383838;
+  --container-shadow: #00000030;
+  --button-text: #fff;
+  --update-button: green;
+  --update-button-hover: darkgreen;
+  --safe-button: #9a9a9a;
+  --safe-button-hover: #696969;
+  --danger-button: #d52a2a;
+  --danger-button-hover: darkred;
 }
 
 /* body.dark-theme {
@@ -26,8 +26,7 @@ body {
 } */
 
 body {
-  --error-color: red;
-
+  --border-color: var(--safe-button);
   background-color: var(--background-color);
   color: var(--primary-text-color);
 

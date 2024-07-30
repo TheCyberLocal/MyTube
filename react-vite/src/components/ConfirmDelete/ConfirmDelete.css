@@ -20,7 +20,7 @@ div#prompt-modal {
     display: flex;
     justify-content: center;
     background-color: var(--safe-button);
-    color: var(--primary-text-color);
+    color: var(--button-text);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -31,16 +31,25 @@ div#prompt-modal {
     margin-top: 10px;
   }
 
-  & button#no {
-    background-color: var(--safe-button);
+  & button:hover {
+    background-color: var(--safe-button-hover);
   }
 
   & button#yes {
     background-color: var(--danger-button);
   }
 
+  & button#yes:hover {
+    background-color: var(--danger-button-hover);
+  }
+
   & button#ok {
     background-color: var(--update-button);
+    font-size: 24px;
+  }
+
+  & button#ok:hover {
+    background-color: var(--update-button-hover);
     font-size: 24px;
   }
 }
