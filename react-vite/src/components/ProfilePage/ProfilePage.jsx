@@ -40,9 +40,10 @@ const themeOptions = [
   "honey-bee",
   "lavender",
   "rose",
+  "clover",
   "wintergreen",
-  "cyberpunk",
   "neon-lime",
+  "cyberpunk",
 ];
 
 function ProfilePage() {

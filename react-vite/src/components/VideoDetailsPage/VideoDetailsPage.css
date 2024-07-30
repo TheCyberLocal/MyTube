@@ -29,6 +29,7 @@
     .video-info {
       margin: 0px 25px;
       font-size: 1.1em;
+      color: var(--text-color);
 
       h2 {
         margin: 5px 0 10px 0;
@@ -45,6 +46,7 @@
     .note-taker {
       background-color: var(--foreground-color);
       padding: 18px;
+      color: var(--text-color);
       border: 2px solid var(--border-color);
       margin-bottom: 20px;
       border-radius: 25px;
@@ -64,6 +66,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
+        color: var(--text-color);
         border: 2px solid var(--border-color);
         background-color: var(--background-color);
         box-sizing: border-box;
@@ -119,6 +122,7 @@
 
     .highlights-section {
       height: calc(0.375 * (100vw - 70px) - 45px);
+      color: var(--text-color);
       border-radius: 25px;
       padding: 18px;
       border: 2px solid var(--border-color);

@@ -45,8 +45,8 @@ body.dark-theme {
   --container-shadow: #ffffff1a;
 
   --button-text: #ffffff;
-  --safe-button: #383838;
-  --safe-button-hover: #484848;
+  --safe-button: #545454;
+  --safe-button-hover: #474747;
   --update-button: #4caf50;
   --update-button-hover: #388e3c;
   --danger-button: #f44336;
@@ -87,7 +87,7 @@ body.wintergreen-theme {
   --danger-button-hover: #d32f2f;
 }
 
-body.forest-theme {
+body.clover-theme {
   --background-color: #e8f5e9;
   --foreground-color: #c8e6c9;
   --text-color: #1b5e20;
@@ -193,7 +193,7 @@ body.rose-theme {
   --background-color: #fce4ec;
   --foreground-color: #f8bbd0;
   --text-color: #ad1457;
-  --footer-text: #c2185b;
+  --footer-text: #ffc5dc;
   --footer-background: #880e4f;
   --container-shadow: #880e4f30;
 
