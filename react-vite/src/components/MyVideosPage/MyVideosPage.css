@@ -7,8 +7,8 @@
   margin: auto;
   width: 100%;
   text-align: center;
-  background-color: grey;
-  color: white;
+  background-color: var(--safe-button);
+  color: var(--text-color);
   font-size: 2rem;
   border-radius: 25px;
   margin-top: 20px;
@@ -18,7 +18,7 @@
 }
 
 #end-of-page:hover {
-  background-color: darkgrey;
+  background-color: var(--safe-button-hover);
 }
 
 #footer {
@@ -43,7 +43,7 @@
     padding: 10px;
     border-radius: 5px;
     outline: none;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border);
   }
   & > * {
     margin: 5px 0;
