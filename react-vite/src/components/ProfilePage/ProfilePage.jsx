@@ -36,7 +36,7 @@ const themeOptions = [
   "wintergreen",
   "deep-sea",
   "lavender",
-  "autumn",
+  "honey-bee",
   "abyss",
 ];
 
