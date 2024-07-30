@@ -1,35 +1,7 @@
 /* TODO: Add sitewide styles */
 
-/* Default to light color variables */
 body {
-  --error-color: red;
-  --background-color: #ddd;
-  --foreground-color: #fff;
-  --contrast-color: #eee;
-  --primary-text-color: #333;
-  --primary-text-background: #cecece;
-  --secondary-text-color: #fff;
-  --secondary-text-background: #383838;
-  --container-shadow: #00000030;
-  --button-text: #fff;
-  --update-button: green;
-  --update-button-hover: darkgreen;
-  --safe-button: #9a9a9a;
-  --safe-button-hover: #696969;
-  --danger-button: #d52a2a;
-  --danger-button-hover: darkred;
-}
-
-/* body.dark-theme {
-  --background-color: black;
-  --primary-text-color: #fff;
-} */
-
-body {
-  --border-color: var(--safe-button);
   background-color: var(--background-color);
-  color: var(--primary-text-color);
-
   margin: 0px;
   padding-bottom: 50px;
   padding-top: 40px;
@@ -37,4 +9,110 @@ body {
 
 * p {
   word-break: break-word;
+}
+
+* input,
+* select {
+  background-color: var(--foreground-color);
+}
+
+/* Default to light color variables */
+body {
+  --error-color: red;
+  --button-text: #ffffff;
+  --safe-button: #9a9a9a;
+  --safe-button-hover: #696969;
+  --update-button: green;
+  --update-button-hover: darkgreen;
+  --danger-button: #d52a2a;
+  --danger-button-hover: darkred;
+  --border-color: var(--safe-button);
+
+  --background-color: #ffffff;
+  --foreground-color: #f2f2f2;
+  --contrast-color: #e5e5e5;
+  --text-color: #030303;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #383838;
+  --container-shadow: #00000030;
+}
+
+body.dark-theme {
+  --background-color: #181818;
+  --foreground-color: #282828;
+  --contrast-color: #383838;
+  --text-color: #ffffff;
+  --secondary-text-color: #cccccc;
+  --secondary-text-background: #383838;
+  --container-shadow: #ffffff30;
+}
+
+body.ocean-theme {
+  --background-color: #e0f7fa;
+  --foreground-color: #b2ebf2;
+  --contrast-color: #4dd0e1;
+  --text-color: #00796b;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #004d40;
+  --container-shadow: #004d4030;
+}
+
+body.forest-theme {
+  --background-color: #e8f5e9;
+  --foreground-color: #c8e6c9;
+  --contrast-color: #81c784;
+  --text-color: #1b5e20;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #2e7d32;
+  --container-shadow: #2e7d3230;
+}
+
+body.sunset-theme {
+  --background-color: #fff3e0;
+  --foreground-color: #ffe0b2;
+  --contrast-color: #ffcc80;
+  --text-color: #e65100;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #bf360c;
+  --container-shadow: #bf360c30;
+}
+
+body.night-sky-theme {
+  --background-color: #0d47a1;
+  --foreground-color: #1976d2;
+  --contrast-color: #42a5f5;
+  --text-color: #ffffff;
+  --secondary-text-color: #bbdefb;
+  --secondary-text-background: #1e88e5;
+  --container-shadow: #1e88e530;
+}
+
+body.lavender-theme {
+  --background-color: #f3e5f5;
+  --foreground-color: #e1bee7;
+  --contrast-color: #ce93d8;
+  --text-color: #4a148c;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #6a1b9a;
+  --container-shadow: #6a1b9a30;
+}
+
+body.autumn-theme {
+  --background-color: #fff8e1;
+  --foreground-color: #ffecb3;
+  --contrast-color: #ffe082;
+  --text-color: #bf360c;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #d84315;
+  --container-shadow: #d8431530;
+}
+
+body.mint-theme {
+  --background-color: #e0f2f1;
+  --foreground-color: #b2dfdb;
+  --contrast-color: #80cbc4;
+  --text-color: #004d40;
+  --secondary-text-color: #ffffff;
+  --secondary-text-background: #00796b;
+  --container-shadow: #00796b30;
 }

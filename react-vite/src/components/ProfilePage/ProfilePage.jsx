@@ -108,7 +108,7 @@ function ProfilePage() {
             <select value={theme} onChange={(e) => setTheme(e.target.value)}>
               {themeOptions.map((e) => (
                 <option key={e} value={e}>
-                  {t("theme")}
+                  {e}
                 </option>
               ))}
             </select>

@@ -9,7 +9,7 @@ div#navigation {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid var(--border-color);
-  background-color: var(--primary-text-background);
+  background-color: var(--foreground-color);
   z-index: 1;
   box-sizing: border-box;
 }

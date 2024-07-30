@@ -32,6 +32,10 @@
   gap: 10px;
   height: 80px;
   margin-bottom: 10px;
+
+  & input::placeholder {
+    color: var(--text-color);
+  }
 }
 
 #controls > label {
@@ -43,12 +47,31 @@
     padding: 10px;
     border-radius: 5px;
     outline: none;
-    color: var(--primary-text-color);
+    color: var(--text-color);
     border: 2px solid var(--border-color);
   }
   & > * {
     margin: 5px 0;
   }
+}
+
+.multi-selector div {
+  background-color: var(--foreground-color) !important;
+  border-radius: 5px;
+}
+
+.multi-selector input[type="text"] {
+  background-color: var(--contrast-color) !important;
+}
+
+.multi-selector > div {
+  border: 2px solid var(--border-color) !important;
+}
+
+.multi-selector *,
+.multi-selector input::placeholder {
+  box-shadow: none !important;
+  color: var(--text-color) !important;
 }
 
 .video-results {
