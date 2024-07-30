@@ -3,11 +3,11 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 40px;
-  color: var(--text-secondary-color);
+  color: var(--secondary-text-color);
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: var(--text-secondary-background);
+  background-color: var(--secondary-text-background);
   z-index: 1;
   box-sizing: border-box;
 }
@@ -25,5 +25,5 @@ footer {
 #footer-icons a {
   display: flex;
   align-items: center;
-  color: var(--text-secondary-color);
+  color: var(--secondary-text-color);
 }

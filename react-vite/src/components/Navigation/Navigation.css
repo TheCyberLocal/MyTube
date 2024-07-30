@@ -34,7 +34,7 @@ button {
   margin: 5px;
   height: 25px;
   background-color: var(--safe-button);
-  color: white;
+  color: var(--primary-text-color);
   border: none;
   border-radius: 4px;
   font-size: 20px;

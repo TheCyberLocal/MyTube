@@ -111,7 +111,7 @@
 
 .note-buttons button {
   background-color: var(--safe-button);
-  color: var(--text-primary-color);
+  color: var(--primary-text-color);
   border: none;
   padding: 5px 10px;
   cursor: pointer;

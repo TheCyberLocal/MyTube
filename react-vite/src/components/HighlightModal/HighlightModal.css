@@ -80,7 +80,7 @@ label {
   background-color: var(--safe-button);
   display: flex;
   justify-content: center;
-  color: var(--text-primary-color);
+  color: var(--primary-text-color);
   border: none;
   padding: 10px 20px;
   cursor: pointer;

@@ -25,13 +25,13 @@
 
   & h1 {
     font-size: 3em;
-    color: var(--text-primary-color);
+    color: var(--primary-text-color);
     margin-bottom: 20px;
   }
 
   & p {
     font-size: 1.2em;
-    color: var(--text-primary-color);
+    color: var(--primary-text-color);
     margin-bottom: 20px;
   }
 

@@ -13,7 +13,7 @@
   min-width: 400px;
   max-width: 600px;
   background-color: var(--foreground-color);
-  color: var(--text-primary-color);
+  color: var(--primary-text-color);
 }
 
 div#main-container {

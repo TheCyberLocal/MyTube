@@ -88,7 +88,7 @@
           display: flex;
           justify-content: center;
           background-color: var(--safe-button);
-          color: var(--text-primary-color);
+          color: var(--primary-text-color);
           border: none;
           padding: 15px;
           margin: 0;
@@ -164,7 +164,7 @@
 
             button {
               background-color: var(--safe-button);
-              color: var(--text-primary-color);
+              color: var(--primary-text-color);
               border: none;
               padding: 5px;
               cursor: pointer;

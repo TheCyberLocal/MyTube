@@ -20,7 +20,7 @@ div#prompt-modal {
     display: flex;
     justify-content: center;
     background-color: var(--safe-button);
-    color: white;
+    color: var(--primary-text-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -40,7 +40,7 @@ div#prompt-modal {
   }
 
   & button#ok {
-    background-color: green;
+    background-color: var(--update-button);
     font-size: 24px;
   }
 }
