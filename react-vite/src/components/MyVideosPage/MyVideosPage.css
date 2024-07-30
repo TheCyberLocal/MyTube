@@ -39,7 +39,9 @@
 }
 
 #controls > label {
+  color: var(--text-color);
   width: 30vw;
+
   & > input,
   & > select {
     width: 80%;
