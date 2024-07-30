@@ -20,13 +20,13 @@ body {
 /* Default to light color variables */
 body {
   --error-color: red;
-  --button-text: #ffffff;
-  --safe-button: #9a9a9a;
-  --safe-button-hover: #696969;
+  --button-text: #030303;
+  --safe-button: lightgrey;
+  --safe-button-hover: #bababa;
   --update-button: green;
   --update-button-hover: darkgreen;
-  --danger-button: #d52a2a;
-  --danger-button-hover: darkred;
+  --danger-button: #ed1c24;
+  --danger-button-hover: #c8181e;
 
   --background-color: #ffffff;
   --foreground-color: #f2f2f2;
@@ -38,12 +38,12 @@ body {
 }
 
 body.dark-theme {
-  --background-color: #121212;
-  --foreground-color: #181818;
-  --contrast-color: #282828;
+  --background-color: #313338;
+  --foreground-color: #2b2d31;
+  --contrast-color: #1e1f22;
   --text-color: #ffffff;
   --secondary-text-color: #b2b2b2;
-  --secondary-text-background: #282828;
+  --secondary-text-background: #1e1f22;
   --container-shadow: #ffffff1a;
 
   --button-text: #ffffff;
@@ -55,7 +55,25 @@ body.dark-theme {
   --danger-button-hover: #d32f2f;
 }
 
-body.ocean-theme {
+body.abyss-theme {
+  --background-color: #000000;
+  --foreground-color: #121212;
+  --contrast-color: #181818;
+  --text-color: #ffffff;
+  --secondary-text-color: #b2b2b2;
+  --secondary-text-background: #181818;
+  --container-shadow: #ffffff1a;
+
+  --button-text: #ffffff;
+  --safe-button: #383838;
+  --safe-button-hover: #484848;
+  --update-button: #4caf50;
+  --update-button-hover: #388e3c;
+  --danger-button: #f44336;
+  --danger-button-hover: #d32f2f;
+}
+
+body.wintergreen-theme {
   --background-color: #e0f7fa;
   --foreground-color: #b2ebf2;
   --contrast-color: #4dd0e1;
@@ -64,7 +82,7 @@ body.ocean-theme {
   --secondary-text-background: #004d40;
   --container-shadow: #004d4030;
 
-  --button-text: #ffffff;
+  --button-text: #004d40;
   --safe-button: #81d4fa;
   --safe-button-hover: #4fc3f7;
   --update-button: #00acc1;
@@ -91,22 +109,22 @@ body.forest-theme {
   --danger-button-hover: #d32f2f;
 }
 
-body.night-sky-theme {
-  --background-color: #0d47a1;
-  --foreground-color: #1976d2;
-  --contrast-color: #42a5f5;
-  --text-color: #ffffff;
-  --secondary-text-color: #bbdefb;
-  --secondary-text-background: #1e88e5;
-  --container-shadow: #1e88e530;
+body.deep-sea-theme {
+  --background-color: #07294d; /* Deeper blue */
+  --foreground-color: #12426e; /* Slightly lighter for contrast */
+  --contrast-color: #286596; /* More defined contrast */
+  --text-color: #ffffff; /* Keep white for maximum contrast */
+  --secondary-text-color: #c2dfff; /* Lighter blue for secondary text */
+  --secondary-text-background: #1a5280; /* Darker blue for secondary text background */
+  --container-shadow: #1a528030; /* Subtle shadow */
 
-  --button-text: #ffffff;
-  --safe-button: #64b5f6;
-  --safe-button-hover: #42a5f5;
-  --update-button: #1e88e5;
-  --update-button-hover: #1565c0;
-  --danger-button: #e57373;
-  --danger-button-hover: #d32f2f;
+  --button-text: #ffffff; /* Keep white button text */
+  --safe-button: #42a5f5; /* Lighter blue button */
+  --safe-button-hover: #286596; /* Darker blue hover */
+  --update-button: #1e88e5; /* Keep existing update button color */
+  --update-button-hover: #1565c0; /* Keep existing update button hover */
+  --danger-button: #e57373; /* Keep red for danger */
+  --danger-button-hover: #d32f2f; /* Keep red for danger hover */
 }
 
 body.lavender-theme {

@@ -33,10 +33,11 @@ const languageOptions = [
 const themeOptions = [
   "light",
   "dark",
-  "ocean",
-  "night-sky",
+  "wintergreen",
+  "deep-sea",
   "lavender",
   "autumn",
+  "abyss",
 ];
 
 function ProfilePage() {
