@@ -8,14 +8,14 @@
 #highlight-title {
   outline: none;
   padding: 5px;
-  border: 1px solid black;
+  border: 1px solid var(--input-border);
   border-radius: 5px;
 }
 
 input {
   outline: none;
   padding: 2px;
-  border: 1px solid black;
+  border: 1px solid var(--input-border);
   border-radius: 5px;
 }
 
@@ -34,7 +34,7 @@ label {
   height: 20px;
 
   & p.error {
-    color: red;
+    color: var(--error-color);
     font-size: 14px;
     margin-top: 5px;
     text-align: center;
@@ -77,19 +77,18 @@ label {
 }
 
 .highlight-buttons button {
-  background-color: grey;
+  background-color: var(--safe-button);
   display: flex;
   justify-content: center;
-  color: white;
+  color: var(--text-color);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   margin: 0;
-
   flex: 1;
 }
 
 .highlight-buttons button:hover {
-  background-color: darkgrey;
+  background-color: var(--safe-button-hover);
 }

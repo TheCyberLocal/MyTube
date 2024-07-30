@@ -11,6 +11,7 @@ body {
   --container-shadow: rgba(255, 255, 255, 0.1);
   --question-background: #f9f9f9;
   --segment-background: #e0e0e0;
+  --input-border: black;
 }
 
 /* Default to light color variables */
