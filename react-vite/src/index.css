@@ -104,7 +104,7 @@ body.clover-theme {
   --danger-button-hover: #d32f2f;
 }
 
-body.deep-sea-theme {
+body.deep_sea-theme {
   --background-color: #07294d;
   --foreground-color: #12426e;
   --text-color: #ffffff;
@@ -206,7 +206,7 @@ body.crimson-theme {
   --danger-button-hover: #cc0000;
 }
 
-body.neon-lime-theme {
+body.neon_lime-theme {
   --background-color: #1a1a1a;
   --foreground-color: #333333;
   --text-color: #ffffff;
