@@ -176,4 +176,18 @@ export default {
   health: `স্বাস্থ্য`,
   fitness: `ফিটনেস`,
   nature: `প্রকৃতি`,
+
+  light: "আলো",
+  dark: "অন্ধকার",
+  space: "মহাকাশ",
+  abyss: "অতল গহ্বর",
+  deep_sea: "গভীর সমুদ্র",
+  autumn: "শরৎ",
+  lavender: "ল্যাভেন্ডার",
+  rose: "গোলাপ",
+  clover: "তৃণশস্য",
+  wintergreen: "শীতল পাতা",
+  crimson: "গাঢ় লাল",
+  neon_lime: "নিয়ন চুন",
+  cyberpunk: "সাইবারপাঙ্ক",
 };

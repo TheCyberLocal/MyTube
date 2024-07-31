@@ -176,4 +176,18 @@ export default {
   health: `Sức khỏe`,
   fitness: `Thể dục`,
   nature: `Thiên nhiên`,
+
+  light: "Ánh sáng",
+  dark: "Tối",
+  space: "Không gian",
+  abyss: "Vực thẳm",
+  deep_sea: "Biển Sâu",
+  autumn: "Mùa Thu",
+  lavender: "Hoa Oải Hương",
+  rose: "Hoa Hồng",
+  clover: "Cỏ Ba Lá",
+  wintergreen: "Cây Đông Xanh",
+  crimson: "Đỏ Thẫm",
+  neon_lime: "Chanh Neon",
+  cyberpunk: "Cyberpunk",
 };

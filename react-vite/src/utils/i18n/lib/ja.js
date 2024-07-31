@@ -176,4 +176,18 @@ export default {
   health: `健康`,
   fitness: `フィットネス`,
   nature: `自然`,
+
+  light: "光",
+  dark: "暗い",
+  space: "宇宙",
+  abyss: "深淵",
+  deep_sea: "深海",
+  autumn: "秋",
+  lavender: "ラベンダー",
+  rose: "バラ",
+  clover: "クローバー",
+  wintergreen: "ウィンターグリーン",
+  crimson: "クリムゾン",
+  neon_lime: "ネオンライム",
+  cyberpunk: "サイバーパンク",
 };

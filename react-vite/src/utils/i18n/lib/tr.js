@@ -176,4 +176,18 @@ export default {
   health: `Sağlık`,
   fitness: `Fitness`,
   nature: `Doğa`,
+
+  light: "Işık",
+  dark: "Karanlık",
+  space: "Uzay",
+  abyss: "Uçurum",
+  deep_sea: "Derin Deniz",
+  autumn: "Sonbahar",
+  lavender: "Lavanta",
+  rose: "Gül",
+  clover: "Yonca",
+  wintergreen: "Kış Yeşili",
+  crimson: "Kızıl",
+  neon_lime: "Neon Kireç",
+  cyberpunk: "Siberpunk",
 };

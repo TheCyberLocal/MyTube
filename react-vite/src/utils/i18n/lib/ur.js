@@ -176,4 +176,18 @@ export default {
   health: `صحت`,
   fitness: `فٹنس`,
   nature: `قدرت`,
+
+  light: "روشنی",
+  dark: "اندھیرا",
+  space: "خلاء",
+  abyss: "گہرا کنواں",
+  deep_sea: "گہرا سمندر",
+  autumn: "خزاں",
+  lavender: "لیونڈر",
+  rose: "گلاب",
+  clover: "تپت پات",
+  wintergreen: "سردی کی سبزی",
+  crimson: "گہرا سرخ",
+  neon_lime: "نیون چونا",
+  cyberpunk: "سائبرپنک",
 };

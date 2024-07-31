@@ -176,4 +176,18 @@ export default {
   health: `健康`,
   fitness: `健身`,
   nature: `自然`,
+
+  light: "光",
+  dark: "黑暗",
+  space: "空间",
+  abyss: "深渊",
+  deep_sea: "深海",
+  autumn: "秋天",
+  lavender: "薰衣草",
+  rose: "玫瑰",
+  clover: "三叶草",
+  wintergreen: "冬青",
+  crimson: "深红",
+  neon_lime: "霓虹石灰",
+  cyberpunk: "赛博朋克",
 };

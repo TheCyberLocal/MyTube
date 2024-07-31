@@ -176,4 +176,18 @@ export default {
   health: `건강`,
   fitness: `피트니스`,
   nature: `자연`,
+
+  light: "빛",
+  dark: "어두운",
+  space: "우주",
+  abyss: "심연",
+  deep_sea: "심해",
+  autumn: "가을",
+  lavender: "라벤더",
+  rose: "장미",
+  clover: "클로버",
+  wintergreen: "윈터그린",
+  crimson: "진홍",
+  neon_lime: "네온 라임",
+  cyberpunk: "사이버펑크",
 };

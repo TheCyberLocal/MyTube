@@ -176,4 +176,18 @@ export default {
   health: `Здоровье`,
   fitness: `Фитнес`,
   nature: `Природа`,
+
+  light: "Свет",
+  dark: "Тьма",
+  space: "Космос",
+  abyss: "Бездна",
+  deep_sea: "Глубокое Море",
+  autumn: "Осень",
+  lavender: "Лаванда",
+  rose: "Роза",
+  clover: "Клевер",
+  wintergreen: "Зимняя Зелень",
+  crimson: "Малиновый",
+  neon_lime: "Неоново-Зелёный",
+  cyberpunk: "Киберпанк",
 };

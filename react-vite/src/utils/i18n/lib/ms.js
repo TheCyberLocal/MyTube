@@ -176,4 +176,18 @@ export default {
   health: `Kesihatan`,
   fitness: `Kecergasan`,
   nature: `Alam Semula Jadi`,
+
+  light: "Cahaya",
+  dark: "Gelap",
+  space: "Ruang",
+  abyss: "Jurang",
+  deep_sea: "Laut Dalam",
+  autumn: "Musim Luruh",
+  lavender: "Lavender",
+  rose: "Mawar",
+  clover: "Semanggi",
+  wintergreen: "Hijau Musim Sejuk",
+  crimson: "Merah Tua",
+  neon_lime: "Limau Neon",
+  cyberpunk: "Cyberpunk",
 };

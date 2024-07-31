@@ -35,14 +35,14 @@ const themeOptions = [
   "dark",
   "space",
   "abyss",
-  "deep-sea",
+  "deep_sea",
   "autumn",
   "lavender",
   "rose",
   "clover",
   "wintergreen",
   "crimson",
-  "neon-lime",
+  "neon_lime",
   "cyberpunk",
 ];
 
@@ -122,7 +122,7 @@ function ProfilePage() {
             <select value={theme} onChange={(e) => setTheme(e.target.value)}>
               {themeOptions.map((e) => (
                 <option key={e} value={e}>
-                  {e}
+                  {t(e)}
                 </option>
               ))}
             </select>

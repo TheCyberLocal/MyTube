@@ -176,4 +176,18 @@ export default {
   health: `الصحة`,
   fitness: `اللياقة البدنية`,
   nature: `الطبيعة`,
+
+  light: "ضوء",
+  dark: "مظلم",
+  space: "فضاء",
+  abyss: "هاوية",
+  deep_sea: "البحر العميق",
+  autumn: "الخريف",
+  lavender: "الخزامى",
+  rose: "وردة",
+  clover: "نفل",
+  wintergreen: "النعناع الشتوي",
+  crimson: "قرمزي",
+  neon_lime: "ليمون نيون",
+  cyberpunk: "سايبربانك",
 };

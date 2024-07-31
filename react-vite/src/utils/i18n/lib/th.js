@@ -176,4 +176,18 @@ export default {
   health: `สุขภาพ`,
   fitness: `การออกกำลังกาย`,
   nature: `ธรรมชาติ`,
+
+  light: "แสง",
+  dark: "มืด",
+  space: "อวกาศ",
+  abyss: "เหวลึก",
+  deep_sea: "ทะเลลึก",
+  autumn: "ฤดูใบไม้ร่วง",
+  lavender: "ลาเวนเดอร์",
+  rose: "กุหลาบ",
+  clover: "โคลเวอร์",
+  wintergreen: "วินเทอร์กรีน",
+  crimson: "สีแดงเข้ม",
+  neon_lime: "นีออนมะนาว",
+  cyberpunk: "ไซเบอร์พังก์",
 };

@@ -176,4 +176,18 @@ export default {
   health: `Health`,
   fitness: `Fitness`,
   nature: `Nature`,
+
+  light: "Light",
+  dark: "Dark",
+  space: "Space",
+  abyss: "Abyss",
+  deep_sea: "Deep Sea",
+  autumn: "Autumn",
+  lavender: "Lavender",
+  rose: "Rose",
+  clover: "Clover",
+  wintergreen: "Wintergreen",
+  crimson: "Crimson",
+  neon_lime: "Neon Lime",
+  cyberpunk: "Cyberpunk",
 };
