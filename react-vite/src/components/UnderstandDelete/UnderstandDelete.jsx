@@ -38,14 +38,17 @@ function UnderstandDelete({ type, element }) {
       );
     } else if (type === "account") {
       return (
-        <ul>
-          <li>{t("understand_delete_account_1", element.email)}</li>
-          <li>{t("understand_delete_account_2", element.videoCount)}</li>
-          <li>{t("understand_delete_account_3")}</li>
-          <li>{t("understand_delete_account_4")}</li>
-          <li>{t("understand_delete_account_5")}</li>
-          <li>{t("understand_delete_account_6")}</li>
-        </ul>
+        <>
+          <ul>
+            <li>{t("understand_delete_account_1", element.email)}</li>
+            <li>{t("understand_delete_account_2", element.videoCount)}</li>
+            <li>{t("understand_delete_account_3")}</li>
+            <li>{t("understand_delete_account_4")}</li>
+            <li>{t("understand_delete_account_5")}</li>
+            <li>{t("understand_delete_account_6")}</li>
+          </ul>
+          <button onClick={handleExportNotes}>{t("export_notes")}</button>
+        </>
       );
     }
   };
