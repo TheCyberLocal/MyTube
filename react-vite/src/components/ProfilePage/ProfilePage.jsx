@@ -17,11 +17,11 @@ const languageOptions = [
   { value: "bn", label: "বাংলা" }, // Bengali - 265 million speakers
   { value: "ru", label: "Русский" }, // Russian - 258 million speakers
   { value: "pt", label: "Português" }, // Portuguese - 234 million speakers
-  { value: "id", label: "Bahasa Indonesia" }, // Indonesian - 199 million speakers
+  { value: "id", label: "Indonesia" }, // Indonesian - 199 million speakers
   { value: "ur", label: "اردو" }, // Urdu - 232 million speakers
   { value: "de", label: "Deutsch" }, // German - 132 million speakers
   { value: "ja", label: "日本語" }, // Japanese - 125 million speakers
-  { value: "ms", label: "Bahasa Melayu" }, // Malay - 77 million speakers
+  { value: "ms", label: "Melayu" }, // Malay - 77 million speakers
   { value: "vi", label: "Tiếng Việt" }, // Vietnamese - 76 million speakers
   { value: "ko", label: "한국어" }, // Korean - 77 million speakers
   { value: "it", label: "Italiano" }, // Italian - 67 million speakers

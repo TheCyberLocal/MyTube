@@ -1,24 +1,24 @@
 const dynamicModules = {
-  ar: import("./lib/ar"),
-  bn: import("./lib/bn"),
-  de: import("./lib/de"),
-  en: import("./lib/en"),
-  es: import("./lib/es"),
-  fr: import("./lib/fr"),
-  hi: import("./lib/hi"),
-  id: import("./lib/id"),
-  it: import("./lib/it"),
-  ja: import("./lib/ja"),
-  ko: import("./lib/ko"),
-  ms: import("./lib/ms"),
-  pl: import("./lib/pl"),
-  pt: import("./lib/pt"),
-  ru: import("./lib/ru"),
-  th: import("./lib/th"),
-  tr: import("./lib/tr"),
-  ur: import("./lib/ur"),
-  vi: import("./lib/vi"),
-  zh: import("./lib/zh"),
+  ar: import("./lib/ar"), // Arabic
+  bn: import("./lib/bn"), // Bengali
+  de: import("./lib/de"), // German
+  en: import("./lib/en"), // English
+  es: import("./lib/es"), // Spanish
+  fr: import("./lib/fr"), // French
+  hi: import("./lib/hi"), // Hindi
+  id: import("./lib/id"), // Indonesian
+  it: import("./lib/it"), // Italian
+  ja: import("./lib/ja"), // Japanese
+  ko: import("./lib/ko"), // Korean
+  ms: import("./lib/ms"), // Malay
+  pl: import("./lib/pl"), // Polish
+  pt: import("./lib/pt"), // Portuguese
+  ru: import("./lib/ru"), // Russian
+  th: import("./lib/th"), // Thai
+  tr: import("./lib/tr"), // Turkish
+  ur: import("./lib/ur"), // Urdu
+  vi: import("./lib/vi"), // Vietnamese
+  zh: import("./lib/zh"), // Chinese
 };
 
 async function loadTranslation(lang) {
@@ -37,24 +37,3 @@ export async function getTranslation(lang) {
     return translations[phrase].replace("{var}", arg);
   };
 }
-
-// Arabic ar
-// Bengali bn
-// English en
-// French fr
-// German de
-// Hindi hi
-// Indonesian id
-// Italian it
-// Japanese ja
-// Korean ko
-// Malay ms
-// Mandarin zh
-// Polish pl
-// Portuguese pt
-// Russian ru
-// Spanish es
-// Thai th
-// Turkish tr
-// Urdu ur
-// Vietnamese vi
