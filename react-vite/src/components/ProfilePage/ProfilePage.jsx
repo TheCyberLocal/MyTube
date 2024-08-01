@@ -6,6 +6,7 @@ import { useModal } from "../../context/Modal";
 import { useTranslation } from "../../context/Lang";
 import ConfirmDelete from "../ConfirmDelete";
 import ChangePasswordModal from "../ChangePasswordModal";
+import { exportNotes } from "../../utils";
 
 const languageOptions = [
   { value: "en", label: "English" }, // English - 1.132 billion speakers
@@ -61,7 +62,14 @@ function ProfilePage() {
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
 
-
+  const handleExportNotes = async (e) => {
+    e.preventDefault();
+    try {
+      await exportNotes(user.id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
