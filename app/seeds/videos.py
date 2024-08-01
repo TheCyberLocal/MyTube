@@ -11,15 +11,15 @@ video_data = [
     },
     {
         "user_id": 1,
-        "title": "The Science of Climate Change",
-        "description": "An in-depth look at the science behind climate change, its impact on our planet, and what we can do to mitigate its effects.",
-        "url": "ffjIyms1BX4"
+        "title": "What is Climate Change? Explore the Causes of Climate Change",
+        "description": "This video explores the consequences of climate change on our environment - such as rising sea levels, more frequent extreme weather, and damage to our ecosystems - it also suggests both big and little changes that we can make to protect our Earth.",
+        "url": "EuwMB1Dal-4"
     },
     {
         "user_id": 1,
-        "title": "The Evolution of Music",
-        "description": "Explore the history of music from ancient times to modern-day genres. This video takes you on a journey through the evolution of musical styles and instruments.",
-        "url": "Am18ZxKgi_g"
+        "title": "1 A.M Study Session 📚 [lofi hip hop/chill beats]",
+        "description": "A great study session with some of the best lofi hip hop and chill beats.",
+        "url": "lTRiuFIWV54"
     },
     {
         "user_id": 1,
@@ -29,9 +29,9 @@ video_data = [
     },
     {
         "user_id": 1,
-        "title": "Understanding Quantum Physics",
-        "description": "Dive into the fascinating world of quantum physics. This video explains the fundamental concepts of quantum mechanics and their implications for our understanding of the universe.",
-        "url": "Usu9xZfabPM"
+        "title": "String Theory Explained - What is The True Nature of Reality?",
+        "description": "s String Theory the final solution for all of physic's questions or an overhyped dead end? This video was realised with the help of Dr. Alessandro Sfondrini and it was funded by SNSF under Agora Grant n. 171622 and through the NCCR SwissMAP: The Mathematics of Physics.",
+        "url": "Da-2h2B4faU"
     },
     {
         "user_id": 1,
