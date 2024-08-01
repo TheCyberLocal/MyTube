@@ -72,7 +72,7 @@ function VideoDetailsPage() {
           start={recording}
           end={playerRef.current.getCurrentTime()}
           videoDuration={playerRef.current.playerInfo.duration}
-        />
+        />,
       );
       playerRef.current.pauseVideo();
       setRecording(null);
@@ -81,14 +81,14 @@ function VideoDetailsPage() {
 
   const handleUpdateHighlight = (highlightId) => {
     const highlightToUpdate = highlights.find(
-      (highlight) => highlight.id === highlightId
+      (highlight) => highlight.id === highlightId,
     );
     setModalContent(
       <HighlightModal
         type="update"
         highlight={highlightToUpdate}
         videoDuration={playerRef.current.playerInfo.duration}
-      />
+      />,
     );
   };
 
@@ -111,7 +111,7 @@ function VideoDetailsPage() {
         title: noteTitle,
         description: noteContent,
         video_id: video.id,
-      })
+      }),
     );
     if (serverErrors) {
       setErrors(serverErrors);
@@ -177,7 +177,7 @@ function VideoDetailsPage() {
             value={noteContent}
             onChange={(e) => setNoteContent(e.target.value)}
             placeholder={t(
-              errors.description ? "content_required" : "take_a_note"
+              errors.description ? "content_required" : "take_a_note",
             )}
           />
           <div className="note-taker-buttons">
@@ -207,7 +207,7 @@ function VideoDetailsPage() {
                         onClick={() => handleHighlightClick(highlight)}
                       >
                         {`${convertSecondsToHMSString(
-                          highlight.start_time
+                          highlight.start_time,
                         )} - ${convertSecondsToHMSString(highlight.end_time)}`}
                       </span>
                       <span>

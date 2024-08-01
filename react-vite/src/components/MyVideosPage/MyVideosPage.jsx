@@ -12,7 +12,7 @@ import "./MyVideosPage.css";
 function MyVideosPage() {
   const { isLoading: myVideosLoading } = useSelector((state) => state.myVideos);
   const { user, isLoading: sessionLoading } = useSelector(
-    (state) => state.session
+    (state) => state.session,
   );
   const { t } = useTranslation();
 
@@ -37,9 +37,9 @@ function MyVideosPage() {
       (results) => {
         if (results.length < 10) setEndOfPage(true);
         setAllSearchResults((prevResults) =>
-          page === 1 ? results : [...prevResults, ...results]
+          page === 1 ? results : [...prevResults, ...results],
         );
-      }
+      },
     );
   };
 
@@ -71,7 +71,7 @@ function MyVideosPage() {
       setPage((prev) => prev + 1);
       setTimeout(
         () => bottomRef.current?.scrollIntoView({ behavior: "smooth" }),
-        1000
+        1000,
       );
     }
   };

@@ -1,8 +1,10 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_file
 from flask_login import login_required, current_user
 from app.models import db, Note, Video
 from app.forms import NoteForm, UpdateNoteForm
-
+import zipfile
+import re
+import io
 
 note_routes = Blueprint('notes', __name__)
 
@@ -86,3 +88,43 @@ def delete_note(id):
     db.session.delete(note)
     db.session.commit()
     return jsonify({"message": "Note deleted successfully"}), 200
+
+
+@note_routes.route('/export-notes', methods=['GET'])
+@login_required
+def export_notes():
+    try:
+        # Query all notes for the current user
+        notes = Note.query.join(Video).filter(Video.user_id == current_user.id).all()
+
+        if not notes:
+            return jsonify({'errors': 'No notes found.'}), 404
+
+        # Create an in-memory zip file
+        memory_file = io.BytesIO()
+        with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            notes_by_video = {}
+            for note in notes:
+                if note.video.title not in notes_by_video:
+                    notes_by_video[note.video.title] = []
+                notes_by_video[note.video.title].append(note)
+
+            for video_title, video_notes in notes_by_video.items():
+                content = ''
+                for note in video_notes:
+                    content += f"# {note.title}\n\n{note.description}\n\n"
+                content += f"\n\nVideo URL: {video_notes[0].video.url}\n"
+
+                # Sanitize the video title to create a valid file name
+                file_name = re.sub(r'[<>:"/\\|?*\x00-\x1F\x80-\x9F]', '_', video_title)
+
+                file_name = f"{file_name}.txt"
+                zipf.writestr(file_name, content)
+
+        memory_file.seek(0)
+
+        return send_file(memory_file, as_attachment=True, download_name='MyTube_Notes.zip')
+
+    except Exception as e:
+        print(f"Error exporting notes: {e}")
+        return jsonify({'errors': 'An error occurred while exporting notes.'}), 500

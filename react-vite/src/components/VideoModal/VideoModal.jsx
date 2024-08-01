@@ -28,7 +28,7 @@ function VideoModal({ type, video = null }) {
 
       if (video) {
         const existingTags = video.tags.map((tag) =>
-          translatedTags.find((t) => t.value === tag.id)
+          translatedTags.find((t) => t.value === tag.id),
         );
         setVideoTags(existingTags);
       }
@@ -45,7 +45,7 @@ function VideoModal({ type, video = null }) {
       urlFormat1.length < urlFormat2.length ? urlFormat1 : urlFormat2;
 
     fetch(
-      `https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${YouTubeId}`
+      `https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=${YouTubeId}`,
     )
       .then((res) => res.json())
       .then((res) => {
@@ -78,7 +78,7 @@ function VideoModal({ type, video = null }) {
           title: videoTitle,
           description: videoDesc,
           tags: videoTags.map((e) => e.value),
-        })
+        }),
       );
       closeModal();
       window.location.reload();
@@ -90,7 +90,7 @@ function VideoModal({ type, video = null }) {
           title: videoTitle,
           description: videoDesc,
           tags: videoTags.map((e) => e.value),
-        })
+        }),
       );
       closeModal();
       nav("my-videos");

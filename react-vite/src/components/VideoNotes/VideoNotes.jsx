@@ -61,7 +61,7 @@ function VideoNotes() {
         updateNoteThunk(noteId, {
           title: noteTitle,
           description: noteContent,
-        })
+        }),
       );
       setEditableNote(null);
     }
