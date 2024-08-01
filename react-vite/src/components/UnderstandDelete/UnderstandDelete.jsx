@@ -4,16 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteVideoThunk } from "../../redux/videoDetails";
 import { thunkDeleteUser } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
+import { exportNotes } from "../../utils";
 import AlertChange from "../AlertChange";
 import "./UnderstandDelete.css";
 
 function UnderstandDelete({ type, element }) {
   const { closeModal, setModalContent } = useModal();
-  const { t } = useTranslation();
   const { user } = useSelector((state) => state.session);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const nav = useNavigate();
+
+  const handleExportNotes = async (e) => {
+    e.preventDefault();
+    try {
+      await exportNotes(user.id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleDelete = () => {
     if (type === "video") {
@@ -47,7 +57,10 @@ function UnderstandDelete({ type, element }) {
             <li>{t("understand_delete_account_5")}</li>
             <li>{t("understand_delete_account_6")}</li>
           </ul>
-          <button onClick={handleExportNotes}>{t("export_notes")}</button>
+          <h3>You can save your notes by exporting them.</h3>
+          <button id="export" onClick={handleExportNotes}>
+            Export Notes
+          </button>
         </>
       );
     }
