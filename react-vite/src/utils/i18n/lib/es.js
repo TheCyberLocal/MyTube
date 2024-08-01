@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `La configuración de tu cuenta será eliminada.`,
   understand_delete_account_6: `Tu información personal será eliminada.`,
 
+  export_notes: `Exportar notas`,
+  understand_export_notes: `Puedes guardar tus notas exportándolas.`,
+
   help_page_title: `Página de Ayuda`,
   help_page_welcome: `¡Bienvenido a MyTube! Esta página responde preguntas comunes sobre cómo usar el sitio.`,
   help_page_users: `Usuarios`,

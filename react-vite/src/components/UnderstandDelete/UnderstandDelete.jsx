@@ -57,9 +57,9 @@ function UnderstandDelete({ type, element }) {
             <li>{t("understand_delete_account_5")}</li>
             <li>{t("understand_delete_account_6")}</li>
           </ul>
-          <h3>You can save your notes by exporting them.</h3>
+          <h3>{t("understand_export_notes")}</h3>
           <button id="export" onClick={handleExportNotes}>
-            Export Notes
+            {t("export_notes")}
           </button>
         </>
       );

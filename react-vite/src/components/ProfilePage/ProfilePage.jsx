@@ -230,7 +230,7 @@ function ProfilePage() {
           </button>
         </div>
         <div className="button-container">
-          <button onClick={handleExportNotes}>Export Notes</button>
+          <button onClick={handleExportNotes}>{t("export_notes")}</button>
         </div>
       </div>
     </div>

@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `你的账户设置将被删除。`,
   understand_delete_account_6: `你的个人信息将被删除。`,
 
+  export_notes: `导出笔记`,
+  understand_export_notes: `您可以通过导出笔记来保存它们。`,
+
   help_page_title: `帮助页面`,
   help_page_welcome: `欢迎来到 MyTube！本页面回答了有关如何使用本网站的常见问题。`,
   help_page_users: `用户`,

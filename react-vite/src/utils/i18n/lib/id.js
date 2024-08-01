@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `Pengaturan akun Anda akan dihapus.`,
   understand_delete_account_6: `Informasi pribadi Anda akan dihapus.`,
 
+  export_notes: `Ekspor Catatan`,
+  understand_export_notes: `Anda dapat menyimpan catatan Anda dengan mengekspornya.`,
+
   help_page_title: `Halaman Bantuan`,
   help_page_welcome: `Selamat datang di MyTube! Halaman ini menjawab pertanyaan umum tentang cara menggunakan situs ini.`,
   help_page_users: `Pengguna`,

@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `귀하의 계정 설정이 삭제됩니다.`,
   understand_delete_account_6: `귀하의 개인 정보가 삭제됩니다.`,
 
+  export_notes: `노트 내보내기`,
+  understand_export_notes: `노트를 내보내서 저장할 수 있습니다.`,
+
   help_page_title: `도움말 페이지`,
   help_page_welcome: `MyTube에 오신 것을 환영합니다! 이 페이지는 사이트 사용에 대한 일반적인 질문에 답변합니다.`,
   help_page_users: `사용자`,

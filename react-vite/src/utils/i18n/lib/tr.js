@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `Hesap ayarlarınız silinecek.`,
   understand_delete_account_6: `Kişisel bilgileriniz silinecek.`,
 
+  export_notes: `Notları Dışa Aktar`,
+  understand_export_notes: `Notlarınızı dışa aktararak kaydedebilirsiniz.`,
+
   help_page_title: `Yardım Sayfası`,
   help_page_welcome: `MyTube'a Hoş Geldiniz! Bu sayfa, siteyi nasıl kullanacağınızla ilgili yaygın soruları yanıtlar.`,
   help_page_users: `Kullanıcılar`,

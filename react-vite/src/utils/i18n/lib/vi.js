@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `Cài đặt tài khoản của bạn sẽ bị xóa.`,
   understand_delete_account_6: `Thông tin cá nhân của bạn sẽ bị xóa.`,
 
+  export_notes: `Xuất ghi chú`,
+  understand_export_notes: `Bạn có thể lưu ghi chú của mình bằng cách xuất chúng.`,
+
   help_page_title: `Trang trợ giúp`,
   help_page_welcome: `Chào mừng đến với MyTube! Trang này trả lời các câu hỏi thường gặp về cách sử dụng trang web.`,
   help_page_users: `Người dùng`,

@@ -106,6 +106,9 @@ export default {
   understand_delete_account_5: `آپ کی اکاؤنٹ کی سیٹنگز حذف ہو جائیں گی۔`,
   understand_delete_account_6: `آپ کی ذاتی معلومات حذف ہو جائیں گی۔`,
 
+  export_notes: `نوٹس برآمد کریں`,
+  understand_export_notes: `آپ اپنے نوٹس کو برآمد کر کے محفوظ کر سکتے ہیں۔`,
+
   help_page_title: `مدد کا صفحہ`,
   help_page_welcome: `MyTube میں خوش آمدید! یہ صفحہ ویب سائٹ کو استعمال کرنے کے بارے میں عام سوالات کے جوابات دیتا ہے۔`,
   help_page_users: `صارفین`,
