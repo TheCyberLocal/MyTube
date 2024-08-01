@@ -113,7 +113,7 @@ def export_notes():
                 content = ''
                 for note in video_notes:
                     content += f"# {note.title}\n\n{note.description}\n\n"
-                content += f"\n\nVideo URL: {video_notes[0].video.url}\n"
+                content += f"\n\nVideo URL: https://www.youtube.com/watch?v={video_notes[0].video.url}\n"
 
                 # Sanitize the video title to create a valid file name
                 file_name = re.sub(r'[<>:"/\\|?*\x00-\x1F\x80-\x9F]', '_', video_title)
