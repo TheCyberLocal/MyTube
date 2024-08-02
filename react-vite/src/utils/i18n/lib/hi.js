@@ -21,6 +21,10 @@ export default {
   add_video: `वीडियो जोड़ें`,
   update_video: `वीडियो अपडेट करें`,
   delete_video: `वीडियो हटाएं`,
+  create_highlight: `हाइलाइट जोड़ें`,
+  update_highlight: `हाइलाइट अपडेट करें`,
+
+  error_exporting_notes: `नोट्स निर्यात करते समय एक त्रुटि हुई।`,
 
   sort_by: `क्रमबद्ध करें`,
   recently_viewed: `हाल ही में देखा गया`,

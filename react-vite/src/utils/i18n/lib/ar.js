@@ -21,6 +21,10 @@ export default {
   add_video: `إضافة فيديو`,
   update_video: `تحديث الفيديو`,
   delete_video: `حذف الفيديو`,
+  create_highlight: `أضف تمييز`,
+  update_highlight: `تحديث التمييز`,
+
+  error_exporting_notes: `حدث خطأ أثناء تصدير الملاحظات.`,
 
   sort_by: `فرز حسب`,
   recently_viewed: `شوهدت مؤخراً`,

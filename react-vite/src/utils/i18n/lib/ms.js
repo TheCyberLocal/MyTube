@@ -21,6 +21,10 @@ export default {
   add_video: `Tambah Video`,
   update_video: `Kemas kini Video`,
   delete_video: `Padam Video`,
+  create_highlight: `Tambah Sorotan`,
+  update_highlight: `Kemas Kini Sorotan`,
+
+  error_exporting_notes: `Ralat berlaku semasa mengeksport nota.`,
 
   sort_by: `Susun mengikut`,
   recently_viewed: `Baru-baru ini Dilihat`,

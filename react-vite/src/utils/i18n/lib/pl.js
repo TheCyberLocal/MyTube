@@ -21,6 +21,10 @@ export default {
   add_video: `Dodaj film`,
   update_video: `Aktualizuj film`,
   delete_video: `Usuń film`,
+  create_highlight: `Dodaj Podświetlenie`,
+  update_highlight: `Zaktualizuj Podświetlenie`,
+
+  error_exporting_notes: `Wystąpił błąd podczas eksportowania notatek.`,
 
   sort_by: `Sortuj według`,
   recently_viewed: `Ostatnio oglądane`,

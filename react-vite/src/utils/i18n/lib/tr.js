@@ -21,6 +21,10 @@ export default {
   add_video: `Video Ekle`,
   update_video: `Videoyu Güncelle`,
   delete_video: `Videoyu Sil`,
+  create_highlight: `Vurguyu Ekle`,
+  update_highlight: `Vurguyu Güncelle`,
+
+  error_exporting_notes: `Notları dışa aktarırken bir hata oluştu.`,
 
   sort_by: `Sırala`,
   recently_viewed: `Son Görüntülenen`,

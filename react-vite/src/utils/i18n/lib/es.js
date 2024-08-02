@@ -21,6 +21,10 @@ export default {
   add_video: `Agregar Video`,
   update_video: `Actualizar Video`,
   delete_video: `Eliminar Video`,
+  create_highlight: `Agregar Resaltado`,
+  update_highlight: `Actualizar Resaltado`,
+
+  error_exporting_notes: `Ocurrió un error al exportar las notas.`,
 
   sort_by: `Ordenar por`,
   recently_viewed: `Visto Recientemente`,

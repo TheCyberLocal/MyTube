@@ -21,6 +21,10 @@ export default {
   add_video: `ویڈیو شامل کریں`,
   update_video: `ویڈیو اپ ڈیٹ کریں`,
   delete_video: `ویڈیو حذف کریں`,
+  create_highlight: `نمایاں کریں شامل کریں`,
+  update_highlight: `نمایاں کریں کو اپ ڈیٹ کریں`,
+
+  error_exporting_notes: `نوٹ برآمد کرتے وقت ایک خرابی پیش آگئی۔`,
 
   sort_by: `ترتیب دیں`,
   recently_viewed: `حال ہی میں دیکھی گئی`,

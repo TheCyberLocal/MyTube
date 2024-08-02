@@ -21,6 +21,10 @@ export default {
   add_video: `動画を追加`,
   update_video: `動画を更新`,
   delete_video: `動画を削除`,
+  create_highlight: `ハイライトを追加`,
+  update_highlight: `ハイライトを更新`,
+
+  error_exporting_notes: `ノートのエクスポート中にエラーが発生しました。`,
 
   sort_by: `並び替え`,
   recently_viewed: `最近見た`,

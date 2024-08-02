@@ -21,6 +21,10 @@ export default {
   add_video: `添加视频`,
   update_video: `更新视频`,
   delete_video: `删除视频`,
+  create_highlight: `添加高亮`,
+  update_highlight: `更新高亮`,
+
+  error_exporting_notes: `导出笔记时发生错误。`,
 
   sort_by: `排序方式`,
   recently_viewed: `最近查看`,

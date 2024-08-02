@@ -21,6 +21,10 @@ export default {
   add_video: `Aggiungi Video`,
   update_video: `Aggiorna Video`,
   delete_video: `Elimina Video`,
+  create_highlight: `Aggiungi Evidenziazione`,
+  update_highlight: `Aggiorna Evidenziazione`,
+
+  error_exporting_notes: `Si è verificato un errore durante l'esportazione delle note.`,
 
   sort_by: `Ordina per`,
   recently_viewed: `Visualizzati di Recente`,

@@ -21,6 +21,10 @@ export default {
   add_video: `Tambahkan Video`,
   update_video: `Perbarui Video`,
   delete_video: `Hapus Video`,
+  create_highlight: `Tambahkan Sorotan`,
+  update_highlight: `Perbarui Sorotan`,
+
+  error_exporting_notes: `Terjadi kesalahan saat mengekspor catatan.`,
 
   sort_by: `Urutkan berdasarkan`,
   recently_viewed: `Dilihat Baru-baru Ini`,

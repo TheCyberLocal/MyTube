@@ -21,6 +21,10 @@ export default {
   add_video: `Video hinzufügen`,
   update_video: `Video aktualisieren`,
   delete_video: `Video löschen`,
+  create_highlight: `Hervorhebung hinzufügen`,
+  update_highlight: `Hervorhebung aktualisieren`,
+
+  error_exporting_notes: `Beim Exportieren der Notizen ist ein Fehler aufgetreten.`,
 
   sort_by: `Sortieren nach`,
   recently_viewed: `Kürzlich angesehen`,

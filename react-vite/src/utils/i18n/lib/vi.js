@@ -21,6 +21,10 @@ export default {
   add_video: `Thêm Video`,
   update_video: `Cập nhật Video`,
   delete_video: `Xóa Video`,
+  create_highlight: `Thêm Điểm Nổi Bật`,
+  update_highlight: `Cập Nhật Điểm Nổi Bật`,
+
+  error_exporting_notes: `Đã xảy ra lỗi khi xuất ghi chú.`,
 
   sort_by: `Sắp xếp theo`,
   recently_viewed: `Đã xem gần đây`,

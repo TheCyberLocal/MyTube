@@ -16,7 +16,7 @@ function UnderstandDelete({ type, element }) {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  const handleExportNotes = () => exportNotes(user.id);
+  const handleExportNotes = () => exportNotes(user.id, t);
 
   const handleDelete = () => {
     if (type === "video") {

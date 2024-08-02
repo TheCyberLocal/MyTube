@@ -21,6 +21,10 @@ export default {
   add_video: `Добавить Видео`,
   update_video: `Обновить Видео`,
   delete_video: `Удалить Видео`,
+  create_highlight: `Добавить Выделение`,
+  update_highlight: `Обновить Выделение`,
+
+  error_exporting_notes: `Произошла ошибка при экспорте заметок.`,
 
   sort_by: `Сортировать по`,
   recently_viewed: `Недавно просмотренные`,

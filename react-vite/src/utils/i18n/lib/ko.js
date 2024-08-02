@@ -21,6 +21,10 @@ export default {
   add_video: `동영상 추가`,
   update_video: `동영상 업데이트`,
   delete_video: `동영상 삭제`,
+  create_highlight: `하이라이트 추가`,
+  update_highlight: `하이라이트 업데이트`,
+
+  error_exporting_notes: `노트를 내보내는 동안 오류가 발생했습니다.`,
 
   sort_by: `정렬 기준`,
   recently_viewed: `최근 본`,

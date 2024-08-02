@@ -21,6 +21,10 @@ export default {
   add_video: `เพิ่มวิดีโอ`,
   update_video: `อัปเดตวิดีโอ`,
   delete_video: `ลบวิดีโอ`,
+  create_highlight: `เพิ่มไฮไลท์`,
+  update_highlight: `อัปเดตไฮไลท์`,
+
+  error_exporting_notes: `เกิดข้อผิดพลาดขณะส่งออกบันทึก.`,
 
   sort_by: `เรียงตาม`,
   recently_viewed: `ที่ดูเมื่อเร็ว ๆ นี้`,

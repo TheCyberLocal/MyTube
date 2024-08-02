@@ -21,6 +21,10 @@ export default {
   add_video: `Ajouter Vidéo`,
   update_video: `Mettre à jour Vidéo`,
   delete_video: `Supprimer Vidéo`,
+  create_highlight: `Ajouter un Surlignage`,
+  update_highlight: `Mettre à Jour le Surlignage`,
+
+  error_exporting_notes: `Une erreur s'est produite lors de l'exportation des notes.`,
 
   sort_by: `Trier par`,
   recently_viewed: `Récemment Consulté`,

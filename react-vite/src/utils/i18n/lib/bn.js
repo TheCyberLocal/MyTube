@@ -21,6 +21,10 @@ export default {
   add_video: `ভিডিও যোগ করুন`,
   update_video: `ভিডিও আপডেট`,
   delete_video: `ভিডিও মুছে ফেলা`,
+  create_highlight: `হাইলাইট যোগ করুন`,
+  update_highlight: `হাইলাইট আপডেট করুন`,
+
+  error_exporting_notes: `নোটগুলি রপ্তানি করার সময় একটি ত্রুটি ঘটেছে।`,
 
   sort_by: `ক্রম অনুযায়ী`,
   recently_viewed: `সাম্প্রতিক দেখা`,
