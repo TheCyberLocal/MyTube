@@ -1,4 +1,4 @@
-export const handleExportNotes = async () => {
+export const exportNotes = async () => {
   try {
     const response = await fetch(`/api/export-notes?userId=${user.id}`);
     if (!response.ok) {
@@ -13,8 +13,8 @@ export const handleExportNotes = async () => {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url); // Clean up URL object
-  } catch (error) {
-    console.error("Error exporting notes:", error);
+  } catch {
     alert("An error occurred while exporting notes.");
+    // ! Add translation
   }
 };

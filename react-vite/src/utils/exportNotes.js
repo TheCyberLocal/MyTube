@@ -13,8 +13,7 @@ export const exportNotes = async (userId) => {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url); // Clean up URL object
-  } catch (error) {
-    console.error("Error exporting notes:", error);
+  } catch {
     alert("An error occurred while exporting notes.");
   }
 };

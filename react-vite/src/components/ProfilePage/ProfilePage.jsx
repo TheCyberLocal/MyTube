@@ -62,14 +62,7 @@ function ProfilePage() {
   const [errors, setErrors] = useState({});
   const [updated, setUpdated] = useState(false);
 
-  const handleExportNotes = async (e) => {
-    e.preventDefault();
-    try {
-      await exportNotes(user.id);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const handleExportNotes = () => exportNotes(user.id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

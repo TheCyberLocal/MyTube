@@ -16,14 +16,7 @@ function UnderstandDelete({ type, element }) {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  const handleExportNotes = async (e) => {
-    e.preventDefault();
-    try {
-      await exportNotes(user.id);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const handleExportNotes = () => exportNotes(user.id);
 
   const handleDelete = () => {
     if (type === "video") {
